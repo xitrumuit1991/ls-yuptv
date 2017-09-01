@@ -1,4 +1,4 @@
-###HD1-MOVIES
+###YUP
 # Instruction for the frontend app installation:
 
 #### If you are installing in root folder:
@@ -31,9 +31,3 @@
 * set ENV=dev&  grunt dev
 
 
-#### Account test
-* Smartlink
-* Nguyen Van A
-* 1212121212121212
-* 03/07
-* OTP

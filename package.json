@@ -1,6 +1,6 @@
 {
-  "name": "Fimplus",
-  "version": "1.2.3",
+  "name": "YUP",
+  "version": "1.0.0",
   "dependencies": {
     "angular-file-upload": "^2.5.0",
     "express": "^4.13.3",
