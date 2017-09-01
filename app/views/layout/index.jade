@@ -1,0 +1,66 @@
+doctype html
+html.csstransforms3d()
+	head
+		base(href='/')
+		meta(charset='utf-8')
+		meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+		title YUP
+		meta(name='description', content='')
+		meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+
+		meta(property='og:title', content='')
+		meta(property='og:type', content='article')
+		meta(property='og:description', content='')
+		meta(property='og:image', content='')
+
+		meta(name='twitter:title', content='')
+		meta(name='twitter:description', content='')
+		meta(name='twitter:image:src', content='')
+
+		meta(itemprop='name', content='')
+		meta(itemprop='description', content='')
+		meta(itemprop='image', content='')
+
+		// STYLES
+		// STYLES END
+		link(rel="icon" type="image/png" href="/images/favicon.png")
+
+
+	body
+		include include/_header
+		.container(ui-view='main')
+		include include/_footer
+
+
+		script(type='text/javascript').
+			window.ENV = 'production';
+		if (process.env.ENV == 'dev')
+			script(type = 'text/javascript').
+				window.ENV = 'dev';
+		if (process.env.ENV == 'local')
+			script(type = 'text/javascript').
+				window.ENV = 'local';
+		if (process.env.ENV == 'staging')
+			script(type = 'text/javascript').
+				window.ENV = 'staging';
+		if (process.env.ENV == 'sandbox')
+			script(type = 'text/javascript').
+				window.ENV = 'sandbox';
+		// SCRIPTS
+		// SCRIPTS END
+		script(type='text/javascript').
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-70869939-3']);
+			_gaq.push(['_trackPageview']);
+			(function () {
+				var ga = document.createElement('script');
+				ga.type = 'text/javascript';
+				ga.async = true;
+				ga.src = ('https:' == document.location.protocol
+								? 'https://ssl'
+								: 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(ga, s);
+			})();
+
+
