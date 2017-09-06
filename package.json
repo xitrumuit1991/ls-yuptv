@@ -61,6 +61,7 @@
     "requirejs": "~2.1.9",
     "static-favicon": "~1.0.0",
     "time-grunt": "~0.2.5",
+    "underscore": "^1.8.3",
     "vhost": "^3.0.2"
   },
   "engines": {

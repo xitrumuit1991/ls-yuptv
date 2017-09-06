@@ -483,6 +483,28 @@
   text-align: center;
   margin: 20px auto;
   width: 90%;
+
+}
+
+#payment .tutorial-block{
+  padding: 10px;
+  p{
+    margin: 10px 0;
+  }
+  img{
+    width: 100%;
+  }
+  .heading{
+    padding-bottom: 20px;
+    box-shadow: none;
+    background: none;
+    span{
+      text-shadow: 0px 0.5px 30px #b7b7b7;
+      font-size: 20px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+  }
 }
 
 @media (min-width: 200px) and (max-width: 767px) {

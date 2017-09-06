@@ -18639,4 +18639,25 @@ button.loading:before, label.loading:before, a[role="button"].loading:before {
   margin: 20px auto;
   width: 90%; }
 
+/* line 489, _payment_2.scss */
+#payment .tutorial-block {
+  padding: 10px; }
+  /* line 491, _payment_2.scss */
+  #payment .tutorial-block p {
+    margin: 10px 0; }
+  /* line 494, _payment_2.scss */
+  #payment .tutorial-block img {
+    width: 100%; }
+  /* line 497, _payment_2.scss */
+  #payment .tutorial-block .heading {
+    padding-bottom: 20px;
+    box-shadow: none;
+    background: none; }
+    /* line 501, _payment_2.scss */
+    #payment .tutorial-block .heading span {
+      text-shadow: 0px 0.5px 30px #b7b7b7;
+      font-size: 20px;
+      text-transform: uppercase;
+      font-weight: bold; }
+
 /*# sourceMappingURL=main.css.map */

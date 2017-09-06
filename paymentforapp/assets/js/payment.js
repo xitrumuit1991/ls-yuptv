@@ -1,5 +1,5 @@
-var Payment = {}
-var PaymentMegabank = {}
+var Payment = {};
+var PaymentMegabank = {};
 var SECRET = "6LdVAxkTAAAAAHBO45vG52ZMogoakzo4wopvuLke";
 
 function reRenderCaptcha() {

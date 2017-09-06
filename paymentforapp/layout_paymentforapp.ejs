@@ -29,7 +29,9 @@
     var widgetMegabank;
     var onloadCallback = function()
     {
-      if (window.location.pathname === '/payment' || window.location.pathname === '/paymentforapp')
+      console.log('load gg captcha ok, render captcha');
+      console.log('grecaptcha=', grecaptcha);
+      if ( window.location.pathname.indexOf('paymentforapp') != -1)
       {
         widgetCard = grecaptcha.render('captcha-card', {
           // 'sitekey' : '6LelixsTAAAAADje4PzZb0XKqu2TyVrm4v4Xb-bd', // dev

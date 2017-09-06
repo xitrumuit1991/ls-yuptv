@@ -32,6 +32,7 @@ var compression = require('compression');
 var bodyParser = require('body-parser');
 var request = require('request');
 var async = require('async');
+var underscore = require('underscore');
 var app = express();
 
 var sessionStore = new RedisStore({host:configs.redis_host,port:configs.redis_port,ttl:3600});
