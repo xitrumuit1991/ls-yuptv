@@ -78,6 +78,8 @@ app.get('/health_check', function (req, res) { res.json({service : 'livestar web
 var paymentController = require('./paymentforapp/controller');
 app.use('/assets', express.static(__dirname + '/paymentforapp/assets'));
 app.get('/paymentforapp', paymentController.getPaymentView);
+app.get('/paymentforapp/huong-dan', paymentController.getPaymentHuongDan);
+app.get('/paymentforapp/result/:id', paymentController.getPaymentResult);
 //end group payment app
 
 

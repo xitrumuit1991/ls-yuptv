@@ -4,7 +4,7 @@ module.exports = function (grunt) {
     convert: {
       options: {
         lineNumbers: true,
-        sourceMap:false
+        sourceMap:null
       },
       files: [
         {

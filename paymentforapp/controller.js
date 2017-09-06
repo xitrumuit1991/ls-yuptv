@@ -1,6 +1,9 @@
 var request = require('request');
 var async = require('async');
 
+var layout = 'layout_paymentforapp';
+var flag_mobile = true;
+
 var obPaymentController = {};
 obPaymentController.getPaymentView = function(req, res)
 {
@@ -134,8 +137,8 @@ obPaymentController.getPaymentView = function(req, res)
     },
     function(err, results)
     {
-      var flag_mobile = true;
-      var layout = 'layout_paymentforapp';
+
+
       if(err){
         console.error(err);
         console.error(results);
@@ -219,5 +222,116 @@ obPaymentController.getPaymentView = function(req, res)
       }
     });
 };
+
+
+// router.get('/huong-dan',
+obPaymentController.getPaymentHuongDan =  function(req, res)
+{
+  res.render('tutorial',
+    {
+      user: req.session.user,
+      token: req.session.token,
+      page_title: 'Hướng dẫn',
+      flag_mobile: flag_mobile,
+      layout : layout
+    });
+};
+
+
+
+//router.get('/result/:id',
+obPaymentController.getPaymentResult =  function(req, res)
+{
+  var id 			= req.params ? req.params.id :'' ;
+  var transid 	= req.query ? req.query.transid : '';
+  var responCode 	= req.query ? req.query.responCode : '';
+  var mac 		= req.query ? req.query.mac : '';
+
+  console.log('-----------response tu banking-------');
+  console.log('id=',id);
+  console.log('transid=',transid);
+  console.log('responCode=',responCode);
+  console.log('mac=',mac);
+  request.post({
+    url: req.configs.api_base_url + 'users/confirm',
+    headers: {'content-type': 'application/json'},
+    form: {id: id, transid: transid, responCode: responCode, mac: mac}
+  }, function (error, response, body)
+  {
+    if (!error && response && response.statusCode == 200)
+    {
+      try{
+        var confirm = JSON.parse(body);
+        console.log('confirm megabank=',confirm);
+        if( typeof (req.session.user) != 'undefined' && req.session.user !== undefined && req.session.user)
+        {
+          request({
+            url: req.configs.api_base_url + 'users',
+            headers: { 'content-type': 'application/json', 'Authorization': 'Token token=' + req.session.token}
+          }, function (error, response, body)
+          {
+            if (!error && response && response.statusCode == 200)
+            {
+              try{
+                req.session.user = JSON.parse(body);
+                res.render('result',
+                  {
+                    token: req.session.token,
+                    user: req.session.user,
+                    confirm: confirm,
+                    page_title: 'Thanh toán MegaBank',
+                    flag_mobile:flag_mobile,
+                    captcha: req.recaptcha,
+                    layout : layout
+                  });
+              } catch(errorJSONParse) {
+                console.error('ERROR get user profile after confirm megabank errorJSONParse=',errorJSONParse);
+                res.status(400).json(errorJSONParse);
+              }
+            } else {
+              console.error('ERROR when get user profile after confirm body=', body );
+              res.render('error404',{
+                message: body,
+                status: 400,
+                flag_mobile:flag_mobile,
+                layout: layout
+              });
+            }
+          });
+        }
+        else{
+          // console.log('khong ton tai req.session.user');
+          res.render('result',
+            {
+              user: req.session.user,
+              token: req.session.token,
+              page_title: page_title,
+              confirm: confirm,
+              captcha: req.recaptcha,
+              flag_mobile:flag_mobile,
+              layout : layout
+            });
+        }
+      } catch(errorJSONParse)
+      {
+        console.error('ERROR api users/confirm; var confirm = JSON.parse(body); errorJSONParse=', errorJSONParse);
+        res.status(400).json(errorJSONParse);
+      }
+    }else {
+      var message = '';
+      try { message = JSON.parse(body);
+      }catch(e){ }
+      res.render('result', {
+        user: req.session.user,
+        token: req.session.token,
+        page_title: 'Thanh toán',
+        message: message.error,
+        flag_mobile: flag_mobile,
+        layout : layout
+      });
+    }
+  });
+};
+
 
 module.exports = obPaymentController;
