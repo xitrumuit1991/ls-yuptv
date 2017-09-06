@@ -13,6 +13,13 @@ module.exports = function (grunt) {
           src: ['**/*.scss'],
           dest: 'www/css',
           ext: '.css'
+        },
+        {
+          expand: true,
+          cwd: 'paymentforapp/assets/css',
+          src: ['**/*.scss'],
+          dest: 'paymentforapp/assets/css',
+          ext: '.css'
         }
       ]
     }

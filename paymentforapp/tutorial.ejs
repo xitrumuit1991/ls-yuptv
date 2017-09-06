@@ -1,0 +1,83 @@
+<div id="payment" class="main">
+	<div class="main-container container">
+		<div class="tutorial-block">
+			<div class="wrapper">
+				<div class="title-block">
+					<h1 class="heading separator">
+						<span class="text">Hướng dẫn cho người dùng mới</span>
+					</h1>
+				</div>
+				<div class="content-block">
+					<div class="content-box">
+						<h3 class="title">
+							<span class="color-primary">1. Cách nạp qua SMS</span>
+						</h3>
+						<p> - Bước 1: Click vào biểu tượng SMS</p>
+						<a href="/assets/images/payment/tutorial/sms-tut-1.jpg"" class="image" data-sub-html="<h4>Bước 1:</h4><p>Click vào biểu tượng SMS</p>">
+							<img src="/assets/images/payment/tutorial/sms-tut-1.jpg" alt="Image" />
+						</a>
+						<p> - Bước 2: Click vào gói xu bạn muốn nạp</p>
+						<a href="/assets/images/payment/tutorial/sms-tut-2.jpg"" class="image" data-sub-html="<h4>Bước 1:</h4><p>Click vào gói xu bạn muốn nạp</p>">
+							<img src="/assets/images/payment/tutorial/sms-tut-2.jpg" alt="Image" />
+						</a>
+						<p> - Bước 3: Soạn cú pháp hiện trên màn hình rồi gửi đến 9029 </p>
+						<p> - Bước 4: Chờ nhận thông báo thành công rồi F5 lại là xong </p>
+						<a href="/assets/images/payment/tutorial/sms-tut-3.jpg"" class="image" data-sub-html="<h4>Bước 3 & 4:</h4><p>Soạn cú pháp hiện trên màn hình rồi gửi đến 9029. Chờ nhận thông báo thành công rồi F5 lại là xong</p>">
+							<img src="/assets/images/payment/tutorial/sms-tut-3.jpg" alt="Image" />
+						</a>
+						<br/>
+					</div>
+					<div class="content-box">
+						<h3 class="title">
+							<span class="color-primary">2. Cách nạp bằng thẻ cào điện thoại</span>
+						</h3>
+						<p> - Bước 1: Click vào biểu tượng Thẻ Cào Điện Thoại</p>
+						<a href="/assets/images/payment/tutorial/mobile-card-tut-1.jpg"" class="image" data-sub-html="<h4>Bước 1:</h4><p>Click vào biểu tượng Thẻ Cào Điện Thoại</p>">
+							<img src="/assets/images/payment/tutorial/mobile-card-tut-1.jpg" alt="Image" />
+						</a>
+						<p> - Bước 2: Chọn nhà mạng mà bạn muốn nạp</p>
+						<a href="/assets/images/payment/tutorial/mobile-card-tut-2.jpg"" class="image" data-sub-html="<h4>Bước 2:</h4><p>Chọn nhà mạng mà bạn muốn nạp</p>">
+							<img src="/assets/images/payment/tutorial/mobile-card-tut-2.jpg" alt="Image" />
+						</a>
+						<p> - Bước 3: Xác nhận mã thẻ cào, số seri </p>
+						<a href="/assets/images/payment/tutorial/mobile-card-tut-3.jpg"" class="image" data-sub-html="<h4>Bước 3:</h4><p>Xác nhận mã thẻ cào, số seri </p>">
+							<img src="/assets/images/payment/tutorial/mobile-card-tut-3.jpg" alt="Image" />
+						</a>
+						<p> - Bước 4: Chờ nhận thanh toán là xong </p>
+						<a href="/assets/images/payment/tutorial/mobile-card-tut-4.jpg"" class="image" data-sub-html="<h4>Bước 4:</h4><p>Chờ nhận thanh toán là xong </p>">
+							<img src="/assets/images/payment/tutorial/mobile-card-tut-4.jpg" alt="Image" />
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%- contentFor('appcss') %>
+<link rel="stylesheet" href="/assets/css/payment.css" type="text/css" />
+<link rel="stylesheet" href="/assets/css/payment_2.css" type="text/css" />
+
+<%- contentFor('appjs') %>
+<script type="text/javascript">
+	$(function() {
+		$(".content-box").lightGallery({
+			selector: ".image",
+		}); 
+		var isMobile = (function() {
+			var userAgent = navigator.userAgent.toLowerCase();
+			if (userAgent.match("mobile")) {
+				return true;
+			} else {
+				return false;
+			}
+		})();
+		if (isMobile)
+		{
+      $("header").hide();
+      $("footer").hide();
+			$(".main").css({ "min-width": 'auto', "overflow": 'hidden' });
+			$(".container").css({ "width": 'auto', "padding": "15px" });
+		}
+	});
+</script>

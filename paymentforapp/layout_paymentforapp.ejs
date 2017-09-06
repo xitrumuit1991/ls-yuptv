@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="keywords" content="Giải trí, ca hát, nhảy múa, giao lưu, ngôi sao, idol, hot girl, trò chuyện, Hallostar, trực tuyến, live chat, Hari Won" />
+  <meta name="google-site-verification" content="h-QYYs7x_vyp8Xrad1n7dVr-ogKxkFds4jHU7q7m8KQ" />
+  <!-- Facebook -->
+  <meta property="og:url"   content="" />
+  <meta property="og:title" content="" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="" />
+  <meta property="og:image" content="" />
+  <meta property="fb:app_id" content="1546370315661210" />
+  <meta property="fb:pages" content="1182940155053562" />
+
+  <title>Thanh toán </title>
+
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/font-awesome.css" type="text/css" />
+  <link rel="stylesheet" href="/assets/css/bootstrap.css" type="text/css" />
+  <link rel="stylesheet" href="/assets/css/global.css" type="text/css" />
+  <link rel="stylesheet" href="/assets/css/global_2.css" type="text/css" />
+  <link rel="stylesheet" href="/assets/css/payment_2.css" type="text/css" />
+
+  <script type="text/javascript" src="/assets/js/jquery-1.12.1.min.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit&hl=vi"></script>
+  <script type="text/javascript">
+    // Captcha google
+    var widgetCard;
+    var widgetMegabank;
+    var onloadCallback = function()
+    {
+      if (window.location.pathname === '/payment' || window.location.pathname === '/paymentforapp')
+      {
+        widgetCard = grecaptcha.render('captcha-card', {
+          // 'sitekey' : '6LelixsTAAAAADje4PzZb0XKqu2TyVrm4v4Xb-bd', // dev
+          'sitekey' : '6LdVAxkTAAAAAAeES9kxnsXGbKuW3dcrtM2u_NH_', // live
+          // 'sitekey' : '6LeKSgwUAAAAAHNo6Dtv-a4-uy43L42eMldSFdAq', // livestar-local.vn
+          'theme' : 'light'
+        });
+        widgetMegabank = grecaptcha.render('captcha-payment', {
+          // 'sitekey' : '6LelixsTAAAAADje4PzZb0XKqu2TyVrm4v4Xb-bd', // dev
+          'sitekey' : '6LdVAxkTAAAAAAeES9kxnsXGbKuW3dcrtM2u_NH_', // live
+          // 'sitekey' : '6LeKSgwUAAAAAHNo6Dtv-a4-uy43L42eMldSFdAq', // livestar-local.vn
+          'theme' : 'light'
+        });
+      }
+    };
+  </script>
+  <% if(locals.appcss) { %>
+  <%- appcss %>
+  <% }%>
+</head>
+<body>
+
+<!--body content-->
+<%- body %>
+
+<script type="text/javascript" src="/assets/js/bootstrap.js"></script>
+<script type="text/javascript" src="/assets/js/notify.min.js"></script>
+<script type="text/javascript" src="/assets/js/pmodal.js"></script>
+<script type="text/javascript" src='/assets/js/moment.js'></script>
+<script type="text/javascript" src="/assets/js/user.js"></script>
+<script type="text/javascript" src='/assets/js/payment.js'></script>
+
+<!--Modal-->
+<div class="modal fade" id="modal_Livestar" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-wrapper">
+        <h3 class="heading">
+          <span>Thông báo</span>
+        </h3>
+        <div class="content">
+          <p>Bạn chắc chắn thực hiện hành động này?</p>
+        </div>
+        <div class="button-group text-center">
+          <button type="button" class="btn btn-primary btn-accept" data-dismiss="modal"  id="modal_livestar_btn_yes">Đồng ý</button>
+          <button type="button" class="btn btn-default btn-cancel" data-dismiss="modal"  id="modal_livestar_btn_no">Không</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="modal_Lockscreen" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-wrapper">
+        <h3 class="heading">
+          <span>Thông báo</span>
+        </h3>
+        <div class="content">
+          <p>Bạn chắc chắn thực hiện hành động này?</p>
+        </div>
+        <div class="button-group text-center">
+          <a href="#" class="btn btn-primary btn-accept" role="button">Đồng ý</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end Modal-->
+
+<script type="text/javascript">
+  var API_DOMAIN = "<%= configs.api_domain %>";
+  var API_PATH = API_DOMAIN + "/api/v1/";
+  var RecaptchaOptions = { lang  : 'vi'};
+  var token = "<%= (typeof(token) != 'undefined' && token!=undefined && token)  ? token : '' %>";
+  var user = '<%- ( (typeof(user) != 'undefined' && user!=undefined)  ? JSON.stringify(user) : '') %>';
+  <% if(locals.token && token) { %>
+  if(token && user)
+  {
+    try{
+      user = JSON.parse(user);
+      console.log('layout user=',user);
+      console.log('layout token=',token);
+    }catch(e){ user = null; }
+  }
+  <% }%>
+</script>
+
+<% if(locals.appjs) { %>
+<%- appjs %>
+<% }%>
+
+</body>
+</html>
