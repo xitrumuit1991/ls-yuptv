@@ -10,7 +10,7 @@
     <div class="user-name"><%= (user != undefined ? user.name : '') %></div>
     <div class="note-trade">(1 xu = 100<sup>vnđ</sup>)</div>
     <div class="payment-guide">
-      <a href="./paymentforapp/huong-dan" class="btn btn-primary btn-tutorial" role="button">Hướng dẫn</a>
+      <a href="/paymentforapp/huong-dan" class="btn btn-primary btn-tutorial" role="button">Hướng dẫn</a>
     </div>
     <% } %>
   </div>
@@ -42,172 +42,12 @@
 
   <% if (typeof user != 'undefined' && user != undefined && user){ %>
   <div class="payment-content">
-    <!--SMS-->
-    <div id="sms" class="payment-content-sms" data-code="<%= user != undefined ? user.active_code : "[Mã tài khoản]" %>">
-      <% if (user && user != undefined && user.is_mbf){ %>
-
-      <div class="description">
-        <div class="title">Gói cước dành cho thuê bao <span class="color-primary">Mobifone</span></div>
-      </div>
-      <div id="mbp">
-        <div class="box-sms" data-price="5.000" data-coin="50" data-name="Gói 1">
-          <a href="javascript:void(0)" class="box-wrapper" data-value="1">
-            <div class="box-coin" data-unit="">50 xu</div>
-            <div class="box-cash" data-unit="">5.000<sup>vnđ</sup></div>
-          </a>
-        </div>
-        <div class="box-sms" data-price="10.000" data-coin="100" data-name="Gói 2">
-          <a href="javascript:void(0)" class="box-wrapper" data-value="1">
-            <div class="box-coin" data-unit="">100 xu</div>
-            <div class="box-cash" data-unit="">10.000<sup>vnđ</sup></div>
-          </a>
-        </div>
-        <div class="box-sms" data-price="20.000" data-coin="200" data-name="Gói 3">
-          <a href="javascript:void(0)" class="box-wrapper" data-value="1">
-            <div class="box-coin" data-unit="">200 xu</div>
-            <div class="box-cash" data-unit="">20.000<sup>vnđ</sup></div>
-          </a>
-        </div>
-      </div>
-      <br>
-      <br>
-      <br>
-      <% } %>
-
-      <div class="description">
-        <div class="title">Gói cước dành cho thuê bao
-          <% if (( user && typeof (user) != 'undefined' && !user.is_mbf) || (!user || typeof (user) == 'undefined')  ){ %>
-          <span class="color-primary">Mobiphone</span> và
-          <% } %>
-          <span class="color-primary">Vinaphone</span>
-        </div>
-      </div>
-      <div id="mbp-vnp">
-        <% if( sms && sms.length > 0){ %>
-        <% sms.forEach(function(sms,key){ %>
-        <div class="box-sms" onclick="((!user || user==undefined || typeof(user)=='undefined' ) ? $('.btn-signin').trigger('click') : null)" data-price="<%= sms.price %>" data-coin="<%= sms.coin %>" data-name="Gói <%= key + 1 %>">
-          <a href="javascript:void(0)" class="box-wrapper" data-value="1">
-            <div class="box-coin" data-unit=""><%= sms.coin %> xu</div>
-            <div class="box-cash" data-unit=""><%= sms.price %><sup>vnđ</sup></div>
-          </a>
-        </div>
-        <% }) %>
-        <% } %>
-      </div>
-
-
-      <br>
-      <br>
-      <br>
-      <div class="description">
-        <div class="title">Gói cước dành cho thuê bao <span class="color-primary">Viettel</span></div>
-      </div>
-      <div id="vt">
-        <% if( sms && sms.length > 0){ %>
-        <% sms.forEach(function(sms,key){ %>
-        <div class="box-sms" onclick="((!user || user==undefined || typeof(user)=='undefined' ) ? $('.btn-signin').trigger('click') : null)" data-price="<%= sms.price %>" data-coin="<%= sms.coin %>" data-name="Gói <%= key + 1 %>">
-          <a href="javascript:void(0)" class="box-wrapper" data-value="1">
-            <div class="box-coin" data-unit=""><%= sms.coin %> xu</div>
-            <div class="box-cash" data-unit=""><%= sms.price %><sup>vnđ</sup></div>
-          </a>
-        </div>
-        <% }) %>
-        <% } %>
-      </div>
-    </div>
-
+    <!--SMS payment -->
+    <%- include _include_sms_payment.ejs %>
     <!--Thẻ cào điện thoại -->
-    <div id="mobile_Card">
-      <div class="head-title">Chọn gói xu (1 xu = 100 <sup>vnđ</sup>)</div>
-      <div class="content">
-        <div class="title">1. Chọn nhà mạng</div>
-        <div class="body">
-          <input id="mobile_Provider" type="text" value="" style="display: none" />
-          <% if( providers && providers.length > 0){ %>
-          <% providers.forEach(function(provider,key){ %>
-          <div onclick="mobileCardSelectProvider(this);" class="provider" data-value="<%= provider.code %>"><%= provider.name %></div>
-          <% }) %>
-          <% } %>
-        </div>
-
-        <div class="title">2. Nhập mã thẻ cào</div>
-        <div class="body">
-          <input type="text" class="form-control " name="pin" id="mobile_Code" />
-        </div>
-
-        <div class="title">3. Nhập số seri</div>
-        <div class="body">
-          <input type="text" class="form-control " name="serial" id="mobile_Serial" />
-        </div>
-
-        <div class="captcha-group">
-          <div id="captcha-card"></div>
-        </div>
-
-        <button type="button" class="btn btn-primary" id="btn-payment-by-card-for-app"> Thanh toán</button>
-
-      </div>
-    </div>
-    <!--end the cao dien thoai-->
-
-
+    <%- include _include_telco_card.ejs %>
     <!--internet banking-->
-    <div class="content-box" id="internet_Banking">
-      <div class="step-block-bank">
-        <ul class="step1">
-          <li class="li_1">
-            <a href="#stepA">
-              <div class="image_step"></div>
-              <span class="text_step">Chọn gói xu</span>
-            </a>
-          </li>
-          <li class="li_2">
-            <a href="#stepB">
-              <div class="image_step"></div>
-              <span class="text_step">Chọn ngân hàng</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="step-content-block-bank">
-        <div class="content" id="stepA">
-          <% if( megabanks && megabanks.length > 0){ %>
-          <% megabanks.forEach(function(megabank,key){ %>
-          <div class="box-sms">
-            <a href="#" class="box-wrapper" data-id="<%= megabank.id %>" data-value="<%= megabank.id %>" data-code="<%= megabank.code %>">
-              <span class="box-coin" data-unit=""><%= megabank.coin %> xu</span>
-              <span class="box-cash" data-unit=""><%= megabank.price %><sup>vnđ</sup></span>
-            </a>
-          </div>
-          <% }) %>
-          <% } %>
-        </div>
-
-        <div class="content" id="stepB">
-          <div class="form-block">
-            <div class="select-arrow-down">
-              <select name="bank" class="internet-bank-select">
-                <% if( banks && banks.length > 0){ %>
-                <% banks.forEach(function(bank,key){ %>
-                <option value="<%= bank.code %>"><%= bank.name %></option>
-                <% }) %>
-                <% } %>
-              </select>
-              <i class="fa fa-caret-down"></i>
-            </div>
-            <div class="form-group captcha-group">
-              <div id="captcha-payment"></div>
-            </div>
-            <button type="button" class="btn btn-primary" id="btn-PaymentMegabank-bank">
-              Thanh toán
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--end internet banking-->
-
+    <%- include _include_internet_banking.ejs %>
   </div>
   <% } %>
 
@@ -328,19 +168,27 @@
   });
 
   $(document).ready(function () {
-    console.log('payment ready');
+    console.info('payment ready');
   });
 
 </script>
+
+
+
+
 
 <script>
   //the cao dien thoai
   function mobileCardSelectProvider(ob)
   {
-    var select_provider = $(ob).attr('data-value');
+    var select_provider = $(ob).attr('data-code');
+    var select_source_id = $(ob).attr('data-source-id');
     $('#mobile_Card .provider').removeClass('active');
     $(ob).addClass('active');
-    $('#mobile_Provider').val(select_provider);
+    $('#mobile_Provider').attr('value',select_provider);
+    $('#mobile_Provider').attr('source-id', select_source_id);
+    console.log(select_provider);
+    console.log(select_source_id);
   }
 
   $('#btn-payment-by-card-for-app').on('click',function (event) {
@@ -352,18 +200,25 @@
         btn_Card.removeClass('loading');
         $('.btn-signin').trigger("click");
       });
-    var provider = $('#mobile_Provider').val();
+    var provider = $('#mobile_Provider').attr('value');
+    var sourceId =  $('#mobile_Provider').attr('source-id');
     var pin = $('#mobile_Code').val();
     var serial = $('#mobile_Serial').val();
     var key_payment = '';
     try { key_payment = grecaptcha.getResponse(widgetCard); } catch (e) {console.error(e);}
-    if (!key_payment)
-      return PModal.modalAlert("Vui lòng điền đầy đủ thông tin !!!",function () { btn_Card.removeClass('loading'); });
-
     if (!key_payment || !provider || !pin || !serial)
       return PModal.modalAlert("Vui lòng điền đầy đủ thông tin !!!",function () { btn_Card.removeClass('loading'); });
-    if (key_payment !== '' && provider !== '' && pin !== '' && serial !== '') {
-      var data = {provider:provider,pin:pin,serial:serial,key_payment:key_payment};
+    if (key_payment !== '' && provider !== '' && pin !== '' && serial !== '')
+    {
+      var data = {
+        card_serviceProvider : provider,
+        card_pin : pin,
+        card_serial : serial,
+        sourceId : sourceId,
+        packageId : 'test-tmp-packageId-sample',
+        key_payment:key_payment};
+      console.log(API_PATH + 'payment/card');
+      console.log(data);
       $.ajax({
         url : API_PATH + 'payment/card',
         method:"POST",headers:{'Authorization' : token},
@@ -409,8 +264,18 @@
       PModal.modalAlert("Vui lòng điền đầy đủ thông tin !!!",function () { btn_Card.removeClass('loading'); });
     }
   });
-
 </script>
+
+
+
+
+
+
+
+
+
+
+
 
 <script>
   $('#payment #internet_Banking .step-block-bank a').on('click',function (event) {
