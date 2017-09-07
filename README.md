@@ -1,6 +1,12 @@
 ###YUP
 # Instruction for the frontend app installation:
 
+#### config in config_server.js
+- redis
+- url api; api_secrect_key & api_base_url
+- google captcha; web_SITE_KEY & web_SECRET_KEY
+- port
+
 #### If you are installing in root folder:
 - Upload everything.
 - Install node.js

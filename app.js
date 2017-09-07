@@ -1,6 +1,3 @@
-//set config redis here
-var configs = require('./config_server');
-
 var express = require('express');
 var path = require('path');
 var flash = require('connect-flash');
@@ -15,12 +12,15 @@ var bodyParser = require('body-parser');
 var request = require('request');
 var async = require('async');
 var underscore = require('underscore');
-var app = express();
 
-var sessionStore = new RedisStore({host:configs.redis_host,port:configs.redis_port,ttl:3600});
+var configs = require('./config_server');
+var RedisService = require('./RedisService');
+var app = express();
+RedisService.init();
+
 app.use(session({
-  store: sessionStore,
-  secret:configs.redis_session_secret,
+  store: new RedisStore({ client :  RedisService.getClient() }),
+  secret: configs.redis.secret,
   resave:false,
   saveUninitialized:true,
   cookie: true
@@ -31,7 +31,6 @@ recaptcha.init(configs.web_SITE_KEY,configs.web_SECRET_KEY);
 app.set('trust proxy',1);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'paymentforapp'));
-// app.set('layout', 'paymentforapp/layout');
 app.set('layout', path.join(__dirname, 'paymentforapp') );
 
 app.use(expressLayouts);
@@ -73,5 +72,5 @@ app.all('/*', function (req, res, next) {
   res.sendfile('index.html', { root: __dirname + '/www' });
 });
 
-app.listen(configs.port); //the port you want to use
-console.log('Livestar WEB V2 - App started at port :' + configs.port);
+app.listen(configs.port);
+console.log('Livestar WEB V2 - started at port :' + configs.port);

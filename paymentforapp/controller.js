@@ -33,9 +33,9 @@ var requestApi = function (options,callback) {
 var obPaymentController = {};
 obPaymentController.getPaymentView = function (req,res)
 {
-  console.log('req.query=',req.query);
+  // console.log('req.query=',req.query);
   var queryToken = ((req && req.query) ? req.query.token : '');
-  console.log('queryToken=',queryToken);
+  // console.log('queryToken=',queryToken);
   async.parallel({
       resultPayment : function (callback) {
         requestApi({url:req.configs.api_base_url + 'payment/package'},callback);
@@ -61,7 +61,7 @@ obPaymentController.getPaymentView = function (req,res)
       var banks =  [];
       var provider = [];
       var sms =  [];
-      console.log(results);
+      // console.log(results);
       if (err) {
         console.error(err);
         return res.json({message: 'ERROR! Có lỗi xảy ra', detail : 'Can not get api list packages'})

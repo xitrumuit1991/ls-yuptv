@@ -1,24 +1,33 @@
 var object = {
   port: 5002,
-  redis_host: "localhost",
-  redis_port: 6379,
-  redis_session_secret: "1BCB58514FCE3C7C66BB6C91ACD88",
-  serve_static: true,
-
-  web_domain: "local.livestar.vn",
-  wap_domain: "m-local.livestar.vn",
-
-  live_path: "http://localhost:5001/",
-  api_domain: "http://localhost:3000",
-
   api_base_url: 'http://dev.livestar.vn:1010/api/v1/',
-
   api_secrect_key: "fQ+KY11&l624Bu5",
   web_SITE_KEY: "6LdVAxkTAAAAAAeES9kxnsXGbKuW3dcrtM2u_NH_",
-  web_SECRET_KEY: "6LdVAxkTAAAAAHBO45vG52ZMogoakzo4wopvuLke"
+  web_SECRET_KEY: "6LdVAxkTAAAAAHBO45vG52ZMogoakzo4wopvuLke",
+  redis : {
+    port : 6379,
+    host: 'localhost',
+    secret : '1BCB58514FCE3C7C66BB6C91ACD88',
+    envPrefix : 'session:web-v2:development:',
+    password: null,
+    isCluster: false,
+    database: 0,
+    options: {
+      parser: 'hiredis',
+      return_buffers: false,
+      detect_buffers: false,
+      socket_nodelay: true,
+      no_ready_check: false,
+      enable_offline_queue: true
+    }
+  }
 };
 if( process.env.NODE_ENV == 'production')
 {
   object.api_base_url = 'http://dev.livestar.vn:1010/api/v1/';
+  object.redis.host = '10.148.0.8';
+  object.redis.database = 2;
+  object.redis.isCluster = true;
+  object.redis.envPrefix = 'session:web-v2:production:';
 }
 module.exports = object;
