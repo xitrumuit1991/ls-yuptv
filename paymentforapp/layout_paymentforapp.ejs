@@ -104,23 +104,24 @@
 </div>
 <!--end Modal-->
 
-<script type="text/javascript">
-  var API_DOMAIN = "<%= configs.api_domain %>";
-  var API_PATH = API_DOMAIN + "/api/v1/";
+<script>
   var RecaptchaOptions = { lang  : 'vi'};
+  var API_PATH = "<%= configs.api_base_url %>";
+  console.log('API_PATH=',API_PATH);
   var token = "<%= (typeof(token) != 'undefined' && token!=undefined && token)  ? token : '' %>";
   var user = '<%- ( (typeof(user) != 'undefined' && user!=undefined)  ? JSON.stringify(user) : '') %>';
-  <% if(locals.token && token) { %>
-  if(token && user)
+  console.log('typeof (token)=',typeof (token));
+  console.log('typeof (user)=',typeof (user));
+  if( typeof (user) == 'string')
   {
     try{
       user = JSON.parse(user);
       console.log('layout user=',user);
-      console.log('layout token=',token);
     }catch(e){ user = null; }
   }
-  <% }%>
 </script>
+
+
 
 <% if(locals.appjs) { %>
 <%- appjs %>

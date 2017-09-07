@@ -34,16 +34,16 @@ html.csstransforms3d()
 
 		script(type='text/javascript').
 			window.ENV = 'production';
-		if (process.env.ENV == 'dev')
+		if (process.env.NODE_ENV == 'dev')
 			script(type = 'text/javascript').
 				window.ENV = 'dev';
-		if (process.env.ENV == 'local')
+		if (process.env.NODE_ENV == 'local')
 			script(type = 'text/javascript').
 				window.ENV = 'local';
-		if (process.env.ENV == 'staging')
+		if (process.env.NODE_ENV == 'staging')
 			script(type = 'text/javascript').
 				window.ENV = 'staging';
-		if (process.env.ENV == 'sandbox')
+		if (process.env.NODE_ENV == 'sandbox')
 			script(type = 'text/javascript').
 				window.ENV = 'sandbox';
 		// SCRIPTS

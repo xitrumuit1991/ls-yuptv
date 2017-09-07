@@ -1,4 +1,4 @@
-module.exports = {
+var object = {
   port: 5002,
   redis_host: "localhost",
   redis_port: 6379,
@@ -11,10 +11,14 @@ module.exports = {
   live_path: "http://localhost:5001/",
   api_domain: "http://localhost:3000",
 
-  // api_base_url: "http://localhost:3000/api/v1/",
-  api_base_url: "http://api.livestar.vn/api/v1/",
+  api_base_url: 'http://dev.livestar.vn:1010/api/v1/',
 
   api_secrect_key: "fQ+KY11&l624Bu5",
   web_SITE_KEY: "6LdVAxkTAAAAAAeES9kxnsXGbKuW3dcrtM2u_NH_",
   web_SECRET_KEY: "6LdVAxkTAAAAAHBO45vG52ZMogoakzo4wopvuLke"
 };
+if( process.env.NODE_ENV == 'production')
+{
+  object.api_base_url = 'http://dev.livestar.vn:1010/api/v1/';
+}
+module.exports = object;

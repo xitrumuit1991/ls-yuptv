@@ -42,13 +42,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(cookieParser());
 
-app.locals = {configs : configs};
+
 
 app.use(function(req, res, next)
 {
+  app.locals = {configs : configs, version : '1.0.0'};
   req.configs = configs;
   if (req && !req.session) return next(new Error('ERROR: can not connect Redis'+configs.redis_host));
-  app.locals.version = '1.0.0';
+  //check web mobile here
   return next();
 });
 

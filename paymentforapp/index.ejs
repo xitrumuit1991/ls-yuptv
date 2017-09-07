@@ -125,7 +125,7 @@
           <input id="mobile_Provider" type="text" value="" style="display: none" />
           <% if( providers && providers.length > 0){ %>
           <% providers.forEach(function(provider,key){ %>
-          <div onclick="mobileCardSelectProvider(this);" class="provider" data-value="<%= provider.name %>"><%= provider.description %></div>
+          <div onclick="mobileCardSelectProvider(this);" class="provider" data-value="<%= provider.code %>"><%= provider.name %></div>
           <% }) %>
           <% } %>
         </div>
@@ -175,7 +175,7 @@
           <% if( megabanks && megabanks.length > 0){ %>
           <% megabanks.forEach(function(megabank,key){ %>
           <div class="box-sms">
-            <a href="#" class="box-wrapper" data-value="<%= megabank.id %>">
+            <a href="#" class="box-wrapper" data-id="<%= megabank.id %>" data-value="<%= megabank.id %>" data-code="<%= megabank.code %>">
               <span class="box-coin" data-unit=""><%= megabank.coin %> xu</span>
               <span class="box-cash" data-unit=""><%= megabank.price %><sup>vnđ</sup></span>
             </a>
@@ -190,7 +190,7 @@
               <select name="bank" class="internet-bank-select">
                 <% if( banks && banks.length > 0){ %>
                 <% banks.forEach(function(bank,key){ %>
-                <option value="<%= bank.bankID %>"><%= bank.name %></option>
+                <option value="<%= bank.code %>"><%= bank.name %></option>
                 <% }) %>
                 <% } %>
               </select>
@@ -335,14 +335,12 @@
 
 <script>
   //the cao dien thoai
-  function mobileCardSelectProvider(ob) {
-//    console.log($(ob));
+  function mobileCardSelectProvider(ob)
+  {
     var select_provider = $(ob).attr('data-value');
-//    console.log(select_provider);
     $('#mobile_Card .provider').removeClass('active');
     $(ob).addClass('active');
     $('#mobile_Provider').val(select_provider);
-//    console.log($('#mobile_Provider').val());
   }
 
   $('#btn-payment-by-card-for-app').on('click',function (event) {
@@ -358,10 +356,7 @@
     var pin = $('#mobile_Code').val();
     var serial = $('#mobile_Serial').val();
     var key_payment = '';
-    try {
-      key_payment = grecaptcha.getResponse(widgetCard);
-    }
-    catch (e) {}
+    try { key_payment = grecaptcha.getResponse(widgetCard); } catch (e) {console.error(e);}
     if (!key_payment)
       return PModal.modalAlert("Vui lòng điền đầy đủ thông tin !!!",function () { btn_Card.removeClass('loading'); });
 
@@ -370,8 +365,8 @@
     if (key_payment !== '' && provider !== '' && pin !== '' && serial !== '') {
       var data = {provider:provider,pin:pin,serial:serial,key_payment:key_payment};
       $.ajax({
-        url:API_PATH + 'users/mega-card',
-        method:"POST",headers:{'Authorization':'Token token=' + token},
+        url : API_PATH + 'payment/card',
+        method:"POST",headers:{'Authorization' : token},
         dataType:'json',data:data,
         beforeSend:function () { btn_Card.addClass('loading'); },
         statusCode:{
@@ -479,11 +474,16 @@
       return $('.btn-signin').trigger("click");
 
     if (key_megabank !== '' && megabank_id !== '' && bank_id !== '' && respUrl !== '') {
-      var data = {megabank_id:megabank_id,bank_id:bank_id,respUrl:respUrl,key_megabank:key_megabank};
+      var data = {
+        megabank_id:megabank_id,
+        bank_id:bank_id,
+        respUrl:respUrl,
+        key_megabank:key_megabank
+      };
       $.ajax({
-        url:API_PATH + 'users/internet-banking',
-        method:"POST",
-        headers:{'Authorization':'Token token=' + token},
+        url:API_PATH + 'payment/bank',
+        method : "POST",
+        headers:{'Authorization': token},
         dataType:'json',
         data:data,
         beforeSend:function () {
@@ -499,12 +499,10 @@
           400:function (data) {
             var msg = JSON.parse(data.responseText);
             PModal.modalAlert(msg.error,function () {
-//              $('.btn-PaymentMegabank').removeClass('loading');
             });
           },
           500:function (data) {
             PModal.modalAlert(data.responseText,function () {
-//              $('.btn-PaymentMegabank').removeClass('loading');
             });
           }
         }
@@ -514,7 +512,6 @@
       });
     } else {
       PModal.modalAlert("Vui lòng điền đầy đủ thông tin !!!",function () {
-//        $('.btn-payment').removeClass('loading');
       });
     }
   });
