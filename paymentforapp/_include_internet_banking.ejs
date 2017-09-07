@@ -22,7 +22,7 @@
       <% if( megabanks && megabanks.length > 0){ %>
       <% megabanks.forEach(function(megabank,key){ %>
       <div class="box-sms">
-        <a href="#" class="box-wrapper" data-id="<%= megabank.id %>" data-value="<%= megabank.id %>" data-code="<%= megabank.code %>">
+        <a href="#" class="box-wrapper" package-id="<%= megabank.id %>"  package-code="<%= megabank.code %>">
           <span class="box-coin" data-unit=""><%= megabank.coin %> xu</span>
           <span class="box-cash" data-unit=""><%= megabank.price %><sup>vnđ</sup></span>
         </a>
@@ -37,7 +37,7 @@
           <select name="bank" class="internet-bank-select">
             <% if( banks && banks.length > 0){ %>
             <% banks.forEach(function(bank,key){ %>
-            <option value="<%= bank.code %>"><%= bank.name %></option>
+            <option bank-id="<%= bank.id %>" source-id="<%= bank.id %>" bank-code="<%= bank.code %>" ><%= bank.name %></option>
             <% }) %>
             <% } %>
           </select>
