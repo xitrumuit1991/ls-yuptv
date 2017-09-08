@@ -18,10 +18,15 @@
 
 ##### IMPORTANT: You must config server to direct all requests to www/index.html
 
-#### To deploy development, auto minify & uglify & concat all codes:
-* npm install && grunt dev (everytime deploy code)
+#### To dev localhost:
+* npm install (everytime deploy code)
+* NODE_ENV=development grunt dev ( include run watch task & express server)
+
+#### To deploy development:
+* npm install (everytime deploy code)
 * NODE_ENV=development grunt pre-dev (run in the first time init app)
 * pm2 start app.js -n livestar-web-v2-5002
+
 
 
 #### To deploy production, auto minify & uglify & concat all codes:
