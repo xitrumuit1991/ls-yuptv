@@ -31,6 +31,14 @@ var requestApi = function (options,callback) {
 };
 
 var obPaymentController = {};
+obPaymentController.getSession = function (req,res){
+  res.json({
+    message : 'session livestar web v2',
+    session : req.session,
+    user : req.session ? req.session.user : '',
+    token : req.session ? req.session.token : '',
+  });
+};
 obPaymentController.getPaymentView = function (req,res)
 {
   // console.log('req.query=',req.query);

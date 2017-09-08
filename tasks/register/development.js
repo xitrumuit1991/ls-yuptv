@@ -7,8 +7,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('pre-dev', [
     'prepareAssest',
-    'pre-sails-linker',
-    'copy:healthCheck'
+    'pre-sails-linker'
   ]);
   grunt.registerTask('dev', [
     'pre-dev',

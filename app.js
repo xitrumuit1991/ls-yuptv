@@ -14,10 +14,13 @@ var async = require('async');
 var underscore = require('underscore');
 
 var configs = require('./config_server');
+console.log('--------------------config_server---------------');
+console.log('--------------------',configs);
 var RedisService = require('./RedisService');
 var app = express();
 RedisService.init();
-
+console.log('--------------------redis store client---------------');
+console.log('--------------------',RedisService.getClient());
 app.use(session({
   store: new RedisStore({ client :  RedisService.getClient() }),
   secret: configs.redis.secret,
@@ -47,7 +50,7 @@ app.use(function(req, res, next)
 {
   app.locals = {configs : configs, version : '1.0.0'};
   req.configs = configs;
-  if (req && !req.session) return next(new Error('ERROR: can not connect Redis'+configs.redis_host));
+  if (req && !req.session) return next(new Error('ERROR: can not connect Redis'+configs.redis.host));
   //check web mobile here
   return next();
 });
@@ -61,6 +64,7 @@ app.get('/health_check', function (req, res) { res.json({service : 'livestar web
 var paymentController = require('./paymentforapp/controller');
 app.use('/assets', express.static(__dirname + '/paymentforapp/assets'));
 app.get('/paymentforapp', paymentController.getPaymentView);
+app.get('/paymentforapp/session', paymentController.getSession);
 app.get('/paymentforapp/huong-dan', paymentController.getPaymentHuongDan);
 app.get('/paymentforapp/result/:id', paymentController.getPaymentResult);
 //end group payment app

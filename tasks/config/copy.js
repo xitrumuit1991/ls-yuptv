@@ -10,18 +10,7 @@ module.exports = function (grunt) {
           dest: 'www'
         }
       ]
-    },
-    healthCheck: {
-      files: [
-        {
-          expand: true,
-          cwd: './',
-          src: ['health_check'],
-          dest: 'www'
-        }
-      ]
     }
-
   });
 
   grunt.loadNpmTasks('grunt-contrib-copy');

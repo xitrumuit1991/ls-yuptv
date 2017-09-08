@@ -30,4 +30,5 @@ if( process.env.NODE_ENV == 'production')
   object.redis.isCluster = true;
   object.redis.envPrefix = 'session:web-v2:production:';
 }
+
 module.exports = object;

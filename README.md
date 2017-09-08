@@ -20,14 +20,14 @@
 
 #### To deploy development, auto minify & uglify & concat all codes:
 * npm install && grunt dev (everytime deploy code)
-* ENV=local grunt dev (run in the first time init app)
+* NODE_ENV=development grunt pre-dev (run in the first time init app)
+* pm2 start app.js -n livestar-web-v2-5002
+
 
 #### To deploy production, auto minify & uglify & concat all codes:
-* npm install && ENV=production grunt prod (everytime deploy code)
-
-#### WINDOW To deploy development, auto minify & uglify & concat all codes:
-* set ENV=dev&  grunt dev
-
+* npm install  (everytime deploy code)
+* NODE_ENV=production grunt prod
+* pm2 start app.js -n livestar-web-v2-5002
 
 
 #### paymentforapp folder (include css/js/ejs/controller) is template for app Android/IOS payment

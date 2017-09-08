@@ -4,6 +4,5 @@ module.exports = function (grunt) {
     'prepareProd',
     'sails-linker:prodJsJade',
     'sails-linker:prodCssJade',
-    'copy:healthCheck'
   ]);
 };
