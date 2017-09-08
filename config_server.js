@@ -4,6 +4,7 @@ var object = {
   api_secrect_key: "fQ+KY11&l624Bu5",
   web_SITE_KEY: "6LdVAxkTAAAAAAeES9kxnsXGbKuW3dcrtM2u_NH_",
   web_SECRET_KEY: "6LdVAxkTAAAAAHBO45vG52ZMogoakzo4wopvuLke",
+  ENV :  process.env.NODE_ENV ? process.env.NODE_ENV : 'production',
   redis : {
     port : 6379,
     host: 'localhost',

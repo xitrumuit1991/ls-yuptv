@@ -34,12 +34,9 @@ html.csstransforms3d()
 
 		script(type='text/javascript').
 			window.ENV = 'production';
-		if (process.env.NODE_ENV == 'dev')
+		if (process.env.NODE_ENV == 'development' || process.env.NODE_ENV == 'local')
 			script(type = 'text/javascript').
-				window.ENV = 'dev';
-		if (process.env.NODE_ENV == 'local')
-			script(type = 'text/javascript').
-				window.ENV = 'local';
+				window.ENV = 'development';
 		if (process.env.NODE_ENV == 'staging')
 			script(type = 'text/javascript').
 				window.ENV = 'staging';
