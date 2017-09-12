@@ -44,8 +44,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(cookieParser());
 
-
-
 app.use(function(req, res, next)
 {
   app.locals = {configs : configs, version : '1.0.0'};
@@ -69,9 +67,8 @@ app.get('/paymentforapp/result/:id', paymentController.getPaymentResult);
 
 
 
-app.get('/', function (req, res, next) {
-  res.render('home',{});
-});
+var homeController = require('./controller/homeController');
+app.get('/', homeController.getViewHome);
 
 app.listen(configs.port);
 console.log('Livestar WEB V2 - started at port :' + configs.port);
