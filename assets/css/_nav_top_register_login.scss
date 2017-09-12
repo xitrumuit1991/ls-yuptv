@@ -2,6 +2,9 @@
   padding: 3px 0 7px 0 ;
   background: #ffffff;
   line-height: 40px;
+  a{
+    color: #000;
+  }
   .list-link{
     margin: 0 30px;
     li{
@@ -31,6 +34,13 @@
       border-right: 1px solid #ccc;
       text-align: center;
       font-size: 16px;
+      a{color: #cbcbcb;}
+      &:hover{
+        a{color: #fff ;text-decoration: none;}
+        i{
+          color :#ca0e54;
+        }
+      }
       &.lasted{
         border-right: 1px solid transparent;
       }
