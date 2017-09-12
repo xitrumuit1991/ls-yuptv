@@ -147,7 +147,7 @@ obPaymentController.getPaymentResult = function (req,res) {
   console.log('responCode=',responCode);
   console.log('mac=',mac);
   request.post({
-    url:req.configs.api_base_url + 'users/confirm',
+    url:req.configs.api_base_url + 'payment/bank-callback',
     headers:{'content-type':'application/json'},
     form:{id:id,transid:transid,responCode:responCode,mac:mac, transId:transid }
   },function (error,response,body) {
