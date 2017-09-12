@@ -47,13 +47,104 @@
       /* line 40, _nav_top_register_login.scss */
       .menu_main .menu_main_list .menu_main_list_item:hover i {
         color: #ca0e54; }
-      /* line 47, _nav_top_register_login.scss */
+      /* line 44, _nav_top_register_login.scss */
       .menu_main .menu_main_list .menu_main_list_item.lasted {
         border-right: 1px solid transparent; }
-  /* line 53, _nav_top_register_login.scss */
+  /* line 50, _nav_top_register_login.scss */
   .menu_main .search-form-top .input-group {
     width: 350px;
     line-height: 35px;
     margin-top: 12.5px; }
+
+/* line 2, _footer.scss */
+#footer a {
+  color: #949099; }
+/* line 3, _footer.scss */
+#footer .footer-top {
+  background: #362e3f;
+  padding: 12px 0 10px 0;
+  line-height: 20px; }
+  /* line 7, _footer.scss */
+  #footer .footer-top .list-information li {
+    color: #c0c0c0; }
+  /* line 10, _footer.scss */
+  #footer .footer-top .hotline {
+    color: #fff;
+    font-size: 16px; }
+/* line 15, _footer.scss */
+#footer .footer-bottom {
+  background: #261d2f;
+  padding: 20px 0 40px 0; }
+  /* line 18, _footer.scss */
+  #footer .footer-bottom .head {
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 0; }
+  /* line 23, _footer.scss */
+  #footer .footer-bottom .title {
+    color: #858585;
+    font-size: 12px; }
+  /* line 27, _footer.scss */
+  #footer .footer-bottom .value {
+    color: #c0c0c0; }
+  /* line 30, _footer.scss */
+  #footer .footer-bottom .android-ios {
+    position: relative;
+    line-height: 30px;
+    padding-left: 40px;
+    vertical-align: top;
+    width: 65%;
+    background: #31253c;
+    border-radius: 20px;
+    color: #a8a8a8;
+    margin-top: 15px;
+    font-size: 12px; }
+    /* line 41, _footer.scss */
+    #footer .footer-bottom .android-ios i.fa {
+      position: absolute;
+      background: #433452;
+      border-radius: 50%;
+      padding: 10px 12px;
+      font-size: 20px;
+      top: -5px;
+      color: #fff;
+      left: -10px; }
+  /* line 53, _footer.scss */
+  #footer .footer-bottom .social-icon {
+    background: #b4b4b4;
+    font-size: 18px;
+    border-radius: 50%;
+    padding: 10px;
+    margin: 2px;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    transition: 0.5s; }
+    /* line 63, _footer.scss */
+    #footer .footer-bottom .social-icon:hover {
+      background: #fff; }
+  /* line 68, _footer.scss */
+  #footer .footer-bottom .form-subscrice {
+    position: relative; }
+    /* line 70, _footer.scss */
+    #footer .footer-bottom .form-subscrice input {
+      border-radius: 20px;
+      background: #3a2d47;
+      border: 1px solid #3a2d47;
+      color: #fff;
+      outline: none;
+      height: 36px; }
+    /* line 78, _footer.scss */
+    #footer .footer-bottom .form-subscrice .btn-subsrice {
+      position: absolute;
+      right: 5px;
+      top: 4px;
+      height: 28px;
+      line-height: 14px;
+      border-radius: 20px;
+      background: #fe1503;
+      color: #fff;
+      font-size: 14px;
+      outline: none; }
 
 /*# sourceMappingURL=main_app.css.map */
