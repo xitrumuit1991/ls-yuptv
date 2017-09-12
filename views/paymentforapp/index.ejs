@@ -320,22 +320,22 @@
     var bank_id = $('#internet_Banking #stepB  select[name="bank"]').attr('bank-id');
     var bank_code = $('#internet_Banking #stepB  select[name="bank"]').attr('bank-code');
     var source_id = $('#internet_Banking #stepB  select[name="bank"]').attr('bank-id');
-    var respUrl = window.location.origin + "/paymentforapp/result";
+    var callbackUrl = window.location.origin + "/paymentforapp/result";
     console.log('megabank_id=',megabank_id);
     console.log('bank_id=',bank_id);
-    console.log('respUrl=',respUrl);
+    console.log('respUrl=',callbackUrl);
     var key_megabank='';
     try { key_megabank = grecaptcha.getResponse(widgetMegabank); }catch(e){}
     console.log('key_megabank=',key_megabank);
     if(!key_megabank) return PModal.modalAlert('Captcha không hợp lệ ',function () { });
     if ((typeof token === 'undefined' || token == '' || !token))
       return $('.btn-signin').trigger("click");
-    if (key_megabank !== '' && megabank_id !== '' && bank_id !== '' && respUrl !== '') {
+    if (key_megabank !== '' && megabank_id !== '' && bank_id !== '' && callbackUrl !== '') {
       var data = {
         packageId : megabank_id,
         bankId : bank_code,
         sourceId : source_id,
-        respUrl:respUrl,
+        callbackUrl:callbackUrl,
         key_megabank:key_megabank
       };
       console.log(data);

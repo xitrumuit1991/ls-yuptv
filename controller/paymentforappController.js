@@ -137,7 +137,7 @@ obPaymentController.getPaymentHuongDan = function (req,res) {
 //router.get('/result/:id',
 obPaymentController.getPaymentResult = function (req,res) {
   var id = req.params ? req.params.id : '';
-  var transid = req.query ? req.query.transid : '';
+  var transid = (req.query ? req.query.transid : '') || (req.query ? req.query.transId : '' );
   var responCode = req.query ? req.query.responCode : '';
   var mac = req.query ? req.query.mac : '';
 
@@ -149,7 +149,7 @@ obPaymentController.getPaymentResult = function (req,res) {
   request.post({
     url:req.configs.api_base_url + 'users/confirm',
     headers:{'content-type':'application/json'},
-    form:{id:id,transid:transid,responCode:responCode,mac:mac}
+    form:{id:id,transid:transid,responCode:responCode,mac:mac, transId:transid }
   },function (error,response,body) {
     if (!error && response && response.statusCode == 200) {
       try {
@@ -170,7 +170,6 @@ obPaymentController.getPaymentResult = function (req,res) {
                     confirm:confirm,
                     page_title:'Thanh toán MegaBank',
                     flag_mobile:flag_mobile,
-                    captcha:req.recaptcha,
                     layout:layout
                   });
               }
@@ -180,11 +179,9 @@ obPaymentController.getPaymentResult = function (req,res) {
               }
             } else {
               console.error('ERROR when get user profile after confirm body=',body);
-              res.json('error404',{
+              res.json({
                 message:body,
-                status:400,
-                flag_mobile:flag_mobile,
-                layout:false
+                status:400
               });
             }
           });
@@ -195,9 +192,8 @@ obPaymentController.getPaymentResult = function (req,res) {
             {
               user:req.session.user,
               token:req.session.token,
-              page_title: 'Thanh Toan',
+              page_title: 'Thanh Toán',
               confirm:confirm,
-              captcha:req.recaptcha,
               flag_mobile:flag_mobile,
               layout:layout
             });
