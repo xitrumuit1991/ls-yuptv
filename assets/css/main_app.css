@@ -1,19 +1,46 @@
 /* line 1, _nav_top_register_login.scss */
 .nav_top_register_login {
-  padding: 5px 0; }
+  padding: 3px 0 7px 0;
+  background: #ffffff;
+  line-height: 40px; }
+  /* line 5, _nav_top_register_login.scss */
+  .nav_top_register_login .list-link {
+    margin: 0 30px; }
+    /* line 7, _nav_top_register_login.scss */
+    .nav_top_register_login .list-link li {
+      display: inline-block;
+      text-align: right;
+      padding-left: 20px;
+      line-height: 20px; }
+      /* line 12, _nav_top_register_login.scss */
+      .nav_top_register_login .list-link li:first-child {
+        border-right: 1px solid #ccc;
+        padding-right: 20px; }
 
-/* line 5, _nav_top_register_login.scss */
+/* line 20, _nav_top_register_login.scss */
 .menu_main {
   vertical-align: middle;
   padding: 0;
-  line-height: 35px;
-  background: #00bf74; }
-  /* line 11, _nav_top_register_login.scss */
+  line-height: 50px;
+  background: #280c45;
+  height: 60px; }
+  /* line 26, _nav_top_register_login.scss */
   .menu_main .menu_main_list {
-    line-height: 50px; }
-  /* line 15, _nav_top_register_login.scss */
+    line-height: 25px;
+    color: #fff;
+    margin-top: 15px; }
+    /* line 30, _nav_top_register_login.scss */
+    .menu_main .menu_main_list .menu_main_list_item {
+      border-right: 1px solid #ccc;
+      text-align: center;
+      font-size: 16px; }
+      /* line 34, _nav_top_register_login.scss */
+      .menu_main .menu_main_list .menu_main_list_item.lasted {
+        border-right: 1px solid transparent; }
+  /* line 40, _nav_top_register_login.scss */
   .menu_main .search-form-top .input-group {
     width: 350px;
-    margin-top: 8px; }
+    line-height: 35px;
+    margin-top: 12.5px; }
 
 /*# sourceMappingURL=main_app.css.map */

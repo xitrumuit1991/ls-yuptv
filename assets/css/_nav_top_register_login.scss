@@ -1,20 +1,46 @@
 .nav_top_register_login{
-  padding: 5px 0;
+  padding: 3px 0 7px 0 ;
+  background: #ffffff;
+  line-height: 40px;
+  .list-link{
+    margin: 0 30px;
+    li{
+      display: inline-block;
+      text-align: right;
+      padding-left: 20px ;
+      line-height: 20px;
+      &:first-child{
+        border-right: 1px solid #ccc;
+        padding-right: 20px;
+      }
+    }
+  }
 }
 
 .menu_main{
-
   vertical-align: middle;
   padding: 0;
-  line-height: 35px;
-  background: #00bf74;
+  line-height: 50px;
+  background: #280c45;
+  height: 60px;
   .menu_main_list{
-    line-height: 50px;
+    line-height: 25px;
+    color: #fff;
+    margin-top: 15px;
+    .menu_main_list_item{
+      border-right: 1px solid #ccc;
+      text-align: center;
+      font-size: 16px;
+      &.lasted{
+        border-right: 1px solid transparent;
+      }
+    }
   }
   .search-form-top{
     .input-group{
       width: 350px;
-      margin-top: 7.5px;
+      line-height: 35px;
+      margin-top: 12.5px;
     }
   }
 }
