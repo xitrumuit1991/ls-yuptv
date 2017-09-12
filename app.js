@@ -33,9 +33,9 @@ recaptcha.init(configs.web_SITE_KEY,configs.web_SECRET_KEY);
 
 app.set('trust proxy',1);
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'paymentforapp'));
-app.set('layout', path.join(__dirname, 'paymentforapp') );
-
+app.set('views', path.join(__dirname, 'views'));
+app.set('layout', path.join(__dirname, 'views') );
+app.use('/assets', express.static(__dirname + '/assets'));
 app.use(expressLayouts);
 app.use(helmet());
 app.use(flash());
@@ -59,10 +59,8 @@ app.use(function(req, res, next)
 app.get('/health_check', function (req, res) { res.json({service : 'livestar web v2', time : (new Date()).getTime(), message : 'ok' }) });
 
 
-
 //group payment app
-var paymentController = require('./paymentforapp/controller');
-app.use('/assets', express.static(__dirname + '/paymentforapp/assets'));
+var paymentController = require('./controller/paymentforappController');
 app.get('/paymentforapp', paymentController.getPaymentView);
 app.get('/paymentforapp/session', paymentController.getSession);
 app.get('/paymentforapp/huong-dan', paymentController.getPaymentHuongDan);
@@ -71,9 +69,8 @@ app.get('/paymentforapp/result/:id', paymentController.getPaymentResult);
 
 
 
-app.use(express.static('www'));
-app.all('/*', function (req, res, next) {
-  res.sendfile('index.html', { root: __dirname + '/www' });
+app.get('/', function (req, res, next) {
+  res.render('home',{});
 });
 
 app.listen(configs.port);
