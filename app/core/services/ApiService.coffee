@@ -1,5 +1,13 @@
-_service = ($rootScope, $http, $resource)->
+_service = ($rootScope, $http, $resource, GlobalConfig)->
   self = this
+  @commonData =
+    platform : GlobalConfig.platform
+    env : GlobalConfig.env
+    uuid : GlobalConfig.uuid
+    macAddress : '00:00:00:00:00:00'
+    modelId : GlobalConfig.uuid
+    modelName : GlobalConfig.modelName
+    version : GlobalConfig.version
   @requestSuccess = (done, req)->
     done null, req
 
@@ -19,7 +27,7 @@ _service = ($rootScope, $http, $resource)->
     .error @requestError.bind(@, done)
 
   return null
-_service.$inject = ['$rootScope', '$http',   '$resource']
+_service.$inject = ['$rootScope', '$http',   '$resource', 'GlobalConfig']
 
 angular
 .module('app')

@@ -66,9 +66,14 @@ app.get('/paymentforapp/result/:id', paymentController.getPaymentResult);
 //end group payment app
 
 
+app.use(express.static('www'));
+app.all('/*', function (req, res, next) {
+  // Just send the index.html for other files to support HTML5Mode
+  res.sendfile('index.html', { root: __dirname + '/www' });
+});
 
-var homeController = require('./controller/homeController');
-app.get('/', homeController.getViewHome);
+// var homeController = require('./controller/homeController');
+// app.get('/', homeController.getViewHome);
 
 app.listen(configs.port);
 console.log('Livestar WEB V2 - started at port :' + configs.port);

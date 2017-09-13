@@ -1,17 +1,21 @@
 doctype html
-html.csstransforms3d()
+html.no-js(lang='en')
 	head
 		base(href='/')
-		meta(charset='utf-8')
-		meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
-		title YUP
-		meta(name='description', content='')
+		meta(charset='UTF-8')
+		meta(http-equiv='X-UA-Compatible', content='IE=edge')
 		meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
-
+		meta(name='description', content='')
+		meta(name='keywords', content='Giải trí, ca hát, nhảy múa, giao lưu, ngôi sao, idol, hot girl, trò chuyện, Hallostar, trực tuyến, live chat, Hari Won')
+		meta(name='google-site-verification', content='RV80MBb3SMqko-cCcIiDv0elsJY_grpssJ2ofbPEmTg')
+		// Facebook
+		meta(property='og:url', content='')
 		meta(property='og:title', content='')
 		meta(property='og:type', content='article')
 		meta(property='og:description', content='')
 		meta(property='og:image', content='')
+		meta(property='fb:app_id', content='1546370315661210')
+		meta(property='fb:pages', content='1182940155053562')
 
 		meta(name='twitter:title', content='')
 		meta(name='twitter:description', content='')
@@ -21,43 +25,46 @@ html.csstransforms3d()
 		meta(itemprop='description', content='')
 		meta(itemprop='image', content='')
 
+		title YUP
+		link(rel="icon" type="image/png" href="/images/favicon.png")
+		link(rel='stylesheet', href='/css/bootstrap.css', type='text/css')
+		link(rel='stylesheet', href='/css/font-awesome.css', type='text/css')
 		// STYLES
 		// STYLES END
-		link(rel="icon" type="image/png" href="/images/favicon.png")
 
-
+		script(type='text/javascript', src='/js/jquery-1.12.1.min.js')
+		script(src='https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit&hl=vi')
+		script(type='text/javascript').
+			// Captcha google
+			var widgetCard;
+			var widgetMegabank;
+			var onloadCallback = function()
+			{
+				console.log('load gg captcha ok, render captcha');
+				console.log('grecaptcha=', grecaptcha);
+				if ( window.location.pathname.indexOf('paymentforapp') != -1)
+				{
+					widgetCard = grecaptcha.render('captcha-card', {
+						'sitekey' : '6Lc0MDAUAAAAAE9gOerDRuT3fAAxIpYf0lZWamqr', // http://dev.livestar.vn:8000/paymentforapp
+						'theme' : 'light'
+					});
+					widgetMegabank = grecaptcha.render('captcha-payment', {
+						'sitekey' : '6Lc0MDAUAAAAAE9gOerDRuT3fAAxIpYf0lZWamqr', // http://dev.livestar.vn:8000/paymentforapp
+						'theme' : 'light'
+					});
+				}
+			};
 	body
 		include include/_header
 		.container(ui-view='main')
 		include include/_footer
-
 
 		script(type='text/javascript').
 			window.ENV = 'production';
 		if (process.env.NODE_ENV == 'development' || process.env.NODE_ENV == 'local')
 			script(type = 'text/javascript').
 				window.ENV = 'development';
-		if (process.env.NODE_ENV == 'staging')
-			script(type = 'text/javascript').
-				window.ENV = 'staging';
-		if (process.env.NODE_ENV == 'sandbox')
-			script(type = 'text/javascript').
-				window.ENV = 'sandbox';
 		// SCRIPTS
 		// SCRIPTS END
-		script(type='text/javascript').
-			var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', 'UA-70869939-3']);
-			_gaq.push(['_trackPageview']);
-			(function () {
-				var ga = document.createElement('script');
-				ga.type = 'text/javascript';
-				ga.async = true;
-				ga.src = ('https:' == document.location.protocol
-								? 'https://ssl'
-								: 'http://www') + '.google-analytics.com/ga.js';
-				var s = document.getElementsByTagName('script')[0];
-				s.parentNode.insertBefore(ga, s);
-			})();
 
 

@@ -1,44 +1,22 @@
-// Portfolio Item Heading
-.jumbotron(style='margin-top:100px')
-	h1 Navbar example
-	p
-		| This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.
-	p To see the difference between static and fixed top navbars, just scroll.
-	p
-		a.btn.btn-lg.btn-primary(href='../../components/#navbar', role='button') View navbar docs »
-
-h1.my-4
-	| Page Heading
-	small Secondary Text
-// Portfolio Item Row
-.row
-	.col-md-8
-		img.img-responsive(src='http://placehold.it/750x500', alt='')
-	.col-md-4
-		h3.my-3 Project Description
-		p
-			| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.
-		h3.my-3 Project Details
-		ul
-			li Lorem Ipsum
-			li Dolor Sit Amet
-			li Consectetur
-			li Adipiscing Elit
-// /.row
-// Related Projects Row
-h3.my-4 Related Projects
-.row
-	.col-md-3.col-sm-6.mb-4
-		a(href='#')
-			img.img-responsive(src='http://placehold.it/500x300', alt='')
-	.col-md-3.col-sm-6.mb-4
-		a(href='#')
-			img.img-responsive(src='http://placehold.it/500x300', alt='')
-	.col-md-3.col-sm-6.mb-4
-		a(href='#')
-			img.img-responsive(src='http://placehold.it/500x300', alt='')
-	.col-md-3.col-sm-6.mb-4
-		a(href='#')
-			img.img-responsive(src='http://placehold.it/500x300', alt='')
-// /.row
-// /.container
+.container.home-block-content
+	.group-title.col-md-12
+		.left
+			i.fa.fa-play-circle-o
+			|       ÂM NHẠC
+		.right.pull-right
+			| xem thêm
+			i.fa.fa-arrow-circle-right
+	.group-content
+		- for (var i = 0; i < 6; ++i)
+			.col-md-2
+				.item
+					img.item-image(src='/images/image_am_nhac.png')
+					.item-group.row
+						.item-title.col-md-8
+							p.title Soobin Hoang Son
+							i.fa.fa-eye
+							span.value 10.101
+							i.fa.fa-heart
+							span.value 25.011
+						.item-favorite.col-md-3
+							i.fa.fa-plus-circle
