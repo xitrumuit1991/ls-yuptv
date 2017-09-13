@@ -147,4 +147,50 @@
       font-size: 14px;
       outline: none; }
 
+/* line 2, _home.scss */
+.home-block-content .group-title {
+  margin-top: 20px; }
+  /* line 4, _home.scss */
+  .home-block-content .group-title .left {
+    display: inline-block; }
+/* line 9, _home.scss */
+.home-block-content .group-content {
+  margin-top: 10px; }
+  /* line 12, _home.scss */
+  .home-block-content .group-content .item {
+    width: 100%;
+    text-align: center;
+    background: #f6f5f5;
+    padding: 0 0 10px 0; }
+    /* line 18, _home.scss */
+    .home-block-content .group-content .item .item-image {
+      width: 100%; }
+    /* line 21, _home.scss */
+    .home-block-content .group-content .item .item-title {
+      text-align: left; }
+      /* line 23, _home.scss */
+      .home-block-content .group-content .item .item-title .value {
+        font-size: 10px;
+        color: #696969; }
+      /* line 27, _home.scss */
+      .home-block-content .group-content .item .item-title i.fa {
+        font-size: 10px;
+        color: #696969; }
+      /* line 31, _home.scss */
+      .home-block-content .group-content .item .item-title .title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
+        white-space: nowrap;
+        font-size: 14px;
+        font-weight: bold;
+        color: #696969; }
+    /* line 42, _home.scss */
+    .home-block-content .group-content .item .item-favorite .fa {
+      font-size: 30px;
+      margin-top: 10px;
+      color: #6427a9;
+      /* padding: 20px; */
+      margin-right: 10px; }
+
 /*# sourceMappingURL=main_app.css.map */

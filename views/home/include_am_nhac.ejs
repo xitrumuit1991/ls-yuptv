@@ -1,0 +1,35 @@
+<div class="container home-block-content">
+  <div class="group-title col-md-12">
+    <div class="left">
+      <i class="fa fa-play-circle-o"></i>
+      ÂM NHẠC
+    </div>
+    <div class="right pull-right">
+      xem thêm
+      <i class="fa fa-arrow-circle-right"></i>
+    </div>
+  </div>
+  <div class="group-content">
+    <%
+    for(var i = 0; i < 6; i++)
+    { %>
+    <div class="col-md-2">
+      <div class="item">
+        <img class="item-image" src="/assets/images/image_am_nhac.png" />
+        <div class="item-group row">
+          <div class="item-title col-md-8">
+            <p class="title">Soobin Hoang Son</p>
+            <i class="fa fa-eye"></i>
+            <span class="value">10.101</span>
+            <i class="fa fa-heart"></i>
+            <span class="value">25.011</span>
+          </div>
+          <div class="item-favorite col-md-4">
+            <i class="fa fa-plus-circle"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% } %>
+  </div>
+</div>
