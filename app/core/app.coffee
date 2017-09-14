@@ -28,12 +28,14 @@ angular
 .module("app", [
   "ngResource",
   "ngMessageFormat",
-  'ngAnimate',
+#  'ngAnimate',
   "ui.router",
   "facebook",
   "ngSanitize",
   "angularFileUpload",
-  "fancyboxplus"
+  "fancyboxplus",
+  "ui.bootstrap",
+  "ui.carousel"
 ])
 .constant "AppName", "YUP"
 .constant "GlobalConfig", config

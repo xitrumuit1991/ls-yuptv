@@ -14,6 +14,13 @@ module.exports = function (grunt) {
           src: ['**/*.jade'],
           dest: 'www/templates',
           ext: '.html'
+        },
+        {
+          expand: true,
+          cwd: 'app/core/directive',
+          src: ['**/*.jade'],
+          dest: 'www/templates/directive',
+          ext: '.html'
         }
       ]
     },

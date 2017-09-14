@@ -1,5 +1,5 @@
 doctype html
-html.no-js(lang='en')
+html
 	head
 		base(href='/')
 		meta(charset='UTF-8')
@@ -29,6 +29,7 @@ html.no-js(lang='en')
 		link(rel="icon" type="image/png" href="/images/favicon.png")
 		link(rel='stylesheet', href='/css/bootstrap.css', type='text/css')
 		link(rel='stylesheet', href='/css/font-awesome.css', type='text/css')
+		link(rel='stylesheet', href='/css/ui-carousel.css', type='text/css')
 		// STYLES
 		// STYLES END
 
@@ -56,7 +57,7 @@ html.no-js(lang='en')
 			};
 	body
 		include include/_header
-		.container(ui-view='main')
+		div(ui-view='main')
 		include include/_footer
 
 		script(type='text/javascript').

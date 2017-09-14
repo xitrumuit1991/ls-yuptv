@@ -1,0 +1,28 @@
+.home-slider
+	ui-carousel(slides='slides',
+	slides-to-show='3',
+	slides-to-scroll='1',
+	initial-slide='1',
+	autoplay='true',
+	autoplay-speed='3000',
+	dots='true')
+		carousel-item
+			img(src='{{ item.image }}', alt='{{ item.text }}')
+			h3  {{ item.text }}
+		carousel-prev
+			button
+				i.fa.fa-angle-left
+		carousel-next
+			button
+				i.fa.fa-angle-right
+	.download-link
+
+
+
+//.home-slider
+//	carousel(interval="myInterval")
+//		slide(ng-repeat="slide in slides" active="slide.active")
+//			img(ng-src="{{slide.image}}" style="margin:auto;")
+//			.carousel-caption
+//				h4 Slide {{$index}}
+//				p {{slide.text}}
