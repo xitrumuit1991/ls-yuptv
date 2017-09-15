@@ -63,9 +63,27 @@
   margin-top: 30px;
   margin-bottom: 30px;
   .group-title{
-    margin-top: 20px;
+    margin: 0;
+    padding: 3px;
+    margin-top: 25px;
+    font-size: 16px;
     .left{
       display: inline-block;
+      line-height: 20px;
+      .fa{
+        font-size: 20px;
+        color: #74bbfe;
+      }
+      span{color: #000; font-weight: bold;}
+    }
+    .right{
+      .fa{
+        color: #8a8a8a;
+        font-size: 16px;
+        &:before{
+          color: #000;
+        }
+      }
     }
   }
 
@@ -73,7 +91,7 @@
   {
     margin-top: 10px;
     .col-md-2{
-      padding: 5px;
+      padding: 3px;
     }
     .item{
       width: 100%;
@@ -86,14 +104,18 @@
       }
       .item-title{
         text-align: left;
-        //padding: 0;
+        padding-left: 20px;
+        padding-top: 5px;
+        padding-right: 0;
         .value{
-          font-size: 10px;
+          font-size: 12px;
           color: #696969;
         }
         i.fa{
-          font-size: 10px;
+          font-size: 12px;
           color: #696969;
+          margin: 0 2px 0 2px;
+          line-height: 12px;
         }
         .title{
           overflow: hidden;
@@ -111,7 +133,7 @@
           font-size: 30px;
           margin-top: 10px;
           color: #6427a9;
-          margin-right: 10px;
+          //margin-right: 10px;
         }
       }
     }
