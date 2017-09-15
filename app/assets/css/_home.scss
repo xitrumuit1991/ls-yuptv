@@ -1,14 +1,13 @@
 .home-slider{
   position: relative;
-  img{
-    width: 100%;
-    height: auto;
+  .ui-carousel{
+    overflow: hidden;
   }
-  .carousel-prev{
+  .carousel-prev, .carousel-next{
     position: absolute;
     top:45%;
-    left: 0%;
     transform: translate(0%,-50%);
+    overflow: hidden;
     button{
       background: #820f5a;
       border-radius: 50%;
@@ -16,28 +15,21 @@
       height: 60px;
       border: none;
       color: #fff;
-      padding: 0 0 0 10px;
       .fa{
         font-size: 25px;
       }
     }
   }
-  .carousel-next{
-    position: absolute;
-    top: 45%;
-    right: 0%;
-    transform: translate(0%,-50%);
+  .carousel-prev{
+    left: -2%;
     button{
-      background: #820f5a;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      border: none;
-      color: #fff;
+      padding: 0 0 0 10px;
+    }
+  }
+  .carousel-next{
+    right: -2%;
+    button{
       padding: 0 10px 0 0;
-      .fa{
-        font-size: 25px;
-      }
     }
   }
 }
