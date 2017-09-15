@@ -1,0 +1,14 @@
+.popup-notify(ng-if='popup.status')
+	.close(ng-if='popup.allowClose' ng-click='closePopup()')
+		i.fa.fa-close
+	.notify-wrapper(style='width: {{ popup.width || 50}}%;')
+		.notify-header(ng-if='popup.title') {{popup.title}}
+		.notify-body
+			span(ng-if='popup.content') {{popup.content}}
+
+		.notify-action.confirm(ng-if='popup.type == "confirm" ')
+			a.confirm(ng-click='clickOK()') {{popup.textOk}}
+			a(ng-click='clickCancel()') {{popup.textCancel}}
+
+		.notify-action.alert(ng-if='popup.type == "alert" ')
+			a(ng-click='clickCancel()') {{popup.textCancel}}
