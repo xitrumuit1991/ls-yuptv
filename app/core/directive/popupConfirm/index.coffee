@@ -1,6 +1,6 @@
 popupConfirm = ($rootScope, $timeout) ->
   link = (scope, element, attr) ->
-    console.info 'Init popupConfirm'
+#    console.info 'Init popupConfirm'
     scope.popup =
       allowClose : false
       status : false

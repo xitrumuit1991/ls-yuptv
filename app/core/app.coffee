@@ -4,22 +4,21 @@ config =
   uuid : (new Fingerprint({canvas : true, screen_resolution : false})).get()
   modelName : navigator.userAgent
   fBappId : '903378619781560'
-  content : "http://api.livestar.vn"
+  API_URL : "http://dev.livestar.vn:1010/api/v1/"
   env : 'production'
 
 switch ENV
   when 'production'
     config = _.extend config,
       fBappId : '903378619781560'
-      content : "http://api.livestar.vn"
+      API_URL : "http://dev.livestar.vn:1010/api/v1/"
       env : 'production'
 
   when 'development'
     config = _.extend config,
       fBappId : '903378619781560'
-      content : "http://api.livestar.vn"
-      env : 'production'
-
+      API_URL : "http://dev.livestar.vn:1010/api/v1/"
+      env : 'development'
 
 initInjector = angular.injector(["ng"])
 $http = initInjector.get("$http");

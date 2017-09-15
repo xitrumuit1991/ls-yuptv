@@ -4,11 +4,14 @@ appRun = (
   $stateParams,
   $timeout,
   $location,
-  ApiService)->
-
+  ApiService,
+  GlobalConfig)->
+  console.info 'GlobalConfig=',GlobalConfig
   $rootScope.user = null
   if window.localStorage.user
-    $rootScope.user = JSON.parse(window.localStorage.user)
+    try
+      $rootScope.user = JSON.parse(window.localStorage.user)
+    catch e
   $rootScope.$state = $state
   $rootScope.$stateParams = $stateParams
   $rootScope.$on '$viewContentLoaded', ()->
@@ -20,7 +23,8 @@ appRun.$inject = [
   '$stateParams',
   '$timeout',
   '$location',
-  'ApiService'
+  'ApiService',
+  'GlobalConfig'
 ]
 
 angular.module("app").run(appRun)

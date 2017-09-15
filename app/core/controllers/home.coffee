@@ -15,7 +15,7 @@ ctrl = ($rootScope,
   $scope, $timeout, $location,
   $window, $state, $stateParams,  ApiService, $http,
   GlobalConfig, $interval) ->
-  console.log 'base coffee '
+#  console.log 'base coffee '
   $scope.myInterval = 3000
   $scope.myInterval2 = 3000
   $scope.slides = []

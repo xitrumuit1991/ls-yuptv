@@ -1,13 +1,13 @@
-.home-slider
+.home-slider(ng-if='slides && slides.length > 0')
 	ui-carousel(slides='slides',
-	slides-to-show='3',
+	slides-to-show='1',
 	slides-to-scroll='1',
 	initial-slide='1',
 	autoplay='true',
-	autoplay-speed='3000',
+	autoplay-speed='3500',
 	dots='true')
 		carousel-item
-			img.img-responsive(src='{{ item.image }}', alt='{{ item.text }}')
+			img.img-responsive(src='{{ item.images_path.w1080h622 }}', alt='{{ item.caption }}')
 			//h3  {{ item.text }}
 		carousel-prev
 			button
@@ -18,11 +18,11 @@
 	.download-link
 		.row
 			.col-md-6.ios.text-right
-				a(href="")
+				a(href="https://itunes.apple.com/vn/app/livestar-san-khau-cho-sao/id1074154728?mt=8")
 					i.fa.fa-apple
 					| &nbsp; Tải IOS App
 			.col-md-6.android.text-left
-				a(href="")
+				a(href="https://play.google.com/store/apps/details?id=vn.LS.LiveStar&hl=en")
 					i.fa.fa-android
 					| &nbsp; Tải Android App
 
