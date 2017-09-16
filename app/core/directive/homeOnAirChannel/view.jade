@@ -1,0 +1,37 @@
+.home-on-air-channel
+	.title
+		img(src='/images/onair_title.png')
+		span KÊNH ON AIR
+		.group-button
+			img(src='/images/previous.png')
+			img(src='/images/next.png')
+	.content.row
+		.left.col-md-4
+			img.onair-image(src='/images/onair_left.png')
+			.bottom
+				.name Kevin Tran
+				.group-icon
+					i.fa.fa-eye
+					span 2500
+					i.fa.fa-heart
+					span 2500
+		.right.col-md-8
+			.row
+				- for (var i = 0; i < 6; i++)
+					.col-md-4
+						.onair-child
+							img(src='/images/onair_child.png')
+							.bottom
+								.group
+									.name Toc Tien Idol
+									.icon
+										i.fa.fa-eye
+										span 2500
+										i.fa.fa-heart
+										span 2500
+									.btn-lock
+										i.fa.fa-lock
+	.view-more
+		a.text.pull-right
+			| Xem tất cả
+			img(src='/images/view_more.png')

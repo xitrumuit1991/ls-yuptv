@@ -1,0 +1,120 @@
+.home-on-air-channel
+{
+  .title{
+    margin-right: 15px;
+    span{
+      display: inline-block;
+      vertical-align: top;
+      font-size: 16px;
+      font-weight: bold;
+      margin-left: 5px;
+      line-height: 24px;
+    }
+    .group-button{
+      display: inline-block;
+      float: right;
+      line-height: 24px;
+      img{
+        width: 25px;
+        margin-left: 2px;
+        cursor: pointer;
+      }
+    }
+  }
+  .content{
+    padding-top: 10px;
+    .left{
+      position: relative;
+      width: 41%;
+      display: inline-block;
+      float: left;
+      .onair-image{
+        width: 100%;
+      }
+      .bottom{
+        position: absolute;
+        bottom: 10px;
+        left: 25px;
+        color: #fff;
+        .name{
+          font-size: 22px;
+          font-weight: bold;
+          letter-spacing: 2px;
+          line-height: 50px;
+        }
+        .group-icon{
+          font-size: 16px;
+          font-weight: bold;
+          color: #ffffff;
+          letter-spacing: 2px;
+          .fa{
+            margin: 0px 5px;
+          }
+        }
+      }
+    }
+    .right{
+      width: 54%;
+      display: inline-block;
+      padding: 0;
+      float: left;
+      .col-md-4{
+        padding:0 2px;
+      }
+      .onair-child{
+        position: relative;
+        padding: 0;
+        img{width: 100%}
+        .bottom{
+          display: block;
+          width: 100%;
+          bottom: 0;
+          padding: 5px 10px;
+          position: absolute;
+          background: rgba(0, 0, 0, 1);
+          background: -webkit-linear-gradient(left, rgba(0, 0, 0, 1) , rgba(0, 0, 0, 0.3));
+          background: -o-linear-gradient(right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.3));
+          background: -moz-linear-gradient(right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.3));
+          background: linear-gradient(to right, rgba(0, 0, 0, 1) ,rgba(0, 0, 0, 0.3));
+          left: 0;
+          color: #fff;
+          .group{
+            position: relative;
+            .name{
+              font-size: 12px;
+              font-weight: bold;
+            }
+            .icon{
+              color: #c0c0c0;
+              font-size: 10px;
+              .fa{
+                margin-right:5px;
+              }
+              span{margin-right:5px;}
+            }
+            .btn-lock{
+              position: absolute;
+              top:0;
+              padding: 5px 10px;
+              background: red;
+              border-radius: 50%;
+              right: -5px;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+  .view-more{
+    margin-right: 15px;
+    margin-top: 10px;
+    .text{
+      color: #000;
+      cursor: pointer;
+      img{
+        margin-left: 5px;
+      }
+    }
+  }
+}
