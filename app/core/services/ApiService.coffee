@@ -32,6 +32,13 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
       data : params
     self.request options, done
 
+  self.getHomeContent = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "app/room-by-category"
+      method : 'GET'
+      data : params
+    self.request options, done
+
   return null
 _service.$inject = ['$rootScope', '$http',   '$resource', 'GlobalConfig']
 

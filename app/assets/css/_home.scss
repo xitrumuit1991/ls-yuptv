@@ -67,6 +67,10 @@
     padding: 3px;
     margin-top: 25px;
     font-size: 16px;
+    a{
+      cursor: pointer;
+      text-decoration: none;
+    }
     .left{
       display: inline-block;
       line-height: 20px;
@@ -77,6 +81,7 @@
       span{color: #000; font-weight: bold;}
     }
     .right{
+      span{color: #000; font-weight: normal;}
       .fa{
         color: #8a8a8a;
         font-size: 16px;
@@ -99,6 +104,10 @@
       background: #f6f5f5;
       padding: 0 0 10px 0;
       //margin: 1%;
+      a{
+        cursor: pointer;
+        text-decoration: none;
+      }
       .item-image{
         width: 100%;
       }
