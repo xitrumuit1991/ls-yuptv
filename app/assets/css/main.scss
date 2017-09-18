@@ -1,20 +1,15 @@
+@import "common";
 @import "nav_top_register_login";
 @import "footer";
 @import "home";
 @import "home_on_air_channel";
 @import "bxh_channel";
+@import "register";
 body{
   background: #fafafa;
   font-family: 'Montserrat', sans-serif;
 }
 
-.wrapper{
-  background: #fff;
-  margin: 50px auto;
-  border: 1px solid #e0e0e0;
-  border-radius: 10px;
-  padding: 40px;
-}
 
 .about_us{
   h5{

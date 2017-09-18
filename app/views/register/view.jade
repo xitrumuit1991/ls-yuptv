@@ -1,15 +1,43 @@
 .container
 	.register.wrapper
-		h1 Register
-		//.row
-			.col-md-12.text
-				br
-				|Livestar là dịch vụ phát hình và tương tác trực tiếp trên internet. Livestar cho phép người sử dụng chủ động trong việc phát các nội dung giải trí, tương tác,
-				|nhận quà tặng vật phẩm và quản lý fans trên nền internet.
-				br
-				br
-				|Ngoài ra, Livestar còn cung cấp các chương trình giải trí tại Mini Studio bao gồm hài kịch và show ca nhạc với sự tham gia của các celebrites đến cộng đồng
-				|người dùng.
-		//.row
-			.col-md-12.text-center
-				img.img-responsive(src='/images/Ve_Yup.png' style='margin: 0 auto;')
+		.title.text-center
+			i.fa.fa-user
+			span ĐĂNG KÍ
+		hr
+		.content
+			.row
+				.col-md-5.text-right
+					label Tên người dùng *
+					span tối thiểu 6 kí tự
+				.col-md-4
+					input.form-control(type='text' placeholder='' value='')
+			.row
+				.col-md-5.text-right
+					label Số điện thoại *
+				.col-md-4
+					input.form-control(type='text' placeholder='' value='')
+			.row
+				.col-md-5.text-right
+					label Mật khẩu
+					span tối thiểu 6 kí tự
+				.col-md-4
+					input.form-control(type='text' placeholder='' value='')
+			.row
+				.col-md-5.text-right
+					label Nhập lại mật khẩu
+				.col-md-4
+					input.form-control(type='text' placeholder='' value='')
+			.row
+				.col-md-5.text-right
+					|&nbsp;
+				.col-md-7
+					input(type='checkbox')
+					|&nbsp; Tôi đồng ý với các &nbsp;
+					a() Điều khoản sử dụng
+					|&nbsp; và &nbsp;
+					a() Chính sách bảo mật
+			.row
+				.col-md-5.text-right
+					| &nbsp;
+				.col-md-5
+					button.btn.btn-primary Đăng ký
