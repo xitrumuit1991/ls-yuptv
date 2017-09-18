@@ -39,6 +39,14 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
       data : params
     self.request options, done
 
+  self.getRankCoin = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "user/rank-coin"
+      method : 'GET'
+      data : params
+    self.request options, done
+
+
   return null
 _service.$inject = ['$rootScope', '$http',   '$resource', 'GlobalConfig']
 

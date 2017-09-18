@@ -4,18 +4,18 @@
 			img(src='/images/bxh_icon.png')
 			span BXH Channel
 		.right.pull-right
-			a(href='')
+			a(ng-if='listRank && listRank.length > 9')
 				|xem thêm
 	.content
 		.row
-			- for (var i = 0; i < 9; i++)
-				.col-md-4.item
-					.top
-						img(src='/images/bxh_item.png')
-						button
-							i.fa.fa-plus
-					.name.text-center Phuong Vy
-					.icon.text-center
-						i.fa.fa-rss
-						span 15.124
+			.col-md-4.item(ng-repeat='rankItem in listRank | limitTo : 9')
+				.top
+					//img(src='/images/bxh_item.png')
+					img(src='{{rankItem.User.avatars_path.w160h160}}')
+					button
+						i.fa.fa-plus
+				.name.text-center {{rankItem.User.name}}
+				.icon.text-center
+					i.fa.fa-rss
+					span {{rankItem.User.Room.views}}
 

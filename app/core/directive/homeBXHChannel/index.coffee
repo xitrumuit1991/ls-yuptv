@@ -1,5 +1,10 @@
 _directive = ($timeout, ApiService) ->
   link = ($scope, $element, $attrs) ->
+    $scope.listRank = []
+    ApiService.getRankCoin({}, (error, result)->
+      return if error
+      $scope.listRank = result
+    )
     return null
 
   directive =
