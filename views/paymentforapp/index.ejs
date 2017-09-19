@@ -225,7 +225,12 @@
           200:function (data) {
             console.log(data);
             btn_Card.removeClass('loading');
-            var msg = (data.responseJSON ? data.responseJSON.message : '') || 'Nạp tiền thành công.';
+            if(data && data.error)
+            {
+              PModal.modalAlert(data.message,function () { window.location.reload(); });
+              return;
+            }
+            var msg = (data.responseJSON ? data.responseJSON.message : data.message) || 'Nạp tiền thành công.';
             PModal.modalAlert(msg,function () { window.location.reload(); });
           },
           400:function (data) {
