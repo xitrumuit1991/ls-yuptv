@@ -34,7 +34,7 @@
     <div class="content" id="stepB">
       <div class="form-block">
         <div class="select-arrow-down">
-          <select name="bank" class="internet-bank-select">
+          <select name="bank" class="internet-bank-select" id="internet-bank-select">
             <% if( banks && banks.length > 0){ %>
             <% banks.forEach(function(bank,key){ %>
             <option bank-id="<%= bank.id %>" source-id="<%= bank.id %>" bank-code="<%= bank.code %>" ><%= bank.name %></option>

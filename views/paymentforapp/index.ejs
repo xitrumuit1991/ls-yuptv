@@ -325,30 +325,35 @@
     var btn_internetBank = $('#btn-PaymentMegabank-bank');
     btn_internetBank.attr("disabled", "disabled").button('refresh');
     btn_internetBank.addClass('loading');
-
     setTimeout(function () {
       btn_internetBank.removeAttr("disabled").button('refresh');
       btn_internetBank.removeClass('loading');
     },2000);
-
     event.preventDefault();
-    var megabank_id = parseInt($('#internet_Banking #stepA .box-sms.active a.box-wrapper').attr('package-id'));
-    var bank_id = $('#internet_Banking #stepB  select[name="bank"]').attr('bank-id');
-    var bank_code = $('#internet_Banking #stepB  select[name="bank"]').attr('bank-code');
-    var source_id = $('#internet_Banking #stepB  select[name="bank"]').attr('bank-id');
-    var callbackUrl = window.location.origin + "/paymentforapp/result";
-    console.log('megabank_id=',megabank_id);
-    console.log('bank_id=',bank_id);
-    console.log('respUrl=',callbackUrl);
-    var key_megabank='';
-    try { key_megabank = grecaptcha.getResponse(widgetMegabank); }catch(e){}
-    console.log('key_megabank=',key_megabank);
-    if(!key_megabank) return PModal.modalAlert('Captcha không hợp lệ ',function () { });
     if ((typeof token === 'undefined' || token == '' || !token))
       return $('.btn-signin').trigger("click");
-    if (key_megabank !== '' && megabank_id !== '' && bank_id !== '' && callbackUrl !== '') {
+    var key_megabank='';
+    try { key_megabank = grecaptcha.getResponse(widgetMegabank); }catch(e){}
+
+    if(!key_megabank) return PModal.modalAlert('Captcha không hợp lệ ',function () { });
+
+    var package_id = $('#internet_Banking #stepA .box-sms.active a.box-wrapper').attr('package-id');
+    var callbackUrl = window.location.origin + "/paymentforapp/result";
+
+    var bank_id =   $('#internet-bank-select option:selected').attr('bank-id');
+    var bank_code = $('#internet-bank-select option:selected').attr('bank-code');
+    var source_id = $('#internet-bank-select option:selected').attr('bank-id');
+
+    console.log('key_megabank=',key_megabank);
+    console.log('package_id=',package_id);
+    console.log('bank_id=',bank_id);
+    console.log('bank_code=',bank_code);
+    console.log('callbackUrl=',callbackUrl);
+
+
+    if (key_megabank !== '' && package_id !== '' && callbackUrl !='' && bank_id !== '' ) {
       var data = {
-        packageId : megabank_id,
+        packageId : package_id,
         bankId : bank_code,
         sourceId : source_id,
         callbackUrl:callbackUrl,
