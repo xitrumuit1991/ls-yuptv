@@ -349,7 +349,10 @@
     console.log('bank_id=',bank_id);
     console.log('bank_code=',bank_code);
     console.log('callbackUrl=',callbackUrl);
-
+    if( !key_megabank || !package_id || !callbackUrl || !bank_id ) {
+      PModal.modalAlert("Vui lòng điền đầy đủ thông tin !!!",function () {
+      });
+    }
 
     if (key_megabank !== '' && package_id !== '' && callbackUrl !='' && bank_id !== '' ) {
       var data = {
@@ -408,9 +411,6 @@
         console.log('done(function (data); charge banking data=',data);
         btn_internetBank.removeAttr("disabled").button('refresh');
         btn_internetBank.removeClass('loading');
-      });
-    } else {
-      PModal.modalAlert("Vui lòng điền đầy đủ thông tin !!!",function () {
       });
     }
   });
