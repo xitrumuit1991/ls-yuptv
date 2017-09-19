@@ -19,6 +19,13 @@
         border-right: 1px solid #ccc;
         padding-right: 20px;
       }
+      a{
+        text-decoration: none;
+        color: #505050;
+        &:hover{
+          color: #000;
+        }
+      }
     }
   }
 }
@@ -37,7 +44,10 @@
       border-right: 1px solid #ccc;
       text-align: center;
       font-size: 16px;
-      a{color: #cbcbcb;}
+      a{
+        color: #cbcbcb;
+        text-decoration: none;
+      }
       &:hover{
         a{color: #fff ;text-decoration: none;}
         i{
