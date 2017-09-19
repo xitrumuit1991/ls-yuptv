@@ -2,8 +2,9 @@
 	i.fa.fa-close(ng-click='cancel()')
 	.modal-body
 		h3.text-left ĐĂNG NHẬP
+		.error.text-center.text-danger(ng-if='login.error') {{login.error}}
 
-		input.form-control(type='text', ng-model='login.username' placeholder='Tên đăng nhập ')
+		input.form-control(type='text', ng-model='login.phone' placeholder='Số điện thoại ')
 		input.form-control(type='password', ng-model='login.password' placeholder='Mật khẩu ')
 
 		.group

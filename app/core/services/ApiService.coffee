@@ -60,6 +60,20 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
       data : params
     self.request options, done
 
+  self.loginPhone = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "auth/login"
+      method : 'POST'
+      data : params
+    self.request options, done
+
+  self.loginFacebook = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "auth/fb-register"
+      method : 'POST'
+      data : params
+    self.request options, done
+
 
   return null
 _service.$inject = ['$rootScope', '$http',   '$resource', 'GlobalConfig']
