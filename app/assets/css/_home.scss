@@ -104,7 +104,13 @@
         font-size: 20px;
         color: #74bbfe;
       }
-      span{color: #000; font-weight: bold;}
+      span{
+        color: #464646;
+        font-weight: normal;
+        font-size: 20px;
+        letter-spacing: 1px;
+        text-shadow: 1px 1px 1px #000000;
+      }
     }
     .right{
       span{color: #000; font-weight: normal;}
