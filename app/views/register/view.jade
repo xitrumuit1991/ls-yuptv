@@ -5,39 +5,39 @@
 			span ĐĂNG KÍ
 		hr
 		.content
+			.row(ng-if='register.error')
+				.col-md-12.text-center.text-danger {{register.error}}
 			.row
 				.col-md-4.text-right
 					label Tên người dùng *
 					span tối thiểu 6 kí tự
 				.col-md-5
-					input.form-control(type='text' placeholder='' value='')
+					input.form-control(type='text' placeholder='' value='' ng-model='register.username')
 			.row
 				.col-md-4.text-right
 					label Số điện thoại *
 				.col-md-5
-					input.form-control(type='text' placeholder='' value='')
+					input.form-control(type='text' placeholder='' value='' ng-model='register.phone')
 			.row
 				.col-md-4.text-right
 					label Mật khẩu
 					span tối thiểu 6 kí tự
 				.col-md-5
-					input.form-control(type='text' placeholder='' value='')
+					input.form-control(type='password' placeholder='' value='' ng-model='register.password')
 			.row
 				.col-md-4.text-right
 					label Nhập lại mật khẩu
 				.col-md-5
-					input.form-control(type='text' placeholder='' value='')
+					input.form-control(type='password' placeholder='' value='' ng-model='register.repassword')
 			.row
 				.col-md-4.text-right
 					|&nbsp;
 				.col-md-8
-					input(type='checkbox')
+					input(type='checkbox' ng-model='register.checkPolicy')
 					|&nbsp; Tôi đồng ý với các &nbsp;
-					a() Điều khoản sử dụng
-					|&nbsp; và &nbsp;
-					a() Chính sách bảo mật
+					a(ui-sref='base.policy' href='#') Điều khoản sử dụng
 			.row
 				.col-md-4.text-right
 					| &nbsp;
 				.col-md-5
-					button.btn.btn-primary Đăng ký
+					button.btn.btn-primary(ng-click='submitRegister()') Đăng ký

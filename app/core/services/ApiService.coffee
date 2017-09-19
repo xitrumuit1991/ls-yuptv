@@ -13,7 +13,7 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
     return done null, req
 
   self.requestError = (done, data, status, header, config, statusText)->
-    return done true, data
+    return done data, data
 
   self.request = (options, done)->
     self.requestParams = options.data
@@ -50,6 +50,13 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
     options =
       url : GlobalConfig.API_URL + "user/rank-heart"
       method : 'GET'
+      data : params
+    self.request options, done
+
+  self.registerAccount = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "auth/register"
+      method : 'POST'
       data : params
     self.request options, done
 

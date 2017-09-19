@@ -34,30 +34,44 @@ angular
   "angularFileUpload",
   "fancyboxplus",
   "ui.bootstrap",
-  "ui.carousel"
+  "ui.carousel",
+  "ui-notification"
 ])
 .constant "AppName", "YUP"
 .constant "GlobalConfig", config
 
 
-appConfig = ($locationProvider,
+appConfig = (
+  $locationProvider,
   $stateProvider,
   $urlRouterProvider,
   FacebookProvider,
   GlobalConfig,
-  $httpProvider) ->
+  $httpProvider,
+  NotificationProvider) ->
+
   $httpProvider.interceptors.push "AuthInterceptor"
   $locationProvider.html5Mode(true).hashPrefix "!"
   $urlRouterProvider.otherwise "/"
   FacebookProvider.init config.fBappId
+  NotificationProvider.setOptions({
+    delay: 5000,
+    startTop: 20,
+    startRight: 20,
+    verticalSpacing: 20,
+    horizontalSpacing: 20,
+    positionX: 'right',
+    positionY: 'top'
+  });
 
 appConfig.$inject = [
-  '$locationProvider'
-  '$stateProvider'
-  '$urlRouterProvider'
-  'FacebookProvider'
-  'GlobalConfig'
-  '$httpProvider'
+  '$locationProvider',
+  '$stateProvider',
+  '$urlRouterProvider',
+  'FacebookProvider',
+  'GlobalConfig',
+  '$httpProvider',
+  'NotificationProvider',
 ]
 
 
