@@ -368,8 +368,13 @@
         },
         statusCode:{
           200:function (data) {
-            console.log('PaymentMegabank.handlePaymentMegabank');
+            console.log('PaymentMegabank.handlePaymentMegabank data=',data);
             console.log('data=',JSON.stringify(data));
+            if(data && data.error)
+            {
+              PModal.modalAlert(data.message,function () { window.location.reload(); });
+              return;
+            }
             window.location.href = data.url
           },
           400:function (data) {
@@ -393,10 +398,9 @@
             reRenderCaptcha();
             PModal.modalAlert(msg,function () { });
           }
-
         }
       }).done(function (data) {
-        console.log('charge banking data=',data);
+        console.log('done(function (data); charge banking data=',data);
         btn_internetBank.removeAttr("disabled").button('refresh');
         btn_internetBank.removeClass('loading');
       });
