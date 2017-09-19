@@ -3,15 +3,15 @@
 	.modal-body
 		h3.text-left ĐĂNG NHẬP
 
-		input.form-control(type='text', ng-model='login.username' placeholder='tên đăng nhập ')
-		input.form-control(type='password', ng-model='login.password' placeholder='mật khẩu ')
+		input.form-control(type='text', ng-model='login.username' placeholder='Tên đăng nhập ')
+		input.form-control(type='password', ng-model='login.password' placeholder='Mật khẩu ')
 
 		.group
 			.left
 				input(type='checkbox' ng-model='login.storeInformation')
 				|&nbsp; Lưu thông tin
 			.pull-right
-				a() Quên mật khẩu
+				a(style='cursor: pointer;' ui-sref='base.forget-password') Quên mật khẩu
 
 		button.login.text-center(type='button' ng-click='submitLogin()') ĐĂNG NHẬP
 		button.login.facebook.text-center(type='button' ng-click='loginFacebook()')
