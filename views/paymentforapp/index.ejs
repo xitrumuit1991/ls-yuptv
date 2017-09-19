@@ -172,7 +172,7 @@
 
 
 
-
+<!--mobile_Card-->
 <script>
   //the cao dien thoai
   function mobileCardSelectProvider(ob)
@@ -183,8 +183,8 @@
     $(ob).addClass('active');
     $('#mobile_Provider').attr('value',select_provider);
     $('#mobile_Provider').attr('source-id', select_source_id);
-    console.log(select_provider);
-    console.log(select_source_id);
+    console.log('select_provider=',select_provider);
+    console.log('select_source_id=',select_source_id);
   }
 
   $('#btn-payment-by-card-for-app').on('click',function (event) {
@@ -211,14 +211,15 @@
         card_pin : pin,
         card_serial : serial,
         sourceId : sourceId,
-        packageId : 'test-tmp-packageId-sample',
+        packageId : 'packageId_charge_by_telco',
         key_payment:key_payment};
-      console.log(API_PATH + 'payment/card');
-      console.log(data);
+      console.log('API_PATH=', API_PATH + 'payment/card');
+      console.log('data Post=',data);
       $.ajax({
         url : API_PATH + 'payment/card',
         method:"POST",headers:{'Authorization' : token},
-        dataType:'json',data:data,
+        dataType:'json',
+        data:data,
         beforeSend:function () { btn_Card.addClass('loading'); },
         statusCode:{
           200:function (data) {
@@ -253,9 +254,19 @@
             reRenderCaptcha();
             var msg = (data.responseJSON ? data.responseJSON.message : '') || "Thẻ cào bị lỗi, vui lòng thử lại sau";
             PModal.modalAlert(msg,function () {});
+          },
+          504:function (data) {
+            console.log(data);
+            btn_Card.removeClass('loading');
+            reRenderCaptcha();
+            var msg = (data.responseJSON ? data.responseJSON.message : data.responseText ) || "Thẻ cào bị lỗi, vui lòng thử lại sau";
+            PModal.modalAlert(msg,function () {});
           }
         }
-      }).done(function (data) { btn_Card.removeClass('loading'); });
+      }).done(function (data) {
+        console.log('done(function (data) = ',data);
+        btn_Card.removeClass('loading');
+      });
     } else {
       PModal.modalAlert("Vui lòng điền đầy đủ thông tin !!!",function () { btn_Card.removeClass('loading'); });
     }
@@ -272,7 +283,7 @@
 
 
 
-
+<!--internet_Banking-->
 <script>
   $('#payment #internet_Banking .step-block-bank a').on('click',function (event) {
     var div_target = $(this).attr('href');
@@ -354,19 +365,33 @@
           200:function (data) {
             console.log('PaymentMegabank.handlePaymentMegabank');
             console.log('data=',JSON.stringify(data));
-            window.location = data.url
+            window.location.href = data.url
           },
           400:function (data) {
-            var msg = JSON.parse(data.responseText);
-            PModal.modalAlert(msg.error,function () {
-            });
+            var msg = (data.responseJSON ? data.responseJSON.message : '') || "Có lỗi xảy ra, vui lòng thử lại sau";
+            btn_internetBank.removeAttr("disabled").button('refresh');
+            btn_internetBank.removeClass('loading');
+            reRenderCaptcha();
+            PModal.modalAlert(msg,function () { });
           },
           500:function (data) {
-            PModal.modalAlert(data.responseText,function () {
-            });
+            var msg = (data.responseJSON ? data.responseJSON.message : '') || "Có lỗi xảy ra, vui lòng thử lại sau";
+            btn_internetBank.removeAttr("disabled").button('refresh');
+            btn_internetBank.removeClass('loading');
+            reRenderCaptcha();
+            PModal.modalAlert(msg,function () { });
+          },
+          504:function (data) {
+            var msg = (data.responseJSON ? data.responseJSON.message : '') || "Có lỗi xảy ra, vui lòng thử lại sau";
+            btn_internetBank.removeAttr("disabled").button('refresh');
+            btn_internetBank.removeClass('loading');
+            reRenderCaptcha();
+            PModal.modalAlert(msg,function () { });
           }
+
         }
-      }).done(function () {
+      }).done(function (data) {
+        console.log('charge banking data=',data);
         btn_internetBank.removeAttr("disabled").button('refresh');
         btn_internetBank.removeClass('loading');
       });
