@@ -3,7 +3,7 @@
 		.col-md-6
 			img.image-logo-home(src='/assets/images/logo.png' ui-sref='base')
 		.col-md-6
-			ul.list-inline.text-right.list-link
+			ul.list-inline.text-right.list-link(ng-if='isLogged == false')
 				li.list-inline-item
 					a(href='' ui-sref='base.register')
 						i.fa.fa-user
@@ -12,24 +12,46 @@
 					a(href='' ng-click='openLogin()')
 						i.fa.fa-sign-in
 						|             Đăng Nhập
+			.div-profile-logged(ng-if='isLogged == true')
+				ul.list-inline.text-right.list-link-logged
+					li.list-inline-item
+						i.fa.fa-search
+					li.list-inline-item
+						i.fa.fa-bell-o
+					li.list-inline-item.group-avatar-logged(
+					ng-mouseenter='openProfileMenuDropdown(true)'
+					ng-mouseleave='openProfileMenuDropdown(false)'
+					)
+						img.avatar(src='{{userProfile.avatars_path.w60h60}}')
+						span.name {{userProfile.name}}
+						i.fa(ng-class='{"fa-angle-down" : activeProfileMenu == false, "fa-angle-up" : activeProfileMenu == true}')
+				.profile-menu-dropdown(
+					ng-show='activeProfileMenu'
+				ng-mouseenter='openProfileMenuDropdown(true)'
+				ng-mouseleave='openProfileMenuDropdown(false)'
+				)
+					ul
+						li.level-coin
+							.name {{userProfile.name}}
+							.group-lvl-coin
+								span.lvl Level {{userProfile.Level.level}}
+								span.coin {{userProfile.money}} Ucoin
+						li(ng-repeat='item in menuProfile')
+							a(href='' ui-sref='{{item.href}}' ng-if='item.title') {{item.title}}
+						li
+							a(ng-click='logout()') Đăng Xuất
 
 .menu_main
 	.container
-		.col-md-6.menu_main_list
+		.menu_main_list(class='{{classMenuMain}}')
 			.row
-				.col-md-4.menu_main_list_item
-					a(href='')
-						i.fa.fa-video-camera
-						|  Kênh On Air
-				.col-md-4.menu_main_list_item
-					a(href='')
-						i.fa.fa-calendar-o
-						|  Lịch Phát Sóng
-				.col-md-4.menu_main_list_item.lasted
-					a(href='')
-						i.fa.fa-bell
-						|  Tin Tức
-		.col-md-6.search-form-top
+				.menu_main_list_item(ng-repeat='item in menu'
+				ng-class='{"lasted": $last }'
+				class='{{item.itemClass}}')
+					a(href='' ui-sref='{{item.href}}' ng-if='item.title')
+						i.fa(class='{{item.icon}}' ng-if='item.icon')
+						|  {{item.title}}
+		.col-md-6.search-form-top(ng-if='isHome == true')
 			form.pull-right(action='')
 				.input-group
 					input.form-control(type='Search', placeholder='Nhập tên idol hoặc từ khoá...')
