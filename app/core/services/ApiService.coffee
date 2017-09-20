@@ -53,6 +53,13 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
       data : params
     self.request options, done
 
+  self.getRankShareFacebook = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "user/rank-share-fb"
+      method : 'GET'
+      data : params
+    self.request options, done
+
   self.registerAccount = (params, done)->
     options =
       url : GlobalConfig.API_URL + "auth/register"
