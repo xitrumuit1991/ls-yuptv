@@ -63,7 +63,9 @@ ctrl = ($rootScope,
       if result and result.error
         return Notification.error(result.message)
       console.log result
-      paramsActive = {phone: $scope.register.phone, code : result.code}
+      paramsActive =
+        phone: $scope.register.phone,
+        code : if result.code then result.code.toString() else ''
       ApiService.registerAccountActive paramsActive,(err, res)->
         console.log 'res active code=',res
         if res and res.error
