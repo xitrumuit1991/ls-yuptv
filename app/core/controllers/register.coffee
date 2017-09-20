@@ -68,9 +68,19 @@ ctrl = ($rootScope,
         code : if result.code then result.code.toString() else ''
       ApiService.registerAccountActive paramsActive,(err, res)->
         console.log 'res active code=',res
+        if err
+          return Notification.error(JSON.stringify(err))
         if res and res.error
           return Notification.error(res.message)
-        Notification.success('Đăng kí tài khoản thành công')
+        if res and res.verify == true
+          Notification.success('Đăng kí tài khoản thành công')
+          $scope.register =
+            username : ''
+            phone: ''
+            password: ''
+            repassword : ''
+            checkPolicy : false
+            error : ''
       return
 
 ctrl.$inject = [
