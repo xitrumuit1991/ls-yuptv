@@ -81,6 +81,7 @@ ctrl = ($rootScope,
             repassword : ''
             checkPolicy : false
             error : ''
+          $state.go 'base',{reload:true}
       return
 
 ctrl.$inject = [
