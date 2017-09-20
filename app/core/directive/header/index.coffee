@@ -30,7 +30,7 @@ ctrlHandleLogin = ($scope, $modalInstance, ApiService, $state, Facebook,UtilityS
         return
       $scope.login.error = ''
       UtilityService.setUserLogged(result)
-      $state.go 'base', {reload: true}
+      $state.go 'base', {}, {reload: true}
       $modalInstance.dismiss 'cancel'
       return
     )
@@ -42,7 +42,9 @@ ctrlHandleLogin = ($scope, $modalInstance, ApiService, $state, Facebook,UtilityS
       if response.status isnt "connected"
         $scope.login.error = 'Không thể lấy token từ facebook'
         return
-      ApiService.loginFacebook({access_token: response.access_token }, (error, result)->
+      access_token = response.authResponse.accessToken
+      return $scope.login.error = 'Không thể lấy token từ facebook' unless access_token
+      ApiService.loginFacebook({access_token: access_token }, (error, result)->
         console.log result
         if error
           console.log error
@@ -52,7 +54,7 @@ ctrlHandleLogin = ($scope, $modalInstance, ApiService, $state, Facebook,UtilityS
           return
         $scope.login.error = ''
         UtilityService.setUserLogged(result)
-        $state.go 'base', {reload: true}
+        $state.go 'base', {}, {reload: true}
         $modalInstance.dismiss 'cancel'
         return
       )
