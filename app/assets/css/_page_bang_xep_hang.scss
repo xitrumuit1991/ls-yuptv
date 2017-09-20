@@ -1,0 +1,27 @@
+.bang-xep-hang{
+  .list-nav-bxh{
+    list-style: none;
+    text-align: center;
+    li{
+      display: inline-block;
+      list-style: none;
+      a{
+        color: #858585;
+        font-size: 20px;
+        display: block;
+        margin: 0 20px;
+        //font-weight: bold;
+        cursor: pointer;
+        text-decoration: none;
+        letter-spacing: 1px;
+      }
+      &.active{
+        a{
+          color: #000;
+          text-shadow: 0px 0px 1px #000;
+          //font-weight: bold;
+        }
+      }
+    }
+  }
+}
