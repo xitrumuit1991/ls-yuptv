@@ -48,14 +48,13 @@ ctrl = ($rootScope,
     if !$scope.register.username or !$scope.register.phone or !$scope.register.password or !$scope.register.repassword
       $scope.register.error = 'Vui lòng nhập đầy đủ thông tin'
       return
-    if validateRegister() == false
-      return
+    return if validateRegister() == false
     params =
       phone : $scope.register.phone
       password : $scope.register.password
       name : $scope.register.username
     console.log 'registerAccount=',params
-    ApiService.registerAccount(params, (error, result)->
+    ApiService.registerAccount params, (error, result)->
       $scope.register.error=''
       if error
         console.error error
@@ -64,9 +63,13 @@ ctrl = ($rootScope,
       if result and result.error
         return Notification.error(result.message)
       console.log result
-      Notification.success('Đăng kí tài khoản thành công')
+      paramsActive = {phone: $scope.register.phone, code : result.code}
+      ApiService.registerAccountActive paramsActive,(err, res)->
+        console.log 'res active code=',res
+        if res and res.error
+          return Notification.error(res.message)
+        Notification.success('Đăng kí tài khoản thành công')
       return
-    )
 
 ctrl.$inject = [
   '$rootScope', '$scope', '$timeout', '$location',
