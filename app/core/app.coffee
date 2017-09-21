@@ -3,20 +3,20 @@ config =
   version : '1.0.0'
   uuid : (new Fingerprint({canvas : true, screen_resolution : false})).get()
   modelName : navigator.userAgent
-  fBappId : '1952746048273281'
+  fBappId : '1933860780272829'
   API_URL : "http://dev.livestar.vn:1010/api/v1/"
   env : 'production'
 
 switch ENV
   when 'production'
     config = _.extend config,
-      fBappId : '1952746048273281'
+      fBappId : '1933860780272829'
       API_URL : "http://dev.livestar.vn:1010/api/v1/"
       env : 'production'
 
   when 'development'
     config = _.extend config,
-      fBappId : '1952746048273281'
+      fBappId : '1933860780272829'
       API_URL : "http://dev.livestar.vn:1010/api/v1/"
       env : 'development'
 
