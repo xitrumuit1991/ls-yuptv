@@ -1,4 +1,4 @@
-ctrlHandleLogin = ($scope, $modalInstance, ApiService, $state, Facebook,UtilityService) ->
+ctrlHandleLogin = ($scope, $modalInstance, ApiService, $state, Facebook,UtilityService,cfpLoadingBar) ->
   $scope.login =
     phone : ''
     password : ''
@@ -38,6 +38,7 @@ ctrlHandleLogin = ($scope, $modalInstance, ApiService, $state, Facebook,UtilityS
 
   $scope.loginFacebook = ()->
     doneGetTokenFacebook = (response) ->
+      cfpLoadingBar.complete()
       console.warn('respone cua fb', response)
       if response.status isnt "connected"
         $scope.login.error = 'Không thể lấy token từ facebook'
@@ -58,6 +59,7 @@ ctrlHandleLogin = ($scope, $modalInstance, ApiService, $state, Facebook,UtilityS
         $modalInstance.dismiss 'cancel'
         return
       )
+    cfpLoadingBar.start();
     Facebook.login doneGetTokenFacebook, {scope : 'email,public_profile'}
 
   $scope.cancel = ()->
@@ -66,7 +68,7 @@ ctrlHandleLogin = ($scope, $modalInstance, ApiService, $state, Facebook,UtilityS
     return
   return
 ctrlHandleLogin.$inject = ['$scope', '$modalInstance', 'ApiService', '$state', 'Facebook',
-'UtilityService'
+'UtilityService', 'cfpLoadingBar'
 ]
 
 

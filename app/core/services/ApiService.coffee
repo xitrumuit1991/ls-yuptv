@@ -16,6 +16,7 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
     return done data, data
 
   self.request = (options, done)->
+    options.ignoreLoadingBar = false #off loading bar
     self.requestParams = options.data
     options.data = _.extend _.clone(self.commonData), options.data
     if options.method and options.method.toUpperCase() == 'GET'

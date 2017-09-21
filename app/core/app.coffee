@@ -35,7 +35,9 @@ angular
   "fancyboxplus",
   "ui.bootstrap",
   "ui.carousel",
-  "ui-notification"
+  "ui-notification",
+  "ngProgress",
+  "angular-loading-bar"
 ])
 .constant "AppName", "YUP"
 .constant "GlobalConfig", config
@@ -48,7 +50,7 @@ appConfig = (
   FacebookProvider,
   GlobalConfig,
   $httpProvider,
-  NotificationProvider) ->
+  NotificationProvider,cfpLoadingBarProvider) ->
 
   $httpProvider.interceptors.push "AuthInterceptor"
   $locationProvider.html5Mode(true).hashPrefix "!"
@@ -62,7 +64,9 @@ appConfig = (
     horizontalSpacing: 20,
     positionX: 'right',
     positionY: 'top'
-  });
+  })
+  cfpLoadingBarProvider.includeSpinner = true
+  cfpLoadingBarProvider.includeBar = true
 
 appConfig.$inject = [
   '$locationProvider',
@@ -71,7 +75,7 @@ appConfig.$inject = [
   'FacebookProvider',
   'GlobalConfig',
   '$httpProvider',
-  'NotificationProvider',
+  'NotificationProvider','cfpLoadingBarProvider'
 ]
 
 
