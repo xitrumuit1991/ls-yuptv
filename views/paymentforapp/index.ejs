@@ -238,7 +238,7 @@
             btn_Card.removeClass('loading');
             if(data && data.error)
             {
-              PModal.modalAlert(data.message,function () { window.location.reload(); });
+              PModal.modalAlert(data.message,function () {btn_Card.removeClass('loading'); window.location.reload(); });
               return;
             }
             var msg = (data.responseJSON ? data.responseJSON.message : data.message) || 'Nạp tiền thành công.';
@@ -249,14 +249,14 @@
             reRenderCaptcha();
             console.log(data);
             var msg = (data.responseJSON ? data.responseJSON.message : '') || "Thẻ cào bị lỗi, vui lòng thử lại sau";
-            PModal.modalAlert(msg,function () { });
+            PModal.modalAlert(msg,function () {btn_Card.removeClass('loading'); });
           },
           401:function (data) {
             btn_Card.removeClass('loading');
             reRenderCaptcha();
             console.log(data);
             var msg = (data.responseJSON ? data.responseJSON.message : '') || "Thẻ cào bị lỗi, vui lòng thử lại sau";
-            PModal.modalAlert(msg,function () { });
+            PModal.modalAlert(msg,function () {btn_Card.removeClass('loading'); });
           },
           403:function (data) {
             console.log(data);
@@ -269,14 +269,14 @@
             btn_Card.removeClass('loading');
             reRenderCaptcha();
             var msg = (data.responseJSON ? data.responseJSON.message : '') || "Thẻ cào bị lỗi, vui lòng thử lại sau";
-            PModal.modalAlert(msg,function () {});
+            PModal.modalAlert(msg,function () {btn_Card.removeClass('loading');});
           },
           504:function (data) {
             console.log(data);
             btn_Card.removeClass('loading');
             reRenderCaptcha();
             var msg = (data.responseJSON ? data.responseJSON.message : data.responseText ) || "Thẻ cào bị lỗi, vui lòng thử lại sau";
-            PModal.modalAlert(msg,function () {});
+            PModal.modalAlert(msg,function () {btn_Card.removeClass('loading');});
           }
         }
       }).done(function (data) {
@@ -391,7 +391,7 @@
             console.log('data=',JSON.stringify(data));
             if(data && data.error)
             {
-              PModal.modalAlert(data.message,function () { window.location.reload(); });
+              PModal.modalAlert(data.message,function () {btn_internetBank.removeClass('loading'); window.location.reload(); });
               return;
             }
             window.location.href = data.url
@@ -401,21 +401,21 @@
             btn_internetBank.removeAttr("disabled").button('refresh');
             btn_internetBank.removeClass('loading');
             reRenderCaptcha();
-            PModal.modalAlert(msg,function () { });
+            PModal.modalAlert(msg,function () {btn_internetBank.removeClass('loading'); });
           },
           500:function (data) {
             var msg = (data.responseJSON ? data.responseJSON.message : '') || "Có lỗi xảy ra, vui lòng thử lại sau";
             btn_internetBank.removeAttr("disabled").button('refresh');
             btn_internetBank.removeClass('loading');
             reRenderCaptcha();
-            PModal.modalAlert(msg,function () { });
+            PModal.modalAlert(msg,function () { btn_internetBank.removeClass('loading'); });
           },
           504:function (data) {
             var msg = (data.responseJSON ? data.responseJSON.message : '') || "Có lỗi xảy ra, vui lòng thử lại sau";
             btn_internetBank.removeAttr("disabled").button('refresh');
             btn_internetBank.removeClass('loading');
             reRenderCaptcha();
-            PModal.modalAlert(msg,function () { });
+            PModal.modalAlert(msg,function () { btn_internetBank.removeClass('loading'); });
           }
         }
       }).done(function (data) {
@@ -490,14 +490,14 @@
             grecaptcha.reset();
             console.log(data);
             var msg = (data.responseJSON ? data.responseJSON.message : '') || "Có lỗi xảy ra, vui lòng thử lại sau";
-            PModal.modalAlert(msg,function () { });
+            PModal.modalAlert(msg,function () { btn_Submit.removeClass('loading'); });
           },
           401:function (data) {
             btn_Submit.removeClass('loading');
             grecaptcha.reset();
             console.log(data);
             var msg = (data.responseJSON ? data.responseJSON.message : '') || "Có lỗi xảy ra, vui lòng thử lại sau";
-            PModal.modalAlert(msg,function () { });
+            PModal.modalAlert(msg,function () { btn_Submit.removeClass('loading'); });
           },
           403:function (data) {
             console.log(data);
@@ -516,14 +516,14 @@
             btn_Submit.removeClass('loading');
             grecaptcha.reset();
             var msg = (data.responseJSON ? data.responseJSON.message : '') || "Có lỗi xảy ra, vui lòng thử lại sau";
-            PModal.modalAlert(msg,function () {});
+            PModal.modalAlert(msg,function () {btn_Submit.removeClass('loading');});
           },
           504:function (data) {
             console.log(data);
             btn_Submit.removeClass('loading');
             grecaptcha.reset();
             var msg = (data.responseJSON ? data.responseJSON.message : data.responseText ) || "Có lỗi xảy ra, vui lòng thử lại sau";
-            PModal.modalAlert(msg,function () {});
+            PModal.modalAlert(msg,function () {btn_Submit.removeClass('loading');});
           }
         }
       }).done(function (data) {
