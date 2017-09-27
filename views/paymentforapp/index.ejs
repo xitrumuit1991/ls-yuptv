@@ -6,9 +6,9 @@
     <h3 class="alert alert-danger not-login">Vui lòng đăng nhập để thực hiện chức năng này!</h3>
     <% } else { %>
     <img id="wallet_web" class="wallet_web" src="/assets/paymentforapp/images/payment_2/wallet_web.png" alt="wallet_web" />
-    <div class="user-coin-2" data-unit="xu"><span><%= ( (user != undefined && user) ? user.money : 0) %></span><sup>xu</sup></div>
+    <div class="user-coin-2" data-unit="ucoin"><span><%= ( (user != undefined && user) ? user.money : 0) %></span><sup>ucoin</sup></div>
     <div class="user-name"><%= (user != undefined ? user.name : '') %></div>
-    <div class="note-trade">(1 xu = 100<sup>vnđ</sup>)</div>
+    <div class="note-trade">(1 Ucoin = 100<sup>vnđ</sup>)</div>
     <div class="payment-guide">
       <a href="/paymentforapp/huong-dan" class="btn btn-primary btn-tutorial" role="button">Hướng dẫn</a>
     </div>
@@ -17,7 +17,7 @@
 
   <% if(!user || typeof (user) == 'undefined' ){ %>
   <% } else { %>
-  <div class="select-payment-method">Chọn phương thức nạp xu</div>
+  <div class="select-payment-method">Chọn phương thức nạp Ucoin</div>
   <% } %>
 
   <% if (typeof user != 'undefined' && user != undefined && user){ %>
@@ -33,6 +33,10 @@
     <a div-target="#internet_Banking" class="item nav-method-select" href="javascript:void(0);">
       <img class="image" src="/assets/paymentforapp/images/payment_2/napxu_internet.png" />
       <div class="name"> Internet <br>Banking</div>
+    </a>
+    <a div-target="#redeem_Code" class="item nav-method-select" href="javascript:void(0);">
+      <img class="image" src="/assets/paymentforapp/images/payment_2/redeem_code.png" />
+      <div class="name"> Redeem Code</div>
     </a>
     <a class="back nav-method-back" href="javascript:void(0);">
       <img src="/assets/paymentforapp/images/payment_2/back_button.png" />
@@ -74,7 +78,7 @@
     sms += '<strong class="color-primary">XU' + coin + '</strong> ' +
       '<span class="color-xam">gửi đến</span>' +
       '<strong class="color-primary">9387</strong>';
-    sms += '<br/><br/> Để nhận ' + coin + 'xu với giá ' + money + 'đ';
+    sms += '<br/><br/> Để nhận ' + coin + 'Ucoin với giá ' + money + 'đ';
     sms += '<span class="color-xam">Vui lòng tải lại trang khi nhận thông báo thành công</span>';
     $('#modal_Livestar').find('p').html(sms);
     if (callback !== undefined) {
