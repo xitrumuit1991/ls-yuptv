@@ -12,7 +12,7 @@ module.exports = function (grunt) {
     },
     sass: {
       // Assets to watch:
-      files: ['app/**/*.scss', 'assets/css/**/*.scss'],
+      files: ['app/**/*.scss', 'assets/css/**/*.scss', 'assets/paymentforapp/**/*.scss'],
       // When assets are changed:
       tasks: ['sass']
     },

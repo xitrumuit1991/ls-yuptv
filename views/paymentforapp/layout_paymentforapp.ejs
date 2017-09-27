@@ -28,22 +28,29 @@
     // Captcha google
     var widgetCard;
     var widgetMegabank;
+    var widgetRedeemCode;
     var onloadCallback = function()
     {
       console.log('load gg captcha ok, render captcha');
       console.log('grecaptcha=', grecaptcha);
       if ( window.location.pathname.indexOf('paymentforapp') != -1)
       {
+        var siteKey = '6Lc0MDAUAAAAAE9gOerDRuT3fAAxIpYf0lZWamqr';
         widgetCard = grecaptcha.render('captcha-card', {
           // 'sitekey' : '6LelixsTAAAAADje4PzZb0XKqu2TyVrm4v4Xb-bd', // dev
-          'sitekey' : '6Lc0MDAUAAAAAE9gOerDRuT3fAAxIpYf0lZWamqr', // http://dev.livestar.vn:8000/paymentforapp
+          'sitekey' : siteKey,
           // 'sitekey' : '6LeKSgwUAAAAAHNo6Dtv-a4-uy43L42eMldSFdAq', // livestar-local.vn
           'theme' : 'light'
         });
         widgetMegabank = grecaptcha.render('captcha-payment', {
           // 'sitekey' : '6LelixsTAAAAADje4PzZb0XKqu2TyVrm4v4Xb-bd', // dev
-          'sitekey' : '6Lc0MDAUAAAAAE9gOerDRuT3fAAxIpYf0lZWamqr', // http://dev.livestar.vn:8000/paymentforapp
+          'sitekey' : siteKey,
           // 'sitekey' : '6LeKSgwUAAAAAHNo6Dtv-a4-uy43L42eMldSFdAq', // livestar-local.vn
+          'theme' : 'light'
+        });
+
+        widgetRedeemCode = grecaptcha.render('captcha-redeem-code', {
+          'sitekey' : siteKey,
           'theme' : 'light'
         });
       }
