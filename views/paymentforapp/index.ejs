@@ -62,9 +62,8 @@
 
   <div class="support-info-block">
     <div>Hệ thống thanh toán được bảo trợ bởi <a href="http://vnptepay.com.vn/">VNPT EPAY (<i>http://vnptepay.com.vn/</i>)</a></div>
-    <div>Trong trường hợp xảy ra lỗi, bạn vui lòng liên hệ nhân viên CSKH bằng hệ thống chat ở cuối trang.</div>
+    <div>Trong trường hợp xảy ra lỗi, bạn vui lòng liên hệ nhân viên CSKH bằng email contact@pateco.vn</div>
   </div>
-
 </div>
 
 
@@ -448,7 +447,7 @@
     var key_redeem = '';
     var input_redeem_Code = $('#input_redeem_Code').val();
     if(!input_redeem_Code || input_redeem_Code=='')
-      return PModal.modalAlert("Vui lòng nhập redeem code !",function () {
+      return PModal.modalAlert("Vui lòng nhập mã quà tặng!",function () {
         btn_Submit.removeClass('loading'); return;
       });
     try { key_redeem = grecaptcha.getResponse(widgetRedeemCode); } catch (e) {console.error(e);}
