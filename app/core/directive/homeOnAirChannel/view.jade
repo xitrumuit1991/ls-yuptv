@@ -2,7 +2,7 @@
 	.title
 		img(src='/images/onair_title.png')
 		span KÊNH ON AIR
-		.group-button(ng-if='listOnAir && listOnAir.length > 0')
+		.group-button(ng-if='listOnAir && listOnAir.length > 7')
 			img(src='/images/previous.png')
 			img(src='/images/next.png')
 	.content.row(ng-if='listOnAir && listOnAir.length <= 0')
@@ -34,7 +34,7 @@
 									span 2500
 								.btn-lock
 									i.fa.fa-lock
-	.view-more(ng-if='listOnAir && listOnAir.length > 0')
+	.view-more(ng-if='listOnAir && listOnAir.length > 7')
 		a.text.pull-right
 			| Xem tất cả
 			img(src='/images/view_more.png')
