@@ -51,7 +51,7 @@ appRun = (
     },
     {
       title : 'Cài Đặt Thông Báo',
-      href : 'base.profile',
+      href : 'base.profile.setting-notify',
       itemClass : 'col-md-2'
     },
   ]
@@ -71,7 +71,7 @@ appRun = (
   $rootScope.$on '$stateChangeStart', (event, toState, toParams, fromState, fromParams)->
     console.log 'fromState',fromState
     console.log 'toState',toState
-    if toState and toState.name is 'base.profile'
+    if toState and toState.name.indexOf('base.profile') != -1
       $rootScope.isHome = false
       $rootScope.menuMain = menuMainProfile
     else

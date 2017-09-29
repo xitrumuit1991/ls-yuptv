@@ -31,7 +31,7 @@ _directive = ($rootScope, $timeout, ApiService, $modal, $state) ->
       },
       {
         title : 'Cài Đặt Thông Báo',
-        href : 'base.profile',
+        href : 'base.profile.setting-notify',
         itemClass : 'col-md-2'
       },
     ]
