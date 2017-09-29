@@ -19,6 +19,14 @@ factory = ($rootScope, $timeout, $window, $http)->
       console.log e
       return null
 
+  setSettingNotify : (type = 'live-notification' , onOff = 'on')->
+    window.localStorage[type] = onOff
+
+  getSettingNotify : (type)->
+    type = 'live-notification' unless type
+    return 'off' unless window.localStorage[type]
+    return window.localStorage[type]
+
 factory.$inject = ['$rootScope',
   '$timeout',
   '$window',
