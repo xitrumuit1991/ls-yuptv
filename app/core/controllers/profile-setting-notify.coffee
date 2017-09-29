@@ -16,9 +16,12 @@ ctrl = ($rootScope,
   console.log 'ProfileSettingNotifyCtrl coffee '
   $timeout(()->
     $(()->
-      $('#toggle-one').bootstrapToggle();
+#      $('#toggle-one').bootstrapToggle();
+      $('#toggle-one').bootstrapToggle('on')
+      $('#toggle-two').bootstrapToggle('off');
+      $('#toggle-three').bootstrapToggle();
     )
-  ,1000 )
+  ,1)
 
 ctrl.$inject = [
   '$rootScope', '$scope', '$timeout', '$location',
