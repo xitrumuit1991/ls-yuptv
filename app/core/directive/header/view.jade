@@ -48,7 +48,8 @@
 				.menu_main_list_item(ng-repeat='item in menu'
 				ng-class='{"lasted": $last }'
 				class='{{item.itemClass}}')
-					a(href='' ui-sref='{{item.href}}' ng-if='item.title')
+					a(href='' ui-sref='{{item.href}}'
+					ui-sref-active="active")
 						i.fa(class='{{item.icon}}' ng-if='item.icon')
 						|  {{item.title}}
 		.col-md-6.search-form-top(ng-if='isHome == true')

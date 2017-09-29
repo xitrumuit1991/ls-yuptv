@@ -11,22 +11,22 @@ _directive = ($rootScope, $timeout, ApiService, $modal, $state) ->
     $scope.menuProfile = [
       {
         title : 'Trang Cá Nhân',
-        href : 'base.profile',
+        href : 'base.profile.user-info',
         itemClass : 'col-md-2'
       },
       {
         title : 'Quản lý tài sản ',
-        href : 'base.profile',
+        href : 'base.profile.manage-asset',
         itemClass : 'col-md-2'
       },
       {
         title : 'Nạp Xu',
-        href : 'base.profile',
+        href : 'base.profile.charge-ucoin',
         itemClass : 'col-md-2'
       },
       {
-        title : 'Quản Lý Tài Sản',
-        href : 'base.profile',
+        title : 'Quản lý phòng diễn ',
+        href : 'base.profile.manage-room',
         itemClass : 'col-md-2'
       },
       {
