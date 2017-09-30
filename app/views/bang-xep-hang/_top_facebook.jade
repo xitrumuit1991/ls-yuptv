@@ -1,0 +1,46 @@
+.col-md-12(ng-if='tab == "top-facebook"')
+	.row
+		.col-md-12.text-center.item-first(ng-if='rankFacebook[0]')
+			.top
+				img(src='{{rankFacebook[0].User.avatars_path.w160h160}}')
+			.name.text-center {{rankFacebook[0].User.name}}
+			.icon.text-center
+				i.fa.fa-heart-o
+				span {{rankFacebook[0].User.Room.views}}
+			button.btn-follow Theo dõi
+		.col-md-12
+			.row
+				.col-md-2
+				.col-md-4.item-second.text-center(ng-if='rankFacebook[1]')
+					.top
+						img(src='{{rankFacebook[1].User.avatars_path.w160h160}}')
+					.name.text-center {{rankFacebook[1].User.name}}
+					.icon.text-center
+						i.fa.fa-heart-o
+						span {{rankFacebook[1].User.Room.views}}
+					button.btn-follow Theo dõi
+				.col-md-4.item-thirst.text-center(ng-if='rankFacebook[2]')
+					.top
+						img(src='{{rankFacebook[2].User.avatars_path.w160h160}}')
+					.name.text-center {{rankFacebook[2].User.name}}
+					.icon.text-center
+						i.fa.fa-heart-o
+						span {{rankFacebook[2].User.Room.views}}
+					button.btn-follow Theo dõi
+				.col-md-2
+		.col-md-12 &nbsp;
+		.col-md-12.text-center.item(ng-repeat='rankItem in rankFacebook | limitTo : 10', ng-if='$index > 2 && rankFacebook.length > 3')
+			.row
+				.col-md-4
+					.top.text-right
+						img(src='{{rankItem.User.avatars_path.w160h160}}')
+						.number {{$index+1}}
+				.col-md-6.item-content
+					.row
+						.col-md-6
+							.name.text-left {{rankItem.User.name}}
+							.icon.text-left
+								i.fa.fa-heart-o
+								span &nbsp;{{rankItem.User.Room.views}}
+						.col-md-6.text-right
+							button.btn-follow Theo dõi

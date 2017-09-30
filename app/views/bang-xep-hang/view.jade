@@ -1,7 +1,7 @@
 .container
 	.bang-xep-hang.wrapper
 		h1 BẢNG XẾP HẠNG
-		h5 cập nhật ngày 06/09/2017
+		//h5 cập nhật ngày 06/09/2017
 		hr
 		.row
 			.col-md-12.text-center
@@ -12,30 +12,13 @@
 						a(ng-click='tab="top-dai-gia"') Top đại gia
 					li(ng-class='{"active" : tab == "top-facebook" }')
 						a(ng-click='tab="top-facebook"') Top facebook
-			.col-md-12(ng-if='tab == "top-yeu-thich"')
-				.row
-					.col-md-4.item(ng-repeat='rankItem in rankHeart | limitTo : 10')
-						.top
-							img(src='{{rankItem.User.avatars_path.w160h160}}')
-						.name.text-center {{rankItem.User.name}}
-						.icon.text-center
-							i.fa.fa-rss
-							span {{rankItem.User.Room.views}}
-			.col-md-12(ng-if='tab == "top-dai-gia"')
-				.row
-					.col-md-4.item(ng-repeat='rankItem in rankCoin | limitTo : 10')
-						.top
-							img(src='{{rankItem.User.avatars_path.w160h160}}')
-						.name.text-center {{rankItem.User.name}}
-						.icon.text-center
-							i.fa.fa-rss
-							span {{rankItem.User.Room.views}}
-			.col-md-12(ng-if='tab == "top-facebook"')
-				.row
-					.col-md-4.item(ng-repeat='rankItem in rankFacebook | limitTo : 10')
-						.top
-							img(src='{{rankItem.User.avatars_path.w160h160}}')
-						.name.text-center {{rankItem.User.name}}
-						.icon.text-center
-							i.fa.fa-rss
-							span {{rankItem.User.Room.views}}
+
+			include _top_yeu_thich
+			include _top_dai_gia
+			include _top_facebook
+
+
+
+
+
+
