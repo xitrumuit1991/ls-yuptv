@@ -1,4 +1,4 @@
-factory = ($rootScope, $timeout, $window, $http)->
+factory = ($rootScope, $timeout, $window, $http, Notification)->
   test : ()->
 
   setUserLogged : (userResult)->
@@ -27,9 +27,16 @@ factory = ($rootScope, $timeout, $window, $http)->
     return 'off' unless window.localStorage[type]
     return window.localStorage[type]
 
+  notifySuccess : (message)->
+    Notification.success(message)
+  notifyError : (message)->
+    Notification.error(message)
+
 factory.$inject = ['$rootScope',
   '$timeout',
   '$window',
-  '$http']
+  '$http',
+'Notification'
+]
 
 angular.module("app").factory "UtilityService", factory

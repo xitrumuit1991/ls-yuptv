@@ -17,6 +17,8 @@ ctrl = ($rootScope,
   console.log 'profile user-information'
 
 
+
+
 ctrl.$inject = [
   '$rootScope',
   'UtilityService', '$scope', '$timeout', '$location',
