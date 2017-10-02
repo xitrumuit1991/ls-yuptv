@@ -23,6 +23,27 @@
   .fa-heart-o{
     margin-right: 5px;
   }
+  .item-first .top{
+      background: url(/images/top1.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 260px;
+      padding: 26px 0 20px 10px;
+  }
+  .item-second .top {
+    background: url(/images/top2.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 180px;
+    padding: 15px 0 10px 0;
+  }
+  .item-thirst .top{
+    background: url(/images/top3.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 170px;
+    padding: 25px 17px 15px 10px;
+  }
   .item{
     margin-top: 40px;
     .item-content{

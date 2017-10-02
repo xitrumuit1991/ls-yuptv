@@ -1,40 +1,11 @@
-
-
-
-_directive = ($rootScope, $timeout, ApiService, $modal, $state) ->
+_directive = ($rootScope, $timeout, ApiService, $modal, $state,GlobalConfig) ->
   link = ($scope, $element, $attrs) ->
     $scope.menu = []
     $scope.classMenuMain = 'col-md-6'
     $scope.isLogged = false
     $scope.userProfile = null
     $scope.activeProfileMenu = false
-    $scope.menuProfile = [
-      {
-        title : 'Trang Cá Nhân',
-        href : 'base.profile.user-info',
-        itemClass : 'col-md-2'
-      },
-      {
-        title : 'Quản lý tài sản ',
-        href : 'base.profile.manage-asset',
-        itemClass : 'col-md-2'
-      },
-      {
-        title : 'Nạp Xu',
-        href : 'base.profile.charge-ucoin',
-        itemClass : 'col-md-2'
-      },
-      {
-        title : 'Quản lý phòng diễn ',
-        href : 'base.profile.manage-room',
-        itemClass : 'col-md-2'
-      },
-      {
-        title : 'Cài Đặt Thông Báo',
-        href : 'base.profile.setting-notify',
-        itemClass : 'col-md-2'
-      },
-    ]
+    $scope.menuProfile = GlobalConfig.menuMainProfile
 
     $rootScope.$watch('isHome', (data)->
       $scope.isHome = data
@@ -84,7 +55,9 @@ _directive = ($rootScope, $timeout, ApiService, $modal, $state) ->
     templateUrl : '/templates/directive/header/view.html'
   return directive
 
-_directive.$inject = ['$rootScope', '$timeout','ApiService' , '$modal', '$state']
+_directive.$inject = ['$rootScope', '$timeout','ApiService' , '$modal', '$state',
+  'GlobalConfig'
+]
 angular
 .module 'app'
 .directive "header", _directive

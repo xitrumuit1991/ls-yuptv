@@ -1,28 +1,29 @@
-.row.setting-notify
-	.col-md-12.header
-		h1 Cài Đặt Thông Báo
-		p
-			button.btn.btn-sm.btn-danger HOT
-			|&nbsp; Tặng 50% cho khách hàng nạp thẻ ngày hôm nay
-	.col-md-12
-		hr
-	.col-md-12.body
-		.row
-			.col-md-6.col-md-offset-2
-				.title Chương trình đang diễn
-				.description Nhận thông báo từ các chương trình đang diễn
-			.col-md-4
-				input#toggle-one(type='checkbox', notify-type="live-notification" checked, data-toggle='toggle', data-onstyle='primary' data-on="ON" data-off="OFF")
-		.row
-			.col-md-6.col-md-offset-2
-				.title Chương trình đang diễn từ các idol đang follow
-				.description Nhận thông báo từ các chương trình sắp diễn của idol đang follow
-			.col-md-4
-				input#toggle-two(type='checkbox', notify-type="schedule-notification" data-toggle='toggle', data-onstyle='primary' data-on="ON" data-off="OFF")
-		.row
-			.col-md-6.col-md-offset-2
-				.title Chương trình đang diễn từ các idol đang follow
-				.description Nhận thông báo sinh nhật, đổi chế độ room của idol đang follow
-			.col-md-4
-				input#toggle-three(type='checkbox', notify-type="birthday-notification" data-toggle='toggle', data-onstyle='primary' data-on="ON" data-off="OFF")
+.wrapper
+	.row.setting-notify
+		.col-md-12.header
+			h1 Cài Đặt Thông Báo
+			p
+				button.btn.btn-sm.btn-danger HOT
+				|&nbsp; Tặng 50% cho khách hàng nạp thẻ ngày hôm nay
+		.col-md-12
+			hr
+		.col-md-12.body
+			.row
+				.col-md-6.col-md-offset-2
+					.title Chương trình đang diễn
+					.description Nhận thông báo từ các chương trình đang diễn
+				.col-md-4
+					input#toggle-one(type='checkbox', notify-type="live-notification" checked, data-toggle='toggle', data-onstyle='primary' data-on="ON" data-off="OFF")
+			.row
+				.col-md-6.col-md-offset-2
+					.title Chương trình đang diễn từ các idol đang follow
+					.description Nhận thông báo từ các chương trình sắp diễn của idol đang follow
+				.col-md-4
+					input#toggle-two(type='checkbox', notify-type="schedule-notification" data-toggle='toggle', data-onstyle='primary' data-on="ON" data-off="OFF")
+			.row
+				.col-md-6.col-md-offset-2
+					.title Chương trình đang diễn từ các idol đang follow
+					.description Nhận thông báo sinh nhật, đổi chế độ room của idol đang follow
+				.col-md-4
+					input#toggle-three(type='checkbox', notify-type="birthday-notification" data-toggle='toggle', data-onstyle='primary' data-on="ON" data-off="OFF")
 

@@ -28,33 +28,6 @@ appRun = (
       itemClass : 'col-md-4'
     },
   ]
-  menuMainProfile = [
-    {
-      title : 'Trang Cá Nhân',
-      href : 'base.profile.user-info',
-      itemClass : 'col-md-2'
-    },
-    {
-      title : 'Quản lý tài sản ',
-      href : 'base.profile.manage-asset',
-      itemClass : 'col-md-2'
-    },
-    {
-      title : 'Nạp Xu',
-      href : 'base.profile.charge-ucoin',
-      itemClass : 'col-md-2'
-    },
-    {
-      title : 'Quản lý phòng',
-      href : 'base.profile.manage-room',
-      itemClass : 'col-md-2'
-    },
-    {
-      title : 'Cài Đặt Thông Báo',
-      href : 'base.profile.setting-notify',
-      itemClass : 'col-md-2'
-    },
-  ]
 
   if window.localStorage.user
     try
@@ -73,7 +46,7 @@ appRun = (
     console.log 'toState',toState
     if toState and toState.name.indexOf('base.profile') != -1
       $rootScope.isHome = false
-      $rootScope.menuMain = menuMainProfile
+      $rootScope.menuMain = GlobalConfig.menuMainProfile
     else
       $rootScope.isHome = true
       $rootScope.menuMain = menuMainHome

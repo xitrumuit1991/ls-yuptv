@@ -1,9 +1,9 @@
-.setting-notify{
-  .body{
-    .row{
+.setting-notify {
+  .body {
+    .row {
       margin-top: 40px;
       margin-bottom: 50px;
-      .title{
+      .title {
         font-size: 18px;
         color: #000;
       }
@@ -13,5 +13,81 @@
       }
     }
 
+  }
+}
+
+.profile-user-information {
+  ul.list-nav-user-info {
+    padding-top: 50px;
+    list-style: none;
+    li {
+      list-style: none;
+      margin: 10px 0;
+      a {
+        font-size: 16px;
+        color: #ccc;
+        display: block;
+        cursor: pointer;
+        text-decoration: none;
+        &.active {
+          color: #000;
+        }
+      }
+    }
+  }
+  .wrapper {
+    .image {
+      display: inline-block;
+      width: 20%;
+      text-align: right;
+      padding-right: 20px;
+      img {
+        width: 100px;
+        border-radius: 50%;
+      }
+    }
+    .info {
+      display: inline-block;
+      width: 79%;
+      .group {
+        margin-bottom: 5px;
+        span.name {
+          font-size: 20px;
+          font-weight: bold;
+        }
+        span.level {
+          margin-left: 10px;
+          background: #5e3bc3;
+          border-radius: 10px;
+          color: #fff;
+          font-size: 10px;
+          padding: 5px 12px;
+        }
+      }
+      .content {
+        color: #cccccc;
+        font-size: 14px;
+      }
+    }
+    .user-update-info {
+      .title{
+        color: #000;
+        font-weight: bold;
+      }
+      .sub-title{
+        display: block;
+        color: #cccccc;
+      }
+      .row {
+        margin-bottom: 15px;
+        margin-top: 15px;
+      }
+      .checkbox-sex {
+        margin-right: 5px;
+      }
+      .value-sex {
+        margin-right: 10px;
+      }
+    }
   }
 }

@@ -1,4 +1,71 @@
 .container
-	.wrapper
-		div(ui-view='')
-			h1 profile here
+	div(ui-view='')
+		.row.profile-user-information
+			.col-md-3
+				ul.list-nav-user-info
+					li
+						a(href='' ng-click='changeTab("user-information")' ng-class='{"active" : tabActive == "user-information" }' )
+							| Thông tin cá nhân
+					li
+						a(href='' ng-click='changeTab("saved-video")' ng-class='{"active" : tabActive == "saved-video" }' )
+							| Video đã lưu
+					li
+						a(href='' ng-click='changeTab("following")' ng-class='{"active" : tabActive == "following" }' )
+							| Đang theo dõi
+					li
+						a(href='' ng-click='changeTab("user-followed")' ng-class='{"active" : tabActive == "user-followed" }' )
+							| Người theo dõi
+			.col-md-9
+				.wrapper
+					.row
+						.col-md-12
+							.image
+								img(src='{{user.avatars_path.avatar}}')
+							.info
+								.group
+									span.name {{user.name}}
+									span.level Level {{user.levelId}}
+								.content
+									|Member since {{user.activeDate | date:'dd/MM/yyyy' }}
+						.col-md-12
+							hr
+						.col-md-12.user-update-info
+							.row
+								.col-md-4.col-md-offset-2
+									span.title Tên người dùng *
+									span.sub-title tối thiểu 6 kí tự
+								.col-md-5
+									input.form-control(type='text' value='{{user.name}}' readonly='readonly')
+							.row
+								.col-md-4.col-md-offset-2
+									span.title Ngày sinh
+								.col-md-5
+									input.form-control(type='text' value='{{user.birthday | date: "dd/MM/yyyy" }}' readonly='readonly')
+							.row
+								.col-md-4.col-md-offset-2
+									span.title Giới tính
+								.col-md-5
+									input.checkbox-sex(type='radio' name='sex' value='male' ng-model='user.gender')
+									span.value-sex Nam
+									input.checkbox-sex(type='radio' name='sex' value='female' ng-model='user.gender')
+									span.value-sex Nữ
+									input.checkbox-sex(type='radio' name='sex' value='other' ng-model='user.gender')
+									span.value-sex Khác
+							.row
+								.col-md-4.col-md-offset-2
+									span.title Mật khẩu hiện tại
+								.col-md-5
+									input.form-control(type='password' )
+							.row
+								.col-md-4.col-md-offset-2
+									span.title Mật khẩu mới
+								.col-md-5
+									input.form-control(type='password' )
+							.row
+								.col-md-4.col-md-offset-2
+									span.title Xác nhận mật khẩu
+								.col-md-5
+									input.form-control(type='password' )
+							.row
+								.col-md-5.col-md-offset-6
+									button.btn.btn-success.pull-right LƯU THAY ĐỔI

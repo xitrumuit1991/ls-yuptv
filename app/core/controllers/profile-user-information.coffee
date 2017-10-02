@@ -1,31 +1,29 @@
 "use strict"
 route = ($stateProvider, GlobalConfig)->
   $stateProvider
-  .state "base.profile",
-    url : "profile"
-    views :
-      "main@" :
-        templateUrl : "/templates/profile/view.html"
-        controller : "ProfileCtrl"
+  .state "base.profile.user-information",
+    url : "/user-information"
+    templateUrl : "/templates/profile/user-information.html"
+    controller : "ProfileUserInformationCtrl"
 
 route.$inject = ['$stateProvider', 'GlobalConfig']
 
 
 ctrl = ($rootScope,
+  UtilityService,
   $scope, $timeout, $location,
   $window, $state, $stateParams,  ApiService, $http,
   GlobalConfig, $interval) ->
+  console.log 'profile user-information'
 
-  $scope.tabActive = 'user-information'
-  $scope.changeTab = (tab)->
-    $scope.tabActive = tab
 
 ctrl.$inject = [
-  '$rootScope', '$scope', '$timeout', '$location',
+  '$rootScope',
+  'UtilityService', '$scope', '$timeout', '$location',
   '$window', '$state', '$stateParams',  'ApiService', '$http',
   'GlobalConfig', '$interval'
 ]
 angular
 .module("app")
 .config route
-.controller "ProfileCtrl", ctrl
+.controller "ProfileUserInformationCtrl", ctrl
