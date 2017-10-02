@@ -2,7 +2,8 @@
 	.row
 		.col-md-12.text-center.item-first(ng-if='rankHeart[0]')
 			.top
-				img(src='{{rankHeart[0].User.avatars_path.w160h160}}')
+				img.logo(src='{{rankHeart[0].User.avatars_path.w160h160}}')
+				img.background(src='/images/top1.png')
 			.name.text-center {{rankHeart[0].User.name}}
 			.icon.text-center
 				i.fa.fa-heart-o
@@ -13,7 +14,8 @@
 				.col-md-2
 				.col-md-4.item-second.text-center(ng-if='rankHeart[1]')
 					.top
-						img(src='{{rankHeart[1].User.avatars_path.w160h160}}')
+						img.logo(src='{{rankHeart[1].User.avatars_path.w160h160}}')
+						img.background(src='/images/top2.png')
 					.name.text-center {{rankHeart[1].User.name}}
 					.icon.text-center
 						i.fa.fa-heart-o
@@ -21,7 +23,8 @@
 					button.btn-follow Theo dõi
 				.col-md-4.item-thirst.text-center(ng-if='rankHeart[2]')
 					.top
-						img(src='{{rankHeart[2].User.avatars_path.w160h160}}')
+						img.logo(src='{{rankHeart[2].User.avatars_path.w160h160}}')
+						img.background(src='/images/top3.png')
 					.name.text-center {{rankHeart[2].User.name}}
 					.icon.text-center
 						i.fa.fa-heart-o

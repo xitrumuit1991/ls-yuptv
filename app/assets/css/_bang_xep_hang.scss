@@ -24,25 +24,43 @@
     margin-right: 5px;
   }
   .item-first .top{
-      background: url(/images/top1.png);
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: 260px;
-      padding: 26px 0 20px 10px;
+    display: inline-block;
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    .background{
+      position: absolute;
+      top: -41px;
+      left: -70px;
+      width: 254px;
+      border-radius: 0;
+    }
   }
   .item-second .top {
-    background: url(/images/top2.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 180px;
-    padding: 15px 0 10px 0;
+    display: inline-block;
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    .background{
+      position: absolute;
+      top: -35px;
+      left: -37px;
+      width: 194px;
+      border-radius: 0;
+    }
   }
   .item-thirst .top{
-    background: url(/images/top3.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 170px;
-    padding: 25px 17px 15px 10px;
+    display: inline-block;
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    .background{
+      position: absolute;
+      top: -39px;
+      left: -27px;
+      width: 182px;
+      border-radius: 0;
+    }
   }
   .item{
     margin-top: 40px;
