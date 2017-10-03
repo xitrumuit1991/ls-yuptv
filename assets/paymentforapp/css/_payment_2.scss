@@ -1,6 +1,7 @@
 #payment {
   margin: 0 auto;
   background: rgba(247, 247, 247, 1);
+  background: #fff;
   display: block;
   height: auto;
   min-height: 800px;
@@ -249,9 +250,11 @@
       border: 1px solid #e2e2e2;
       border-radius: 5px;
       background: #fff;
-      box-shadow: 0 2px 10px #e2e2e2;
+      //box-shadow: 0 2px 10px #e2e2e2;
+      box-shadow: none;
       margin: 2% 0;
-      padding: 2%;
+      //padding: 2%;
+      padding: 18px;
       text-align: left;
       width: 98%;
     }
@@ -547,9 +550,11 @@
       border: 1px solid #e2e2e2;
       border-radius: 5px;
       background: #fff;
-      box-shadow: 0 2px 10px #e2e2e2;
+      //box-shadow: 0 2px 10px #e2e2e2;
+      box-shadow : none;
       margin: 2% 0;
-      padding: 2px 0 2px 15px;
+      //padding: 2px 0 2px 15px;
+      padding: 18px;
       text-align: left;
       width: 100%;
     }
