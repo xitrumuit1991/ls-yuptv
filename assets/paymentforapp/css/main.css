@@ -19130,13 +19130,13 @@ a[role="button"].loading:before {
       /* line 184, _payment_2.scss */
       #payment #sms #mbp-vnp .box-sms .box-wrapper .box-coin, #payment #sms #vt .box-sms .box-wrapper .box-coin, #payment #sms #mbp .box-sms .box-wrapper .box-coin {
         color: #545454;
-        font-size: 17px;
+        font-size: 14px;
         font-weight: 600;
         line-height: 18px; }
       /* line 190, _payment_2.scss */
       #payment #sms #mbp-vnp .box-sms .box-wrapper .box-cash, #payment #sms #vt .box-sms .box-wrapper .box-cash, #payment #sms #mbp .box-sms .box-wrapper .box-cash {
         color: #c0c0c0;
-        font-size: 12px; }
+        font-size: 11px; }
 
 /* line 201, _payment_2.scss */
 #payment #mobile_Card {
@@ -19166,10 +19166,11 @@ a[role="button"].loading:before {
       box-shadow: 0 2px 10px #e2e2e2; }
       /* line 224, _payment_2.scss */
       #payment #mobile_Card .content .provider.active {
-        background: #02ba9e;
+        background: #223aff;
+        border: 1px solid #223aff;
         position: relative;
         color: #fff; }
-        /* line 228, _payment_2.scss */
+        /* line 230, _payment_2.scss */
         #payment #mobile_Card .content .provider.active::after {
           content: '';
           background: url(../images/payment_2/tick_bullet.png) no-repeat center center;
@@ -19184,7 +19185,7 @@ a[role="button"].loading:before {
           right: 2px;
           width: 15px;
           height: 15px; }
-    /* line 245, _payment_2.scss */
+    /* line 247, _payment_2.scss */
     #payment #mobile_Card .content .form-control {
       display: inline-block;
       border: 1px solid #e2e2e2;
@@ -19195,7 +19196,7 @@ a[role="button"].loading:before {
       padding: 2%;
       text-align: left;
       width: 98%; }
-  /* line 257, _payment_2.scss */
+  /* line 259, _payment_2.scss */
   #payment #mobile_Card #btn-payment-by-card-for-app {
     color: #fff;
     background: #03c75b;
@@ -19210,10 +19211,10 @@ a[role="button"].loading:before {
     padding: 7px 15px;
     margin: 20px auto;
     box-shadow: 0px 10px 20px #b9f7d4; }
-    /* line 271, _payment_2.scss */
+    /* line 273, _payment_2.scss */
     #payment #mobile_Card #btn-payment-by-card-for-app.loading {
       color: #03c75b; }
-      /* line 273, _payment_2.scss */
+      /* line 275, _payment_2.scss */
       #payment #mobile_Card #btn-payment-by-card-for-app.loading::before {
         margin: auto;
         position: absolute;
@@ -19241,47 +19242,47 @@ a[role="button"].loading:before {
         height: 1em;
         font-size: 1.5em; }
 
-/* line 304, _payment_2.scss */
+/* line 306, _payment_2.scss */
 #payment #internet_Banking {
   display: none; }
-  /* line 306, _payment_2.scss */
+  /* line 308, _payment_2.scss */
   #payment #internet_Banking .step-block-bank {
     margin: 0 auto;
     width: 50%;
     margin-top: 20px; }
-    /* line 310, _payment_2.scss */
+    /* line 312, _payment_2.scss */
     #payment #internet_Banking .step-block-bank ul {
       list-style-type: none;
       display: block;
       border-radius: 20px;
       padding: 2px;
       height: 44px; }
-      /* line 316, _payment_2.scss */
+      /* line 318, _payment_2.scss */
       #payment #internet_Banking .step-block-bank ul li {
         width: 50%;
         display: inline-block;
         position: relative; }
-        /* line 320, _payment_2.scss */
+        /* line 322, _payment_2.scss */
         #payment #internet_Banking .step-block-bank ul li .image_step {
           display: block;
           background-size: contain;
           width: 40px;
           height: 40px; }
-        /* line 326, _payment_2.scss */
+        /* line 328, _payment_2.scss */
         #payment #internet_Banking .step-block-bank ul li .text_step {
           position: absolute;
           color: #878787;
           font-weight: bold;
           display: block; }
-        /* line 332, _payment_2.scss */
+        /* line 334, _payment_2.scss */
         #payment #internet_Banking .step-block-bank ul li.li_1 {
           float: left;
           text-align: left; }
-          /* line 335, _payment_2.scss */
+          /* line 337, _payment_2.scss */
           #payment #internet_Banking .step-block-bank ul li.li_1 .image_step {
             background: url(../images/payment_2/step_one.png) no-repeat center center;
             background-size: contain; }
-          /* line 339, _payment_2.scss */
+          /* line 341, _payment_2.scss */
           #payment #internet_Banking .step-block-bank ul li.li_1 .text_step {
             width: 110px;
             display: block;
@@ -19289,43 +19290,43 @@ a[role="button"].loading:before {
             top: 5px;
             color: #02ba9e;
             font-size: 12px; }
-        /* line 348, _payment_2.scss */
+        /* line 350, _payment_2.scss */
         #payment #internet_Banking .step-block-bank ul li.li_2 {
           float: right;
           text-align: right; }
-      /* line 353, _payment_2.scss */
+      /* line 355, _payment_2.scss */
       #payment #internet_Banking .step-block-bank ul.step1 {
         background: #e5e5e5; }
-        /* line 356, _payment_2.scss */
+        /* line 358, _payment_2.scss */
         #payment #internet_Banking .step-block-bank ul.step1 .li_2 .image_step {
           background: url(../images/payment_2/step_two.png) no-repeat center center;
           background-size: contain;
           float: right; }
-        /* line 361, _payment_2.scss */
+        /* line 363, _payment_2.scss */
         #payment #internet_Banking .step-block-bank ul.step1 .li_2 .text_step {
           top: 45px;
           width: 150px;
           left: -80px; }
-      /* line 368, _payment_2.scss */
+      /* line 370, _payment_2.scss */
       #payment #internet_Banking .step-block-bank ul.step2 {
         background: #ccf0ec; }
-        /* line 371, _payment_2.scss */
+        /* line 373, _payment_2.scss */
         #payment #internet_Banking .step-block-bank ul.step2 .li_2 .image_step {
           background: url(../images/payment_2/step_two_actived.png) no-repeat center center;
           background-size: contain;
           float: right; }
-        /* line 376, _payment_2.scss */
+        /* line 378, _payment_2.scss */
         #payment #internet_Banking .step-block-bank ul.step2 .li_2 .text_step {
           color: #02ba9e;
           top: 45px;
           width: 150px;
           left: -80px; }
-  /* line 386, _payment_2.scss */
+  /* line 388, _payment_2.scss */
   #payment #internet_Banking .step-content-block-bank {
     margin: 0 auto;
     margin-top: 40px;
     text-align: center; }
-    /* line 391, _payment_2.scss */
+    /* line 393, _payment_2.scss */
     #payment #internet_Banking .step-content-block-bank .content .box-sms {
       background: #fff;
       border-radius: 10px;
@@ -19336,15 +19337,16 @@ a[role="button"].loading:before {
       text-align: center;
       padding: 7px 0;
       box-shadow: 1px 1px 1px #f1f1f1; }
-      /* line 401, _payment_2.scss */
+      /* line 403, _payment_2.scss */
       #payment #internet_Banking .step-content-block-bank .content .box-sms.active {
-        background: #02ba9e;
+        background: #223aff;
+        border: 1px solid #223aff;
         position: relative;
         color: #fff; }
-        /* line 405, _payment_2.scss */
+        /* line 409, _payment_2.scss */
         #payment #internet_Banking .step-content-block-bank .content .box-sms.active .box-wrapper .box-coin, #payment #internet_Banking .step-content-block-bank .content .box-sms.active .box-wrapper .box-cash {
           color: #ffffff; }
-        /* line 408, _payment_2.scss */
+        /* line 412, _payment_2.scss */
         #payment #internet_Banking .step-content-block-bank .content .box-sms.active::after {
           content: '';
           background: url(../images/payment_2/tick_bullet.png) no-repeat center center;
@@ -19359,23 +19361,23 @@ a[role="button"].loading:before {
           right: 2px;
           width: 15px;
           height: 15px; }
-      /* line 425, _payment_2.scss */
+      /* line 429, _payment_2.scss */
       #payment #internet_Banking .step-content-block-bank .content .box-sms .box-wrapper .box-coin {
         color: #545454;
-        font-size: 17px;
+        font-size: 14px;
         font-weight: 600;
         line-height: 18px; }
-      /* line 431, _payment_2.scss */
+      /* line 435, _payment_2.scss */
       #payment #internet_Banking .step-content-block-bank .content .box-sms .box-wrapper .box-cash {
         color: #c0c0c0;
-        font-size: 12px; }
-    /* line 438, _payment_2.scss */
+        font-size: 11px; }
+    /* line 442, _payment_2.scss */
     #payment #internet_Banking .step-content-block-bank #stepB {
       display: none; }
-      /* line 440, _payment_2.scss */
+      /* line 444, _payment_2.scss */
       #payment #internet_Banking .step-content-block-bank #stepB .select-arrow-down {
         position: relative; }
-        /* line 442, _payment_2.scss */
+        /* line 446, _payment_2.scss */
         #payment #internet_Banking .step-content-block-bank #stepB .select-arrow-down select.internet-bank-select {
           width: 95%;
           border-radius: 8px;
@@ -19384,14 +19386,14 @@ a[role="button"].loading:before {
           border: 1px solid #eaeaea;
           font-size: 14px;
           box-shadow: 0 2px 10px #eaeaea; }
-        /* line 451, _payment_2.scss */
+        /* line 455, _payment_2.scss */
         #payment #internet_Banking .step-content-block-bank #stepB .select-arrow-down .fa-caret-down {
           position: absolute;
           top: 10px;
           right: 20px;
           color: #17bfa6;
           cursor: pointer; }
-  /* line 461, _payment_2.scss */
+  /* line 465, _payment_2.scss */
   #payment #internet_Banking #btn-PaymentMegabank-bank {
     color: #fff;
     background: #03c75b;
@@ -19407,21 +19409,21 @@ a[role="button"].loading:before {
     margin: 20px auto;
     box-shadow: 0px 10px 20px #b9f7d4; }
 
-/* line 479, _payment_2.scss */
+/* line 483, _payment_2.scss */
 #modal_Livestar button.close {
   background-color: #4371ff !important; }
-/* line 482, _payment_2.scss */
+/* line 486, _payment_2.scss */
 #modal_Livestar .heading {
   color: #000 !important; }
-/* line 485, _payment_2.scss */
+/* line 489, _payment_2.scss */
 #modal_Livestar .color-xam {
   color: #989898;
   display: block;
   margin: 10px 0 0 0; }
-/* line 490, _payment_2.scss */
+/* line 494, _payment_2.scss */
 #modal_Livestar .color-primary {
   color: #000; }
-/* line 493, _payment_2.scss */
+/* line 497, _payment_2.scss */
 #modal_Livestar #modal_livestar_btn_yes {
   color: blue;
   background: #fff;
@@ -19430,40 +19432,40 @@ a[role="button"].loading:before {
   padding: 5px 20px;
   border: 1px solid #3b6cff; }
 
-/* line 503, _payment_2.scss */
+/* line 507, _payment_2.scss */
 #payment .captcha-group {
   text-align: center;
   margin: 20px auto;
   width: 90%; }
 
-/* line 510, _payment_2.scss */
+/* line 514, _payment_2.scss */
 #payment .tutorial-block {
   padding: 10px; }
-  /* line 512, _payment_2.scss */
+  /* line 516, _payment_2.scss */
   #payment .tutorial-block p {
     margin: 10px 0; }
-  /* line 515, _payment_2.scss */
+  /* line 519, _payment_2.scss */
   #payment .tutorial-block img {
     width: 100%; }
-  /* line 518, _payment_2.scss */
+  /* line 522, _payment_2.scss */
   #payment .tutorial-block .heading {
     padding-bottom: 20px;
     box-shadow: none;
     background: none; }
-    /* line 522, _payment_2.scss */
+    /* line 526, _payment_2.scss */
     #payment .tutorial-block .heading span {
       text-shadow: 0px 0.5px 30px #b7b7b7;
       font-size: 20px;
       text-transform: uppercase;
       font-weight: bold; }
 
-/* line 531, _payment_2.scss */
+/* line 535, _payment_2.scss */
 #payment #redeem_Code {
   display: none;
   padding: 20px;
   margin: 0 auto;
   text-align: left; }
-  /* line 541, _payment_2.scss */
+  /* line 545, _payment_2.scss */
   #payment #redeem_Code .content-body #input_redeem_Code.form-control {
     display: block;
     border: 1px solid #e2e2e2;
@@ -19474,12 +19476,12 @@ a[role="button"].loading:before {
     padding: 2px 0 2px 15px;
     text-align: left;
     width: 100%; }
-  /* line 553, _payment_2.scss */
+  /* line 557, _payment_2.scss */
   #payment #redeem_Code .content-body .captcha-group {
     text-align: center;
     margin: 20px auto;
     width: 90%; }
-  /* line 559, _payment_2.scss */
+  /* line 563, _payment_2.scss */
   #payment #redeem_Code .content-body #btn_submit_redeem_Code {
     color: #fff;
     background: #03c75b;
@@ -19494,10 +19496,10 @@ a[role="button"].loading:before {
     padding: 7px 15px;
     margin: 20px auto;
     box-shadow: 0px 10px 20px #b9f7d4; }
-    /* line 573, _payment_2.scss */
+    /* line 577, _payment_2.scss */
     #payment #redeem_Code .content-body #btn_submit_redeem_Code.loading {
       color: #03c75b; }
-      /* line 575, _payment_2.scss */
+      /* line 579, _payment_2.scss */
       #payment #redeem_Code .content-body #btn_submit_redeem_Code.loading::before {
         margin: auto;
         position: absolute;
