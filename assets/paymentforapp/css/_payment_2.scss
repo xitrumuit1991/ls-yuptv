@@ -87,15 +87,24 @@
 }
 
 #payment {
+  .payment-content-sms{
+    .description{
+      .title{
+        padding-left: 10px;
+        width: auto;
+      }
+    }
+  }
   .nav-link-method {
     position: relative;
     width: 100%;
     margin: 0 auto;
     text-align: center;
+    margin-top: 15px;
     .back {
       position: absolute;
       top: 40%;
-      left: 0;
+      left: 3%;
       transform: translate(0%, -50%);
       display: none;
       text-align: left;
@@ -145,8 +154,11 @@
         text-align: center;
         padding: 7px 0;
         box-shadow: 1px 1px 1px #f1f1f1;
+        outline: none;
         &.active {
-          background: #02ba9e;
+          //background: #02ba9e;
+          background: #0364c7;
+          border: 1px solid #0364c7;
           position: relative;
           color: #fff;
           .box-wrapper .box-coin, .box-wrapper .box-cash {
@@ -293,7 +305,7 @@
   display: none;
   .step-block-bank {
     margin: 0 auto;
-    width: 65%;
+    width: 50%;
     margin-top: 20px;
     ul {
       list-style-type: none;
@@ -325,11 +337,12 @@
             background-size: contain;
           }
           .text_step {
-            width: 100px;
+            width: 110px;
             display: block;
             left: -20px;
             top: 5px;
             color: #02ba9e;
+            font-size: 12px;
           }
         }
         &.li_2 {

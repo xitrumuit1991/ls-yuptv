@@ -74,7 +74,7 @@
 
   var showModalMobifone = function (code,name,money,coin,callback) {
     $('#modal_livestar_btn_no').hide();
-    $('#modal_livestar_btn_yes').html('Đóng');
+    $('#modal_livestar_btn_yes').html('OK');
     var message = '<span>Gói Vip dành cho thuê bao<br/>Mobifone</span>';
     $('#modal_Livestar').find('h3').html(message);
 
@@ -93,7 +93,7 @@
 
   var showModalSms = function (code,name,money,coin,isViettel,callback) {
     $('#modal_livestar_btn_no').hide();
-    $('#modal_livestar_btn_yes').html('Đóng');
+    $('#modal_livestar_btn_yes').html('OK');
     var message = '<span>Gói cước dành cho thuê bao<br/>';
     if (isViettel == true)
       message += 'Viettel</span>';
