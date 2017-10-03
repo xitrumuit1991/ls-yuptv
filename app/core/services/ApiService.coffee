@@ -110,6 +110,20 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
       data : params
     self.request options, done
 
+  self.getUserFollowing = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "user/following"
+      method : 'GET'
+      data : params
+    self.request options, done
+
+  self.getUserFollower = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "user/follower"
+      method : 'GET'
+      data : params
+    self.request options, done
+
 
   return null
 _service.$inject = ['$rootScope', '$http',   '$resource', 'GlobalConfig']

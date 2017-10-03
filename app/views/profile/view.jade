@@ -17,13 +17,63 @@
 							| Người theo dõi
 			.col-md-9
 				.wrapper
-					.row(ng-if='tabActive == "user-followed"')
-						h1 user-followed
+					.row.follower(ng-if='tabActive == "user-followed"')
+						.col-md-12(ng-if=' !follower.items || follower.items.length <= 0')
+							h1 Người theo dõi
+							p Bạn không có người theo dõi nào
+						.col-md-12(ng-if=' follower.items && follower.items.length > 0')
+							.row
+								.col-md-12
+									h1 Người theo dõi ({{follower.total_item}})
+								.col-md-2(ng-repeat='followerItem in follower.items')
+									.follower-item
+										img.img-responsive(src='{{followerItem.banners.banner}}')
+										.name {{followerItem.title}}
 
-					.row(ng-if='tabActive == "following"')
-						h1 following
+								.col-md-12
+									uib-pagination.table-records-pages(
+									total-items='follower.total_item',
+									ng-model='follower.page',
+									items-per-page='follower.limit'
+									ng-change="tabFollowerPageChange()"
+									max-size="7"
+									boundary-links="true"
+									rotate="false"
+									first-text='«'
+									last-text = '»'
+									next-text ='›'
+									previous-text= '‹'
+									)
 
-					.row.profile-saved-video(ng-if='tabActive == "saved-video"')
+					.row.following(ng-if='tabActive == "following"')
+						.col-md-12(ng-if=' !following.items || following.items.length <= 0')
+							h1 Đang theo dõi
+							p Bạn chưa theo dõi ai
+						.col-md-12(ng-if=' following.items && following.items.length > 0')
+							.row
+								.col-md-12
+									h1 Đang theo dõi ({{following.total_item}})
+								.col-md-3(ng-repeat='followingItem in following.items')
+									.following-item
+										img.img-responsive(src='{{followingItem.thumb}}')
+										.name {{followingItem.name}}
+
+								.col-md-12
+									uib-pagination.table-records-pages(
+									total-items='following.total_item',
+									ng-model='following.page',
+									items-per-page='following.limit'
+									ng-change="tabFollowingPageChange()"
+									max-size="7"
+									boundary-links="true"
+									rotate="false"
+									first-text='«'
+									last-text = '»'
+									next-text ='›'
+									previous-text= '‹'
+									)
+
+					.row.saved-video(ng-if='tabActive == "saved-video"')
 						.col-md-12(ng-if='!savedVideo.items || savedVideo.items.length <= 0')
 							h1 Video đã lưu
 							p Bạn chưa lưu video nào
@@ -32,7 +82,7 @@
 								.col-md-12
 									h1 Video đã lưu ({{savedVideo.total_item}})
 								.col-md-3(ng-repeat='video in savedVideo.items')
-									.video-content
+									.video-content(ng-if='video.thumb && video.title')
 										img.img-responsive(src='{{video.thumb}}')
 										.group-name
 											.name {{video.title}}
