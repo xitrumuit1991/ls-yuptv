@@ -30,7 +30,7 @@
 						.col-md-12(ng-if=' savedVideo.items && savedVideo.items.length > 0')
 							.row
 								.col-md-12
-									h1 Video đã lưu
+									h1 Video đã lưu ({{savedVideo.total_item}})
 								.col-md-3(ng-repeat='video in savedVideo.items')
 									.video-content
 										img.img-responsive(src='{{video.thumb}}')
