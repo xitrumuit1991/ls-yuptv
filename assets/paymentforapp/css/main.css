@@ -1,8 +1,4 @@
 @charset "UTF-8";
-/* line 1, main.scss */
-body {
-  font-family: 'Montserrat', sans-serif; }
-
 /*!
  *  Font Awesome 4.4.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
@@ -18731,5 +18727,9 @@ button.loading:before, label.loading:before, a[role="button"].loading:before {
         width: 1em;
         height: 1em;
         font-size: 1.5em; }
+
+/* line 6, main.scss */
+body {
+  font-family: 'Montserrat', sans-serif !important; }
 
 /*# sourceMappingURL=main.css.map */
