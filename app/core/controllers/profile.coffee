@@ -17,6 +17,34 @@ ctrl = ($rootScope,
   GlobalConfig, $interval, UtilityService) ->
 
   $scope.tabActive = 'user-information'
+  $scope.savedVideo =
+    page : 0
+    limit : 12
+    items : []
+    total_page : 0
+    total_item:0
+
+  $scope.getSavedVideo = ()->
+    return UtilityService.notifyError('Không thể lấy danh sách video') if !$rootScope.user or !$rootScope.user.Room
+    params =
+      page : $scope.savedVideo.page
+      limit : $scope.savedVideo.limit
+      roomId: $rootScope.user.Room.id
+    ApiService.getSavedVideo(params,(error, result)->
+      return UtilityService.notifyError('Không thể lấy danh sách video') if error
+      if result and result.error
+        return UtilityService.notifyError(result.message)
+      $scope.savedVideo.items = result.videos
+      $scope.savedVideo.total_page = result.attr.total_page
+      $scope.savedVideo.total_item = result.attr.total_item
+    )
+
+  $scope.tabVideoPageChange = ()->
+    console.log '$scope.savedVideo.page',$scope.savedVideo.page
+    $scope.getSavedVideo()
+
+
+
   $scope.changeTab = (tab)->
     $scope.tabActive = tab
 
@@ -39,6 +67,9 @@ ctrl = ($rootScope,
       UtilityService.notifySuccess( 'Cập nhập tài khoản thành công')
       UtilityService.setUserLogged(result)
     )
+
+  #call api here
+  $scope.getSavedVideo()
 
 ctrl.$inject = [
   '$rootScope', '$scope', '$timeout', '$location',

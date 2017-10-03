@@ -17,7 +17,51 @@
 							| Người theo dõi
 			.col-md-9
 				.wrapper
-					.row
+					.row(ng-if='tabActive == "user-followed"')
+						h1 user-followed
+
+					.row(ng-if='tabActive == "following"')
+						h1 following
+
+					.row.profile-saved-video(ng-if='tabActive == "saved-video"')
+						.col-md-12(ng-if='!savedVideo.items || savedVideo.items.length <= 0')
+							h1 Video đã lưu
+							p User chưa lưu video nào
+						.col-md-12(ng-if=' savedVideo.items && savedVideo.items.length > 0')
+							.row
+								.col-md-12
+									h1 Video đã lưu
+								.col-md-3(ng-repeat='video in savedVideo.items')
+									.video-content
+										img.img-responsive(src='{{video.thumb}}')
+										.group-name
+											.name {{video.title}}
+											.icon-favorite
+												i.fa.fa-eye
+												span &nbsp;{{video.view}}&nbsp;
+												i.fa.fa-share
+												span &nbsp;{{video.share}}&nbsp;
+										//mode 1/public, 2/restric, 3/private
+										//status  = 1 active, =2 dang xu ly
+										button.btn-lock
+											i.fa.fa-lock
+
+								.col-md-12
+									uib-pagination.table-records-pages(
+									total-items='savedVideo.total_item',
+									ng-model='savedVideo.page',
+									items-per-page='savedVideo.limit'
+									ng-change="tabVideoPageChange()"
+									max-size="7"
+									boundary-links="true"
+									rotate="false"
+									first-text='«'
+									last-text = '»'
+									next-text ='›'
+									previous-text= '‹'
+									)
+
+					.row(ng-if='tabActive == "user-information"')
 						.col-md-12
 							.image
 								img(src='{{user.avatars_path.avatar}}')
