@@ -111,7 +111,7 @@
 									previous-text= '‹'
 									)
 
-					.row(ng-if='tabActive == "user-information"')
+					.row.user-information(ng-if='tabActive == "user-information"')
 						.col-md-12
 							.image
 								img(src='{{user.avatars_path.avatar}}')
