@@ -15,22 +15,7 @@ home-slider
 					li.list-inline-item(ng-repeat='groupIdo in groupIdol')
 						a(href='')
 							|{{groupIdo.title}}
-						span() &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
-					//li.list-inline-item(ng-if='$index != $last')
-						|/
-					//li.list-inline-item
-					//	a(href='')
-					//		|             Âm nhạc
-					//li.list-inline-item
-					//	| /
-					//li.list-inline-item
-					//	a(href='')
-					//		|             Phim ảnh
-					//li.list-inline-item
-					//	| /
-					//li.list-inline-item
-					//	a(href='')
-					//		|            Ca nhạc
+						span(ng-if=' !$last ') &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
 
 
 .container.home-block-content(ng-repeat='groupIdo in groupIdol')
