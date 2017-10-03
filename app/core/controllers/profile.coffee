@@ -16,6 +16,10 @@ ctrl = ($rootScope,
   $window, $state, $stateParams,  ApiService, $http,
   GlobalConfig, $interval, UtilityService) ->
 
+  $scope.changePass =
+    old : ''
+    new : ''
+    renew : ''
   $scope.tabActive = 'user-information'
   $scope.savedVideo =
     page : 0
@@ -102,16 +106,33 @@ ctrl = ($rootScope,
     $scope.tabActive = tab
 
   $scope.updateProfile = ()->
-#    name optional	string
-#    email optional	string
-#    birthday optional	string
-#    address optional	string
-#    phone optional	string
-#    gender optional	string
-#    fbId optional	string
-#    gpId optional	string
-#    fbLink optional	string
-#    twitterLink optional	string
+    if $scope.changePass.old
+      console.log 'change pass'
+      if !$scope.changePass.new or !$scope.changePass.renew
+        return UtilityService.notifyError('Vui lòng nhập mật khẩu mới ')
+      return UtilityService.notifyError('Mật khẩu ít nhất 6 kí tự') if $scope.changePass.new.length < 6
+      if $scope.changePass.new != $scope.changePass.renew
+        return UtilityService.notifyError('Mật khẩu xác nhận không đúng ')
+      paramsPass=
+        password : $scope.changePass.old
+        new_password : $scope.changePass.new
+        flush_token:false
+      ApiService.changePassword(paramsPass,(error, result)->
+        if error
+          return UtilityService.notifyError(JSON.stringify(error))
+        if result and result.error
+          return UtilityService.notifyError( result.message )
+        ApiService.updateUserProfile($rootScope.user,(error, result)->
+          if error
+            return UtilityService.notifyError(JSON.stringify(error))
+          if result and result.error
+            return UtilityService.notifyError( result.message )
+          UtilityService.notifySuccess( 'Cập nhập tài khoản thành công')
+          UtilityService.setUserLogged(result)
+        )
+      )
+      return
+    return UtilityService.notifyError( 'Vui lòng nhập mật khẩu hiện tại') if $scope.changePass.new or $scope.changePass.renew
     ApiService.updateUserProfile($rootScope.user,(error, result)->
       if error
         return UtilityService.notifyError(JSON.stringify(error))

@@ -149,17 +149,17 @@
 								.col-md-4.col-md-offset-2
 									span.title Mật khẩu hiện tại
 								.col-md-5
-									input.form-control(type='password' )
+									input.form-control(type='password' ng-model='changePass.old')
 							.row
 								.col-md-4.col-md-offset-2
 									span.title Mật khẩu mới
 								.col-md-5
-									input.form-control(type='password' )
+									input.form-control(type='password' ng-model='changePass.new')
 							.row
 								.col-md-4.col-md-offset-2
 									span.title Xác nhận mật khẩu
 								.col-md-5
-									input.form-control(type='password' )
+									input.form-control(type='password' ng-model='changePass.renew')
 							.row
 								.col-md-5.col-md-offset-6
 									button.btn.btn-success.pull-right(ng-click='updateProfile()') LƯU THAY ĐỔI
