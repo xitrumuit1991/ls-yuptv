@@ -116,6 +116,10 @@
 						.col-md-12
 							.image
 								img(src='{{user.avatars_path.avatar}}')
+								button.change-avatar(type="file" ngf-select="uploadNewAvatar($file, $invalidFiles)"
+								accept="image/*"  ngf-max-size="10MB"
+								ngf-max-height="1000", ngf-max-width="2000")
+									i.fa.fa-pencil
 							.info
 								.group
 									span.name {{user.name}}

@@ -64,7 +64,8 @@ angular
   "ui.carousel",
   "ui-notification",
   "ngProgress",
-  "angular-loading-bar"
+  "angular-loading-bar",
+  'ngFileUpload'
 ])
 .constant "AppName", "YUP"
 .constant "GlobalConfig", config

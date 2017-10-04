@@ -82,6 +82,13 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
       data : params
     self.request options, done
 
+  self.getProfile = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "user/profile"
+      method : 'GET'
+      data : params
+    self.request options, done
+
   self.loginFacebook = (params, done)->
     options =
       url : GlobalConfig.API_URL + "auth/fb-register"

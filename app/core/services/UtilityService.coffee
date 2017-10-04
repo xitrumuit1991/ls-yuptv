@@ -1,6 +1,11 @@
 factory = ($rootScope, $timeout, $window, $http, Notification)->
   test : ()->
 
+  setUserProfile : (userResult)->
+    return unless userResult
+    window.localStorage.user = JSON.stringify(userResult)
+    $rootScope.user = userResult
+
   setUserLogged : (userResult)->
     return unless userResult
     return unless userResult.token

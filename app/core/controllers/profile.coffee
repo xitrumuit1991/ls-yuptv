@@ -14,7 +14,7 @@ route.$inject = ['$stateProvider', 'GlobalConfig']
 ctrl = ($rootScope,
   $scope, $timeout, $location,
   $window, $state, $stateParams,  ApiService, $http,
-  GlobalConfig, $interval, UtilityService) ->
+  GlobalConfig, $interval, UtilityService, Upload) ->
 
   $scope.changePass =
     old : ''
@@ -105,6 +105,40 @@ ctrl = ($rootScope,
   $scope.changeTab = (tab)->
     $scope.tabActive = tab
 
+
+  $scope.uploadNewAvatar = (file, errFiles)->
+    console.log 'fileSelect=',file
+    console.log 'errFiles=',errFiles
+    console.log 'errFiles[0]=',errFiles[0]
+    if errFiles and errFiles[0]
+      return UtilityService.notifyError( "ERROR: #{errFiles[0].$error} #{errFiles[0].$errorParam}" )
+    if file
+      file.upload = Upload.upload({
+        url : GlobalConfig.API_URL + 'user/avatar'
+        data : {avatar : file}
+        method : 'PUT'
+      })
+      file.upload.then ((response) ->
+        console.log 'response',response
+        if response and response.status == 200
+          UtilityService.notifySuccess('Thay đổi ảnh đại diện thành công')
+          ApiService.getProfile {},(error, result)->
+            return if error
+            UtilityService.setUserProfile(result) if result
+            return
+        return
+      ), ((response) ->
+        console.log 'response',response
+        UtilityService.notifyError("#{response.status} : #{response.statusText}" )
+        return
+      ), (evt) ->
+        console.log 'evt.loaded',evt.loaded
+        console.log 'evt.total',evt.total
+#        file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total))
+        return
+    return
+
+
   $scope.updateProfile = ()->
     if $scope.changePass.old
       console.log 'change pass'
@@ -150,7 +184,7 @@ ctrl = ($rootScope,
 ctrl.$inject = [
   '$rootScope', '$scope', '$timeout', '$location',
   '$window', '$state', '$stateParams',  'ApiService', '$http',
-  'GlobalConfig', '$interval', 'UtilityService'
+  'GlobalConfig', '$interval', 'UtilityService' , 'Upload'
 ]
 angular
 .module("app")
