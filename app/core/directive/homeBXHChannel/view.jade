@@ -13,7 +13,8 @@
 				.top
 					//img(src='/images/bxh_item.png')
 					img(src='{{rankItem.User.avatars_path.w160h160}}')
-					button
+					button(ng-if='rankItem.User.Room.isFollow==false'
+					ng-click='followIdolInHome(rankItem)')
 						i.fa.fa-plus
 				.name.text-center {{rankItem.User.name}}
 				.icon.text-center
