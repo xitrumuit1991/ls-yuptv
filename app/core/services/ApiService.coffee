@@ -131,6 +131,20 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
       data : params
     self.request options, done
 
+  self.followIdol = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "room/follow"
+      method : 'PUT'
+      data : params
+    self.request options, done
+
+  self.unFollowIdol = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "room/follow"
+      method : 'POST'
+      data : params
+    self.request options, done
+
 
   return null
 _service.$inject = ['$rootScope', '$http',   '$resource', 'GlobalConfig']
