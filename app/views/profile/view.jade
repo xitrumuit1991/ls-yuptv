@@ -139,7 +139,19 @@
 								.col-md-4.col-md-offset-2
 									span.title Ngày sinh
 								.col-md-5
-									input.form-control(type='text' value='{{user.birthday | date: "dd/MM/yyyy" }}' readonly='readonly')
+									input.form-control(type="text"
+									datepicker-popup="yyyy-MM-dd"
+									ng-model="birthDate.dt"
+									is-open="birthDate.opened"
+									min="birthDate.min"
+									datepicker-options="dateOptions"
+									date-disabled=""
+									ng-required="true"
+									)
+									button.pull-right.btn.btn-primary( ng-click="openDate()"
+									style='position: absolute; right: 15px; top: 0;')
+										i.fa.fa-calendar
+									//input.form-control(type='text' value='{{user.birthday | date: "dd/MM/yyyy" }}' readonly='readonly')
 							.row
 								.col-md-4.col-md-offset-2
 									span.title Giới tính

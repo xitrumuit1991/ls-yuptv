@@ -65,7 +65,8 @@ angular
   "ui-notification",
   "ngProgress",
   "angular-loading-bar",
-  'ngFileUpload'
+  'ngFileUpload',
+  '720kb.datepicker'
 ])
 .constant "AppName", "YUP"
 .constant "GlobalConfig", config
