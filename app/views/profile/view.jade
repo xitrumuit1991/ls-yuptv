@@ -29,7 +29,7 @@
 									.follower-item
 										//img.img-responsive(src='{{followerItem.banners.banner}}')
 										img.img-responsive(src='{{followerItem.User.avatars_path.avatar}}')
-										.name {{followerItem.title}}
+										.name.text-center {{followerItem.title}}
 
 								.col-md-12
 									uib-pagination.table-records-pages(
@@ -54,10 +54,10 @@
 							.row
 								.col-md-12
 									h1 Đang theo dõi ({{following.total_item}})
-								.col-md-3(ng-repeat='followingItem in following.items')
+								.col-md-2(ng-repeat='followingItem in following.items')
 									.following-item
 										img.img-responsive(src='{{followingItem.User.avatars_path.avatar}}')
-										.name {{followingItem.title}}
+										.name.text-center {{followingItem.title}}
 
 								.col-md-12
 									uib-pagination.table-records-pages(
