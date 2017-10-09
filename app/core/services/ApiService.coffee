@@ -152,6 +152,31 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
       data : params
     self.request options, done
 
+  self.getListRoomSchedule = (params, done)->
+#    keyword	String
+#    type	String Type in [day, day3, week, month, all]
+#    time optional	Timestamp Tính từ ngày
+    options =
+      url : GlobalConfig.API_URL + "room/list-by-schedule"
+      method : 'GET'
+      data : params
+    self.request options, done
+
+  self.getListCategory = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "room/category"
+      method : 'GET'
+      data : params
+    self.request options, done
+
+#  self.getListRoomInCategory = (params, done)->
+#    return done('Missing categoryId getListRoomInCategory api', null) unless params.categoryId
+#    options =
+#      url : GlobalConfig.API_URL + "room/list-by-category"
+#      method : 'GET'
+#      data : params
+#    self.request options, done
+
 
   return null
 _service.$inject = ['$rootScope', '$http',   '$resource', 'GlobalConfig']

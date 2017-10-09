@@ -1,0 +1,102 @@
+.schedule{
+  .head-title{
+    margin: 0;
+    padding: 0;
+  }
+  select.form-control{
+    display: inline-block;
+    width: auto;
+    margin: 0 7px;
+    padding: 0 15px;
+  }
+  button.btn-search{
+    cursor: pointer;
+    border-radius: 50%;
+    outline: none;
+    border: none;
+    background: #dedede;
+    i.fa-search{
+      color: #565656;
+      font-size: 16px;
+    }
+  }
+
+  .title-table{
+
+  }
+
+  .item-schedule
+  {
+    .group-image-name{
+      img.img-responsive{
+        display: inline-block;
+        width: 30%;
+        border-radius: 50%;
+      }
+      .name{
+        display: inline-block;
+        i.fa{
+          margin: 5px;
+        }
+        span{
+          margin-right: 5px;
+        }
+      }
+    }
+    .group-time-follow{
+      .time{
+        display: inline-block;
+        width: 48%;
+      }
+      .follow{
+        display: inline-block;
+        width: 48%;
+        button{
+
+        }
+      }
+    }
+  }
+
+  .list-room-schedule-following{
+    list-style: none;
+    overflow: scroll;
+    width: auto;
+    white-space: nowrap;
+    .list-inline-item{
+      margin: 10px 30px;
+      list-style: none;
+    }
+    .carousel-item{
+      margin-right: 20px;
+    }
+    .image-idol{
+      position: relative;
+      cursor: pointer;
+      img{
+        width: 100%;
+        display: block;
+        border-radius: 50%;
+      }
+      button{
+        position: absolute;
+        bottom: 3%;
+        outline: none;
+        right: 3%;
+        border: none;
+        background: #ed266b;
+        color: #fff;
+        line-height: 20px;
+        width: 20px;
+        font-size: 12px;
+        height: 20px;
+        padding: 0;
+        border-radius: 50%;
+      }
+    }
+    .name-idol{
+
+    }
+  }
+
+}

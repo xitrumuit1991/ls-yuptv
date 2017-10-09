@@ -8,26 +8,6 @@ appRun = (
   GlobalConfig, UtilityService)->
   console.info 'GlobalConfig=',GlobalConfig
   $rootScope.isHome = true
-  menuMainHome = [
-    {
-      title : 'Kênh On Air',
-      icon : 'fa-video-camera'
-      href : 'base.on-air'
-      itemClass : 'col-md-4'
-    },
-    {
-      title : 'Lịch Phát Sóng',
-      icon : 'fa-calendar-o'
-      href : 'base.schedule-page'
-      itemClass : 'col-md-4'
-    },
-    {
-      title : 'Tin Tức',
-      icon : 'fa-file'
-      href : 'base.news'
-      itemClass : 'col-md-4'
-    },
-  ]
 
   if window.localStorage.user and window.localStorage.token
     console.info 'app run validate user token'
@@ -56,7 +36,7 @@ appRun = (
       $rootScope.menuMain = GlobalConfig.menuMainProfile
     else
       $rootScope.isHome = true
-      $rootScope.menuMain = menuMainHome
+      $rootScope.menuMain = GlobalConfig.menuMainHome
 
 
 appRun.$inject = [

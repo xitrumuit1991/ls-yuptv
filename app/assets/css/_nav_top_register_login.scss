@@ -134,13 +134,24 @@
   background: #280c45;
   height: 60px;
   .menu_main_list {
-    line-height: 25px;
+    //line-height: 25px;
+    //color: #fff;
+    //margin-top: 15px;
+    line-height: 60px;
     color: #fff;
-    margin-top: 15px;
+    margin-top: 0;
+
     .menu_main_list_item {
       border-right: 1px solid #ccc;
       text-align: center;
       font-size: 16px;
+      &.active{
+        background: #eb266b;
+        color: #fff;
+        a{
+          color: #fff;
+        }
+      }
       a {
         color: #cbcbcb;
         text-decoration: none;
@@ -155,7 +166,7 @@
           text-decoration: none;
         }
         i {
-          color: #ca0e54;
+          color: #fff;
         }
       }
       &.lasted {

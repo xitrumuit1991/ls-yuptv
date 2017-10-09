@@ -1,0 +1,113 @@
+.container
+	.schedule.wrapper
+		.row
+			.col-md-6
+				h2.head-title LỊCH DIỄN
+				p Cập nhật ngày 10/10/2017
+			.col-md-6.text-right
+				span.label.black Hiển thị
+				select.form-control()
+					option(value='') Tat ca
+				select.form-control()
+					option(value='') Tat ca
+				select.form-control()
+					option(value='') Tat ca
+				button.btn-search
+					i.fa.fa-search
+		hr
+		.row
+			.col-md-6
+				h4 {{textNowDate}}
+				.row
+					.col-md-12
+						table.table.table-bordered
+							tr
+								td Idol diễn
+								td Giờ diễn
+							tr(ng-if='!roomAtNowDate || roomAtNowDate.length <= 0')
+								td(colspan='2') Không có dữ liệu
+							tr(ng-repeat='item in roomAtNowDate' ng-if='roomAtNowDate.length > 0')
+								td
+									.group-image-name
+										img.img-responsive(src='/images/bxh_item.png')
+										.name
+											p Hotboynoiloan
+											i.fa.fa-eye
+											span 111
+											i.fa.fa-heart-o
+											span 111
+								td
+									.group-time-follow
+										.time 10:00
+										.follow
+											button Follow
+
+
+			.col-md-6
+				h4 {{textTomorrowDate}}
+				.row
+					.col-md-12
+						table.table.table-bordered
+							tr
+								td Idol diễn
+								td Giờ diễn
+							tr(ng-if='!roomAtTomorrowDate || roomAtTomorrowDate.length <= 0')
+								td(colspan='2') Không có dữ liệu
+							tr(ng-repeat='item in roomAtTomorrowDate' ng-if='roomAtTomorrowDate.length > 0')
+								td
+									.group-image-name
+										img.img-responsive(src='/images/bxh_item.png')
+										.name
+											p Hotboynoiloan
+											i.fa.fa-eye
+											span 111
+											i.fa.fa-heart-o
+											span 111
+								td
+									.group-time-follow
+										.time 10:00
+										.follow
+											button Follow
+
+
+		.list-room-schedule-following(ng-if='user && listUserFollowing.length > 0')
+			.row
+				.col-md-12
+					hr
+				.col-md-12
+					h3 Lịch phát sóng Idol của bạn
+					br
+					br
+				.col-md-12
+					ui-carousel(slides='listUserFollowing',
+					slides-to-show='7',
+					slides-to-scroll='7',
+					initial-slide='1',
+					autoplay='true',
+					autoplay-speed='4000',
+					dots='true')
+						carousel-item
+							.image-idol
+								img.img-responsive.image-idol(src='{{item.User.avatars_path.avatar}}')
+								button
+									i.fa.fa-angle-right
+							p.text-center.name-idol {{item.name || item.title}}
+						//carousel-prev
+						//	button
+						//		i.fa.fa-angle-left
+						//carousel-next
+						//	button
+						//		i.fa.fa-angle-right
+
+		//div(ng-if='user && listUserFollowing.length > 0')
+			hr
+			.row.list-room-schedule-following
+				.col-md-12 Lịch phát sóng Idol của bạn
+				.col-md-12
+					ul.list-inline
+						li.list-inline-item(ng-repeat='item in listUserFollowing')
+							.image-idol
+								img.img-responsive.image-idol(src='{{item.User.avatars_path.avatar}}')
+								button
+									i.fa.fa-angle-right
+							p.text-center.name-idol {{item.name || item.title}}

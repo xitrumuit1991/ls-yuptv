@@ -37,6 +37,21 @@ factory = ($rootScope, $timeout, $window, $http, Notification)->
     return 'off' unless window.localStorage[type]
     return window.localStorage[type]
 
+  getMiliSecBeginDay : (type='now')->
+    d = new Date()
+    dd = new Date()
+    if type == 'now'
+      d.setDate(dd.getDate())
+    if type == '+1day' or type == 'next'
+      d.setDate(dd.getDate()+1)
+    if type == '-1day' or type == 'prev'
+      d.setDate(dd.getDate()-1)
+    d.setHours(0)
+    d.setMinutes(0)
+    d.setSeconds(0)
+    d.setMilliseconds(0)
+    return (d.getTime()/1000)
+
   notifySuccess : (message)->
     Notification.success(message)
   notifyError : (message)->

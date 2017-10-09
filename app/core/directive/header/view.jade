@@ -47,9 +47,14 @@
 			.row
 				.menu_main_list_item(ng-repeat='item in menu'
 				ng-class='{"lasted": $last }'
-				class='{{item.itemClass}}')
-					a(href='' ui-sref='{{item.href}}'
-					ui-sref-active="active")
+				class='{{item.itemClass}}'
+				ui-sref-active="active"
+				)
+					a(ng-if='item.isLink' href='{{item.href}}')
+						i.fa(class='{{item.icon}}' ng-if='item.icon')
+						|  {{item.title}}
+					a(href='' ng-if=' !item.isLink '
+					ui-sref='{{item.href}}' )
 						i.fa(class='{{item.icon}}' ng-if='item.icon')
 						|  {{item.title}}
 		.col-md-6.search-form-top(ng-if='isHome == true')
