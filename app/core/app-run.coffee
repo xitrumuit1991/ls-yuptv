@@ -5,7 +5,7 @@ appRun = (
   $timeout,
   $location,
   ApiService,
-  GlobalConfig)->
+  GlobalConfig, UtilityService)->
   console.info 'GlobalConfig=',GlobalConfig
   $rootScope.isHome = true
   menuMainHome = [
@@ -29,12 +29,19 @@ appRun = (
     },
   ]
 
-  if window.localStorage.user
-    try
-      $rootScope.user = JSON.parse(window.localStorage.user)
-      console.info '$rootScope.user =',$rootScope.user
-    catch e
-      $rootScope.user = null
+  if window.localStorage.user and window.localStorage.token
+    console.info 'app run validate user token'
+    ApiService.getProfile({}, (error, result)->
+      return UtilityService.removeUserLogged() if error
+      if result and result.error
+        return UtilityService.removeUserLogged()
+      if result
+        try
+          $rootScope.user = JSON.parse(window.localStorage.user)
+          console.info '$rootScope.user =',$rootScope.user
+        catch e
+          $rootScope.user = null
+    )
   else
     $rootScope.user = null
 
@@ -59,7 +66,7 @@ appRun.$inject = [
   '$timeout',
   '$location',
   'ApiService',
-  'GlobalConfig'
+  'GlobalConfig', 'UtilityService'
 ]
 
 angular.module("app").run(appRun)
