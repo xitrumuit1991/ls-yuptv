@@ -81,6 +81,11 @@
     .image-idol{
       position: relative;
       cursor: pointer;
+      &.selected{
+        img{
+          box-shadow: 0px 0px 20px #5e3bc3;
+        }
+      }
       img{
         width: 100%;
         display: block;
@@ -88,7 +93,7 @@
       }
       button{
         position: absolute;
-        bottom: 5%;
+        bottom: 20%;
         outline: none;
         right: 5%;
         border: none;

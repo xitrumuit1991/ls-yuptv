@@ -101,8 +101,13 @@ ctrl = ($rootScope,
       return console.error(result) if result and result.error
       return UtilityService.notifyError('Không có lịch diễn') if result and result.length <= 0
 
-  $rootScope.onItemClick = (item)->
+  $scope.onItemClick = (item, index)->
     console.log 'click scheduleOfRoom', item
+    i=0
+    while i<$scope.listUserFollowing.length
+      $scope.listUserFollowing[i].active = false if i != index
+      $scope.listUserFollowing[index].active = true if i == index
+      i++
     params =
       roomId : item.id
       type : 'all'

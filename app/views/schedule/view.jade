@@ -78,15 +78,18 @@
 											button(ng-if='item.Room.isFollow==false') Theo dõi
 
 
-		//.list-room-schedule-following(ng-if='user && listUserFollowing && listUserFollowing.length > 0')
-		//	carousel(interval="4000")
-		//		slide(ng-repeat="slide in listUserFollowing" active="slide.active")
-		//			img(ng-src="{{slide.image}}" style="margin:auto;")
-		//			.carousel-caption
-		//				h4 Slide {{$index}}
-		//				p {{slide.text}}
-
 		.list-room-schedule-following(ng-if='user && listUserFollowing && listUserFollowing.length > 0')
+			.row
+				.col-md-12
+					hr
+				.col-md-12
+					h3 Lịch phát sóng Idol của bạn ({{listUserFollowing.length}})
+					br
+					br
+				.col-md-12
+					bxslider(items='listUserFollowing' on-item-click='onItemClick')
+
+		//.list-room-schedule-following(ng-if='user && listUserFollowing && listUserFollowing.length > 0')
 			.row
 				.col-md-12
 					hr
