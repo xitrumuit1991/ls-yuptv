@@ -1,12 +1,12 @@
 "use strict"
 route = ($stateProvider, GlobalConfig)->
   $stateProvider
-  .state "base.schedule",
-    url : "lich-dien"
+  .state "base.schedule.detail",
+    url : "/:roomId"
     views :
       "main@" :
         templateUrl : "/templates/schedule/view.html"
-        controller : "ScheduleCtrl"
+        controller : "ScheduleDetailCtrl"
 
 route.$inject = ['$stateProvider', 'GlobalConfig']
 
@@ -14,6 +14,7 @@ ctrl = ($rootScope,
   $scope, $timeout, $location,
   $window, $state, $stateParams, ApiService, $http,
   GlobalConfig, $interval, UtilityService) ->
+  console.log $stateParams.roomId
   d =  new Date()
   dd = new Date()
   dd.setDate(d.getDate()+1)
@@ -70,7 +71,7 @@ ctrl = ($rootScope,
     ApiService.getListRoomSchedule paramNowDate, (error, result)->
       return console.error(result) if error
       return console.error(result) if result and result.error
-#      return UtilityService.notifyError('Không có lịch diễn') if result and result.length <= 0
+      #      return UtilityService.notifyError('Không có lịch diễn') if result and result.length <= 0
       $scope.roomAtNowDate = result if type == 'now'
       $scope.roomAtTomorrowDate = result if type == '+1day'
 
@@ -101,17 +102,6 @@ ctrl = ($rootScope,
       return console.error(result) if result and result.error
       return UtilityService.notifyError('Không có lịch diễn') if result and result.length <= 0
 
-  $rootScope.onItemClick = (item)->
-    console.log 'click scheduleOfRoom', item
-    params =
-      roomId : item.id
-      type : 'all'
-    ApiService.getScheduleOfRoom params, (error, result)->
-      return console.error(result) if error
-      return console.error(result) if result and result.error
-      console.log 'scheduleOfRoom ',result
-
-
   ApiService.getUserFollowing {},(error, result)->
     return if error
     return if result and result.error
@@ -132,7 +122,8 @@ ctrl.$inject = [
   '$window', '$state', '$stateParams', 'ApiService', '$http',
   'GlobalConfig', '$interval' , 'UtilityService'
 ]
+
 angular
 .module("app")
 .config route
-.controller "ScheduleCtrl", ctrl
+.controller "ScheduleDetailCtrl", ctrl

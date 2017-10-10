@@ -78,6 +78,14 @@
 											button(ng-if='item.Room.isFollow==false') Theo dõi
 
 
+		//.list-room-schedule-following(ng-if='user && listUserFollowing && listUserFollowing.length > 0')
+		//	carousel(interval="4000")
+		//		slide(ng-repeat="slide in listUserFollowing" active="slide.active")
+		//			img(ng-src="{{slide.image}}" style="margin:auto;")
+		//			.carousel-caption
+		//				h4 Slide {{$index}}
+		//				p {{slide.text}}
+
 		.list-room-schedule-following(ng-if='user && listUserFollowing && listUserFollowing.length > 0')
 			.row
 				.col-md-12
@@ -95,15 +103,18 @@
 					autoplay-speed='4000',
 					dots='true')
 						carousel-item
-							.image-idol
+							.image-idol(
+							ng-click='$rootScope.onItemClick(item)'
+							ui-sref='base.schedule.detail({roomId : item.id})'
+							)
 								img.img-responsive.image-idol(src='{{item.User.avatars_path.avatar}}')
 								button
 									i.fa.fa-angle-right
 							p.text-center.name-idol {{item.name || item.title}}
-						//carousel-prev
-						//	button
-						//		i.fa.fa-angle-left
-						//carousel-next
-						//	button
-						//		i.fa.fa-angle-right
+						carousel-prev
+							button
+								i.fa.fa-angle-left
+						carousel-next
+							button
+								i.fa.fa-angle-right
 
