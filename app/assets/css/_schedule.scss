@@ -25,35 +25,43 @@
 
   }
 
-  .item-schedule
-  {
-    .group-image-name{
-      img.img-responsive{
-        display: inline-block;
-        width: 30%;
-        border-radius: 50%;
+  .group-image-name{
+    img.img-responsive{
+      display: inline-block;
+      width: 20%;
+      border-radius: 50%;
+    }
+    .name{
+      display: inline-block;
+      line-height: 100%;
+      vertical-align: middle;
+      margin-left: 10px;
+      p{
+        font-weight:bold;
       }
-      .name{
-        display: inline-block;
-        i.fa{
-          margin: 5px;
-        }
-        span{
-          margin-right: 5px;
-        }
+      i.fa{
+        margin: 5px;
+      }
+      span{
+        margin-right: 5px;
       }
     }
-    .group-time-follow{
-      .time{
-        display: inline-block;
-        width: 48%;
-      }
-      .follow{
-        display: inline-block;
-        width: 48%;
-        button{
-
-        }
+  }
+  .group-time-follow{
+    .time{
+      display: inline-block;
+      width: 48%;
+    }
+    .follow{
+      display: inline-block;
+      width: 48%;
+      button{
+        border: none;
+        outline: none;
+        background: #a70efe;
+        color: #fff;
+        border-radius: 40px;
+        padding: 3px 15px;
       }
     }
   }

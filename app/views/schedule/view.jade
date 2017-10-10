@@ -6,12 +6,16 @@
 				p Cập nhật ngày 10/10/2017
 			.col-md-6.text-right
 				span.label.black Hiển thị
-				select.form-control()
-					option(value='') Tat ca
-				select.form-control()
-					option(value='') Tat ca
-				select.form-control()
-					option(value='') Tat ca
+				//#category
+				select.form-control(ng-model="categorySelected"
+				ng-options="item.id as item.title for item in selectCategoryValue")
+
+				select.form-control(ng-model="dateSelected"
+				ng-options="item.id as item.title for item in selectDateValue")
+
+				select.form-control(ng-model="monthSelected"
+				ng-options="item.id as item.title for item in selectMonthValue")
+
 				button.btn-search
 					i.fa.fa-search
 		hr
@@ -22,25 +26,25 @@
 					.col-md-12
 						table.table.table-bordered
 							tr
-								td Idol diễn
-								td Giờ diễn
+								td(width='50%') Idol diễn
+								td(width='50%') Giờ diễn
 							tr(ng-if='!roomAtNowDate || roomAtNowDate.length <= 0')
-								td(colspan='2') Không có dữ liệu
+								td(colspan='2') Không có lịch diễn nào
 							tr(ng-repeat='item in roomAtNowDate' ng-if='roomAtNowDate.length > 0')
-								td
+								td(style='border-right: none;')
 									.group-image-name
-										img.img-responsive(src='/images/bxh_item.png')
+										img.img-responsive(src='{{item.Room.User.avatars_path.avatar}}')
 										.name
-											p Hotboynoiloan
+											p {{item.Room.title}}
 											i.fa.fa-eye
-											span 111
+											span {{item.Room.views}}
 											i.fa.fa-heart-o
-											span 111
-								td
+											span {{item.Room.hearts}}
+								td(style='border-left: none;')
 									.group-time-follow
-										.time 10:00
+										.time.bold {{item.start | date:'HH:mm' }}
 										.follow
-											button Follow
+											button(ng-if='item.Room.isFollow==false') Theo dõi
 
 
 			.col-md-6
@@ -49,25 +53,25 @@
 					.col-md-12
 						table.table.table-bordered
 							tr
-								td Idol diễn
-								td Giờ diễn
+								td(width='60%') Idol diễn
+								td(width='40%') Giờ diễn
 							tr(ng-if='!roomAtTomorrowDate || roomAtTomorrowDate.length <= 0')
-								td(colspan='2') Không có dữ liệu
+								td(colspan='2') Không có lịch diễn nào
 							tr(ng-repeat='item in roomAtTomorrowDate' ng-if='roomAtTomorrowDate.length > 0')
-								td
+								td(style='border-right: none;')
 									.group-image-name
-										img.img-responsive(src='/images/bxh_item.png')
+										img.img-responsive(src='{{item.Room.User.avatars_path.avatar}}')
 										.name
-											p Hotboynoiloan
+											p {{item.Room.title}}
 											i.fa.fa-eye
-											span 111
+											span {{item.Room.views}}
 											i.fa.fa-heart-o
-											span 111
-								td
+											span {{item.Room.hearts}}
+								td(style='border-left: none;')
 									.group-time-follow
-										.time 10:00
+										.time.bold {{item.start | date:'HH:mm' }}
 										.follow
-											button Follow
+											button(ng-if='item.Room.isFollow==false') Theo dõi
 
 
 		.list-room-schedule-following(ng-if='user && listUserFollowing.length > 0')
@@ -99,15 +103,3 @@
 						//	button
 						//		i.fa.fa-angle-right
 
-		//div(ng-if='user && listUserFollowing.length > 0')
-			hr
-			.row.list-room-schedule-following
-				.col-md-12 Lịch phát sóng Idol của bạn
-				.col-md-12
-					ul.list-inline
-						li.list-inline-item(ng-repeat='item in listUserFollowing')
-							.image-idol
-								img.img-responsive.image-idol(src='{{item.User.avatars_path.avatar}}')
-								button
-									i.fa.fa-angle-right
-							p.text-center.name-idol {{item.name || item.title}}
