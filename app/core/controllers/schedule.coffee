@@ -25,14 +25,16 @@ ctrl = ($rootScope,
 
   $scope.selectCategoryValue = []
   $scope.categorySelected = ''
-#  $scope.categorySelected = '9ac8fc48-86f2-11e7-b556-0242ac110005' #all
 
   $scope.selectDateValue = [
     {id:'', title:'----------'},
+    {id:'-7day', title:'Tuần Trước'},
     {id:'-3day', title:'3 Ngày Trước'},
-    {id:'now', title:'Hôm Nay'},
+    {id:'-1day', title:'Hôm Trước'},
+    {id:'now',    title:'Hôm Nay'},
     {id:'+1day', title:'Ngày mai'},
     {id:'+3day', title:'3 Ngày Sau'},
+    {id:'+7day', title:'Tuần Sau'},
   ]
   $scope.dateSelected = ''
 
@@ -55,40 +57,75 @@ ctrl = ($rootScope,
 
   $scope.listUserFollowing = []
 
-  ApiService.getListCategory({},(error, result)->
-    return if error
-    return console.error(result) if result and result.error
-    $scope.selectCategoryValue = result
-    console.log '$scope.selectCategoryValue',$scope.selectCategoryValue
-    $scope.selectCategoryValue.unshift({
-      id:'',
-      title : '----------'
-    })
-  )
-
   getDataRoom = (type='now')->
     paramNowDate=
       keyword	: ''
       type : 'day'
-    if type == 'now'
-      paramNowDate.time = UtilityService.getMiliSecBeginDay('now')
-    if type == '+1day'
-      paramNowDate.time = UtilityService.getMiliSecBeginDay('+1day')
-    ApiService.getListRoomSchedule(paramNowDate, (error, result)->
-      return if error
+      time : ''
+    paramNowDate.type = 'day' if type in ['now', '0day', 'day', '+1day' , '-1day']
+    paramNowDate.type = 'day3' if type in ['+3day', '-3day']
+    paramNowDate.type = 'week' if type in ['+7day', '-7day']
+    paramNowDate.type = 'month' if type in ['+30day', '-30day']
+    paramNowDate.time = UtilityService.getMiliSecBeginDay(type)
+    ApiService.getListRoomSchedule paramNowDate, (error, result)->
+      return console.error(result) if error
       return console.error(result) if result and result.error
+#      return UtilityService.notifyError('Không có lịch diễn') if result and result.length <= 0
       $scope.roomAtNowDate = result if type == 'now'
       $scope.roomAtTomorrowDate = result if type == '+1day'
-    )
 
 
-  getDataRoom('now')
-  getDataRoom('+1day')
-  ApiService.getUserFollowing({},(error, result)->
+  $scope.changeCategorySelect = ()->
+    console.log '$scope.categorySelected',$scope.categorySelected
+    console.log '$scope.dateSelected',$scope.dateSelected
+    console.log '$scope.monthSelected',$scope.monthSelected
+
+  $scope.changeDateSelect = ()->
+    getDataRoom($scope.dateSelected)
+
+  $scope.changeMonthSelect = ()->
+    $scope.dateSelected = ''
+    d = new Date()
+    d.setDate(1)
+    d.setMonth( parseInt($scope.monthSelected)-1)
+    d.setHours(0)
+    d.setMinutes(0)
+    d.setSeconds(0)
+    d.setMilliseconds(0)
+    paramNowDate=
+      keyword	: ''
+      type : 'month'
+      time : (d.getTime()/1000)
+    ApiService.getListRoomSchedule paramNowDate, (error, result)->
+      return console.error(result) if error
+      return console.error(result) if result and result.error
+      return UtilityService.notifyError('Không có lịch diễn') if result and result.length <= 0
+
+  $scope.onItemClick = (item)->
+    console.log 'click scheduleOfRoom', item
+    params =
+      roomId : item.id
+      type : 'all'
+    ApiService.getScheduleOfRoom params, (error, result)->
+      return console.error(result) if error
+      return console.error(result) if result and result.error
+      console.log 'scheduleOfRoom ',result
+
+
+  ApiService.getUserFollowing {},(error, result)->
     return if error
     return if result and result.error
     $scope.listUserFollowing = result.rooms
-  )
+  ApiService.getListCategory {},(error, result)->
+    return if error
+    return console.error(result) if result and result.error
+    $scope.selectCategoryValue = result
+    console.log '$scope.selectCategoryValue',$scope.selectCategoryValue
+    $scope.selectCategoryValue.unshift({ id:'', title : '----------' })
+
+  getDataRoom('now')
+  getDataRoom('+1day')
+
 
 ctrl.$inject = [
   '$rootScope', '$scope', '$timeout', '$location',

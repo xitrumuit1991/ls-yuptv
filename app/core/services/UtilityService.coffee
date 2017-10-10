@@ -40,12 +40,15 @@ factory = ($rootScope, $timeout, $window, $http, Notification)->
   getMiliSecBeginDay : (type='now')->
     d = new Date()
     dd = new Date()
-    if type == 'now'
-      d.setDate(dd.getDate())
-    if type == '+1day' or type == 'next'
-      d.setDate(dd.getDate()+1)
-    if type == '-1day' or type == 'prev'
-      d.setDate(dd.getDate()-1)
+    if type == '+30day' then  d.setDate(dd.getDate()+30)
+    if type == '+7day'  then  d.setDate(dd.getDate()+7)
+    if type == '+3day'  then  d.setDate(dd.getDate()+3)
+    if type == '+1day'  then  d.setDate(dd.getDate()+1)
+    if type == 'now'    then d.setDate(dd.getDate())
+    if type == '-1day'  then d.setDate(dd.getDate()-1)
+    if type == '-3day'  then d.setDate(dd.getDate()-3)
+    if type == '-7day'  then d.setDate(dd.getDate()-7)
+    if type == '-30day'  then d.setDate(dd.getDate()-30)
     d.setHours(0)
     d.setMinutes(0)
     d.setSeconds(0)
