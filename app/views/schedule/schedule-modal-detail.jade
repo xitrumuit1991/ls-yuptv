@@ -6,12 +6,14 @@
 			img.img-responsive.image(src='{{item.User.avatars_path.avatar}}')
 		.group-name
 			span.text-left.title-main {{item.title}}
-			button.btn-follow Theo dõi
+			button.btn-follow(ng-if='item.isFollow == false'
+			ng-click='clickFollowRoomInSchedule(item)'
+			) Theo dõi
 			.group-icon
 				i.fa.fa-eye
-				span 111
+				span {{item.views}}
 				i.fa.fa-heart-o
-				span 111
+				span {{item.hearts}}
 		.content
 			table.table.table-bordered
 				tr
@@ -24,7 +26,8 @@
 
 				tr( ng-repeat='ite in list' ng-if='list && list.length > 0')
 					td
-						span.label-hour Hôm nay, 9 tháng 9,17
+						//span.label-hour Hôm nay, 9 tháng 9,17
+						span.label-hour {{ite.start | date : 'dd-MM-yyyy'}}
 					td
-						span.hour 23:30
+						span.hour {{ite.start | date : 'HH:mm' }}
 						button.pull-right.btn-follow.btn-get-noty Nhận thông báo

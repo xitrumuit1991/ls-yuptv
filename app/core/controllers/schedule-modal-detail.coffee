@@ -13,6 +13,14 @@ ScheduleModalDetailController = ($scope,modalItem, $modalInstance, ApiService, $
     console.log 'scheduleOfRoom ',result
     $scope.list = result
 
+  $scope.clickFollowRoomInSchedule = (item)->
+    console.log 'clickFollowRoomInSchedule', item
+    ApiService.followIdol({roomId:item.id}, (error, result)->
+      return if error
+      return if result and result.error
+      UtilityService.notifySuccess(result.message)
+    )
+
   $scope.cancel = ()->
     console.log 'cancel'
     $modalInstance.dismiss 'cancel'
