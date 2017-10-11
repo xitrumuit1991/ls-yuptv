@@ -133,7 +133,7 @@ ctrl = ($rootScope,
       windowClass: 'modal'
       controller: 'ScheduleModalDetailController'
       resolve: {
-        modalItem: item
+        modalItem: item.Room
       }
     })
 

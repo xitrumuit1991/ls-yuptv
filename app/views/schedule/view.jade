@@ -39,7 +39,7 @@
 									.group-image-name
 										img.img-responsive(src='{{item.Room.User.avatars_path.avatar}}')
 										.name
-											p {{item.Room.title}}
+											p(ng-click='openScheduleDetail(item)') {{item.Room.title}}
 											i.fa.fa-eye
 											span {{item.Room.views}}
 											i.fa.fa-heart-o
@@ -66,7 +66,7 @@
 									.group-image-name
 										img.img-responsive(src='{{item.Room.User.avatars_path.avatar}}')
 										.name
-											p {{item.Room.title}}
+											p(ng-click='openScheduleDetail(item)') {{item.Room.title}}
 											i.fa.fa-eye
 											span {{item.Room.views}}
 											i.fa.fa-heart-o
@@ -88,36 +88,3 @@
 					br
 				.col-md-12
 					bxslider(items='listUserFollowing' on-item-click='onItemClick')
-
-		//.list-room-schedule-following(ng-if='user && listUserFollowing && listUserFollowing.length > 0')
-			.row
-				.col-md-12
-					hr
-				.col-md-12
-					h3 Lịch phát sóng Idol của bạn ({{listUserFollowing.length}})
-					br
-					br
-				.col-md-12
-					ui-carousel(slides='listUserFollowing',
-					slides-to-show='7',
-					slides-to-scroll='7',
-					initial-slide='1',
-					autoplay='true',
-					autoplay-speed='4000',
-					dots='true')
-						carousel-item
-							.image-idol(
-							ng-click='$rootScope.onItemClick(item)'
-							ui-sref='base.schedule.detail({roomId : item.id})'
-							)
-								img.img-responsive.image-idol(src='{{item.User.avatars_path.avatar}}')
-								button
-									i.fa.fa-angle-right
-							p.text-center.name-idol {{item.name || item.title}}
-						carousel-prev
-							button
-								i.fa.fa-angle-left
-						carousel-next
-							button
-								i.fa.fa-angle-right
-
