@@ -108,22 +108,17 @@ ctrl = ($rootScope,
       $scope.listUserFollowing[i].active = false if i != index
       $scope.listUserFollowing[index].active = true if i == index
       i++
-    params =
-      roomId : item.id
-      type : 'all'
-    ApiService.getScheduleOfRoom params, (error, result)->
-      return console.error(result) if error
-      return console.error(result) if result and result.error
-      console.log 'scheduleOfRoom ',result
-      $modal.open({
-        templateUrl: '/templates/schedule/schedule-modal-detail.html'
-        backdrop: true
-        windowClass: 'modal'
-        controller: 'ScheduleModalDetailController'
-        resolve: {
-          modalItem: item
-        }
-      })
+    $modal.open({
+      templateUrl: '/templates/schedule/schedule-modal-detail.html'
+      backdrop: true
+      windowClass: 'modal'
+      controller: 'ScheduleModalDetailController'
+      resolve: {
+        modalItem: item
+      }
+    })
+
+
 
   $scope.openScheduleDetail = (item)->
     console.log 'openScheduleDetail', item

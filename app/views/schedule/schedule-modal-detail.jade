@@ -19,7 +19,10 @@
 						.title Ngày diễn
 					td
 						.title Khung giờ
-				tr
+				tr(ng-if='list && list.length <= 0')
+					td(colspan='2') Không có lịch diễn nào
+
+				tr( ng-repeat='ite in list' ng-if='list && list.length > 0')
 					td
 						span.label-hour Hôm nay, 9 tháng 9,17
 					td
