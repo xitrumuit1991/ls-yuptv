@@ -48,7 +48,8 @@
 									.group-time-follow
 										.time.bold {{item.start | date:'HH:mm' }}
 										.follow
-											button(ng-if='item.Room.isFollow==false') Theo dõi
+											button(ng-if='item.Room.isFollow == false'
+											ng-click='actionFollowRoom(item)') Theo dõi
 
 
 			.col-md-6

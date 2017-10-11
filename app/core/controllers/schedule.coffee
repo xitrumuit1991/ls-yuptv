@@ -57,6 +57,12 @@ ctrl = ($rootScope,
 
   $scope.listUserFollowing = []
 
+  getListRoomFollow = ()->
+    ApiService.getUserFollowing {},(error, result)->
+      return if error
+      return if result and result.error
+      $scope.listUserFollowing = result.rooms
+
   getDataRoom = (type='now')->
     paramNowDate=
       keyword	: ''
@@ -72,13 +78,23 @@ ctrl = ($rootScope,
       return console.error(result) if result and result.error
 #      return UtilityService.notifyError('Không có lịch diễn') if result and result.length <= 0
       $scope.roomAtNowDate = result if type == 'now'
+      console.log '$scope.roomAtNowDate',$scope.roomAtNowDate if type == 'now'
       $scope.roomAtTomorrowDate = result if type == '+1day'
+      console.log '$scope.roomAtTomorrowDate',$scope.roomAtTomorrowDate if type == '+1day'
 
+  $scope.actionFollowRoom = (item)->
+    paramFollow =
+      roomId : item.Room.id
+    ApiService.followIdol( paramFollow , (error, result)->
+      return if error
+      return if result and result.error
+      UtilityService.notifySuccess(result.message)
+#      getListRoomFollow()
+      getDataRoom('now')
+      getDataRoom('+1day')
+    )
 
   $scope.changeCategorySelect = ()->
-    console.log '$scope.categorySelected',$scope.categorySelected
-    console.log '$scope.dateSelected',$scope.dateSelected
-    console.log '$scope.monthSelected',$scope.monthSelected
 
   $scope.changeDateSelect = ()->
     getDataRoom($scope.dateSelected)
@@ -134,10 +150,7 @@ ctrl = ($rootScope,
 
 
 
-  ApiService.getUserFollowing {},(error, result)->
-    return if error
-    return if result and result.error
-    $scope.listUserFollowing = result.rooms
+
   ApiService.getListCategory {},(error, result)->
     return if error
     return console.error(result) if result and result.error
@@ -145,6 +158,7 @@ ctrl = ($rootScope,
     console.log '$scope.selectCategoryValue',$scope.selectCategoryValue
     $scope.selectCategoryValue.unshift({ id:'', title : '----------' })
 
+  getListRoomFollow()
   getDataRoom('now')
   getDataRoom('+1day')
 
