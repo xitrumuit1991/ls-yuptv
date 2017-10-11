@@ -83,7 +83,7 @@
       cursor: pointer;
       &.selected{
         img{
-          box-shadow: 0px 0px 20px #5e3bc3;
+          box-shadow: 0px 0px 50px #c3005f;
         }
       }
       img{
@@ -105,6 +105,7 @@
         height: 20px;
         padding: 0;
         border-radius: 50%;
+        border: 1px solid #fff;
       }
     }
     .name-idol{
@@ -112,4 +113,55 @@
     }
   }
 
+}
+
+.schedule-modal-detail
+{
+  .title-main{
+    font-size: 20px;
+    font-weight: bold;
+  }
+  i.fa.fa-close{
+    float: right;
+    margin: 10px;
+    z-index: 9999;
+    cursor: pointer;
+  }
+  .group-image{
+    display: inline-block;
+    width: 20%;
+    .image{
+      border-radius: 50%;
+    }
+  }
+  .group-name{
+    display: inline-block;
+    width: 70%;
+    vertical-align: top;
+    .group-icon{
+      .fa{
+        margin-right: 5px;
+      }
+      span{
+        margin-right: 10px;
+      }
+    }
+  }
+  .btn-follow{
+    border: none;
+    outline: none;
+    background: #a70efe;
+    color: #fff;
+    border-radius: 40px;
+    padding: 3px 15px;
+    &.btn-get-noty{
+      background: #ce75fe;
+    }
+  }
+  .label-hour{
+    font-size: 12px;
+  }
+  .hour{
+    font-weight: bold;
+  }
 }

@@ -13,7 +13,7 @@ route.$inject = ['$stateProvider', 'GlobalConfig']
 ctrl = ($rootScope,
   $scope, $timeout, $location,
   $window, $state, $stateParams, ApiService, $http,
-  GlobalConfig, $interval, UtilityService) ->
+  GlobalConfig, $interval, UtilityService, $modal) ->
   d =  new Date()
   dd = new Date()
   dd.setDate(d.getDate()+1)
@@ -115,6 +115,28 @@ ctrl = ($rootScope,
       return console.error(result) if error
       return console.error(result) if result and result.error
       console.log 'scheduleOfRoom ',result
+      $modal.open({
+        templateUrl: '/templates/schedule/schedule-modal-detail.html'
+        backdrop: true
+        windowClass: 'modal'
+        controller: 'ScheduleModalDetailController'
+        resolve: {
+          modalItem: item
+        }
+      })
+
+  $scope.openScheduleDetail = (item)->
+    console.log 'openScheduleDetail', item
+    $modal.open({
+      templateUrl: '/templates/schedule/schedule-modal-detail.html'
+      backdrop: true
+      windowClass: 'modal'
+      controller: 'ScheduleModalDetailController'
+      resolve: {
+        modalItem: item
+      }
+    })
+
 
 
   ApiService.getUserFollowing {},(error, result)->
@@ -135,7 +157,7 @@ ctrl = ($rootScope,
 ctrl.$inject = [
   '$rootScope', '$scope', '$timeout', '$location',
   '$window', '$state', '$stateParams', 'ApiService', '$http',
-  'GlobalConfig', '$interval' , 'UtilityService'
+  'GlobalConfig', '$interval' , 'UtilityService', '$modal'
 ]
 angular
 .module("app")

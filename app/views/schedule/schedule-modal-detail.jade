@@ -1,0 +1,26 @@
+.schedule-modal-detail
+	i.fa.fa-close(ng-click='cancel()')
+	.modal-body
+		.group-image
+			img.img-responsive.image(src='{{item.User.avatars_path.avatar}}')
+		.group-name
+			span.text-left.title-main {{item.title}}
+			button.btn-follow Theo dõi
+			.group-icon
+				i.fa.fa-eye
+				span 111
+				i.fa.fa-heart-o
+				span 111
+		.content
+			table.table.table-bordered
+				tr
+					td
+						.title Ngày diễn
+					td
+						.title Khung giờ
+				tr
+					td
+						span.label-hour Hôm nay, 9 tháng 9,17
+					td
+						span.hour 23:30
+						button.pull-right.btn-follow.btn-get-noty Nhận thông báo
