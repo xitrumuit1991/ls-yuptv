@@ -97,6 +97,7 @@ ctrl = ($rootScope,
   $scope.changeCategorySelect = ()->
 
   $scope.changeDateSelect = ()->
+    $scope.monthSelected = ''
     getDataRoom($scope.dateSelected)
 
   $scope.changeMonthSelect = ()->
