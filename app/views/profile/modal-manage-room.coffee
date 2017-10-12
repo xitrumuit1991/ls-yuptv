@@ -4,8 +4,8 @@ ModalManageRoomController = ($scope,modalItem, $uibModalInstance, ApiService, $s
 
   $scope.scheduleDate =
     opened: false
-    start : null
-    end  : null
+    start : if modalItem and modalItem.id then modalItem.start else null
+    end  : if modalItem and modalItem.id then modalItem.end else null
 
   $scope.addOrEdit = ()->
     params =
@@ -14,7 +14,7 @@ ModalManageRoomController = ($scope,modalItem, $uibModalInstance, ApiService, $s
     if !$scope.item.id
       ApiService.addNewSchedule(params, (error, result)->
         return if error
-        return if result and result.error
+        return UtilityService.notifyError(result.message) if result and result.error
         UtilityService.notifySuccess('Thêm lịch diễn thành công')
         $scope.item.callback() if _.isFunction($scope.item.callback)
         $scope.cancel()
@@ -23,7 +23,7 @@ ModalManageRoomController = ($scope,modalItem, $uibModalInstance, ApiService, $s
     params.scheduleId = $scope.item.id
     ApiService.updateSchedule(params, (error, result)->
       return if error
-      return if result and result.error
+      return UtilityService.notifyError(result.message) if result and result.error
       UtilityService.notifySuccess('Cập nhật lịch diễn thành công')
       $scope.item.callback() if _.isFunction($scope.item.callback)
       $scope.cancel()

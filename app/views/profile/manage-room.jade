@@ -61,7 +61,7 @@
 							td(colspan='3') Chưa có lịch diễn nào
 						tr(ng-repeat='item in listScheduleOfRoom' ng-if='listScheduleOfRoom.length > 0')
 							td.no-border-right {{item.start | date : 'dd-MM-yyyy'}}
-							td.no-border-right.no-border-left {{item.start | date : 'HH:mm'}}
+							td.no-border-right.no-border-left {{item.start | date : 'h:mm'}}
 							td.no-border-left
 								.text-right
 									i.fa.fa-pencil(ng-click='openModalDetailAddEdit(item)')
