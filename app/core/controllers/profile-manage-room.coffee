@@ -52,7 +52,7 @@ ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
   $scope.deleteItemSchedule = (item)->
     return unless confirm('Bạn có chắc muốn xoá')
     console.log 'deleteItemSchedule', item
-    ApiService.deleteSchedule(item, (error,result)->
+    ApiService.deleteSchedule({scheduleId:item.id}, (error,result)->
       return if error
       return if result and result.error
       UtilityService.notifySuccess('Xoá thành công')
