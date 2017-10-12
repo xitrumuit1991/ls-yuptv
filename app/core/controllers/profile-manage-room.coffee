@@ -52,10 +52,20 @@ ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
   $scope.deleteItemSchedule = (item)->
     return unless confirm('Bạn có chắc muốn xoá')
     console.log 'deleteItemSchedule', item
+    ApiService.deleteSchedule(item, (error,result)->
+      return if error
+      return if result and result.error
+      UtilityService.notifySuccess('Xoá thành công')
+    )
 
 
   $scope.openModalDetailAddEdit = (item=null)->
     console.log 'openScheduleDetail', item
+    if item == null
+      item =
+        callback : getScheduleOfRoom
+    else
+      item.callback = getScheduleOfRoom
     $uibModal.open({
       templateUrl: '/templates/profile/modal-manage-room.html'
       backdrop: true
@@ -63,7 +73,6 @@ ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
       controller: 'ModalManageRoomController'
       resolve: {
         modalItem: item
-        callback : getScheduleOfRoom
       }
     })
 

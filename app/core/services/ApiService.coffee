@@ -177,6 +177,29 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
       data : params
     self.request options, done
 
+  self.addNewSchedule =(params, done)->
+    #start end
+    options =
+      url : GlobalConfig.API_URL + "room/schedule"
+      method : 'PUT'
+      data : params
+    self.request options, done
+
+  self.updateSchedule =(params, done)->
+    options =
+      url : GlobalConfig.API_URL + "room/schedule"
+      method : 'POST'
+      data : params
+    self.request options, done
+
+  self.deleteSchedule =(params, done)->
+    options =
+      url : GlobalConfig.API_URL + "room/schedule"
+      method : 'DELETE'
+      data : params
+    self.request options, done
+
+
 #  self.getListRoomInCategory = (params, done)->
 #    return done('Missing categoryId getListRoomInCategory api', null) unless params.categoryId
 #    options =

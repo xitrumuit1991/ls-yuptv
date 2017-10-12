@@ -2,8 +2,8 @@
 	.text-right
 		i.fa.fa-close(ng-click='cancel()')
 	.modal-body
-		h1.text-center(ng-if='!item') Tạo lịch diễn
-		h1.text-center(ng-if='item') Thay đổi lịch diễn
+		h1.text-center(ng-if='!item.id') Tạo lịch diễn
+		h1.text-center(ng-if='item.id') Thay đổi lịch diễn
 
 		.row
 			.col-md-3
