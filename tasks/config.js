@@ -33,7 +33,8 @@ var config = {
     'core/app.js',
     'core/app*.js',
     'core/**/*.js',
-    'pages/**/*.js'
+    'pages/**/*.js',
+    'views/**/*.js'
   ]
 };
 for (var key in local) {
