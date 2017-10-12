@@ -56,6 +56,7 @@ ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
       return if error
       return if result and result.error
       UtilityService.notifySuccess('Xoá thành công')
+      getScheduleOfRoom()
     )
 
 
