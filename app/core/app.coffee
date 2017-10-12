@@ -89,7 +89,8 @@ angular
   "ngProgress",
   "angular-loading-bar",
   'ngFileUpload',
-  '720kb.datepicker'
+  '720kb.datepicker',
+  'ui.bootstrap.datetimepicker'
 ])
 .constant "AppName", "YUP"
 .constant "GlobalConfig", config

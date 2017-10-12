@@ -13,7 +13,7 @@ route.$inject = ['$stateProvider', 'GlobalConfig']
 ctrl = ($rootScope,
   $scope, $timeout, $location,
   $window, $state, $stateParams, ApiService, $http,
-  GlobalConfig, $interval, UtilityService, $modal) ->
+  GlobalConfig, $interval, UtilityService, $uibmodal) ->
   d =  new Date()
   dd = new Date()
   dd.setDate(d.getDate()+1)
@@ -144,7 +144,7 @@ ctrl = ($rootScope,
       $scope.listUserFollowing[i].active = false if i != index
       $scope.listUserFollowing[index].active = true if i == index
       i++
-    $modal.open({
+    $uibmodal.open({
       templateUrl: '/templates/schedule/schedule-modal-detail.html'
       backdrop: true
       windowClass: 'modal'
@@ -158,7 +158,7 @@ ctrl = ($rootScope,
 
   $scope.openScheduleDetail = (item)->
     console.log 'openScheduleDetail', item
-    $modal.open({
+    $uibmodal.open({
       templateUrl: '/templates/schedule/schedule-modal-detail.html'
       backdrop: true
       windowClass: 'modal'
@@ -185,7 +185,7 @@ ctrl = ($rootScope,
 ctrl.$inject = [
   '$rootScope', '$scope', '$timeout', '$location',
   '$window', '$state', '$stateParams', 'ApiService', '$http',
-  'GlobalConfig', '$interval' , 'UtilityService', '$modal'
+  'GlobalConfig', '$interval' , 'UtilityService', '$uibmodal'
 ]
 angular
 .module("app")

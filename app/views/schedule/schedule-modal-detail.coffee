@@ -1,4 +1,4 @@
-ScheduleModalDetailController = ($scope,modalItem, $modalInstance, ApiService, $state, Facebook,UtilityService,cfpLoadingBar) ->
+ScheduleModalDetailController = ($scope,modalItem, $uibModalInstance, ApiService, $state, Facebook,UtilityService,cfpLoadingBar) ->
   console.log 'modalItem',modalItem
 
   $scope.list = []
@@ -23,11 +23,11 @@ ScheduleModalDetailController = ($scope,modalItem, $modalInstance, ApiService, $
 
   $scope.cancel = ()->
     console.log 'cancel'
-    $modalInstance.dismiss 'cancel'
+    $uibModalInstance.dismiss 'cancel'
     return
   return
 
-ScheduleModalDetailController.$inject = ['$scope', 'modalItem', '$modalInstance', 'ApiService', '$state', 'Facebook',
+ScheduleModalDetailController.$inject = ['$scope', 'modalItem', '$uibModalInstance', 'ApiService', '$state', 'Facebook',
   'UtilityService', 'cfpLoadingBar'
 ]
 

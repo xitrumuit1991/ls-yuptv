@@ -16,7 +16,7 @@ ctrl = ($rootScope,
   $window, $state, $stateParams,  ApiService, $http,
   GlobalConfig, $interval, UtilityService, Upload) ->
   $scope.birthDate =
-    dt : if $rootScope.user then $rootScope.user.birthday else (new Date())
+    dt : if $rootScope.user then new Date($rootScope.user.birthday) else (new Date())
     opened :  false
     min : new Date()
 

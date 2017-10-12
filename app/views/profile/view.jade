@@ -139,8 +139,25 @@
 								.col-md-4.col-md-offset-2
 									span.title Ngày sinh
 								.col-md-5
-									input.form-control(type="text"
-									datepicker-popup="yyyy-MM-dd"
+									//datetimepicker(
+									//ng-model="birthDate.dt"
+									//date-format="dd-MMM-yyyy"
+									//date-options="dateOptions"
+									//hour-step="hourStep"
+									//minute-step="minuteStep"
+									//show-meridian="showMeridian"
+									//readonly-date="false"
+									//disabled-date="false"
+									//hidden-time="false"
+									//hidden-date="false"
+									//show-spinners="true"
+									//readonly-time="false"
+									//show-button-bar="false"
+									//)
+
+									input.form-control(
+									type="text"
+									uib-datepicker-popup="yyyy-MM-dd"
 									ng-model="birthDate.dt"
 									is-open="birthDate.opened"
 									min="birthDate.min"
@@ -151,7 +168,6 @@
 									button.pull-right.btn.btn-primary( ng-click="openDate()"
 									style='position: absolute; right: 15px; top: 0;')
 										i.fa.fa-calendar
-									//input.form-control(type='text' value='{{user.birthday | date: "dd/MM/yyyy" }}' readonly='readonly')
 							.row
 								.col-md-4.col-md-offset-2
 									span.title Giới tính

@@ -1,4 +1,4 @@
-ctrlHandleLogin = ($scope, $modalInstance, ApiService, $state, Facebook,UtilityService,cfpLoadingBar) ->
+ctrlHandleLogin = ($scope, $uibModalInstance, ApiService, $state, Facebook,UtilityService,cfpLoadingBar) ->
   $scope.login =
     phone : ''
     password : ''
@@ -6,7 +6,7 @@ ctrlHandleLogin = ($scope, $modalInstance, ApiService, $state, Facebook,UtilityS
     error:''
 
   $scope.goRegister = ()->
-    $modalInstance.dismiss 'cancel'
+    $uibModalInstance.dismiss 'cancel'
     $state.go 'base.register'
 
   $scope.submitLogin = ()->
@@ -31,7 +31,7 @@ ctrlHandleLogin = ($scope, $modalInstance, ApiService, $state, Facebook,UtilityS
       $scope.login.error = ''
       UtilityService.setUserLogged(result)
       $state.go 'base', {}, {reload: true}
-      $modalInstance.dismiss 'cancel'
+      $uibModalInstance.dismiss 'cancel'
       return
     )
     return
@@ -56,7 +56,7 @@ ctrlHandleLogin = ($scope, $modalInstance, ApiService, $state, Facebook,UtilityS
         $scope.login.error = ''
         UtilityService.setUserLogged(result)
         $state.go 'base', {}, {reload: true}
-        $modalInstance.dismiss 'cancel'
+        $uibModalInstance.dismiss 'cancel'
         return
       )
     cfpLoadingBar.start();
@@ -64,10 +64,10 @@ ctrlHandleLogin = ($scope, $modalInstance, ApiService, $state, Facebook,UtilityS
 
   $scope.cancel = ()->
     console.log 'cancel'
-    $modalInstance.dismiss 'cancel'
+    $uibModalInstance.dismiss 'cancel'
     return
   return
-ctrlHandleLogin.$inject = ['$scope', '$modalInstance', 'ApiService', '$state', 'Facebook',
+ctrlHandleLogin.$inject = ['$scope', '$uibModalInstance', 'ApiService', '$state', 'Facebook',
   'UtilityService', 'cfpLoadingBar'
 ]
 

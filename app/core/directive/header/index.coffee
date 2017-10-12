@@ -1,4 +1,4 @@
-_directive = ($rootScope, $timeout, ApiService, $modal, $state,GlobalConfig) ->
+_directive = ($rootScope, $timeout, ApiService, $uibModal, $state,GlobalConfig) ->
   link = ($scope, $element, $attrs) ->
     $scope.menu = []
     $scope.classMenuMain = 'col-md-6'
@@ -41,7 +41,7 @@ _directive = ($rootScope, $timeout, ApiService, $modal, $state,GlobalConfig) ->
       $state.go 'base',{}, {reload:true}
 
     $scope.openLogin=()->
-      $modal.open({
+      $uibModal.open({
         templateUrl: '/templates/directive/header/login.html'
         backdrop: true
         windowClass: 'modal'
@@ -55,7 +55,7 @@ _directive = ($rootScope, $timeout, ApiService, $modal, $state,GlobalConfig) ->
     templateUrl : '/templates/directive/header/view.html'
   return directive
 
-_directive.$inject = ['$rootScope', '$timeout','ApiService' , '$modal', '$state',
+_directive.$inject = ['$rootScope', '$timeout','ApiService' , '$uibModal', '$state',
   'GlobalConfig'
 ]
 angular
