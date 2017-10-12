@@ -1,0 +1,59 @@
+.wrapper
+	.row.profile-manage-room
+		.col-md-12.header
+			h1 Quản lý phòng diễn
+			p Thay đổi ảnh đại diện phòng, cài đặt lịch diễn
+		.col-md-12
+			hr
+		.col-md-12.body
+			.row
+				.col-md-5
+					//.group-image(ng-if='user && user.Room && user.Room.banners && user.Room.banners.banner')
+					.group-image
+						img(src='{{ (user.Room.banners.banner) || "http://via.placeholder.com/350x200" }}')
+						button.btn-change-room-banner Thay đổi
+					.group-info
+						.left Ảnh phòng diễn
+						.right Size chuẩn: 350x200 px
+				.col-md-7
+					h3 {{user.Room.title}}
+					.group-icon
+						i.fa.fa-eye
+						span {{user.Room.views}}
+						i.fa.fa-heart-o
+						span {{user.Room.hearts}}
+					p {{user.Room.description}}
+					.group-category
+						span Chọn thể loại
+						select.form-control()
+							option Tất cả
+		.col-md-12
+			hr
+		.col-md-12
+			.row
+				.col-md-8.col-md-offset-2
+					.left
+						span Lịch diễn
+						button
+							i.fa.fa-plus
+					.right
+						span Hiển thị
+						select.form-control()
+							option Tháng
+						select.form-control()
+							option Năm
+				.col-md-8.col-md-offset-2
+					table.table-bordered.table
+						tr
+							td Ngày diễn
+							td Giờ diễn
+							td Thay đổi
+						tr
+							td 10-10-2017
+							td 10:30
+							td
+								.text-right
+									button
+										i.fa.fa-pencil
+									button
+										i.fa.fa-remove

@@ -8,22 +8,21 @@ appRun = (
   GlobalConfig, UtilityService)->
   console.info 'GlobalConfig=',GlobalConfig
   $rootScope.isHome = true
-
+  $rootScope.user = null
   if window.localStorage.user and window.localStorage.token
+    try
+      $rootScope.user = JSON.parse(window.localStorage.user)
+    catch e
     console.info 'app run validate user token'
-    ApiService.getProfile({}, (error, result)->
+    ApiService.getProfile {}, (error, result)->
       return UtilityService.removeUserLogged() if error
-      if result and result.error
-        return UtilityService.removeUserLogged()
+      return UtilityService.removeUserLogged() if result and result.error
       if result
         try
           $rootScope.user = JSON.parse(window.localStorage.user)
           console.info '$rootScope.user =',$rootScope.user
         catch e
           $rootScope.user = null
-    )
-  else
-    $rootScope.user = null
 
   $rootScope.$state = $state
   $rootScope.$stateParams = $stateParams
