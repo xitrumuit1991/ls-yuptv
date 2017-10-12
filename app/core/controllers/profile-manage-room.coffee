@@ -10,7 +10,7 @@ route.$inject = ['$stateProvider', 'GlobalConfig']
 
 ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
   $window, $state, $stateParams,  ApiService, $http,
-  GlobalConfig, $interval, $uibModal)->
+  GlobalConfig, $interval, $uibModal, Upload)->
   $scope.scheduleDate =
     dt : null
     opened : false
@@ -123,7 +123,7 @@ ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
   return
 ctrl.$inject = [ '$rootScope', 'UtilityService', '$scope', '$timeout', '$location',
   '$window', '$state', '$stateParams',  'ApiService', '$http',
-  'GlobalConfig', '$interval' , '$uibModal'
+  'GlobalConfig', '$interval' , '$uibModal' ,'Upload'
 ]
 angular
 .module("app")
