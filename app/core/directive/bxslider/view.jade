@@ -1,7 +1,8 @@
 ul(class="bxslider" )
-	li(ng-repeat='item in items')
-		.image-idol(ng-click='onItemClick(item, $index)'
-		ng-class='{"selected":item.active == true}')
+	li(ng-repeat='item in items' ng-click='clickItem(item, $index)' )
+		.image-idol(
+		ng-class='{"selected":item.active == true}'
+		)
 			img.img-responsive.image-idol(src='{{item.User.avatars_path.avatar}}')
 			button
 				i.fa.fa-angle-right

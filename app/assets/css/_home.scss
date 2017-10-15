@@ -1,5 +1,6 @@
 .home-slider{
   position: relative;
+  overflow: hidden;
   .ui-carousel{
     overflow: hidden;
   }
@@ -62,11 +63,12 @@
     position: absolute;
     display: block;
     width: 100%;
-    bottom: 0%;
+    bottom: 30px;
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
-    padding: 10px;
-    font-size: 16px;
+    padding: 10px 0;
+    font-size: 20px;
+    line-height: 30px;
     .ios{
       border-right: 2px solid #bbb;
     }

@@ -1,5 +1,11 @@
 _directive = ($timeout, ApiService) ->
   link = ($scope, elm, $attrs) ->
+
+    $scope.clickItem = (item, $index)->
+      $timeout(()->
+        $scope.onItemClick(item, $index)
+      ,1)
+
     $scope.$watch('items',()->
       $timeout(()->
         $(elm).find('.bxslider').bxSlider({
@@ -11,9 +17,12 @@ _directive = ($timeout, ApiService) ->
           slideWidth: 131
           minSlides: 1
           maxSlides: 7
-          moveSlides: 3
+          moveSlides: 7
           slideMargin: 10
           pager: true
+
+          infiniteLoop:false
+          hideControlOnEnd:true
         })
         return
       )
@@ -36,7 +45,6 @@ _directive = ($timeout, ApiService) ->
 #        return
 #      ,1000)
 #      return
-
     return
 
   directive =
