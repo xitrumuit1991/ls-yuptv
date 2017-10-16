@@ -33,28 +33,45 @@
       float: left;
       .onair-image{
         width: 100%;
+        height: 450px;
       }
-      .bottom{
-        position: absolute;
-        bottom: 10px;
-        left: 25px;
-        color: #fff;
-        .name{
-          font-size: 22px;
-          font-weight: bold;
-          letter-spacing: 2px;
-          line-height: 50px;
-        }
-        .group-icon{
-          font-size: 16px;
-          font-weight: bold;
-          color: #ffffff;
-          letter-spacing: 2px;
-          .fa{
-            margin: 0px 5px;
+      .content-left{
+        position: relative;
+        .bottom{
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          display: block;
+          padding: 0;
+          color: #fff;
+          padding-bottom: 10px;
+          background: black;
+
+          background: -webkit-linear-gradient(left, black, rgba(0, 0, 0, 0.3));
+          background: -o-linear-gradient(right, black, rgba(0, 0, 0, 0.3));
+          background: -moz-linear-gradient(right, black, rgba(0, 0, 0, 0.3));
+          background: linear-gradient(to right, black, rgba(0, 0, 0, 0.3));
+          .name{
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            line-height: 50px;
+            margin-left: 20px;
+          }
+          .group-icon{
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+            letter-spacing: 2px;
+            margin-left: 20px;
+            .fa{
+              margin: 0px 5px;
+            }
           }
         }
       }
+
     }
     .right{
       width: 54%;
@@ -67,7 +84,10 @@
       .onair-child{
         position: relative;
         padding: 0;
-        img{width: 100%}
+        img{
+          width: 100%;
+          height: 150px;
+        }
         .bottom{
           display: block;
           width: 100%;
