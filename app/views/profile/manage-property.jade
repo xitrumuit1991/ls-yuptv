@@ -1,0 +1,107 @@
+.row.profile-manage-property
+	.col-md-3
+		ul.list-nav-manage-property
+			li
+				a(href='' ng-click='changeTab("history-charged")' ng-class='{"active" : activeView == "history-charged" }' )
+					| Lịch sử chi tiêu
+			li
+				a(href='' ng-click='changeTab("gift-received")' ng-class='{"active" : activeView == "gift-received" }' )
+					| Quà tặng được nhận
+	.col-md-9
+		.row.wrapper(ng-if='activeView == "history-charged" ')
+			.col-md-12.header
+				h1 Lịch sử chi tiêu
+			.col-md-12
+				.row.group-chi-tieu
+					.col-md-4.text-center
+						h4 Tổng tài sản
+						span 1500
+							sup Ucoin
+					.col-md-4.text-center
+						h4 Đã chi
+						span -1500
+							sup Ucoin
+					.col-md-4.text-center
+						h4 Quà được nhận
+						span +1500
+							sup Ucoin
+			.col-md-12.filter-list
+				span Hiển thị
+				select.form-control()
+					option Tháng 9
+				select.form-control()
+					option 2017
+			.col-md-12
+				table.table.table-striped
+					thead
+						tr
+							th Lịch sử giao dịch
+							th Loại giao dịch
+							th Giá đơn vị (Ucoin)
+							th Số lượng
+							th Tổng Ucoin
+					tbody
+						tr
+							td Lịch sử giao dịch
+							td Loại giao dịch
+							td Giá đơn vị (Ucoin)
+							td Số lượng
+							td Tổng Ucoin
+						tr
+							td Lịch sử giao dịch
+							td Loại giao dịch
+							td Giá đơn vị (Ucoin)
+							td Số lượng
+							td Tổng Ucoin
+
+
+
+
+
+		.row.wrapper(ng-if='activeView == "gift-received" ')
+			.col-md-12.header
+				h1 Quà tặng được nhận
+			.col-md-12
+				.row.group-chi-tieu
+					.col-md-4.text-center
+						h4 Tổng tài sản
+						span 1500
+							sup Ucoin
+					.col-md-4.text-center
+						h4 Đã chi
+						span -1500
+							sup Ucoin
+					.col-md-4.text-center
+						h4 Quà được nhận
+						span +1500
+							sup Ucoin
+			.col-md-12.filter-list
+				span Hiển thị
+				select.form-control()
+					option Tháng 9
+				select.form-control()
+					option 2017
+			.col-md-12
+				table.table.table-striped
+					thead
+						tr
+							th Lịch sử giao dịch
+							th Loại giao dịch
+							th Giá đơn vị (Ucoin)
+							th Số lượng
+							th Tổng Ucoin
+					tbody
+						tr
+							td Lịch sử giao dịch
+							td Loại giao dịch
+							td Giá đơn vị (Ucoin)
+							td Số lượng
+							td Tổng Ucoin
+						tr
+							td Lịch sử giao dịch
+							td Loại giao dịch
+							td Giá đơn vị (Ucoin)
+							td Số lượng
+							td Tổng Ucoin
+
+

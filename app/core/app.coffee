@@ -37,7 +37,7 @@ config.menuMainProfile = [
   },
   {
     title : 'Quản lý tài sản ',
-    href : 'base.profile.manage-asset',
+    href : 'base.profile.manage-property',
     itemClass : 'col-md-2'
   },
   {
