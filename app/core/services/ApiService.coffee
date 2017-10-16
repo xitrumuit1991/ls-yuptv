@@ -199,6 +199,22 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
       data : params
     self.request options, done
 
+  self.getHistorySendGift =(params, done)->
+    params.type = 'send' if params and _.isObject(params)
+    options =
+      url : GlobalConfig.API_URL + "gift/history"
+      method : 'POST'
+      data : params
+    self.request options, done
+
+  self.getHistoryReceiveGift =(params, done)->
+    params.type = 'receive' if params and _.isObject(params)
+    options =
+      url : GlobalConfig.API_URL + "gift/history"
+      method : 'POST'
+      data : params
+    self.request options, done
+
 
 #  self.getListRoomInCategory = (params, done)->
 #    return done('Missing categoryId getListRoomInCategory api', null) unless params.categoryId
