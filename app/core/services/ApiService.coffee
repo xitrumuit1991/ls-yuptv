@@ -214,6 +214,13 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
       method : 'POST'
       data : params
     self.request options, done
+  self.getListPackage =(params, done)->
+    options =
+      url : GlobalConfig.API_URL + "package/list"
+      method : 'GET'
+      data : params
+    self.request options, done
+
 
 
 #  self.getListRoomInCategory = (params, done)->

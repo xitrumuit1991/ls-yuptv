@@ -1,0 +1,16 @@
+.wrapper
+	.row.profile-charge-ucoin
+		.col-md-12.header
+			h1 Nạp Ucoin
+		.col-md-12.body.step-1
+			.step
+				span.title 1
+				span Chọn gói Ucoin
+			.list
+				ul.list-package.list-inline
+					li.list-inline-item(ng-repeat='item in listPackage'
+					ng-click='selectedPackage(item, $index)'
+					ng-class='{"selected" : packageSelected.id == item.id }')
+						span {{item.name}}
+						i.fa.fa-check(ng-if='packageSelected.id == item.id')
+

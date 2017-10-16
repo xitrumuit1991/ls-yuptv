@@ -1,0 +1,53 @@
+.profile-charge-ucoin{
+  .step{
+    .title{
+      border: 1px solid #6f6f6f;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      background: #e4e4e4;
+      display: inline-block;
+      font-size: 12px;
+      text-align: center;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+  }
+  .list{
+    ul.list-package{
+      list-style: none;
+      text-align: center;
+      margin: 0 auto;
+      li{
+        position: relative;
+        width: 20%;
+        border: 1px solid #cccccc;
+        background: #fff;
+        color: #000000;
+        border-radius: 10px;
+        text-align: center;
+        margin: 10px 2.5%;
+        cursor: pointer;
+        padding: 15px 0;
+        &.selected{
+          background: #3170bf;
+          span{
+            color: #fff;
+          }
+          i.fa{
+            position: absolute;
+            top:0;
+            right: 0;
+            background: #fff;
+            color: #3170bf;
+            line-height: 20px;
+            width: 20px;
+            height: 20px;
+            font-size: 10px;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+  }
+}
