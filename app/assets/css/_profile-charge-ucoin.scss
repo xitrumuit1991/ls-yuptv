@@ -16,7 +16,7 @@
   .list{
     ul.list-package{
       list-style: none;
-      text-align: center;
+      //text-align: center;
       margin: 0 auto;
       li{
         position: relative;
@@ -30,20 +30,22 @@
         cursor: pointer;
         padding: 15px 0;
         &.selected{
-          background: #3170bf;
+          background: #2bcdfc;
+          border: 1px solid #2bcdfc;
+          color: #fff;
           span{
             color: #fff;
           }
           i.fa{
             position: absolute;
-            top:0;
-            right: 0;
+            top: 2px;
+            right: 2px;
             background: #fff;
-            color: #3170bf;
+            color: #2bcdfc;
             line-height: 20px;
             width: 20px;
             height: 20px;
-            font-size: 10px;
+            font-size: 13px;
             border-radius: 50%;
           }
         }

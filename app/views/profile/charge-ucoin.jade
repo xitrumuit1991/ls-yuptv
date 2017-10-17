@@ -9,8 +9,11 @@
 			.list
 				ul.list-package.list-inline
 					li.list-inline-item(ng-repeat='item in listPackage'
+					ng-if=' item.status == true && item.code.indexOf("vn.yup.coin") == -1  '
 					ng-click='selectedPackage(item, $index)'
 					ng-class='{"selected" : packageSelected.id == item.id }')
 						span {{item.name}}
+						p {{item.coin}} Ucoin
+						p Code: {{item.code}}
 						i.fa.fa-check(ng-if='packageSelected.id == item.id')
 
