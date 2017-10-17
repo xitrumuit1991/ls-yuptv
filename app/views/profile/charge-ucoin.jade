@@ -1,5 +1,5 @@
 .wrapper
-	.row.profile-charge-ucoin
+	.row.profile-charge-ucoin(ng-if='stepView == "step1"')
 		.col-md-12.header
 			h1 Nạp Ucoin
 		.col-md-12.body.step-1
@@ -13,7 +13,77 @@
 					ng-click='selectedPackage(item, $index)'
 					ng-class='{"selected" : packageSelected.id == item.id }')
 						span {{item.name}}
-						p {{item.coin}} Ucoin
-						p Code: {{item.code}}
+						br
+						span {{item.coin}} Ucoin
+						//p Code: {{item.code}}
 						i.fa.fa-check(ng-if='packageSelected.id == item.id')
+		.col-md-12
+			hr
+		.col-md-12
+			.row
+				.col-md-6
+					input(type='checkbox' ng-model='checkPolicy.value' name='policy' )
+					| &nbsp; Tôi đã đọc và đồng ý với các chính sách
+				.col-md-6.text-right
+					button.btn.btn-primary(ng-disabled=" checkPolicy.value==false || !packageSelected.id "
+					ng-click='goStep2()') NẠP UCOIN
+
+
+	.row.profile-charge-ucoin(ng-if='stepView == "step2" ')
+		.col-md-12.header
+			h1 Nạp Ucoin
+		.col-md-12.body.step-1
+			.step
+				span.title 2
+				span Chọn phương thức thanh toán
+			.list
+				ul.list-package.list-inline
+					li.list-inline-item( ng-click='selectChargeMethod ="sms"'
+					ng-class='{"selected": selectChargeMethod == "sms" }')
+						span Qua SMS
+						i.fa.fa-check(ng-if='selectChargeMethod == "sms"')
+					li.list-inline-item( ng-click='selectChargeMethod ="card"'
+					ng-class='{"selected": selectChargeMethod == "card" }' )
+						span Thẻ cào điện thoại
+						i.fa.fa-check(ng-if='selectChargeMethod == "card"')
+					li.list-inline-item( ng-click='selectChargeMethod ="internetbanking"'
+					ng-class='{"selected": selectChargeMethod == "internetbanking" }' )
+						span Thẻ nội địa và thẻ quốc tế (Visa, Master card)
+						i.fa.fa-check(ng-if='selectChargeMethod == "internetbanking"')
+
+		.col-md-12(ng-if='selectChargeMethod == "sms" && packageSelected.id ')
+			hr
+			p.text-center Vui lòng soạn tin nhắn với cú pháp
+			.text-center
+				b MV LIVESTART NAP200
+			p.text-center gửi
+			p.text-center
+				b 9029
+		.col-md-12(ng-if='selectChargeMethod == "card" && packageSelected.id ')
+			hr
+			p.text-left Chọn nhà cung cấp
+			ul.list-telco-card
+				li viettel
+				li mbf
+				li zing
+			.row
+				.col-md-2 Nhập mã thẻ cào
+				.col-md-4
+					input.form-control()
+			.row
+				.col-md-2 Nhập số seri
+				.col-md-4
+					input.form-control()
+			hr
+			.row
+				.col-md-6.text-right
+					button.btn.btn-primary() NẠP UCOIN
+
+		.col-md-12(ng-if='selectChargeMethod == "internetbanking" && packageSelected.id ')
+			hr
+			p.text-left Chọn loại thẻ
+			ul.list-telco-card
+				li Thẻ ngân hàng nội địa
+				li Thẻ quốc tế (Visa, Master card)
+
 

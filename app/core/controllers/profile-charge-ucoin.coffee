@@ -14,8 +14,21 @@ ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
   GlobalConfig, $interval, $uibModal, Upload)->
   $scope.listPackage = []
   $scope.packageSelected = null
+  $scope.checkPolicy =
+    value : false
+
+  $scope.stepView = 'step1'
+  $scope.selectChargeMethod = ''
+
   $scope.selectedPackage = (item, $index)->
     $scope.packageSelected = item
+
+  $scope.goStep2 = ()->
+    console.log 'checkPolicy',$scope.checkPolicy.value
+    console.log '$scope.packageSelected',$scope.packageSelected
+    return if $scope.checkPolicy.value == false
+    return unless $scope.packageSelected.id
+    $scope.stepView = 'step2'
 
 
   $scope.getListPackage = ()->

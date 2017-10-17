@@ -1,11 +1,12 @@
 .profile-charge-ucoin{
   .step{
+    margin: 20px 0;
     .title{
       border: 1px solid #6f6f6f;
       width: 20px;
       height: 20px;
       line-height: 20px;
-      background: #e4e4e4;
+      background: #fff;
       display: inline-block;
       font-size: 12px;
       text-align: center;
@@ -28,12 +29,12 @@
         text-align: center;
         margin: 10px 2.5%;
         cursor: pointer;
-        padding: 15px 0;
+        padding: 10px 0;
         &.selected{
           background: #2bcdfc;
           border: 1px solid #2bcdfc;
           color: #fff;
-          span{
+          span, p{
             color: #fff;
           }
           i.fa{
