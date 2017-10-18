@@ -1,19 +1,24 @@
+@import "animation";
+@import "common";
 @import "nav_top_register_login";
 @import "footer";
 @import "home";
 @import "home_on_air_channel";
-@import "bxh_channel";
+@import "home_bxh_channel";
+@import "register";
+@import "login";
+@import "bang_xep_hang";
+@import "policy";
+@import "profile";
+@import "profile_manage_room";
+@import "schedule";
+@import "profile-manage-property";
+@import "profile-charge-ucoin";
 body{
   background: #fafafa;
+  font-family: 'Montserrat', sans-serif;
 }
 
-.wrapper{
-  background: #fff;
-  margin: 50px auto;
-  border: 1px solid #e0e0e0;
-  border-radius: 10px;
-  padding: 40px;
-}
 
 .about_us{
   h5{
@@ -25,4 +30,11 @@ body{
     line-height: 16px;
     padding: 20px;
   }
+}
+
+.black{
+  color: #000;
+}
+.bold{
+  font-weight: bold;
 }

@@ -1,0 +1,41 @@
+.schedule-modal-detail
+	.text-right
+		i.fa.fa-close(ng-click='cancel()')
+	.modal-body
+		h1.text-center(ng-if='!item.id') Tạo lịch diễn
+		h1.text-center(ng-if='item.id') Thay đổi lịch diễn
+
+		.row
+			.col-md-3
+				|Bắt đầu
+			.col-md-9
+				datetimepicker(
+				ng-model="scheduleDate.start"
+				date-format="dd-MM-yyyy"
+				date-options="dateOptions"
+				show-spinners="true"
+				)
+			.col-md-3
+				| Kết thúc
+			.col-md-9
+				datetimepicker(
+				ng-model="scheduleDate.end"
+				date-format="dd-MM-yyyy"
+				date-options="dateOptions"
+				show-spinners="true"
+				)
+			.col-md-10
+				button.pull-right.btn.btn-primary(ng-click='addOrEdit()') Cập nhật
+
+				//input.form-control(
+				//type="text"
+				//datetime-picker="MM/dd/yyyy HH:mm"
+				//enableDate = 'true'
+				//enableTime = 'true'
+				//ng-model="scheduleDate.dt"
+				//is-open="scheduleDate.opened"
+				//)
+				//button.pull-right.btn.btn-primary( ng-click="openDatePopup()"
+				//style='position: absolute; right: 15px; top: 0;')
+				//	i.fa.fa-calendar
+

@@ -8,6 +8,7 @@
   <meta name="keywords" content="Giải trí, ca hát, nhảy múa, giao lưu, ngôi sao, idol, hot girl, trò chuyện, Hallostar, trực tuyến, live chat, Hari Won" />
   <!--<meta name="google-site-verification" content="h-QYYs7x_vyp8Xrad1n7dVr-ogKxkFds4jHU7q7m8KQ" />-->
   <meta name="google-site-verification" content="RV80MBb3SMqko-cCcIiDv0elsJY_grpssJ2ofbPEmTg" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=vietnamese" rel="stylesheet" />
   <!-- Facebook -->
   <meta property="og:url"   content="" />
   <meta property="og:title" content="" />
@@ -28,22 +29,29 @@
     // Captcha google
     var widgetCard;
     var widgetMegabank;
+    var widgetRedeemCode;
     var onloadCallback = function()
     {
       console.log('load gg captcha ok, render captcha');
       console.log('grecaptcha=', grecaptcha);
       if ( window.location.pathname.indexOf('paymentforapp') != -1)
       {
+        var siteKey = '6Lc0MDAUAAAAAE9gOerDRuT3fAAxIpYf0lZWamqr';
         widgetCard = grecaptcha.render('captcha-card', {
           // 'sitekey' : '6LelixsTAAAAADje4PzZb0XKqu2TyVrm4v4Xb-bd', // dev
-          'sitekey' : '6Lc0MDAUAAAAAE9gOerDRuT3fAAxIpYf0lZWamqr', // http://dev.livestar.vn:8000/paymentforapp
+          'sitekey' : siteKey,
           // 'sitekey' : '6LeKSgwUAAAAAHNo6Dtv-a4-uy43L42eMldSFdAq', // livestar-local.vn
           'theme' : 'light'
         });
         widgetMegabank = grecaptcha.render('captcha-payment', {
           // 'sitekey' : '6LelixsTAAAAADje4PzZb0XKqu2TyVrm4v4Xb-bd', // dev
-          'sitekey' : '6Lc0MDAUAAAAAE9gOerDRuT3fAAxIpYf0lZWamqr', // http://dev.livestar.vn:8000/paymentforapp
+          'sitekey' : siteKey,
           // 'sitekey' : '6LeKSgwUAAAAAHNo6Dtv-a4-uy43L42eMldSFdAq', // livestar-local.vn
+          'theme' : 'light'
+        });
+
+        widgetRedeemCode = grecaptcha.render('captcha-redeem-code', {
+          'sitekey' : siteKey,
           'theme' : 'light'
         });
       }

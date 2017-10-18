@@ -1,56 +1,181 @@
-.nav_top_register_login{
-  .image-logo-home{
+.nav_top_register_login {
+  .image-logo-home {
     cursor: pointer;
   }
-  padding: 3px 0 7px 0 ;
+  padding: 3px 0 7px 0;
   background: #ffffff;
   line-height: 40px;
-  a{
+  a {
     color: #000;
   }
-  .list-link{
+  .list-link {
     margin: 0 30px;
-    li{
+    li {
       display: inline-block;
       text-align: right;
-      padding-left: 20px ;
+      padding-left: 20px;
       line-height: 20px;
-      &:first-child{
+      &:first-child {
         border-right: 1px solid #ccc;
         padding-right: 20px;
+      }
+      a {
+        text-decoration: none;
+        color: #505050;
+        &:hover {
+          color: #000;
+        }
+      }
+    }
+  }
+  .div-profile-logged
+  {
+    position: relative;
+    .list-link-logged
+    {
+      margin: 0px;
+      li {
+        display: inline-block;
+        text-align: right;
+        padding-left: 20px;
+        line-height: 20px;
+        font-size: 20px;
+        a {
+          text-decoration: none;
+          color: #505050;
+          &:hover {
+            color: #000;
+          }
+        }
+      }
+    }
+    .group-avatar-logged {
+      cursor: pointer;
+      .avatar {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        margin-right: 5px;
+      }
+      .name {
+        margin-right: 2px;
+      }
+    }
+    .profile-menu-dropdown {
+      position: absolute;
+      top: 95%;
+      width: 60%;
+      right: 0;
+      background: #fafafa;
+      z-index: 9999;
+      border-radius: 10px;
+      color: #000;
+      box-shadow: 0px 0px 5px #b7b7b7;
+      padding: 0 0 10px 0;
+      ul{
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        li{
+          list-style: none;
+          cursor: pointer;
+          padding: 2px 0px 2px 40px;
+          a{
+            cursor: pointer;
+            text-decoration: none;
+            text-transform: uppercase;
+            display: block;
+          }
+          &:hover{
+            background: #dcdcdc;
+            color: #8700ef;
+          }
+          &.level-coin{
+            background: #e4e4e4;
+            border-radius: 10px 10px 0 0;
+            .name{
+              font-weight: bold;
+              color: #000;
+              line-height: 20px;
+              margin: 5px 0 0 0;
+              font-size: 18px;
+            }
+            .group-lvl-coin{
+              line-height: 30px;
+              span{
+                border-radius:10px ;
+                display: inline-block;
+                margin: 0px;
+                color: #fff;
+                padding: 2px 15px;
+                line-height: 20px;
+                margin-bottom: 5px;
+                font-size: 10px;
+                &.lvl{
+                  background: #434343;
+                  margin-right: 5px;
+                }
+                &.coin{
+                  background: #ff2c1a;
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
 }
 
-.menu_main{
+.menu_main {
   vertical-align: middle;
   padding: 0;
   line-height: 50px;
   background: #280c45;
   height: 60px;
-  .menu_main_list{
-    line-height: 25px;
+  .menu_main_list {
+    //line-height: 25px;
+    //color: #fff;
+    //margin-top: 15px;
+    line-height: 60px;
     color: #fff;
-    margin-top: 15px;
-    .menu_main_list_item{
+    margin-top: 0;
+
+    .menu_main_list_item {
       border-right: 1px solid #ccc;
       text-align: center;
       font-size: 16px;
-      a{color: #cbcbcb;}
-      &:hover{
-        a{color: #fff ;text-decoration: none;}
-        i{
-          color :#ca0e54;
+      &.active{
+        background: #eb266b;
+        color: #fff;
+        a{
+          color: #fff;
         }
       }
-      &.lasted{
+      a {
+        color: #cbcbcb;
+        text-decoration: none;
+        &.active{
+          //color: #fff;
+          color: #cbcbcb;
+        }
+      }
+      &:hover {
+        a {
+          color: #fff;
+          text-decoration: none;
+        }
+        i {
+          color: #fff;
+        }
+      }
+      &.lasted {
         border-right: 1px solid transparent;
       }
     }
   }
-  .search-form-top{
-    .input-group{
+  .search-form-top {
+    .input-group {
       width: 350px;
       line-height: 35px;
       margin-top: 12.5px;

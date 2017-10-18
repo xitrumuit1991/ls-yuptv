@@ -16,6 +16,11 @@ ctrl = ($rootScope,
   $window, $state, $stateParams,  ApiService, $http,
   GlobalConfig, $interval) ->
   console.log 'home coffee '
+  $scope.groupIdol = []
+  ApiService.getHomeContent({},(error, result)->
+    return if error
+    $scope.groupIdol = result
+  )
 
 ctrl.$inject = [
   '$rootScope', '$scope', '$timeout', '$location',

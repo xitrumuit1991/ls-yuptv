@@ -1,0 +1,57 @@
+.row.wrapper(ng-if='activeView == "history-charged" ')
+	.col-md-12.header
+		h1 Lịch sử chi tiêu
+	.col-md-12
+		.row.group-chi-tieu
+			.col-md-4.text-center
+				h4 Tổng tài sản
+				span {{currentMoney}}
+					sup Ucoin
+			.col-md-4.text-center
+				h4 Đã chi
+				span -{{totalSendMoney}}
+					sup Ucoin
+			.col-md-4.text-center
+				h4 Quà được nhận
+				span +{{totalReceiveMoney}}
+					sup Ucoin
+	//.col-md-12.filter-list
+		span Hiển thị
+		select.form-control()
+			option Tháng 9
+		select.form-control()
+			option 2017
+	.col-md-12
+		table.table.table-striped
+			thead
+				tr
+					th Lịch sử giao dịch
+					th Loại giao dịch
+					th Giá đơn vị (Ucoin)
+					th Discount
+					th Số lượng
+					th Tổng Ucoin
+			tbody
+				tr(ng-if='!send.items || send.items.length <= 0')
+					td(colspan='6') Không có dữ liệu
+				tr(ng-repeat='item in send.items' ng-if='send.items && send.items.length > 0')
+					td {{item.id}}
+					td {{item.Gifts.name}}
+					td {{item.Gifts.price}}
+					td {{item.discount + item.Gifts.discount}}
+					td {{item.quantity}}
+					td {{item.totalCost}}
+	.col-md-12
+		uib-pagination.table-records-pages(
+		total-items='send.totalItems',
+		ng-model='send.page',
+		items-per-page='send.limit'
+		ng-change="send.onPageChange()"
+		max-size="7"
+		boundary-links="true"
+		rotate="false"
+		first-text='«'
+		last-text = '»'
+		next-text ='›'
+		previous-text= '‹'
+		)

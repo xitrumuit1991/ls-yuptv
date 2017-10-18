@@ -8,6 +8,7 @@ html
 		meta(name='description', content='')
 		meta(name='keywords', content='Giải trí, ca hát, nhảy múa, giao lưu, ngôi sao, idol, hot girl, trò chuyện, Hallostar, trực tuyến, live chat, Hari Won')
 		meta(name='google-site-verification', content='RV80MBb3SMqko-cCcIiDv0elsJY_grpssJ2ofbPEmTg')
+		link(href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=vietnamese" rel="stylesheet")
 		// Facebook
 		meta(property='og:url', content='')
 		meta(property='og:title', content='')
@@ -30,6 +31,13 @@ html
 		link(rel='stylesheet', href='/css/bootstrap.css', type='text/css')
 		link(rel='stylesheet', href='/css/font-awesome.css', type='text/css')
 		link(rel='stylesheet', href='/css/ui-carousel.css', type='text/css')
+		link(rel='stylesheet', href='/css/angular-ui-notification.css', type='text/css')
+		link(rel='stylesheet', href='/css/ngProgress.css', type='text/css')
+		link(rel='stylesheet', href='/css/loading-bar.css', type='text/css')
+		link(rel='stylesheet', href='/css/bootstrap-toggle.min.css', type='text/css')
+		link(rel='stylesheet', href='/css/angular-datepicker-720.css', type='text/css')
+		link(rel='stylesheet', href='/css/bxslider.css', type='text/css')
+		link(rel='stylesheet', href='/css/datetimepicker.css', type='text/css')
 		// STYLES
 		// STYLES END
 
@@ -55,11 +63,16 @@ html
 					});
 				}
 			};
+
+		//Start subiz
+		script(type='text/javascript').
+			window._sbzq||function(e){e._sbzq=[];var t=e._sbzq;t.push(["_setAccount",42905]);var n=e.location.protocol=="https:"?"https:":"http:";var r=document.createElement("script");r.type="text/javascript";r.async=true;r.src=n+"//static.subiz.com/public/js/loader.js";var i=document.getElementsByTagName("script")[0];i.parentNode.insertBefore(r,i)}(window);
+		//End subiz
 	body
 		popup-confirm
-		include include/_header
+		header
 		div(ui-view='main')
-		include include/_footer
+		footer
 
 		script(type='text/javascript').
 			window.ENV = 'production';

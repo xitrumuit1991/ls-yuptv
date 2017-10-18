@@ -1,0 +1,26 @@
+.login-modal
+	i.fa.fa-close(ng-click='cancel()')
+	.modal-body
+		h3.text-left ĐĂNG NHẬP
+		.error.text-center.text-danger(ng-if='login.error') {{login.error}}
+
+		input.form-control(type='text', ng-model='login.phone' placeholder='Số điện thoại ')
+		input.form-control(type='password', ng-model='login.password' placeholder='Mật khẩu ')
+
+		.group
+			.left
+				input(type='checkbox' ng-model='login.storeInformation')
+				|&nbsp; Lưu thông tin
+			.pull-right
+				a(style='cursor: pointer;' ui-sref='base.forget-password') Quên mật khẩu
+
+		button.login.text-center(type='button' ng-click='submitLogin()') ĐĂNG NHẬP
+		button.login.facebook.text-center(type='button' ng-click='loginFacebook()')
+			i.fa.fa-facebook
+			| &nbsp; ĐĂNG NHẬP BẰNG FACEBOOK
+
+		.text-center.not-have-acc
+			|Chưa có tài khoản, đăng ký
+			a.link-register(ng-click='goRegister()' ) &nbsp; tại đây
+			//button.btn.btn-warning(ng-click='cancel()') Cancel
+			//input.btn.btn-primary(type='submit', value='Submit')

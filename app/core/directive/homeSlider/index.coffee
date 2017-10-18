@@ -2,6 +2,7 @@ _directive = ($timeout, ApiService) ->
   link = ($scope, $element, $attrs) ->
 #    console.log 'home slider directive'
 #    $scope.myInterval2 = 3000
+    $scope.loadedBanner = false
     $scope.slides = []
 #    $scope.slides2 = []
 #    i=0
@@ -28,6 +29,9 @@ _directive = ($timeout, ApiService) ->
 #      console.log result
       return if error
       $scope.slides = result if result
+      $timeout(()->
+        $scope.loadedBanner = true
+      ,1000  )
     )
     return null
 

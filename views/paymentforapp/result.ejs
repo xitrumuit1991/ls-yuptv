@@ -14,9 +14,9 @@
 					<div class="description">
 						<% if(typeof (message) == "undefined") { %>
 							<% if(confirm && confirm.responsecode != "03" ){%>
-							<p>Tài khoản: <span class="user-name color-primary"><%= user.username %></span>  đã nạp <span class="user-coin color-primary" data-unit="xu"><%= confirm.price %></span> VND vào tài khoản tương đương với <%= confirm.coin %> xu. </p>
+							<p>Tài khoản: <span class="user-name color-primary"><%= user.username %></span>  đã nạp <span class="user-coin color-primary" data-unit="ucoin"><%= confirm.price %></span> VND vào tài khoản tương đương với <%= confirm.coin %> ucoin. </p>
 							<% } %>
-							<p>Tài khoản hiện có: <%= user.money %> xu. </p>
+							<p>Tài khoản hiện có: <%= user.money %> ucoin. </p>
 							<p>Mã giao dịch: <%= confirm.tranid %> </p>
 							<p>Trạng thái: <%= confirm.descriptionvn %> </p>
 						<% } else { %>

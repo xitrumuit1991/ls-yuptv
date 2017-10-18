@@ -2,36 +2,41 @@
 	.title
 		img(src='/images/onair_title.png')
 		span KÊNH ON AIR
-		.group-button
+		.group-button(ng-if='listOnAir && listOnAir.length > 7')
 			img(src='/images/previous.png')
 			img(src='/images/next.png')
-	.content.row
+	.content.row(ng-if='listOnAir && listOnAir.length <= 0')
+		.col-md-12
+			|Không có room nào đang diễn
+
+	.content.row(ng-if='listOnAir && listOnAir.length > 0 && listOnAir[0]')
 		.left.col-md-4
-			img.onair-image(src='/images/onair_left.png')
-			.bottom
-				.name Kevin Tran
-				.group-icon
-					i.fa.fa-eye
-					span 2500
-					i.fa.fa-heart
-					span 2500
+			.content-left
+				img.onair-image(src='{{listOnAir[0].banners.banner || listOnAir[0].User.avatars_path.avatar}}')
+				.bottom
+					.name {{listOnAir[0].title}}
+					.group-icon
+						i.fa.fa-eye
+						span {{listOnAir[0].views}}
+						i.fa.fa-heart
+						span {{listOnAir[0].hearts}}
 		.right.col-md-8
 			.row
-				- for (var i = 0; i < 6; i++)
-					.col-md-4
-						.onair-child
-							img(src='/images/onair_child.png')
-							.bottom
-								.group
-									.name Toc Tien Idol
-									.icon
-										i.fa.fa-eye
-										span 2500
-										i.fa.fa-heart
-										span 2500
-									.btn-lock
-										i.fa.fa-lock
-	.view-more
+				.col-md-4(ng-repeat='room in listOnAir | limitTo : 6' ng-if='$index > 0')
+					.onair-child
+						//img(src='{{room.banners.banner || room.User.avatars_path.avatar || "/images/onair_left.png"}}')
+						img.img-responsive(src='{{room.banners.banner || room.User.avatars_path.avatar || "http://via.placeholder.com/150x150"}}')
+						.bottom
+							.group
+								.name {{room.title}}
+								.icon
+									i.fa.fa-eye
+									span {{room.views}}
+									i.fa.fa-heart
+									span {{room.hearts}}
+								.btn-lock
+									i.fa.fa-lock
+	.view-more(ng-if='listOnAir && listOnAir.length > 7')
 		a.text.pull-right
 			| Xem tất cả
 			img(src='/images/view_more.png')

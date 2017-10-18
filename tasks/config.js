@@ -23,7 +23,8 @@ var config = {
   ],
   jsfiles: [
     'js/underscore.js',
-    'js/jquery.js',
+    'js/jquery-1.12.1.min.js',
+    'js/bootstrap.js',
     'js/angular.js',
     'js/*',
     'js/templates.js',
@@ -32,7 +33,8 @@ var config = {
     'core/app.js',
     'core/app*.js',
     'core/**/*.js',
-    'pages/**/*.js'
+    'pages/**/*.js',
+    'views/**/*.js'
   ]
 };
 for (var key in local) {

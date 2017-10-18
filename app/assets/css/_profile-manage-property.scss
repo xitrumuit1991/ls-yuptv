@@ -1,0 +1,34 @@
+.profile-manage-property{
+  .list-nav-manage-property{
+    margin-top: 50px;
+    li{
+      display: block;
+      list-style: none;
+      cursor: pointer;
+      line-height: 30px;
+      a{
+        color: #858585;
+        text-decoration: none;
+        font-size: 14px;
+        outline: none;
+        &.active{
+          color: #000000;
+        }
+      }
+    }
+  }
+  select.form-control{
+    display: inline-block;
+    width: auto;
+    margin: 0 5px ;
+  }
+  .filter-list{
+    margin: 20px 0;
+  }
+  .group-chi-tieu{
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px 0;
+  }
+}

@@ -1,0 +1,121 @@
+.container
+	.schedule.wrapper
+		.row
+			.col-md-6
+				h2.head-title LỊCH DIỄN
+				p Cập nhật ngày 10/10/2017
+			.col-md-6.text-right
+				span.label.black Hiển thị
+				//#category
+				select.form-control(
+				ng-model="categorySelected"
+				ng-change="changeCategorySelect()"
+				ng-options="item.id as item.title for item in selectCategoryValue")
+
+				select.form-control(ng-model="dateSelected"
+				ng-change="changeDateSelect()"
+				ng-options="item.id as item.title for item in selectDateValue")
+
+				select.form-control(ng-model="monthSelected"
+				ng-change="changeMonthSelect()"
+				ng-options="item.id as item.title for item in selectMonthValue")
+
+				button.btn-search
+					i.fa.fa-search
+		hr
+		.row(ng-if="activeView == 'filter-search' ")
+			.col-md-6.col-md-offset-3
+				h3.text-center Kết quả tìm kiếm
+			.col-md-6.col-md-offset-3(ng-if='listRoomSearch.length <= 0')
+				|Không có lịch diễn nào
+			.col-md-12(ng-if='listRoomSearch && listRoomSearch.length > 0')
+				table.table.table-bordered(style='margin:0 auto; width: 60%;')
+					tr
+						td(width='40%') Idol diễn
+						td(width='20%') Ngày diễn
+						td(width='40%') Giờ diễn
+					tr(ng-repeat='item in listRoomSearch')
+						td(style='border-right: none;')
+							.group-image-name
+								img.img-responsive(src='{{item.Room.User.avatars_path.avatar}}')
+								.name
+									p(ng-click='openScheduleDetail(item)') {{item.Room.title}}
+									i.fa.fa-eye
+									span {{item.Room.views}}
+									i.fa.fa-heart-o
+									span {{item.Room.hearts}}
+						td(style='border-left: none; border-right: none;')
+							p {{item.start | date:'dd-MM-yyyy' }}
+						td(style='border-left: none;')
+							.group-time-follow
+								.time.bold {{item.start | date:'HH:mm' }}
+								.follow
+									button(ng-if='item.Room.isFollow == false'
+									ng-click='actionFollowRoom(item)') Theo dõi
+
+		.row(ng-if="activeView == 'now-tomorrow' ")
+			.col-md-6
+				h4 {{textNowDate}}
+				.row
+					.col-md-12
+						table.table.table-bordered
+							tr
+								td(width='50%') Idol diễn
+								td(width='50%') Giờ diễn
+							tr(ng-if='!roomAtNowDate || roomAtNowDate.length <= 0')
+								td(colspan='2') Không có lịch diễn nào
+							tr(ng-repeat='item in roomAtNowDate' ng-if='roomAtNowDate.length > 0')
+								td(style='border-right: none;')
+									.group-image-name
+										img.img-responsive(src='{{item.Room.User.avatars_path.avatar}}')
+										.name
+											p(ng-click='openScheduleDetail(item)') {{item.Room.title}}
+											i.fa.fa-eye
+											span {{item.Room.views}}
+											i.fa.fa-heart-o
+											span {{item.Room.hearts}}
+								td(style='border-left: none;')
+									.group-time-follow
+										.time.bold {{item.start | date:'HH:mm' }}
+										.follow
+											button(ng-if='item.Room.isFollow == false'
+											ng-click='actionFollowRoom(item)') Theo dõi
+
+
+			.col-md-6
+				h4 {{textTomorrowDate}}
+				.row
+					.col-md-12
+						table.table.table-bordered
+							tr
+								td(width='60%') Idol diễn
+								td(width='40%') Giờ diễn
+							tr(ng-if='!roomAtTomorrowDate || roomAtTomorrowDate.length <= 0')
+								td(colspan='2') Không có lịch diễn nào
+							tr(ng-repeat='item in roomAtTomorrowDate' ng-if='roomAtTomorrowDate.length > 0')
+								td(style='border-right: none;')
+									.group-image-name
+										img.img-responsive(src='{{item.Room.User.avatars_path.avatar}}')
+										.name
+											p(ng-click='openScheduleDetail(item)') {{item.Room.title}}
+											i.fa.fa-eye
+											span {{item.Room.views}}
+											i.fa.fa-heart-o
+											span {{item.Room.hearts}}
+								td(style='border-left: none;')
+									.group-time-follow
+										.time.bold {{item.start | date:'HH:mm' }}
+										.follow
+											button(ng-if='item.Room.isFollow==false') Theo dõi
+
+
+		.list-room-schedule-following(ng-if='user && listUserFollowing && listUserFollowing.length > 0')
+			.row
+				.col-md-12
+					hr
+				.col-md-12
+					h3 Lịch phát sóng Idol của bạn ({{listUserFollowing.length}})
+					br
+					br
+				.col-md-12
+					bxslider(items='listUserFollowing' on-item-click='onItemClick')

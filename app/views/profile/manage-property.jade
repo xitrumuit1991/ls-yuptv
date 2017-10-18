@@ -1,0 +1,16 @@
+.row.profile-manage-property
+	.col-md-3
+		ul.list-nav-manage-property
+			li
+				a(href='' ng-click='changeTab("history-charged")' ng-class='{"active" : activeView == "history-charged" }' )
+					| Lịch sử chi tiêu
+			li
+				a(href='' ng-click='changeTab("gift-received")' ng-class='{"active" : activeView == "gift-received" }' )
+					| Quà tặng được nhận
+	.col-md-9
+		include _manage_property_send
+		include _manage_property_receive
+
+
+
+

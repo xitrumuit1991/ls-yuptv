@@ -1,0 +1,55 @@
+.login-modal{
+  padding: 20px 40px;
+  position: relative;
+  .fa.fa-close{
+    position: absolute;
+    top: 3%;
+    right: 3%;
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  .modal-body{
+    margin: 10px 0;
+    padding: 0;
+    h3{
+      text-align: left;
+      margin : 10px 0;
+    }
+    input.form-control{
+      margin: 15px 0;
+    }
+    button.login{
+      display: block;
+      width: 100%;
+      text-align: center;
+      margin: 15px 0;
+      background-color: #288cfd;
+      color: #fff;
+      border-radius:2px ;
+      border: none;
+      padding: 10px 0;
+      font-size: 14px;
+      &.facebook{
+        background: #2567b1;
+      }
+    }
+    .not-have-acc{
+      margin-top: 20px;
+      .link-register{
+        display: inline-block;
+        color: #288cfd;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+    .group{
+      clear: both;
+      margin: 10px 0;
+      display: block;
+      .left{
+        display: inline-block;
+      }
+    }
+  }
+}

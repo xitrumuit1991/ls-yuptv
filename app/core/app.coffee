@@ -3,20 +3,70 @@ config =
   version : '1.0.0'
   uuid : (new Fingerprint({canvas : true, screen_resolution : false})).get()
   modelName : navigator.userAgent
-  fBappId : '903378619781560'
+  fBappId : '1933860780272829'
   API_URL : "http://dev.livestar.vn:1010/api/v1/"
   env : 'production'
+
+config.menuMainHome = [
+  {
+    title : 'Kênh On Air',
+    icon : 'fa-video-camera'
+    href : 'base.on-air'
+    itemClass : 'col-md-4'
+  },
+  {
+    title : 'Lịch Diễn',
+    icon : 'fa-calendar-o'
+    href : 'base.schedule'
+    itemClass : 'col-md-4'
+  },
+  {
+    title : 'Tin Tức',
+    icon : 'fa-file'
+    href : 'http://tintuc.livestar.vn'
+    isLink : true
+    itemClass : 'col-md-4'
+  },
+]
+
+config.menuMainProfile = [
+  {
+    title : 'Trang Cá Nhân',
+    href : 'base.profile',
+    itemClass : 'col-md-2'
+  },
+  {
+    title : 'Quản lý tài sản ',
+    href : 'base.profile.manage-property',
+    itemClass : 'col-md-2'
+  },
+  {
+    title : 'Nạp Xu',
+    href : 'base.profile.charge-ucoin',
+    itemClass : 'col-md-2'
+  },
+  {
+    title : 'Quản lý phòng',
+    href : 'base.profile.manage-room',
+    itemClass : 'col-md-2'
+  },
+  {
+    title : 'Cài Đặt Thông Báo',
+    href : 'base.profile.setting-notify',
+    itemClass : 'col-md-2'
+  },
+]
 
 switch ENV
   when 'production'
     config = _.extend config,
-      fBappId : '903378619781560'
+      fBappId : '1933860780272829'
       API_URL : "http://dev.livestar.vn:1010/api/v1/"
       env : 'production'
 
   when 'development'
     config = _.extend config,
-      fBappId : '903378619781560'
+      fBappId : '1933860780272829'
       API_URL : "http://dev.livestar.vn:1010/api/v1/"
       env : 'development'
 
@@ -34,37 +84,54 @@ angular
   "angularFileUpload",
   "fancyboxplus",
   "ui.bootstrap",
-  "ui.carousel"
+  "ui.carousel",
+  "ui-notification",
+  "ngProgress",
+  "angular-loading-bar",
+  'ngFileUpload',
+  '720kb.datepicker',
+  'ui.bootstrap.datetimepicker'
 ])
 .constant "AppName", "YUP"
 .constant "GlobalConfig", config
-
 
 appConfig = ($locationProvider,
   $stateProvider,
   $urlRouterProvider,
   FacebookProvider,
   GlobalConfig,
-  $httpProvider) ->
+  $httpProvider,
+  NotificationProvider, cfpLoadingBarProvider) ->
+
   $httpProvider.interceptors.push "AuthInterceptor"
   $locationProvider.html5Mode(true).hashPrefix "!"
   $urlRouterProvider.otherwise "/"
   FacebookProvider.init config.fBappId
+  NotificationProvider.setOptions({
+    delay : 5000,
+    startTop : 20,
+    startRight : 20,
+    verticalSpacing : 20,
+    horizontalSpacing : 20,
+    positionX : 'right',
+    positionY : 'top'
+  })
+  cfpLoadingBarProvider.includeSpinner = true
+  cfpLoadingBarProvider.includeBar = true
 
 appConfig.$inject = [
-  '$locationProvider'
-  '$stateProvider'
-  '$urlRouterProvider'
-  'FacebookProvider'
-  'GlobalConfig'
-  '$httpProvider'
+  '$locationProvider',
+  '$stateProvider',
+  '$urlRouterProvider',
+  'FacebookProvider',
+  'GlobalConfig',
+  '$httpProvider',
+  'NotificationProvider', 'cfpLoadingBarProvider'
 ]
-
 
 angular
 .module("app")
 .config appConfig
-
 
 angular.element(document).ready ()->
   angular.bootstrap document, ['app'], strictDi : true

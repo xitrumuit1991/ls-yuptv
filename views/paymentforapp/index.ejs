@@ -6,9 +6,9 @@
     <h3 class="alert alert-danger not-login">Vui lòng đăng nhập để thực hiện chức năng này!</h3>
     <% } else { %>
     <img id="wallet_web" class="wallet_web" src="/assets/paymentforapp/images/payment_2/wallet_web.png" alt="wallet_web" />
-    <div class="user-coin-2" data-unit="xu"><span><%= ( (user != undefined && user) ? user.money : 0) %></span><sup>xu</sup></div>
+    <div class="user-coin-2" data-unit="ucoin"><span><%= ( (user != undefined && user) ? user.money : 0) %></span><sup>ucoin</sup></div>
     <div class="user-name"><%= (user != undefined ? user.name : '') %></div>
-    <div class="note-trade">(1 xu = 100<sup>vnđ</sup>)</div>
+    <div class="note-trade">(1 Ucoin = 100<sup>vnđ</sup>)</div>
     <div class="payment-guide">
       <a href="/paymentforapp/huong-dan" class="btn btn-primary btn-tutorial" role="button">Hướng dẫn</a>
     </div>
@@ -17,7 +17,7 @@
 
   <% if(!user || typeof (user) == 'undefined' ){ %>
   <% } else { %>
-  <div class="select-payment-method">Chọn phương thức nạp xu</div>
+  <div class="select-payment-method">Chọn phương thức nạp Ucoin</div>
   <% } %>
 
   <% if (typeof user != 'undefined' && user != undefined && user){ %>
@@ -34,6 +34,10 @@
       <img class="image" src="/assets/paymentforapp/images/payment_2/napxu_internet.png" />
       <div class="name"> Internet <br>Banking</div>
     </a>
+    <a div-target="#redeem_Code" class="item nav-method-select" href="javascript:void(0);">
+      <img class="image" src="/assets/paymentforapp/images/payment_2/redeem_code_2.png" />
+      <div class="name"> Redeem <br> Code</div>
+    </a>
     <a class="back nav-method-back" href="javascript:void(0);">
       <img src="/assets/paymentforapp/images/payment_2/back_button.png" />
     </a>
@@ -44,18 +48,22 @@
   <div class="payment-content">
     <!--SMS payment -->
     <%- include _include_sms_payment.ejs %>
+
     <!--Thẻ cào điện thoại -->
     <%- include _include_telco_card.ejs %>
+
     <!--internet banking-->
     <%- include _include_internet_banking.ejs %>
+
+    <!--_include_redeem_code-->
+    <%- include _include_redeem_code.ejs %>
   </div>
   <% } %>
 
   <div class="support-info-block">
     <div>Hệ thống thanh toán được bảo trợ bởi <a href="http://vnptepay.com.vn/">VNPT EPAY (<i>http://vnptepay.com.vn/</i>)</a></div>
-    <div>Trong trường hợp xảy ra lỗi, bạn vui lòng liên hệ nhân viên CSKH bằng hệ thống chat ở cuối trang.</div>
+    <div>Trong trường hợp xảy ra lỗi, bạn vui lòng liên hệ nhân viên CSKH bằng email contact@pateco.vn</div>
   </div>
-
 </div>
 
 
@@ -66,7 +74,7 @@
 
   var showModalMobifone = function (code,name,money,coin,callback) {
     $('#modal_livestar_btn_no').hide();
-    $('#modal_livestar_btn_yes').html('Đóng');
+    $('#modal_livestar_btn_yes').html('OK');
     var message = '<span>Gói Vip dành cho thuê bao<br/>Mobifone</span>';
     $('#modal_Livestar').find('h3').html(message);
 
@@ -74,7 +82,7 @@
     sms += '<strong class="color-primary">XU' + coin + '</strong> ' +
       '<span class="color-xam">gửi đến</span>' +
       '<strong class="color-primary">9387</strong>';
-    sms += '<br/><br/> Để nhận ' + coin + 'xu với giá ' + money + 'đ';
+    sms += '<br/><br/> Để nhận ' + coin + 'Ucoin với giá ' + money + 'đ';
     sms += '<span class="color-xam">Vui lòng tải lại trang khi nhận thông báo thành công</span>';
     $('#modal_Livestar').find('p').html(sms);
     if (callback !== undefined) {
@@ -85,7 +93,7 @@
 
   var showModalSms = function (code,name,money,coin,isViettel,callback) {
     $('#modal_livestar_btn_no').hide();
-    $('#modal_livestar_btn_yes').html('Đóng');
+    $('#modal_livestar_btn_yes').html('OK');
     var message = '<span>Gói cước dành cho thuê bao<br/>';
     if (isViettel == true)
       message += 'Viettel</span>';
@@ -111,20 +119,22 @@
     $('.user-coin-2').hide();
     $('.select-payment-method').hide();
 
-    $(this).show();
-    $('#payment .nav-link-method .nav-method-back').show();
-    $(div_tager).show();
+    $(this).show(); //method chon show
+    $('#payment .nav-link-method .nav-method-back').show(); //icon back show
+    $(div_tager).show(); //div_content method show
   });
 
   $('#payment .nav-link-method .nav-method-back').on('click',function (event) {
-    $(this).hide();
-    $('#payment .nav-link-method .nav-method-select').show();
+    $(this).hide(); //hide icon back
+    $('#payment .nav-link-method .nav-method-select').show(); //show list method
     $('#wallet_web').show();
     $('.user-coin-2').show();
     $('.select-payment-method').show();
+
     $('#sms').hide();
     $('#mobile_Card').hide();
     $('#internet_Banking').hide();
+    $('#redeem_Code').hide();
   });
 
   $('#mbp-vnp').on('click','.box-sms',function (event) {
@@ -172,7 +182,7 @@
 
 
 
-
+<!--mobile_Card-->
 <script>
   //the cao dien thoai
   function mobileCardSelectProvider(ob)
@@ -183,8 +193,8 @@
     $(ob).addClass('active');
     $('#mobile_Provider').attr('value',select_provider);
     $('#mobile_Provider').attr('source-id', select_source_id);
-    console.log(select_provider);
-    console.log(select_source_id);
+    console.log('select_provider=',select_provider);
+    console.log('select_source_id=',select_source_id);
   }
 
   $('#btn-payment-by-card-for-app').on('click',function (event) {
@@ -211,20 +221,26 @@
         card_pin : pin,
         card_serial : serial,
         sourceId : sourceId,
-        packageId : 'test-tmp-packageId-sample',
+        packageId : 'packageId_charge_by_telco',
         key_payment:key_payment};
-      console.log(API_PATH + 'payment/card');
-      console.log(data);
+      console.log('API_PATH=', API_PATH + 'payment/card');
+      console.log('data Post=',data);
       $.ajax({
         url : API_PATH + 'payment/card',
         method:"POST",headers:{'Authorization' : token},
-        dataType:'json',data:data,
+        dataType:'json',
+        data:data,
         beforeSend:function () { btn_Card.addClass('loading'); },
         statusCode:{
           200:function (data) {
             console.log(data);
             btn_Card.removeClass('loading');
-            var msg = (data.responseJSON ? data.responseJSON.message : '') || 'Nạp tiền thành công.';
+            if(data && data.error)
+            {
+              PModal.modalAlert(data.message,function () {btn_Card.removeClass('loading'); window.location.reload(); });
+              return;
+            }
+            var msg = (data.responseJSON ? data.responseJSON.message : data.message) || 'Nạp tiền thành công.';
             PModal.modalAlert(msg,function () { window.location.reload(); });
           },
           400:function (data) {
@@ -232,14 +248,14 @@
             reRenderCaptcha();
             console.log(data);
             var msg = (data.responseJSON ? data.responseJSON.message : '') || "Thẻ cào bị lỗi, vui lòng thử lại sau";
-            PModal.modalAlert(msg,function () { });
+            PModal.modalAlert(msg,function () {btn_Card.removeClass('loading'); });
           },
           401:function (data) {
             btn_Card.removeClass('loading');
             reRenderCaptcha();
             console.log(data);
             var msg = (data.responseJSON ? data.responseJSON.message : '') || "Thẻ cào bị lỗi, vui lòng thử lại sau";
-            PModal.modalAlert(msg,function () { });
+            PModal.modalAlert(msg,function () {btn_Card.removeClass('loading'); });
           },
           403:function (data) {
             console.log(data);
@@ -252,10 +268,20 @@
             btn_Card.removeClass('loading');
             reRenderCaptcha();
             var msg = (data.responseJSON ? data.responseJSON.message : '') || "Thẻ cào bị lỗi, vui lòng thử lại sau";
-            PModal.modalAlert(msg,function () {});
+            PModal.modalAlert(msg,function () {btn_Card.removeClass('loading');});
+          },
+          504:function (data) {
+            console.log(data);
+            btn_Card.removeClass('loading');
+            reRenderCaptcha();
+            var msg = (data.responseJSON ? data.responseJSON.message : data.responseText ) || "Thẻ cào bị lỗi, vui lòng thử lại sau";
+            PModal.modalAlert(msg,function () {btn_Card.removeClass('loading');});
           }
         }
-      }).done(function (data) { btn_Card.removeClass('loading'); });
+      }).done(function (data) {
+        console.log('done(function (data) = ',data);
+        btn_Card.removeClass('loading');
+      });
     } else {
       PModal.modalAlert("Vui lòng điền đầy đủ thông tin !!!",function () { btn_Card.removeClass('loading'); });
     }
@@ -272,7 +298,7 @@
 
 
 
-
+<!--internet_Banking-->
 <script>
   $('#payment #internet_Banking .step-block-bank a').on('click',function (event) {
     var div_target = $(this).attr('href');
@@ -309,30 +335,38 @@
     var btn_internetBank = $('#btn-PaymentMegabank-bank');
     btn_internetBank.attr("disabled", "disabled").button('refresh');
     btn_internetBank.addClass('loading');
-
     setTimeout(function () {
       btn_internetBank.removeAttr("disabled").button('refresh');
       btn_internetBank.removeClass('loading');
     },2000);
-
     event.preventDefault();
-    var megabank_id = parseInt($('#internet_Banking #stepA .box-sms.active a.box-wrapper').attr('package-id'));
-    var bank_id = $('#internet_Banking #stepB  select[name="bank"]').attr('bank-id');
-    var bank_code = $('#internet_Banking #stepB  select[name="bank"]').attr('bank-code');
-    var source_id = $('#internet_Banking #stepB  select[name="bank"]').attr('bank-id');
-    var callbackUrl = window.location.origin + "/paymentforapp/result";
-    console.log('megabank_id=',megabank_id);
-    console.log('bank_id=',bank_id);
-    console.log('respUrl=',callbackUrl);
-    var key_megabank='';
-    try { key_megabank = grecaptcha.getResponse(widgetMegabank); }catch(e){}
-    console.log('key_megabank=',key_megabank);
-    if(!key_megabank) return PModal.modalAlert('Captcha không hợp lệ ',function () { });
     if ((typeof token === 'undefined' || token == '' || !token))
       return $('.btn-signin').trigger("click");
-    if (key_megabank !== '' && megabank_id !== '' && bank_id !== '' && callbackUrl !== '') {
+    var key_megabank='';
+    try { key_megabank = grecaptcha.getResponse(widgetMegabank); }catch(e){}
+
+    if(!key_megabank) return PModal.modalAlert('Captcha không hợp lệ ',function () { });
+
+    var package_id = $('#internet_Banking #stepA .box-sms.active a.box-wrapper').attr('package-id');
+    var callbackUrl = window.location.origin + "/paymentforapp/result";
+
+    var bank_id =   $('#internet-bank-select option:selected').attr('bank-id');
+    var bank_code = $('#internet-bank-select option:selected').attr('bank-code');
+    var source_id = $('#internet-bank-select option:selected').attr('bank-id');
+
+    console.log('key_megabank=',key_megabank);
+    console.log('package_id=',package_id);
+    console.log('bank_id=',bank_id);
+    console.log('bank_code=',bank_code);
+    console.log('callbackUrl=',callbackUrl);
+    if( !key_megabank || !package_id || !callbackUrl || !bank_id ) {
+      PModal.modalAlert("Vui lòng điền đầy đủ thông tin !!!",function () {
+      });
+    }
+
+    if (key_megabank !== '' && package_id !== '' && callbackUrl !='' && bank_id !== '' ) {
       var data = {
-        packageId : megabank_id,
+        packageId : package_id,
         bankId : bank_code,
         sourceId : source_id,
         callbackUrl:callbackUrl,
@@ -352,28 +386,152 @@
         },
         statusCode:{
           200:function (data) {
-            console.log('PaymentMegabank.handlePaymentMegabank');
+            console.log('PaymentMegabank.handlePaymentMegabank data=',data);
             console.log('data=',JSON.stringify(data));
-            window.location = data.url
+            if(data && data.error)
+            {
+              PModal.modalAlert(data.message,function () {btn_internetBank.removeClass('loading'); window.location.reload(); });
+              return;
+            }
+            window.location.href = data.url
           },
           400:function (data) {
-            var msg = JSON.parse(data.responseText);
-            PModal.modalAlert(msg.error,function () {
-            });
+            var msg = (data.responseJSON ? data.responseJSON.message : '') || "Có lỗi xảy ra, vui lòng thử lại sau";
+            btn_internetBank.removeAttr("disabled").button('refresh');
+            btn_internetBank.removeClass('loading');
+            reRenderCaptcha();
+            PModal.modalAlert(msg,function () {btn_internetBank.removeClass('loading'); });
           },
           500:function (data) {
-            PModal.modalAlert(data.responseText,function () {
-            });
+            var msg = (data.responseJSON ? data.responseJSON.message : '') || "Có lỗi xảy ra, vui lòng thử lại sau";
+            btn_internetBank.removeAttr("disabled").button('refresh');
+            btn_internetBank.removeClass('loading');
+            reRenderCaptcha();
+            PModal.modalAlert(msg,function () { btn_internetBank.removeClass('loading'); });
+          },
+          504:function (data) {
+            var msg = (data.responseJSON ? data.responseJSON.message : '') || "Có lỗi xảy ra, vui lòng thử lại sau";
+            btn_internetBank.removeAttr("disabled").button('refresh');
+            btn_internetBank.removeClass('loading');
+            reRenderCaptcha();
+            PModal.modalAlert(msg,function () { btn_internetBank.removeClass('loading'); });
           }
         }
-      }).done(function () {
+      }).done(function (data) {
+        console.log('done(function (data); charge banking data=',data);
         btn_internetBank.removeAttr("disabled").button('refresh');
         btn_internetBank.removeClass('loading');
-      });
-    } else {
-      PModal.modalAlert("Vui lòng điền đầy đủ thông tin !!!",function () {
       });
     }
   });
 
+</script>
+
+
+
+<!--redeem code-->
+<script type="text/javascript">
+
+  $('#btn_submit_redeem_Code').on('click',function (event)
+  {
+    console.log('submit redeem code', $(this));
+    event.preventDefault();
+    $('#modal_Livestar').find('h3').html('<span>Thông báo</span>');
+    var btn_Submit = $('#btn_submit_redeem_Code');//btn submit redeem code
+
+    if (!token || typeof (token) === 'undefined' || token == '')
+      return PModal.modalAlert("Vui lòng đăng nhập !",function () {
+        btn_Submit.removeClass('loading');
+        $('.btn-signin').trigger("click");
+      });
+    var key_redeem = '';
+    var input_redeem_Code = $('#input_redeem_Code').val();
+    if(!input_redeem_Code || input_redeem_Code=='')
+      return PModal.modalAlert("Vui lòng nhập mã quà tặng!",function () {
+        btn_Submit.removeClass('loading'); return;
+      });
+    try { key_redeem = grecaptcha.getResponse(widgetRedeemCode); } catch (e) {console.error(e);}
+    if(!key_redeem || key_redeem=='')
+      return PModal.modalAlert("Captcha không hợp lệ !",function () {
+        btn_Submit.removeClass('loading'); return;
+      });
+
+    if (input_redeem_Code && key_redeem)
+    {
+      var data = {
+        code : input_redeem_Code,
+        key_redeem : key_redeem
+      };
+      console.log('API_PATH=', API_PATH + 'payment/redeem-code');
+      console.log('data Post=',data);
+      $.ajax({
+        url : API_PATH + 'payment/redeem-code',
+        method:"POST",
+        headers:{'Authorization' : token},
+        dataType:'json',
+        data:data,
+        beforeSend:function () { btn_Submit.addClass('loading'); },
+        statusCode:{
+          200:function (data)
+          {
+            console.log(data);
+            btn_Submit.removeClass('loading');
+            if(data && data.error)
+            {
+              PModal.modalAlert(data.message,function () { window.location.reload(); });
+              return;
+            }
+            var msg = (data.responseJSON ? data.responseJSON.message : data.message) || 'Nạp tiền thành công.';
+            PModal.modalAlert(msg,function () { window.location.reload(); });
+          },
+          400:function (data) {
+            btn_Submit.removeClass('loading');
+            grecaptcha.reset();
+            console.log(data);
+            var msg = (data.responseJSON ? data.responseJSON.message : '') || "Có lỗi xảy ra, vui lòng thử lại sau";
+            PModal.modalAlert(msg,function () { btn_Submit.removeClass('loading'); });
+          },
+          401:function (data) {
+            btn_Submit.removeClass('loading');
+            grecaptcha.reset();
+            console.log(data);
+            var msg = (data.responseJSON ? data.responseJSON.message : '') || "Có lỗi xảy ra, vui lòng thử lại sau";
+            PModal.modalAlert(msg,function () { btn_Submit.removeClass('loading'); });
+          },
+          403:function (data) {
+            console.log(data);
+            grecaptcha.reset();
+            var msg = (data.responseJSON ? data.responseJSON.message : '') || "Có lỗi xảy ra, vui lòng thử lại sau";
+            PModal.modalAlert(msg,function () { btn_Submit.removeClass('loading'); });
+          },
+          404:function (data) {
+            console.log(data);
+            grecaptcha.reset();
+            var msg = (data.responseJSON ? data.responseJSON.message : '') || "Có lỗi xảy ra, vui lòng thử lại sau";
+            PModal.modalAlert(msg,function () { btn_Submit.removeClass('loading'); window.location.reload(); return; });
+          },
+          500:function (data) {
+            console.log(data);
+            btn_Submit.removeClass('loading');
+            grecaptcha.reset();
+            var msg = (data.responseJSON ? data.responseJSON.message : '') || "Có lỗi xảy ra, vui lòng thử lại sau";
+            PModal.modalAlert(msg,function () {btn_Submit.removeClass('loading');});
+          },
+          504:function (data) {
+            console.log(data);
+            btn_Submit.removeClass('loading');
+            grecaptcha.reset();
+            var msg = (data.responseJSON ? data.responseJSON.message : data.responseText ) || "Có lỗi xảy ra, vui lòng thử lại sau";
+            PModal.modalAlert(msg,function () {btn_Submit.removeClass('loading');});
+          }
+        }
+      }).done(function (data) {
+        console.log('done(function (data) = ',data);
+        btn_Submit.removeClass('loading');
+        grecaptcha.reset();
+      });
+    } else {
+      PModal.modalAlert("Vui lòng điền đầy đủ thông tin !!!",function () { btn_Submit.removeClass('loading'); });
+    }
+  });
 </script>

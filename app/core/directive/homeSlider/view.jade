@@ -4,10 +4,14 @@
 	slides-to-scroll='1',
 	initial-slide='1',
 	autoplay='true',
-	autoplay-speed='3500',
+	autoplay-speed='4000',
 	dots='true')
 		carousel-item
 			img.img-responsive(src='{{ item.images_path.w1080h622 }}', alt='{{ item.caption }}')
+			.caption-group
+				.caption
+					a(href='{{item.url}}') {{item.caption}}
+				.description {{item.description}}
 			//h3  {{ item.text }}
 		carousel-prev
 			button
@@ -15,7 +19,7 @@
 		carousel-next
 			button
 				i.fa.fa-angle-right
-	.download-link
+	.download-link(ng-if='loadedBanner ==true ')
 		.row
 			.col-md-6.ios.text-right
 				a(href="https://itunes.apple.com/vn/app/livestar-san-khau-cho-sao/id1074154728?mt=8")
