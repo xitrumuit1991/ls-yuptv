@@ -216,7 +216,7 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
     self.request options, done
   self.getListPackage =(params, done)->
     options =
-      url : GlobalConfig.API_URL + "package/list"
+      url : GlobalConfig.API_URL + "payment/package"
       method : 'GET'
       data : params
     self.request options, done
