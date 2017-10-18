@@ -22,7 +22,7 @@
       <% if( megabanks && megabanks.length > 0){ %>
       <% megabanks.forEach(function(megabank,key){ %>
       <div class="box-sms">
-        <a href="#" class="box-wrapper" package-id="<%= megabank.id %>"  package-code="<%= megabank.code %>">
+        <a href="#" class="box-wrapper" package-id="<%= megabank.id %>" package-code="<%= megabank.code %>">
           <span class="box-coin" data-unit=""><%= megabank.coin %> Ucoin</span>
           <span class="box-cash" data-unit=""><%= megabank.price %><sup>vnđ</sup></span>
         </a>
@@ -37,7 +37,7 @@
           <select name="bank" class="internet-bank-select" id="internet-bank-select">
             <% if( banks && banks.length > 0){ %>
             <% banks.forEach(function(bank,key){ %>
-            <option bank-id="<%= bank.id %>" source-id="<%= bank.id %>" bank-code="<%= bank.code %>" ><%= bank.name %></option>
+            <option bank-id="<%= bank.id %>" source-id="<%= bank.id %>" bank-code="<%= bank.code %>"><%= bank.name %></option>
             <% }) %>
             <% } %>
           </select>
@@ -54,3 +54,39 @@
   </div>
 </div>
 <!--end internet banking-->
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#btn-PaymentMegabank-bank').attr("disabled",true);
+    $('#internet_Banking #stepA .box-sms a.box-wrapper').on('click',(function () {
+        setTimeout(function () {
+          var package_id = $('#internet_Banking #stepA .box-sms.active a.box-wrapper').attr('package-id');
+//        var bank_id = $('#internet-bank-select option:selected').attr('bank-id');
+//        var key_payment = '';
+//        try { key_payment = grecaptcha.getResponse(widgetMegabank); }
+//        catch (e) {console.error(e);}
+          console.log(package_id);
+          if (package_id) {
+            $('#btn-PaymentMegabank-bank').removeAttr("disabled");
+          } else {
+            $('#btn-PaymentMegabank-bank').attr("disabled",true);
+          }
+        },1000);
+      })
+    );
+
+//    $('#internet-bank-select').on('change',function () {
+//      var package_id = $('#internet_Banking #stepA .box-sms.active a.box-wrapper').attr('package-id');
+//      var bank_id = $('#internet-bank-select option:selected').attr('bank-id');
+////      var key_payment = '';
+////      try { key_payment = grecaptcha.getResponse(widgetMegabank); }
+////      catch (e) {console.error(e);}
+//      if (package_id && bank_id ) {
+//        $('#btn-PaymentMegabank-bank').removeAttr("disabled");
+//      } else {
+//        $('#btn-PaymentMegabank-bank').attr("disabled",true);
+//      }
+//    });
+
+  });
+</script>
