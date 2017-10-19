@@ -13,29 +13,32 @@ ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
   $window, $state, $stateParams,  ApiService, $http,
   GlobalConfig, $interval, $uibModal, Upload)->
   $scope.listPackage = []
-  $scope.packageSelected = null
+  $scope.step2PackageSelected = null
   $scope.checkPolicy =
     value : false
 
   $scope.stepView = 'step1'
-  $scope.selectChargeMethod = ''
+  $scope.step1ChooseMethod = ''
 
-  $scope.selectedPackage = (item, $index)->
-    $scope.packageSelected = item
+  $scope.step2SelectedPackage = (item, $index)->
+    $scope.step2PackageSelected = item
 
-  $scope.goStep2 = ()->
-    console.log 'checkPolicy',$scope.checkPolicy.value
-    console.log '$scope.packageSelected',$scope.packageSelected
-    return if $scope.checkPolicy.value == false
-    return unless $scope.packageSelected.id
+  $scope.goStep2 = (method)->
     $scope.stepView = 'step2'
+    $scope.step1ChooseMethod = method
+
+#    console.log 'checkPolicy',$scope.checkPolicy.value
+#    console.log '$scope.packageSelected',$scope.packageSelected
+#    return if $scope.checkPolicy.value == false
+#    return unless $scope.packageSelected.id
+#    $scope.stepView = 'step2'
 
 
   $scope.getListPackage = ()->
     ApiService.getListPackage {},(error, result)->
       return if error
       return if result and result.error
-      $scope.listPackage = result.items
+      $scope.listPackage = result
 
   $scope.getListPackage()
 
