@@ -4,6 +4,7 @@ module.exports = function (grunt) {
     'coffee:compile',
     'jade:templates',
     'jade:index',
+    'jade:countdown',
     'sass:convert',
     'copy:assets',
     'jst:convert'
