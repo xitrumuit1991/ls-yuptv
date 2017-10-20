@@ -1,0 +1,86 @@
+.col-md-12.header
+	h1 Nạp Ucoin
+.col-md-12.body.step-1
+	.step
+		span.title 2
+		span Chọn gói Ucoin
+.col-md-12
+	.list
+		ul.list-inline.list-package
+			li.list-inline-item(
+			ng-if='listPackage && listPackage.bank && listPackage.bank.Packages'
+			ng-repeat='item in listPackage.bank.Packages'
+			ng-click='step2SelectedPackage(item, $index)'
+			ng-class='{"selected": step2PackageSelected.id == item.id }'
+			)
+				span {{item.name}}
+				br
+				span {{item.coin}} Ucoin
+				p Code: {{item.code}}
+				i.fa.fa-check(ng-if='step2PackageSelected.id == item.id')
+
+.col-md-12(ng-if='step2PackageSelected.id')
+	hr
+	p Chọn loại thẻ
+	.list
+		ul.list-inline.list-package
+			li.list-inline-item(
+			ng-click='step2SelectedBankType("the-noi-dia")'
+			ng-class='{"selected": step2BankSelectedType=="the-noi-dia" }'
+			)
+				span Thẻ ngân hàng nội địa
+				i.fa.fa-check(ng-if='step2BankSelectedType=="the-noi-dia" ')
+			li.list-inline-item(
+			ng-click='step2SelectedBankType("the-quoc-te")'
+			ng-class='{"selected": step2BankSelectedType=="the-quoc-te" }'
+			)
+				span Thẻ ngân hàng quốc tế
+				i.fa.fa-check(ng-if='step2BankSelectedType=="the-quoc-te"')
+
+.col-md-12(ng-if='step2PackageSelected.id && step2BankSelectedType=="the-noi-dia" ')
+	hr
+	p Chọn ngân hàng
+	.list
+		ul.list-inline.list-package
+			li.list-inline-item(
+			ng-if='listPackage && listPackage.bank && listPackage.bank.Sources'
+			ng-repeat='item in listPackage.bank.Sources'
+			ng-click='step2SelectedBank(item, $index)'
+			ng-class='{"selected": step2BankSelected.id == item.id }'
+			)
+				span {{item.name}}
+				br
+				span {{item.code}}
+				i.fa.fa-check(ng-if='step2BankSelected.id == item.id')
+
+
+
+.col-md-12(ng-if='step2BankSelectedType=="the-quoc-te" && step2PackageSelected.id ')
+	hr
+	.col-md-3
+	.col-md-6
+		.form
+			.form-group
+				label Vui lòng nhập chính xác thông tin
+			.form-group
+				label Số thẻ
+				input.form-control(type='text')
+			.form-group
+				label Ngày hết hạn
+				input.form-control(type='text')
+			.form-group
+				label Mã CVV
+				input.form-control(type='text')
+	.col-md-9.text-right
+		button.btn.btn-primary(
+		ng-click='submitBankQuocTe()'
+		) NẠP UCOIN
+
+
+.col-md-12(ng-if='step2BankSelectedType=="the-noi-dia" && step2BankSelected.id && step2PackageSelected.id ')
+	hr
+	.col-md-9.text-right
+		button.btn.btn-primary(
+		ng-disabled=" !step2BankSelected || !step2BankSelected.id "
+		ng-click='submitBankNoiDia()'
+		) NẠP UCOIN

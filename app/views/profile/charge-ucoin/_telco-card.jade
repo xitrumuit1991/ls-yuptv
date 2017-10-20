@@ -1,0 +1,62 @@
+.col-md-12.header
+	h1 Nạp Ucoin
+.col-md-12.body.step-1
+	.step
+		span.title 2
+		span Chọn gói Ucoin
+.col-md-12
+	.list
+		ul.list-inline.list-package
+			li.list-inline-item(
+			ng-if='listPackage && listPackage.telco && listPackage.telco.Packages'
+			ng-repeat='item in listPackage.telco.Packages'
+			ng-click='step2SelectedPackage(item, $index)'
+			ng-class='{"selected": step2PackageSelected.id == item.id }'
+			)
+				span {{item.name}}
+				br
+				span {{item.coin}} Ucoin
+				p Code: {{item.code}}
+				i.fa.fa-check(ng-if='step2PackageSelected.id == item.id')
+
+.col-md-12(ng-if='step1ChooseMethod == "card" && step2PackageSelected.id ')
+	hr
+	p Chọn nhà cung cấp
+	.list
+		ul.list-inline.list-package
+			li.list-inline-item(
+			ng-if='listPackage && listPackage.telco && listPackage.telco.Sources'
+			ng-repeat='item in listPackage.telco.Sources'
+			ng-click='step2SelectedProvider(item, $index)'
+			ng-class='{"selected": step2ProviderSelected.id == item.id }'
+			)
+				span {{item.name}}
+				br
+				span {{item.code}}
+				i.fa.fa-check(ng-if='step2ProviderSelected.id == item.id')
+
+.col-md-12(ng-if='step1ChooseMethod == "card" && step2ProviderSelected.id')
+	hr
+	p Nhập thông tin thẻ
+	.row
+		.form-group
+			.col-md-3
+			.col-md-2 Nhập mã thẻ cào
+			.col-md-4
+				input.form-control(type='text' ng-model='telcoCard.code')
+				br
+	.row
+		.form-group
+			.col-md-3
+			.col-md-2 Nhập số seri
+			.col-md-4
+				input.form-control(type='text' ng-model='telcoCard.serial')
+				br
+	hr
+	.row
+		.col-md-3
+		.col-md-6.text-right
+			button.btn.btn-primary(
+			ng-disabled=" telcoCard.code == '' || telcoCard.serial == '' "
+			ng-click='submitTelcoCard()'
+			) NẠP UCOIN

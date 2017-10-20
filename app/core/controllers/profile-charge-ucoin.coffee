@@ -14,6 +14,15 @@ ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
   GlobalConfig, $interval, $uibModal, Upload)->
   $scope.listPackage = []
   $scope.step2PackageSelected = null
+
+  $scope.step2ProviderSelected = null
+  $scope.telcoCard =
+    serial : ''
+    code : ''
+
+  $scope.step2BankSelected = null
+  $scope.step2BankSelectedType = null
+
   $scope.checkPolicy =
     value : false
 
@@ -23,15 +32,26 @@ ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
   $scope.step2SelectedPackage = (item, $index)->
     $scope.step2PackageSelected = item
 
+
+  $scope.step2SelectedProvider = (item, $index)->
+    $scope.step2ProviderSelected = item
+
+  $scope.step2SelectedBankType = (type )->
+    $scope.step2BankSelectedType = type
+
+  $scope.step2SelectedBank = (item, $index)->
+    $scope.step2BankSelected = item
+
+  $scope.submitTelcoCard = ()->
+
+  $scope.submitBankNoiDia = ()->
+
+  $scope.submitBankQuocTe = ()->
+
+
   $scope.goStep2 = (method)->
     $scope.stepView = 'step2'
     $scope.step1ChooseMethod = method
-
-#    console.log 'checkPolicy',$scope.checkPolicy.value
-#    console.log '$scope.packageSelected',$scope.packageSelected
-#    return if $scope.checkPolicy.value == false
-#    return unless $scope.packageSelected.id
-#    $scope.stepView = 'step2'
 
 
   $scope.getListPackage = ()->
@@ -41,9 +61,6 @@ ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
       $scope.listPackage = result
 
   $scope.getListPackage()
-
-
-
   return
 ctrl.$inject = [ '$rootScope', 'UtilityService', '$scope', '$timeout', '$location',
   '$window', '$state', '$stateParams',  'ApiService', '$http',
