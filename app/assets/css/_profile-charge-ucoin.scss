@@ -1,4 +1,18 @@
 .profile-charge-ucoin{
+  position: relative;
+  .btn-back-to-step1{
+    position: absolute;
+    left: -20px;
+    top: 25px;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0;
+  }
   .step{
     margin: 20px 0;
     .title{

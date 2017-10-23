@@ -30,16 +30,21 @@
 
 
 
-
 	.row.profile-charge-ucoin.step2(ng-if='stepView == "step2" && step1ChooseMethod == "sms" ')
+		button.btn.btn-default.btn-back-to-step1(ng-if='stepView == "step2"' ng-click='backToStep1()')
+			i.fa.fa-angle-left
 		include charge-ucoin/_sms
 
 
 	.row.profile-charge-ucoin.step2(ng-if='stepView == "step2" && step1ChooseMethod == "card" ')
+		button.btn.btn-default.btn-back-to-step1(ng-if='stepView == "step2"' ng-click='backToStep1()')
+			i.fa.fa-angle-left
 		include charge-ucoin/_telco-card
 
 
 	.row.profile-charge-ucoin.step2(ng-if='stepView == "step2" && step1ChooseMethod == "internetbanking" ')
+		button.btn.btn-default.btn-back-to-step1(ng-if='stepView == "step2"' ng-click='backToStep1()')
+			i.fa.fa-angle-left
 		include charge-ucoin/_internet-bank
 
 

@@ -53,6 +53,17 @@ ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
     $scope.stepView = 'step2'
     $scope.step1ChooseMethod = method
 
+  $scope.backToStep1 = ()->
+    $scope.stepView = 'step1'
+    $scope.step2PackageSelected = null
+    $scope.step2BankSelectedType = null
+    $scope.step2BankSelected = null
+    $scope.step1ChooseMethod = ''
+    $scope.step2ProviderSelected = null
+    $scope.telcoCard =
+      serial : ''
+      code : ''
+
 
   $scope.getListPackage = ()->
     ApiService.getListPackage {},(error, result)->
