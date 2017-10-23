@@ -41,9 +41,10 @@ obPaymentController.getSession = function (req,res){
 };
 obPaymentController.getPaymentView = function (req,res)
 {
-  // console.log('req.query=',req.query);
+  console.log('++++++++++++++++++++++++++++++++');
+  console.log('obPaymentController.getPaymentView');
   var queryToken = ((req && req.query) ? req.query.token : '');
-  // console.log('queryToken=',queryToken);
+  console.log('queryToken=',queryToken);
   async.parallel({
       resultPayment : function (callback) {
         requestApi({url:req.configs.api_base_url + 'payment/package'},callback);
@@ -80,9 +81,10 @@ obPaymentController.getPaymentView = function (req,res)
       sms =  results.resultPayment['sms'].Packages;
 
       if (!queryToken || queryToken == '') {
+        console.log('Not found queryToken; queryToken=', queryToken);
         return res.render('paymentforapp/index',{
           user:results.user,
-          token:req.session.token,
+          token: req.session ? req.session.token : '',
           banks: banks,
           megabanks : megabanks,
           providers: provider,
@@ -92,13 +94,18 @@ obPaymentController.getPaymentView = function (req,res)
           layout:layout
         });
       }
+
       if (queryToken && queryToken != '') {
+        console.log('has queryToken; queryToken=', queryToken);
         requestApi({
           url:req.configs.api_base_url + 'auth/verify-token?token=' + queryToken,
           headers:{'Authorization' : queryToken}
         },function (error,result) {
           console.log(result);
-          if (error) return res.redirect('/paymentforapp');
+          if (error) {
+            console.log('ERROR auth/verify-token?token', error);
+            return res.redirect('/paymentforapp');
+          }
           if (result) {
             req.session.user = result;
             req.session.token = queryToken;
@@ -106,7 +113,7 @@ obPaymentController.getPaymentView = function (req,res)
           } else {
             return res.render('paymentforapp/index',{
               user:results.user,
-              token:req.session.token,
+              token:req.session ? req.session.token : '',
               banks: banks,
               megabanks : megabanks,
               providers: provider,
