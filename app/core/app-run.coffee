@@ -20,9 +20,10 @@ appRun = (
       if result
         try
           $rootScope.user = JSON.parse(window.localStorage.user)
-          console.info '$rootScope.user =',$rootScope.user
         catch e
           $rootScope.user = null
+  console.info '$rootScope.user',$rootScope.user
+  console.info 'window.localStorage.token',window.localStorage.token
 
   $rootScope.$state = $state
   $rootScope.$stateParams = $stateParams
