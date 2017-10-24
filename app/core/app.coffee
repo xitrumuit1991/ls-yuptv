@@ -61,13 +61,30 @@ switch ENV
   when 'production'
     config = _.extend config,
       fBappId : '1933860780272829'
-      API_URL : "http://dev.livestar.vn:1010/api/v1/"
+      API_URL : "http://api.yuptv.vn/"
+      LIVE_DOMAIN : 'http://livestream.yuptv.vn/'
+      SOCKET_DOMAIN : 'http://socket.yuptv.vn/'
       env : 'production'
+#      1. API: http://api.yuptv.vn/
+#      2. Livestream: http://livestream.yuptv.vn/
+#      3. Socket: http://socket.yuptv.vn/
+#      4. Web: http://www.yuptv.vn/
+#      5. Admintool: http://admin.yuptv.vn/
 
   when 'development'
     config = _.extend config,
       fBappId : '1933860780272829'
       API_URL : "http://dev.livestar.vn:1010/api/v1/"
+      LIVE_DOMAIN : 'http://livestream.yuptv.vn/'
+      SOCKET_DOMAIN : 'http://socket.yuptv.vn/'
+      env : 'development'
+
+  when 'dev'
+    config = _.extend config,
+      fBappId : '1933860780272829'
+      API_URL : "http://dev.livestar.vn:1010/api/v1/"
+      LIVE_DOMAIN : 'http://livestream.yuptv.vn/'
+      SOCKET_DOMAIN : 'http://socket.yuptv.vn/'
       env : 'development'
 
 initInjector = angular.injector(["ng"])
