@@ -44,22 +44,20 @@ html
 		script(type='text/javascript', src='/js/jquery-1.12.1.min.js')
 		script(src='https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit&hl=vi')
 		script(type='text/javascript').
-			// Captcha google
 			var widgetCard;
 			var widgetMegabank;
 			var onloadCallback = function()
 			{
-				//console.log('load gg captcha ok, render captcha');
-				//console.log('grecaptcha=', grecaptcha);
 				if ( window.location.pathname.indexOf('paymentforapp') != -1)
 				{
+					var siteKey = '6Lc0MDAUAAAAAE9gOerDRuT3fAAxIpYf0lZWamqr'; // http://dev.livestar.vn:8000/paymentforapp
+					if( window.location.pathname.indexOf('yuptv.vn') != -1 )
+						siteKey = '6Le1nDUUAAAAALQuPcLTTU7QkmFd6q2Q2icKp2K4'; //yuptv.vn
 					widgetCard = grecaptcha.render('captcha-card', {
-						'sitekey' : '6Lc0MDAUAAAAAE9gOerDRuT3fAAxIpYf0lZWamqr', // http://dev.livestar.vn:8000/paymentforapp
-						'theme' : 'light'
+						'sitekey' : siteKey, 'theme' : 'light'
 					});
 					widgetMegabank = grecaptcha.render('captcha-payment', {
-						'sitekey' : '6Lc0MDAUAAAAAE9gOerDRuT3fAAxIpYf0lZWamqr', // http://dev.livestar.vn:8000/paymentforapp
-						'theme' : 'light'
+						'sitekey' : siteKey, 'theme' : 'light'
 					});
 				}
 			};
