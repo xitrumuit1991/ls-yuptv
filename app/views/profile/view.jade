@@ -56,9 +56,8 @@
 									h1 Đang theo dõi ({{following.total_item}})
 								.col-md-2(ng-repeat='followingItem in following.items')
 									.following-item
-										img.img-responsive(src='{{followingItem.User.avatars_path.avatar}}')
-										.name.text-center {{followingItem.title}}
-
+										img.img-responsive(src='{{followingItem.User.avatars_path.avatar || followingItem.Following.User.avatars_path.avatar}}')
+										.name.text-center {{followingItem.title || followingItem.Following.title}}
 								.col-md-12
 									uib-pagination.table-records-pages(
 									total-items='following.total_item',

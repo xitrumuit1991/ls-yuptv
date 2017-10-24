@@ -82,6 +82,7 @@ ctrl = ($rootScope,
       return UtilityService.notifyError('Không thể lấy danh sách đang theo dõi') if error
       if result and result.error
         return UtilityService.notifyError(result.message)
+      console.log 'getFollowing result', result
       $scope.following.items = result.rooms
       $scope.following.total_page = result.attr.total_page
       $scope.following.total_item = result.attr.total_item
