@@ -221,6 +221,26 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
       data : params
     self.request options, done
 
+  self.chargeByTelcoCard = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "payment/card"
+      method : 'POST'
+      data : params
+    self.request options, done
+
+  self.chargeBankLocal = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "payment/bank"
+      method : 'POST'
+      data : params
+    self.request options, done
+  self.confirmChargeBankLocal = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "payment/bank-callback"
+      method : 'GET'
+      data : params
+    self.request options, done
+
 
 
 #  self.getListRoomInCategory = (params, done)->
