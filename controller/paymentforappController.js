@@ -50,13 +50,16 @@ obPaymentController.getPaymentView = function (req,res)
         requestApi({url:req.configs.api_base_url + 'payment/package'},callback);
       },
       user:function (callback) {
+        if(!req.session.token)
+          return callback(null, null);
         requestApi({
           url:req.configs.api_base_url + 'auth/verify-token?token=' + req.session.token,
           headers:{'Authorization' : req.session.token}
         },function (error,result) {
           if (error) {
-            if (req.session && req.session.user) return callback(null,req.session.user);
-            return callback(null,null);
+            if (req.session && req.session.user)
+              return callback(null,req.session.user);
+            return callback(error,null);
           }
           if(result )
             return callback(null,result);
@@ -73,7 +76,7 @@ obPaymentController.getPaymentView = function (req,res)
       // console.log(results);
       if (err) {
         console.error(err);
-        return res.json({message: 'ERROR! Có lỗi xảy ra', detail : 'Can not get api list packages'})
+        return res.json({error: err, message: 'ERROR! Có lỗi xảy ra', detail : ''})
       }
       megabanks =  results.resultPayment['bank'].Packages;
       banks =  results.resultPayment['bank'].Sources;
