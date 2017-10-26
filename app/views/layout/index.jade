@@ -41,6 +41,13 @@ html
 		// STYLES
 		// STYLES END
 
+		if (process.env.NODE_ENV == 'development' || process.env.NODE_ENV == 'dev' || process.env.NODE_ENV == 'local')
+			script(type = 'text/javascript').
+				window.ENV = 'development';
+		else
+			script(type='text/javascript').
+				window.ENV = 'production';
+
 		script(type='text/javascript', src='/js/jquery-1.12.1.min.js')
 		script(src='https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit&hl=vi')
 		script(type='text/javascript').
@@ -51,8 +58,9 @@ html
 				if ( window.location.pathname.indexOf('paymentforapp') != -1)
 				{
 					var siteKey = '6Lc0MDAUAAAAAE9gOerDRuT3fAAxIpYf0lZWamqr'; // http://dev.livestar.vn:8000/paymentforapp
-					if( window.location.pathname.indexOf('yuptv.vn') != -1 )
+					if( window.location.host.indexOf('yuptv.vn') != -1 || window.ENV == "production" )
 						siteKey = '6Le1nDUUAAAAALQuPcLTTU7QkmFd6q2Q2icKp2K4'; //yuptv.vn
+
 					widgetCard = grecaptcha.render('captcha-card', {
 						'sitekey' : siteKey, 'theme' : 'light'
 					});
@@ -84,12 +92,7 @@ html
 		div(ui-view='main')
 		footer
 
-		if (process.env.NODE_ENV == 'development' || process.env.NODE_ENV == 'dev' || process.env.NODE_ENV == 'local')
-			script(type = 'text/javascript').
-				window.ENV = 'development';
-		else
-			script(type='text/javascript').
-				window.ENV = 'production';
+
 		// SCRIPTS
 		// SCRIPTS END
 
