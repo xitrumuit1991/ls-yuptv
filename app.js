@@ -29,7 +29,7 @@ app.use(session({
   cookie: true
 }));
 
-recaptcha.init(configs.web_SITE_KEY,configs.web_SECRET_KEY);
+// recaptcha.init(configs.web_SITE_KEY,configs.web_SECRET_KEY);
 
 app.set('trust proxy',1);
 app.set('view engine', 'ejs');
