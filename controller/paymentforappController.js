@@ -48,12 +48,11 @@ obPaymentController.getPaymentView = function (req,res)
         requestApi({url:req.configs.api_base_url + 'payment/package'},callback);
       },
       user:function (callback) {
-        if(!queryToken || (req.session && !req.session.token) )
+        if (req.session && !req.session.token)
           return callback(null, null);
-        var token = queryToken || req.session.token;
         requestApi({
-          url:req.configs.api_base_url + 'auth/verify-token?token=' + token,
-          headers:{'Authorization' : token}
+          url:req.configs.api_base_url + 'auth/verify-token?token=' + req.session.token,
+          headers:{'Authorization' : req.session.token}
         },function (error,result) {
           if (error) {
             if (req.session && req.session.user)
@@ -62,8 +61,6 @@ obPaymentController.getPaymentView = function (req,res)
           }
           if(result )
           {
-            req.session.token = token;
-            req.session.user = result;
             return callback(null,result);
           }else{
             return callback(null, null );
@@ -74,79 +71,61 @@ obPaymentController.getPaymentView = function (req,res)
     function (err,results)
     {
       // console.log(results);
-
-      // if (err) {
-      //   console.log('ERROR auth/verify-token?token', err);
-      //   return res.redirect('/paymentforapp');
-      // }
       if (err) {
-        console.error(err);
-        return res.json({error: err, message: 'ERROR! Có lỗi xảy ra', detail : ''})
+        console.log('ERROR auth/verify-token?token', err);
+        console.log('ERROR! Có lỗi xảy ra', err);
+        return res.redirect('/paymentforapp');
       }
-
       var megabanks = ( results && results.resultPayment ) ? results.resultPayment['bank'].Packages : [];
       var banks =  ( results && results.resultPayment ) ? results.resultPayment['bank'].Sources : [];
       var provider = ( results && results.resultPayment ) ?  results.resultPayment['telco'].Sources : [];
       var sms =  ( results && results.resultPayment ) ?  results.resultPayment['sms'].Packages : [];
-      res.render('paymentforapp/index',
+
+      if (!queryToken || queryToken == '')
       {
-        user: results.user || req.session.user,
-        token:req.session ? req.session.token : '',
-        banks: banks,
-        megabanks : megabanks,
-        providers: provider,
-        sms: sms,
-        page_title:'Thanh toán',
-        flag_mobile:flag_mobile,
-        layout:layout
-      });
-
-      // if (!queryToken || queryToken == '') {
-      //   console.log('Not found queryToken; queryToken=', queryToken);
-      //   return res.render('paymentforapp/index',{
-      //     user:results.user,
-      //     token: req.session ? req.session.token : '',
-      //     banks: banks,
-      //     megabanks : megabanks,
-      //     providers: provider,
-      //     sms: sms,
-      //     page_title:'Thanh toán',
-      //     flag_mobile:flag_mobile,
-      //     layout:layout
-      //   });
-      // }
-
-      // if (queryToken && queryToken != '') {
-      //   console.log('has queryToken; queryToken=', queryToken);
-      //   requestApi({
-      //     url:req.configs.api_base_url + 'auth/verify-token?token=' + queryToken,
-      //     headers:{'Authorization' : queryToken}
-      //   },function (error,result) {
-      //     console.log(result);
-      //     if (error) {
-      //       console.log('ERROR auth/verify-token?token', error);
-      //       return res.redirect('/paymentforapp');
-      //     }
-      //     if (result) {
-      //       req.session.user = result;
-      //       req.session.token = queryToken;
-      //       return res.redirect('/paymentforapp');
-      //     } else {
-      //       return res.render('paymentforapp/index',{
-      //         user:results.user,
-      //         token:req.session ? req.session.token : '',
-      //         banks: banks,
-      //         megabanks : megabanks,
-      //         providers: provider,
-      //         sms: sms,
-      //         page_title:'Thanh toán',
-      //         flag_mobile:flag_mobile,
-      //         layout:layout
-      //       });
-      //     }
-      //   });
-      //   return;
-      // }
+        console.log('Not found queryToken; queryToken=', queryToken);
+        return res.render('paymentforapp/index',{
+          user: results.user,
+          token: req.session ? req.session.token : '',
+          banks: banks,
+          megabanks : megabanks,
+          providers: provider,
+          sms: sms,
+          page_title:'Thanh toán',
+          flag_mobile:flag_mobile,
+          layout:layout
+        });
+      }
+      else{
+        console.log('has queryToken; queryToken=', queryToken);
+        requestApi({
+          url:req.configs.api_base_url + 'auth/verify-token?token=' + queryToken,
+          headers:{'Authorization' : queryToken}
+        },function (error,result) {
+          console.log(result);
+          if (error) {
+            console.log('ERROR auth/verify-token?token', error);
+            return res.redirect('/paymentforapp');
+          }
+          if (result) {
+            req.session.user = result;
+            req.session.token = queryToken;
+            return res.redirect('/paymentforapp');
+          } else {
+            return res.render('paymentforapp/index',{
+              user:results.user,
+              token:req.session ? req.session.token : '',
+              banks: banks,
+              megabanks : megabanks,
+              providers: provider,
+              sms: sms,
+              page_title:'Thanh toán',
+              flag_mobile:flag_mobile,
+              layout:layout
+            });
+          }
+        });
+      }
     });
 };
 
