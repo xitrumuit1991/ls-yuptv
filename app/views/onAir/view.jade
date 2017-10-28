@@ -1,0 +1,59 @@
+.on-air-page
+	home-slider
+	.container
+		.row
+			.col-md-12
+				.pull-left
+					.title
+						img(src='/images/onair_title.png')
+						span KÊNH ON AIR
+				.pull-right
+					ul.list-inline.on-air-menu-category
+						li.list-inline-item(ng-repeat='category in categorys'
+						ng-class='{"active" : categorySelected.id == category.id }'
+						ng-click='selectCategory(category, $index)')
+							a(href='')
+								| {{category.title}}
+							span(ng-if=' !$last ') &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+		.row(ng-if='!items || items.length <=0 ')
+			.col-md-12
+				p.text-danger Không có room nào
+		.row(ng-if='items && items.length > 0 ')
+			.col-md-4
+				.on-air-block-main(ng-if='items && items[0]')
+					img(src='{{items[0].User.avatars_path.avatar}}')
+					.bottom
+						p.title {{items[0].title}}
+						i.fa.fa-eye
+						span {{items[0].views}}
+						i.fa.fa-heart
+						span {{items[0].hearts}}
+						button.btn.add-plus(ng-if='items[0].isFollow == false')
+							i.fa.fa-plus
+			.col-md-8
+				.row
+					.col-md-3(ng-repeat='ite in items' ng-if='$index > 0 && $index < 9'
+					style='padding: 5px;')
+						.on-air-block-main.on-air-block
+							img(src='{{ite.User.avatars_path.avatar}}')
+							.bottom
+								p.title {{ite.title}}
+								i.fa.fa-eye
+								span {{ite.views}}
+								i.fa.fa-heart
+								span {{ite.hearts}}
+								button.btn.add-plus(ng-if='ite.isFollow == false')
+									i.fa.fa-plus
+		.row(ng-if='items.length > 8' style='margin: 30px 0;')
+			.col-md-2(ng-repeat='ite in items' ng-if='$index > 8')
+				.on-air-block-more
+					img(src='{{ite.User.avatars_path.avatar}}')
+					.bottom
+						p.title {{ite.title}}
+						i.fa.fa-eye
+						span {{ite.views}}
+						i.fa.fa-heart
+						span {{ite.hearts}}
+						button.btn.add-plus(ng-if='ite.isFollow == false')
+							i.fa.fa-plus
+

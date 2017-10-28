@@ -214,6 +214,7 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
       method : 'POST'
       data : params
     self.request options, done
+
   self.getListPackage =(params, done)->
     options =
       url : GlobalConfig.API_URL + "payment/package"
@@ -240,6 +241,30 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
       method : 'GET'
       data : params
     self.request options, done
+
+  self.onAir = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "room/list-by-view"
+      method : 'GET'
+      data : params
+    self.request options, done
+
+  self.onAirByCategory = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "room/list-by-category"
+      method : 'GET'
+      data : params
+    self.request options, done
+
+  self.getCategory = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "room/category"
+      method : 'GET'
+      data : params
+    self.request options, done
+
+
+
 
 
 

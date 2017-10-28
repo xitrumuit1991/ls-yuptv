@@ -70,7 +70,8 @@ ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
       card_serviceProvider	: $scope.step2ProviderSelected.name
       sourceId :  $scope.step2ProviderSelected.id
       packageId : $scope.step2PackageSelected.id
-      key_payment : ''
+      skipCaptcha : true
+      key_payment : 'key_payment'
     console.log 'options submitTelcoCard', params
     ApiService.chargeByTelcoCard(params,(error , result)->
       return UtilityService.notifyError(result.message) if error
@@ -88,11 +89,12 @@ ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
     return if $scope.step1ChooseMethod != 'internetbanking'
     params =
       fullname	: ''
-      bankId : $scope.step2BankSelected.id
+      bankId : $scope.step2BankSelected.code
       sourceId : $scope.step2BankSelected.id
       packageId: $scope.step2PackageSelected.id
-      key_payment : ''
-      callbackUrl : ''
+      key_megabank : 'key_megabank'
+      callbackUrl : '/profile/charge-ucoin'
+      skipCaptcha : true
     console.log 'options submitBankNoiDia', params
     ApiService.chargeBankLocal(params,(error , result)->
       return UtilityService.notifyError(result.message) if error and result

@@ -1,0 +1,124 @@
+.on-air-page{
+  .on-air-menu-category{
+    li a{
+      text-decoration: none;
+      outline: none;
+      cursor: pointer;
+      color: #444444;
+    }
+    li.active{
+      a{
+        text-decoration: underline;
+        font-weight: bold;
+        color: #000;
+      }
+    }
+  }
+
+  .on-air-block-main{
+    position: relative;
+    cursor: pointer;
+    img{
+      width: 100%;
+    }
+    p.title{
+      margin: 0;
+      font-size: 20px;
+      color: #fff;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+    .bottom {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 10px;
+      background-color: rgba(0, 0, 0, 0.5);
+      span {
+        color: #fff;
+        margin: 0 10px 0 5px;
+      }
+      i.fa{
+        color: #fff;
+      }
+    }
+    .add-plus{
+      position: absolute;
+      right: 3%;
+      bottom: 20%;
+      border-radius: 50%;
+      color :#fff;
+      background: #a60efd;
+      width: 30px;
+      height: 30px;
+      line-height:30px;
+      vertical-align: top;
+      font-size: 16px;
+      padding: 0;
+    }
+  }
+
+  .on-air-block{
+    //margin-bottom: 20px;
+    cursor: pointer;
+    p.title{
+      margin: 0;
+      font-size: 12px;
+      color: #fff;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+    .bottom {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+    .add-plus{
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      vertical-align: top;
+      font-size: 12px;
+      padding: 0;
+    }
+  }
+
+  .on-air-block-more{
+    background: #ccc;
+    img{
+      width: 100%;
+    }
+    .bottom{
+      position: relative;
+      padding: 5px;
+      p.title{
+        margin: 0;
+        font-size: 12px;
+        color: #fff;
+        font-weight: bold;
+        letter-spacing: 2px;
+      }
+      span {
+        color: #fff;
+        margin: 0 10px 0 5px;
+      }
+      i.fa{
+        color: #fff;
+      }
+      .add-plus{
+        position: absolute;
+        right: 3%;
+        bottom: 3%;
+        border-radius: 50%;
+        color :#fff;
+        background: #a60efd;
+
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        vertical-align: top;
+        font-size: 12px;
+        padding: 0;
+      }
+    }
+  }
+
+}
