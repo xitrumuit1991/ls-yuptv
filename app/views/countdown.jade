@@ -25,6 +25,7 @@ html
 		meta(itemprop='name', content='')
 		meta(itemprop='description', content='')
 		meta(itemprop='image', content='')
+		link(rel="icon" type="image/png" href="/images/favicon.png")
 		style.
 			body, html {
 				height: 100%
@@ -39,22 +40,11 @@ html
 				font-family: "Courier New", Courier, monospace;
 				font-size: 25px;
 			}
-
-			/* Position text in the top-left corner */
 			.topleft {
 				position: absolute;
 				top: 0;
 				left: 16px;
 			}
-
-			/* Position text in the bottom-left corner */
-			.bottomleft {
-				position: absolute;
-				bottom: 0;
-				left: 16px;
-			}
-
-			/* Position text in the middle */
 			.middle {
 				position: absolute;
 				top: 50%;
@@ -63,29 +53,31 @@ html
 				text-align: center;
 			}
 
-			/* Style the <hr> element */
 			hr {
 				margin: auto;
 				width: 40%;
 			}
-
 		title YUP
-		// STYLES
-		// STYLES END
 	body
 		.bgimg
 			.topleft
-				//p Logo
 			.middle
+				img(src='/images/Yup_Icon_1024.png' style="width:200px;")
 				h1 COMING SOON
 				hr
 				p(id="demo" style="font-weigth:bold;font-size:30px")
-				//p 35 days
-			.bottomleft
-				//p Some text
+				.download-app
+					table.table(style='display: block; margin: 0 auto;')
+						tr
+							td()
+								a(href='https://play.google.com/store/apps/details?id=loitp.anhdv.yup&hl=en' target='_blank')
+									img(src='/images/download-android.png' style='width: 300px;')
+							td
+								a(href='javascript:void(0);' onclick='alert("App is not available now!")')
+									img(src='/images/download-apple.png' style='width: 300px;')
 
 	script.
-		var countDownDate = new Date("Jan 5, 2018 15:37:25").getTime();
+		var countDownDate = new Date("2018-01-01").getTime();
 		var x = setInterval(function () {
 			var now = new Date().getTime();
 			var distance = countDownDate - now;
