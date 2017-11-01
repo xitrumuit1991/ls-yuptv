@@ -57,7 +57,7 @@ config.menuMainProfile = [
   },
 ]
 
-switch ENV
+switch window.ENV
   when 'production'
     config = _.extend config,
       fBappId : '1933860780272829'

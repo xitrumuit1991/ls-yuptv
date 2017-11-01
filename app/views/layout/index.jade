@@ -41,12 +41,12 @@ html
 		// STYLES
 		// STYLES END
 
-		if (process.env.NODE_ENV == 'development' || process.env.NODE_ENV == 'dev' || process.env.NODE_ENV == 'local')
+		if (process.env.NODE_ENV == 'production' || process.env.NODE_ENV == 'prod' )
 			script(type = 'text/javascript').
-				window.ENV = 'development';
+				window.ENV = 'production';
 		else
 			script(type='text/javascript').
-				window.ENV = 'production';
+				window.ENV = 'development';
 
 		script(type='text/javascript', src='/js/jquery-1.12.1.min.js')
 		script(src='https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit&hl=vi')
