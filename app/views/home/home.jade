@@ -32,9 +32,8 @@ home-slider
 		.col-md-2(ng-repeat='room in groupIdo.Rooms | limitTo : 6')
 			.item
 				a(ui-sref='base.room-detail')
-					//img.item-image(src='/images/image_am_nhac.png')
-					//img.item-image(src='{{room.banners.w512h512}}')
-					img.item-image(src='{{room.banners.w330h330}}')
+					img.item-image(src='{{room.banners.banner}}')
+					p(style='display: none;') {{room.banners.banner}}
 				.item-group.row
 					.item-title.col-md-8
 						a(ui-sref='base.room-detail')
