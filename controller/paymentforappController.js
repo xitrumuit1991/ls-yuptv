@@ -144,12 +144,14 @@ obPaymentController.getPaymentHuongDan = function (req,res) {
 //router.get('/result/:id',
 obPaymentController.getPaymentResult = function (req,res) {
   var id = req.params ? req.params.id : '';
+  var mid = req.params ? req.params.mid : '';
   var transid = (req.query ? req.query.transid : '') || (req.query ? req.query.transId : '' );
   var responCode = req.query ? req.query.responCode : '';
   var mac = req.query ? req.query.mac : '';
 
   console.log('-----------response tu banking-------');
   console.log('id=',id);
+  console.log('mid=',mid);
   console.log('transid=',transid);
   console.log('responCode=',responCode);
   console.log('mac=',mac);
