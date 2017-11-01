@@ -31,12 +31,12 @@ home-slider
 	.group-content
 		.col-md-2(ng-repeat='room in groupIdo.Rooms | limitTo : 6')
 			.item
-				a(ui-sref='base.room-detail')
+				a(ui-sref='base.room-detail({id : room.id})')
 					img.item-image(src='{{room.banners.banner}}')
 					p(style='display: none;') {{room.banners.banner}}
 				.item-group.row
 					.item-title.col-md-8
-						a(ui-sref='base.room-detail')
+						a(ui-sref='base.room-detail({id : room.id})')
 							p.title {{room.title}}
 						i.fa.fa-eye
 						span.value {{room.views}} &nbsp;&nbsp;
