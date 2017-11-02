@@ -1,3 +1,150 @@
 .room-detail{
+  background: #111111;
+  padding: 30px 0;
+  .title-room{
+    color: #fff !important;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .content{
+    color: #fff;
+    .text-top3{
+      line-height: 70px;
+      font-size: 20px;
+    }
+    .top-nav{
+      background: #1b1b1b;
+      padding: 10px;
+      ul{
+        display: inline-block;
+        line-height: 50px;
+        margin: 0;
+        i.fa, span{
+          color: #939393;
+        }
+      }
+      .btn-schedule{
+        line-height: 20px;
+        margin-top: 10px;
+        background: transparent;
+        outline: none;
+        color: #18d1ff;
+        border-radius: 5px;
+        border: 1px solid #1a525f;
+      }
+    }
+  }
+  .top-3-tang-qua{
+    background: #3f3f3f;
+    color: #fff;
+    .item{
+      padding: 10px;
+      line-height: 40px;
+      &.first{
+        .name, .ucoin{
+          color: #fdbf16;
+        }
+      }
+      &.second{
+        .name, .ucoin{
+          color: #79d3c9;
+        }
+      }
+      &.third{
+        .name, .ucoin{
+          color: #d16131;
+        }
+      }
 
+      .image{
+        //width: 100%;
+        display: inline-block;
+        margin-right: 10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+      .name{
+
+      }
+      .ucoin{
+
+      }
+    }
+  }
+
+  .content-chat{
+    background: #323232;
+    border-top:1px solid #282828;
+    padding-top: 10px;
+    .item{
+      padding:10px;
+      .image{
+        display: inline-block;
+        margin-right: 10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        line-height: 40px;
+        vertical-align: top;
+      }
+      .group-name{
+        display: inline-block;
+        .name{
+          font-size: 12px;
+          color: #8b8b8b;
+          line-height: 20px;
+        }
+        .subname{
+          font-size: 12px;
+          color: #fff;
+          line-height: 20px;
+        }
+      }
+      .time{
+        font-size: 12px;
+        color: #8b8b8b;
+        display: inline-block;
+        line-height: 40px;
+      }
+    }
+  }
+
+  .chat-form{
+    background: #000;
+    //line-height: 30px;
+    input.chat{
+      display: inline-block;
+      width: 70%;
+      background: #000;
+      outline: none;
+      border: none;
+      height: 40px;
+    }
+    .group-btn{
+      height: 40px;
+      display: inline-block;
+      width: auto;
+      //float: left;
+      text-align: right;
+      float: right;
+      button{
+        color: #fff;
+        outline: none;
+        background: transparent;
+        border: none;
+        line-height: 40px;
+        width: 30px;
+        height: 40px;
+        padding: 0;
+        margin: 0;
+        i.fa{
+          font-size: 14px;
+        }
+        &:hover{
+          background: #01c4f4;
+        }
+      }
+    }
+  }
 }
