@@ -102,7 +102,8 @@ angular
   "angular-loading-bar",
   'ngFileUpload',
   '720kb.datepicker',
-  'ui.bootstrap.datetimepicker'
+  'ui.bootstrap.datetimepicker',
+#  'vjs-video'
 ])
 .constant "AppName", "YUP"
 .constant "GlobalConfig", config

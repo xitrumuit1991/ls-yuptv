@@ -7,9 +7,16 @@ data-keyboard="false")
 				button.close(type='button', data-dismiss='modal') ×
 				h4.modal-title {{modal.video.title}}
 			.modal-body
-				p Some text in the modal.
-				p url play {{modal.video.Session.playLiveUrl}}
-				p url play {{modal.video.Session.broadcastUrl}}
+				video(class="video-js vjs-default-skin"
+				style='width: 100% !important;'
+				id='videojs-modal'
+				controls
+				preload="auto"
+				width="600" height="400"
+				autoplay
+				)
+				//vjs-video
+				//vjs-media="mediaToggle"
 			.modal-footer
 				button.btn.btn-default(type='button', data-dismiss='modal') Close
 
