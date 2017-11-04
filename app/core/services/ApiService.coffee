@@ -153,9 +153,6 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
     self.request options, done
 
   self.getListRoomSchedule = (params, done)->
-#    keyword	String
-#    type	String Type in [day, day3, week, month, all]
-#    time optional	Timestamp Tính từ ngày
     options =
       url : GlobalConfig.API_URL + "room/list-by-schedule"
       method : 'GET'
@@ -262,6 +259,49 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
       method : 'GET'
       data : params
     self.request options, done
+
+  self.room =
+    getRoomById : (params, done)->
+      options =
+        url : GlobalConfig.API_URL + "room/#{params.roomId}/"
+        method : 'GET'
+        data : params
+      self.request options, done
+    giftList : (params, done)->
+      options =
+        url : GlobalConfig.API_URL + "gift/list"
+        method : 'GET'
+        data : params
+      self.request options, done
+    getVideoDetailOfRoom : (params, done)->
+      options =
+        url : GlobalConfig.API_URL + "user/video"
+        method : 'GET'
+        data : params
+      self.request options, done
+
+  self.socket =
+    joinRoom : (params, done)->
+      options =
+        url : GlobalConfig.API_URL + "room/#{params.roomId}/"
+        method : 'GET'
+        data : params
+      self.request options, done
+    getListUserInRoom : (params, done)->
+      options =
+        url : GlobalConfig.API_URL + "room/#{params.roomId}/"
+        method : 'GET'
+        data : params
+      self.request options, done
+    sendMessage : (params, done)->
+      options =
+        url : GlobalConfig.API_URL + "room/#{params.roomId}/"
+        method : 'GET'
+        data : params
+      self.request options, done
+
+
+
 
 
 

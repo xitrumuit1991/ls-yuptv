@@ -148,3 +148,97 @@
     }
   }
 }
+
+.room-detail .room-content-left{
+  position: relative;
+  .han-che-nguoi-xem{
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%,0);
+    text-align: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    .price{
+      margin: 5px;
+      color: #dd6d25;
+    }
+    .buy-ticker{
+      span{margin: 5px}
+      button{
+        border-radius: 20px;
+        padding: 5px 20px;
+        background: #cc1fc3;
+        border-color: #cc1fc3;
+        outline: none;
+      }
+    }
+  }
+  .room-player{
+    height: 450px;
+    background-size:cover ;
+    background-repeat: no-repeat;
+    padding: 0;
+  }
+  .list-qua-tang{
+    height: 150px;
+    background: #ccc;
+    padding: 0;
+  }
+}
+
+.room-detail .room-content-right{
+  height:600px;
+  position: relative;
+  .chat-form{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+  .content-chat{
+    overflow-y: scroll;
+    height: 380px;
+  }
+  .top-3-tang-qua{
+    height: 180px;
+  }
+}
+
+.list-video-saved{
+  background: #fff;
+  margin: 20px 0;
+  .title{
+    margin: 20px 0;
+  }
+  .item{
+    background: #f1f1f1;
+    position: relative;
+    a{
+      cursor: pointer;
+    }
+    .item-image{
+      width: 100%;
+    }
+    .video-title{
+      text-align: center;
+    }
+    .group{
+      padding: 5px;
+    }
+    .mode{
+      position: absolute;
+      right: 3%;
+      bottom: 3%;
+      font-size: 12px;
+      background: #bb0fe0;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      text-align: center;
+      border-radius: 50%;
+      color: #fff;
+    }
+  }
+}

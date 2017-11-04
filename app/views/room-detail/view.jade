@@ -15,8 +15,20 @@
 				.col-md-4
 					.text-center.text-top3 Top 3 quà tăng
 			.row
-				.col-md-8
-				.col-md-4(style='padding:0;')
+				.col-md-8.room-content-left(style='padding:0;')
+					.han-che-nguoi-xem
+						p Chương trình hạn chế người xem
+						p.text-center
+							span Giá vé:
+							span.price 100 Ucoin
+						.buy-ticker
+							button.btn.btn-primary
+								span Mua vé
+								i.fa.fa-play-circle
+					.room-player(style='background-image: url("{{item.banner}}");')
+					.list-qua-tang
+
+				.col-md-4.room-content-right(style='padding:0;')
 					.top-3-tang-qua
 						.item.first
 							img.image(src='http://via.placeholder.com/20x20')
@@ -48,5 +60,6 @@
 							button.btn-send
 								i.fa.fa-send
 
+list-video-saved(ng-model='id')
 
 

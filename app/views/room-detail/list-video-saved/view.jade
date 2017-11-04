@@ -1,0 +1,37 @@
+.modal.fade(role='dialog' id='{{modal.id}}' tabindex='-1', aria-labelledby='exampleModalLabel', aria-hidden='true'
+data-backdrop="static"
+data-keyboard="false")
+	.modal-dialog
+		.modal-content
+			.modal-header
+				button.close(type='button', data-dismiss='modal') ×
+				h4.modal-title {{modal.video.title}}
+			.modal-body
+				p Some text in the modal.
+				p url play {{modal.video.Session.playLiveUrl}}
+				p url play {{modal.video.Session.broadcastUrl}}
+			.modal-footer
+				button.btn.btn-default(type='button', data-dismiss='modal') Close
+
+.list-video-saved
+	.container
+		.col-md-12
+			.title
+				img(src='/images/onair_title.png')
+				span(style='margin-left:10px;') Video đã lưu của kênh
+		//.col-md-12(ng-if='listVideoSaved.length <= 0')
+			p Không có video nào
+		.col-md-12(ng-if='listVideoSaved.length > 0')
+			.row
+				.col-md-2(ng-repeat='video in listVideoSaved | limitTo : 6')
+					.item
+						a(ng-click='openModalVideo(video)')
+							img.item-image(src='{{video.thumb}}')
+							p.video-title {{video.title}}
+						.group
+							i.fa.fa-eye
+							span(style='margin: 0 10px 0 5px;') {{video.view}}
+							i.fa.fa-share
+							span(style='margin: 0 10px 0 5px;') {{video.share}}
+						.mode(ng-if='video.mode == "1"')
+							i.fa.fa-lock(style='cursor:pointer;')
