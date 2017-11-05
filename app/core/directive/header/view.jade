@@ -14,7 +14,7 @@
 						|             Đăng Nhập
 			.div-profile-logged(ng-if='isLogged == true')
 				ul.list-inline.text-right.list-link-logged
-					li.list-inline-item
+					li.list-inline-item(ng-if='isHome == false ')
 						i.fa.fa-search
 					li.list-inline-item
 						i.fa.fa-bell-o

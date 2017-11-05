@@ -5,13 +5,13 @@
 				.col-md-8.top-nav
 					ul.list-inline
 						li.list-inline-item
-							span.title-room Review phim hay nhat
+							span.title-room {{item.title}}
 						li.list-inline-item
 							i.fa.fa-eye
-							span(style='margin: 0 15px 0 5px;') 111
-							i.fa.fa-eye
-							span(style='margin: 0 15px 0 5px;') 111
-					button.btn.btn-primary.pull-right.btn-schedule Lịch phát sóng
+							span(style='margin: 0 15px 0 5px;') {{item.views}}
+							i.fa.fa-heart
+							span(style='margin: 0 15px 0 5px;') {{item.hearts}}
+					button.btn.btn-primary.pull-right.btn-schedule(ng-click='openLichDien()') Lịch phát sóng
 				.col-md-4
 					.text-center.text-top3 Top 3 quà tăng
 			.row
@@ -25,7 +25,7 @@
 							button.btn.btn-primary
 								span Mua vé
 								i.fa.fa-play-circle
-					.room-player(style='background-image: url("{{item.banner}}");')
+					.room-player(style='background-image: url("{{item.banner || item.background || item.User.avatar}}");')
 					.list-qua-tang
 
 				.col-md-4.room-content-right(style='padding:0;')
@@ -55,11 +55,13 @@
 						.group-btn
 							button.btn-smile
 								i.fa.fa-smile-o
-							button.btn-gift
+							button.btn-gift(ng-click='openListGift()')
 								i.fa.fa-gift
 							button.btn-send
 								i.fa.fa-send
 
 list-video-saved(ng-model='id')
+list-gift(ng-model='id')
+lich-dien-room-detail(ng-model='id')
 
 

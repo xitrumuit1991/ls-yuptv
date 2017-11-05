@@ -1,0 +1,39 @@
+.modal.fade.modal-lich-dien-room-detail(role='dialog' id='{{modal.id}}' tabindex='-1', aria-labelledby='exampleModalLabel', aria-hidden='true'
+data-backdrop="static"
+data-keyboard="false")
+	.modal-dialog(style='width: 800px;')
+		.modal-content
+			.modal-header
+				button.close(type='button', data-dismiss='modal') ×
+				h4.modal-title.text-center Lịch Diễn
+			.modal-body
+				.group-image
+					img.img-responsive.image(src='{{item.User.avatars_path.avatar}}')
+				.group-name
+					span.text-left.title-main {{item.title}}
+					button.btn-follow(
+					ng-if='item.isFollow == false'
+					ng-click='clickFollowRoomInSchedule()'
+					) Theo dõi
+					.group-icon
+						i.fa.fa-eye
+						span {{item.views}}
+						i.fa.fa-heart-o
+						span {{item.hearts}}
+				.content
+					table.table.table-bordered
+						tr
+							td
+								.title Ngày diễn
+							td
+								.title Khung giờ
+						tr(ng-if='list && list.length <= 0')
+							td(colspan='2') Không có lịch diễn nào
+						tr( ng-repeat='ite in list' ng-if='list && list.length > 0')
+							td
+								span.label-hour {{ite.start | date : 'dd-MM-yyyy'}}
+							td
+								span.hour {{ite.start | date : 'HH:mm' }}
+								button.pull-right.btn-follow.btn-get-noty Nhận thông báo
+			.modal-footer
+				button.btn.btn-default(type='button', data-dismiss='modal') Close

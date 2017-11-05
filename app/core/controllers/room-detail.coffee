@@ -30,6 +30,19 @@ ctrl = ($rootScope,
       $scope.item = result
       console.log 'getRoomById',$scope.item
 
+
+  $scope.openLichDien = ()->
+    param =
+      item : $scope.item
+    $rootScope.$emit 'open-lich-dien-room-detail', param
+
+  $scope.openListGift = ()->
+    param =
+      items : $scope.giftList.items
+      action : (item)->
+        console.log 'click action', item
+    $rootScope.$emit 'open-list-gift', param
+
   $scope.getListGift = ()->
     ApiService.room.giftList({page:0, limit:1000},(err, result)->
       return if err

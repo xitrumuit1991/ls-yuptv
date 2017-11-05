@@ -1,29 +1,29 @@
-.room-detail{
+.room-detail {
   background: #111111;
   padding: 30px 0;
-  .title-room{
+  .title-room {
     color: #fff !important;
     font-size: 20px;
     font-weight: bold;
   }
-  .content{
+  .content {
     color: #fff;
-    .text-top3{
+    .text-top3 {
       line-height: 70px;
       font-size: 20px;
     }
-    .top-nav{
+    .top-nav {
       background: #1b1b1b;
       padding: 10px;
-      ul{
+      ul {
         display: inline-block;
         line-height: 50px;
         margin: 0;
-        i.fa, span{
+        i.fa, span {
           color: #939393;
         }
       }
-      .btn-schedule{
+      .btn-schedule {
         line-height: 20px;
         margin-top: 10px;
         background: transparent;
@@ -34,29 +34,29 @@
       }
     }
   }
-  .top-3-tang-qua{
+  .top-3-tang-qua {
     background: #3f3f3f;
     color: #fff;
-    .item{
+    .item {
       padding: 10px;
       line-height: 40px;
-      &.first{
-        .name, .ucoin{
+      &.first {
+        .name, .ucoin {
           color: #fdbf16;
         }
       }
-      &.second{
-        .name, .ucoin{
+      &.second {
+        .name, .ucoin {
           color: #79d3c9;
         }
       }
-      &.third{
-        .name, .ucoin{
+      &.third {
+        .name, .ucoin {
           color: #d16131;
         }
       }
 
-      .image{
+      .image {
         //width: 100%;
         display: inline-block;
         margin-right: 10px;
@@ -64,22 +64,22 @@
         height: 40px;
         border-radius: 50%;
       }
-      .name{
+      .name {
 
       }
-      .ucoin{
+      .ucoin {
 
       }
     }
   }
 
-  .content-chat{
+  .content-chat {
     background: #323232;
-    border-top:1px solid #282828;
+    border-top: 1px solid #282828;
     padding-top: 10px;
-    .item{
-      padding:10px;
-      .image{
+    .item {
+      padding: 10px;
+      .image {
         display: inline-block;
         margin-right: 10px;
         width: 40px;
@@ -88,20 +88,20 @@
         line-height: 40px;
         vertical-align: top;
       }
-      .group-name{
+      .group-name {
         display: inline-block;
-        .name{
+        .name {
           font-size: 12px;
           color: #8b8b8b;
           line-height: 20px;
         }
-        .subname{
+        .subname {
           font-size: 12px;
           color: #fff;
           line-height: 20px;
         }
       }
-      .time{
+      .time {
         font-size: 12px;
         color: #8b8b8b;
         display: inline-block;
@@ -110,10 +110,10 @@
     }
   }
 
-  .chat-form{
+  .chat-form {
     background: #000;
     //line-height: 30px;
-    input.chat{
+    input.chat {
       display: inline-block;
       width: 70%;
       background: #000;
@@ -121,14 +121,14 @@
       border: none;
       height: 40px;
     }
-    .group-btn{
+    .group-btn {
       height: 40px;
       display: inline-block;
       width: auto;
       //float: left;
       text-align: right;
       float: right;
-      button{
+      button {
         color: #fff;
         outline: none;
         background: transparent;
@@ -138,10 +138,10 @@
         height: 40px;
         padding: 0;
         margin: 0;
-        i.fa{
+        i.fa {
           font-size: 14px;
         }
-        &:hover{
+        &:hover {
           background: #01c4f4;
         }
       }
@@ -149,25 +149,27 @@
   }
 }
 
-.room-detail .room-content-left{
+.room-detail .room-content-left {
   position: relative;
-  .han-che-nguoi-xem{
+  .han-che-nguoi-xem {
     position: absolute;
     top: 5%;
     left: 50%;
     width: 60%;
     //height: 100%;
-    transform: translate(-50%,0);
+    transform: translate(-50%, 0);
     text-align: center;
     padding: 20px;
     background: rgba(0, 0, 0, 0.3);
-    .price{
+    .price {
       margin: 5px;
       color: #dd6d25;
     }
-    .buy-ticker{
-      span{margin: 5px}
-      button{
+    .buy-ticker {
+      span {
+        margin: 5px
+      }
+      button {
         border-radius: 20px;
         padding: 5px 20px;
         background: #cc1fc3;
@@ -176,58 +178,58 @@
       }
     }
   }
-  .room-player{
+  .room-player {
     height: 450px;
-    background-size:cover ;
+    background-size: cover;
     background-repeat: no-repeat;
     padding: 0;
   }
-  .list-qua-tang{
+  .list-qua-tang {
     height: 150px;
     background: #ccc;
     padding: 0;
   }
 }
 
-.room-detail .room-content-right{
-  height:600px;
+.room-detail .room-content-right {
+  height: 600px;
   position: relative;
-  .chat-form{
+  .chat-form {
     position: absolute;
     bottom: 0;
     width: 100%;
   }
-  .content-chat{
+  .content-chat {
     overflow-y: scroll;
     height: 380px;
   }
-  .top-3-tang-qua{
+  .top-3-tang-qua {
     height: 180px;
   }
 }
 
-.list-video-saved{
+.list-video-saved {
   background: #fff;
   margin: 20px 0;
-  .title{
+  .title {
     margin: 20px 0;
   }
-  .item{
+  .item {
     background: #f1f1f1;
     position: relative;
-    a{
+    a {
       cursor: pointer;
     }
-    .item-image{
+    .item-image {
       width: 100%;
     }
-    .video-title{
+    .video-title {
       text-align: center;
     }
-    .group{
+    .group {
       padding: 5px;
     }
-    .mode{
+    .mode {
       position: absolute;
       right: 3%;
       bottom: 3%;
@@ -239,6 +241,58 @@
       text-align: center;
       border-radius: 50%;
       color: #fff;
+    }
+  }
+}
+
+.modal-list-gift {
+  .item {
+    display: inline-block;
+    width: 19%;
+    margin: 0.5%;
+    text-align: center;
+    border-radius: 10px;
+    background: #efefef;
+    padding: 10px 0;
+    cursor: pointer;
+    .image {
+      width: 30px;
+      height: auto;
+    }
+    .price {
+      color: #dd6d25;
+    }
+    .exp {
+      color: #8700ef;
+    }
+    .maxVote {
+    }
+  }
+}
+
+.modal-lich-dien-room-detail{
+  .group-image{
+    display: inline-block;
+    width: 15%;
+    .image{
+      border-radius: 50%;
+    }
+  }
+  .group-name{
+    display: inline-block;
+    width: 80%;
+    vertical-align: top;
+    margin-top: 20px;
+    margin-left: 20px;
+    .title-main {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .fa{
+      margin-right: 5px;
+    }
+    span{
+      margin-right: 10px;
     }
   }
 }

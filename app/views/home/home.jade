@@ -18,13 +18,13 @@ home-slider
 						span(ng-if=' !$last ') &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
 
 
-.container.home-block-content(ng-repeat='groupIdo in groupIdol')
+.container.home-block-content(ng-repeat='groupIdo in groupIdol' ng-if='groupIdo && groupIdo.Rooms.length > 0')
 	.group-title.col-md-12
 		.left
 			a(ui-sref='base.group-idol' href='{{groupIdo.slug}}' id='{{groupIdo.id}}')
 				i.fa.fa-play-circle-o
 				span       &nbsp; {{groupIdo.title}}
-		.right.pull-right
+		.right.pull-right(ng-if='groupIdo.Rooms.length > 6')
 			a(ui-sref='base.group-idol' href='{{groupIdo.slug}}' id='{{groupIdo.id}}')
 				span xem thêm &nbsp;
 				i.fa.fa-arrow-circle-right

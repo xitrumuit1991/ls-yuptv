@@ -1,5 +1,30 @@
 .home-on-air-channel
 {
+  img{
+    cursor: pointer;
+  }
+  .on-air-icon{
+    position: absolute;
+    left: 10px;
+    top:10px;
+    display: block;
+    .icon{
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: red;
+    }
+    span{
+      display: inline-block;
+      color: #fff;
+      margin-left: 5px;
+      line-height: 10px;
+      vertical-align: top;
+      font-size: 10px;
+    }
+  }
+
   .title{
     margin-right: 15px;
     span{

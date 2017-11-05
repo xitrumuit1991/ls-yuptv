@@ -1,4 +1,28 @@
 .on-air-page{
+  img{
+    cursor: pointer;
+  }
+  .on-air-icon{
+    position: absolute;
+    left: 10px;
+    top:10px;
+    display: block;
+    .icon{
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: red;
+    }
+    span{
+      display: inline-block;
+      color: #fff;
+      margin-left: 5px;
+      line-height: 10px;
+      vertical-align: top;
+      font-size: 10px;
+    }
+  }
   .on-air-menu-category{
     li a{
       text-decoration: none;
@@ -82,13 +106,14 @@
   }
 
   .on-air-block-more{
-    background: #ccc;
+    //background: #ccc;
     img{
       width: 100%;
     }
     .bottom{
       position: relative;
       padding: 5px;
+      background-color: rgba(0, 0, 0, 0.5);
       p.title{
         margin: 0;
         font-size: 12px;
