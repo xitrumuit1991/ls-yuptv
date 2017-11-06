@@ -71,7 +71,7 @@ switch window.ENV
       fBappId : '1933860780272829'
       API_URL : "http://dev.livestar.vn:1010/api/v1/"
       LIVE_DOMAIN : 'http://livestream.yuptv.vn/'
-      SOCKET_DOMAIN : 'http://socket.yuptv.vn/'
+      SOCKET_DOMAIN : 'http://dev.livestar.vn:8050'
       env : 'development'
 
   when 'dev'
@@ -79,7 +79,7 @@ switch window.ENV
       fBappId : '1933860780272829'
       API_URL : "http://dev.livestar.vn:1010/api/v1/"
       LIVE_DOMAIN : 'http://livestream.yuptv.vn/'
-      SOCKET_DOMAIN : 'http://socket.yuptv.vn/'
+      SOCKET_DOMAIN : 'http://dev.livestar.vn:8050'
       env : 'development'
 
 initInjector = angular.injector(["ng"])

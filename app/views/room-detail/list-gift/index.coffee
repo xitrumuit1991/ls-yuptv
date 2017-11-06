@@ -19,7 +19,6 @@ _directive = ($timeout, ApiService, UtilityService,$rootScope) ->
       $scope.items = data.items if data and data.items
       $scope.action = data.action if _.isFunction(data.action)
 
-    return null
   directive =
     restrict : 'E'
     scope :

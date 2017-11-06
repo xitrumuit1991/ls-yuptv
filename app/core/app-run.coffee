@@ -13,7 +13,7 @@ appRun = (
     try
       $rootScope.user = JSON.parse(window.localStorage.user)
     catch e
-    console.info 'app run validate user token'
+#    console.info 'app run validate user token'
     ApiService.getProfile {}, (error, result)->
       return UtilityService.removeUserLogged() if error
       return UtilityService.removeUserLogged() if result and result.error
@@ -23,14 +23,14 @@ appRun = (
         catch e
           $rootScope.user = null
   console.info '$rootScope.user',$rootScope.user
-  console.info 'window.localStorage.token',window.localStorage.token
+#  console.info 'window.localStorage.token',window.localStorage.token
 
   $rootScope.$state = $state
   $rootScope.$stateParams = $stateParams
   $rootScope.$on '$viewContentLoaded', ()->
   $rootScope.$on '$stateChangeStart', (event, toState, toParams, fromState, fromParams)->
-    console.log 'fromState',fromState
-    console.log 'toState',toState
+#    console.log 'fromState',fromState
+#    console.log 'toState',toState
     if toState and toState.name.indexOf('base.profile') != -1
       $rootScope.isHome = false
       $rootScope.menuMain = GlobalConfig.menuMainProfile

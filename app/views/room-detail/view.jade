@@ -16,7 +16,7 @@
 					.text-center.text-top3 Top 3 quà tăng
 			.row
 				.col-md-8.room-content-left(style='padding:0;')
-					.han-che-nguoi-xem
+					.han-che-nguoi-xem(ng-if='item && item.mode == 2')
 						p Chương trình hạn chế người xem
 						p.text-center
 							span Giá vé:
@@ -26,6 +26,15 @@
 								span Mua vé
 								i.fa.fa-play-circle
 					.room-player(style='background-image: url("{{item.banner || item.background || item.User.avatar}}");')
+						video(class="video-js vjs-default-skin"
+						style='width: 100% !important;'
+						id='videojs-room-detail-main'
+						controls
+						preload="auto"
+						autoplay
+						height="450"
+						)
+						//width="600" height="400"
 					.list-qua-tang
 
 				.col-md-4.room-content-right(style='padding:0;')
@@ -51,9 +60,10 @@
 									.subname Ai chua xem reivew phat
 								.time.pull-right 11:11
 					.chat-form
-						input.chat(type='text')
+						//input.chat(type='text')
+						input.chat(data-emojiable="true" type='text')
 						.group-btn
-							button.btn-smile
+							//button.btn-smile
 								i.fa.fa-smile-o
 							button.btn-gift(ng-click='openListGift()')
 								i.fa.fa-gift

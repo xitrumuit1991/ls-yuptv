@@ -261,6 +261,24 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
     self.request options, done
 
   self.room =
+    ticketList : (params, done)->
+      options =
+        url : GlobalConfig.API_URL + "ticket/list"
+        method : 'GET'
+        data : params
+      self.request options, done
+    joinRoom : (params, done)->
+      options =
+        url : GlobalConfig.API_URL + "room/join"
+        method : 'POST'
+        data : params
+      self.request options, done
+    listUserInRoom : (params, done)->
+      options =
+        url : GlobalConfig.API_URL + "room/list-user"
+        method : 'GET'
+        data : params
+      self.request options, done
     getRoomById : (params, done)->
       options =
         url : GlobalConfig.API_URL + "room/#{params.roomId}/"
@@ -280,25 +298,26 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
         data : params
       self.request options, done
 
-  self.socket =
-    joinRoom : (params, done)->
-      options =
-        url : GlobalConfig.API_URL + "room/#{params.roomId}/"
-        method : 'GET'
-        data : params
-      self.request options, done
-    getListUserInRoom : (params, done)->
-      options =
-        url : GlobalConfig.API_URL + "room/#{params.roomId}/"
-        method : 'GET'
-        data : params
-      self.request options, done
-    sendMessage : (params, done)->
-      options =
-        url : GlobalConfig.API_URL + "room/#{params.roomId}/"
-        method : 'GET'
-        data : params
-      self.request options, done
+  self.socket = {}
+
+#    joinRoom : (params, done)->
+#      options =
+#        url : GlobalConfig.API_URL + "room/#{params.roomId}/"
+#        method : 'GET'
+#        data : params
+#      self.request options, done
+#    getListUserInRoom : (params, done)->
+#      options =
+#        url : GlobalConfig.API_URL + "room/#{params.roomId}/"
+#        method : 'GET'
+#        data : params
+#      self.request options, done
+#    sendMessage : (params, done)->
+#      options =
+#        url : GlobalConfig.API_URL + "room/#{params.roomId}/"
+#        method : 'GET'
+#        data : params
+#      self.request options, done
 
 
 
