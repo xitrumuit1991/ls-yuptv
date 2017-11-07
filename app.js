@@ -19,8 +19,8 @@ console.log('--------------------',configs);
 var RedisService = require('./RedisService');
 var app = express();
 RedisService.init();
-console.log('--------------------redis store client---------------');
-console.log('--------------------',RedisService.getClient());
+// console.log('--------------------redis store client---------------');
+// console.log('--------------------',RedisService.getClient());
 app.use(session({
   store: new RedisStore({ client :  RedisService.getClient() }),
   secret: configs.redis.secret,
@@ -49,11 +49,21 @@ app.use(function(req, res, next)
   app.locals = {configs : configs, version : '1.0.0'};
   req.configs = configs;
   if (req && !req.session) return next(new Error('ERROR: can not connect Redis'+configs.redis.host));
-  //check web mobile here
+  var ua = req.headers['user-agent'];
+  var isMobile = (/mobile/i.test(ua)) ? true : false;
+  if(isMobile == true && req.originalUrl && req.originalUrl.indexOf('paymentforapp') != -1)
+    return next();
+  if(isMobile == true && req.originalUrl && req.originalUrl.indexOf('down-app') == -1 )
+    return res.redirect('/down-app');
   return next();
 });
 
 
+app.get('/down-app', function (req, res) {
+  return res.render('down-app-view',{
+    layout:false
+  });
+});
 app.get('/health_check', function (req, res) { res.json({service : 'livestar web v2', time : (new Date()).getTime(), message : 'ok' }) });
 
 
