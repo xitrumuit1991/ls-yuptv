@@ -38,19 +38,27 @@ _directive = ($timeout, ApiService, UtilityService) ->
         ApiService.room.getVideoDetailOfRoom({videoId : video.id, roomId: $scope.id },(err, result)->
           return if err
           return UtilityService.notifyError(result.message) if result and result.error
-#          return UtilityService.notifyError('Không thể lấy link play ') unless result.link
-          result.link = 'https://github.com/notanewbie/LegalStream/blob/master/packages/christianity/prosperity.m3u8'
+          return UtilityService.notifyError('Không thể lấy link play ') unless result.link
           $scope.modal.video = result
-#          $scope.mediaToggle.poster = result.thumb
-#          $scope.mediaToggle.sources.push({src:result.link})
           $scope.modal.show()
           player = videojs('videojs-modal')
-          player.src(result.link)
+#          player.src({
+#            type: "application/x-mpegURL"
+#            src: result.linkPlayLive
+#          })
+#          player.play()
+          player.src({src: result.link})
+#          player.src(result.link)
           player.play()
         )
       ,1)
 
-    ApiService.getSavedVideo({}, (err, result)->
+
+    params =
+      page : 0
+      limit : 1000
+      roomId: $scope.id
+    ApiService.getSavedVideo( params , (err, result)->
       return if err
       $scope.listVideoSaved = result.videos
     )

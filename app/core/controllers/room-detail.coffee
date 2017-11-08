@@ -9,16 +9,13 @@ route = ($stateProvider, GlobalConfig)->
         controller : "RoomDetailCtrl"
 
 route.$inject = ['$stateProvider', 'GlobalConfig']
-
-
-ctrl = ($rootScope,
-  $scope, $timeout, $location,
+ctrl = ($rootScope, $scope, $timeout, $location,
   $window, $state, $stateParams,  ApiService, $http,
   GlobalConfig, $interval, UtilityService) ->
-  console.log 'RoomDetailCtrl coffee ',$stateParams.id
   id = $stateParams.id
   player = null
   $scope.socketIsConnected = false
+  $scope.linkPlayLive = ''
   $scope.id = $stateParams.id
   $scope.item = {}
   $scope.ticketList =
@@ -34,7 +31,7 @@ ctrl = ($rootScope,
     ApiService.room.getRoomById {roomId : $scope.id },(err, result)->
       return if err
       $scope.item = result
-      console.log 'getRoomById',$scope.item
+#      console.log 'getRoomById',$scope.item
       cb()
 
 
@@ -55,29 +52,24 @@ ctrl = ($rootScope,
           giftId: item.id
           quantity:1
           sessionId: if $scope.item.Session then $scope.item.Session.id else ''
-        ApiService.room.sendGift(paramsend,(err, result)->
+        ApiService.room.sendGift paramsend,(err, result)->
           return if err
           return UtilityService.notifyError(result.message) if result and result.error
           UtilityService.notifySuccess('Tặng quà thành công ')
           cb() if _.isFunction(cb)
-        )
-
-
     $rootScope.$emit 'open-list-gift', param
 
   $scope.getListGift = ()->
-    ApiService.room.giftList({page:0, limit:1000},(err, result)->
+    ApiService.room.giftList {page:0, limit:1000},(err, result)->
       return if err
       $scope.giftList.items = result.items
       console.log '$scope.giftList',$scope.giftList
-    )
 
   $scope.getListTicket = ()->
-    ApiService.room.ticketList({page:0, limit:1000},(err, result)->
+    ApiService.room.ticketList {page:0, limit:1000},(err, result)->
       return if err
       $scope.ticketList = result
       console.log '$scope.ticketList',$scope.ticketList
-    )
 
 
   $scope.joinRoom = ()->
@@ -91,14 +83,13 @@ ctrl = ($rootScope,
     ApiService.room.joinRoom(paramJoin,(err, result)->
       return if err
       return UtilityService.notifyError(result.message) if result and result.error
-      console.info "ApiService.room.joinRoom", result
+      return if !result.linkPlayLive
+#      console.info "ApiService.room.joinRoom", result
       player = videojs('videojs-room-detail-main')
-      console.info 'player',player
-      console.info 'linkPlayLive',result.linkPlayLive
-      player.src({
-        type: "application/x-mpegURL"
-        src: result.linkPlayLive
-      })
+#      console.info 'player',player
+#      console.info 'linkPlayLive',result.linkPlayLive
+      $scope.linkPlayLive = result.linkPlayLive
+      player.src({ type: "application/x-mpegURL", src: $scope.linkPlayLive })
       player.play()
     )
 
