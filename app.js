@@ -55,6 +55,8 @@ app.use(function(req, res, next)
     return next();
   if(isMobile == true && req.originalUrl && req.originalUrl.indexOf('down-app') == -1 )
     return res.redirect('/down-app');
+  if(isMobile == false && req.originalUrl && req.originalUrl.indexOf('down-app') != -1)
+    return res.redirect('/');
   return next();
 });
 
