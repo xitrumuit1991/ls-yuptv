@@ -3,15 +3,17 @@ _directive = ($timeout, ApiService, UtilityService,$rootScope) ->
     $scope.items = []
     $scope.action = ()->
     $scope.modal =
-      id : 'modal-list-gift'
+      id : 'modal-list-gift-id'
       video:{}
       show : ()->
-        angular.element("##{@.id}").modal('show')
+        $("#modal-list-gift-id").modal('show')
       close : ()->
-        angular.element("##{@.id}").modal('hide')
+        $("#modal-list-gift-id").modal('hide')
 
     $scope.buyGift = (ite)->
-      $scope.action(ite) if _.isFunction($scope.action)
+      callback = ()->
+        $scope.modal.close()
+      $scope.action(ite,callback) if _.isFunction($scope.action)
 
     $rootScope.$on 'open-list-gift',(event, data)->
       console.log 'open-list-gift',data

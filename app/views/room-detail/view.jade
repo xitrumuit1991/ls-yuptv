@@ -13,7 +13,8 @@
 							span(style='margin: 0 15px 0 5px;') {{item.hearts}}
 					button.btn.btn-primary.pull-right.btn-schedule(ng-click='openLichDien()') Lịch phát sóng
 				.col-md-4
-					.text-center.text-top3 Top 3 quà tăng
+					.text-center.text-top3
+						//span Top 3 quà tăng
 			.row
 				.col-md-8.room-content-left(style='padding:0;')
 					.han-che-nguoi-xem(ng-if='item && item.mode == 2')
@@ -26,19 +27,16 @@
 								span Mua vé
 								i.fa.fa-play-circle
 					.room-player(style='background-image: url("{{item.banner || item.background || item.User.avatar}}");')
-						video(class="video-js vjs-default-skin"
+						video#videojs-room-detail-main(class="video-js vjs-default-skin"
 						style='width: 100% !important;'
-						id='videojs-room-detail-main'
 						controls
-						preload="auto"
 						autoplay
 						height="450"
 						)
-						//width="600" height="400"
 					.list-qua-tang
 
-				.col-md-4.room-content-right(style='padding:0;')
-					.top-3-tang-qua
+				.col-md-4.room-content-right(style='padding:0;' ng-show='socketIsConnected == true ')
+					//.top-3-tang-qua
 						.item.first
 							img.image(src='http://via.placeholder.com/20x20')
 							span.name Name user
@@ -51,23 +49,20 @@
 							img.image(src='http://via.placeholder.com/20x20')
 							span.name Name user
 							span.ucoin.pull-right 120 Ucoin
-					.content-chat
-						-for(var i=0; i<6; i++)
-							.item
-								img.image(src='http://via.placeholder.com/40x40')
-								.group-name
-									.name Phong Van
-									.subname Ai chua xem reivew phat
-								.time.pull-right 11:11
+					.content-chat#content-chat-list
+						//.item
+							img.image(src='{{ite.user.avatar || "http://via.placeholder.com/40x40"}}' style='width:40px; height: 40px;')
+							.group-name
+								.name {{ite.user.name}}
+								.subname {{ite.message}}
+							.time.pull-right 11:11
 					.chat-form
-						//input.chat(type='text')
-						input.chat(data-emojiable="true" type='text')
+						div
+							input.chat#chat-input-form(data-emojiable="true" type='text')
 						.group-btn
-							//button.btn-smile
-								i.fa.fa-smile-o
-							button.btn-gift(ng-click='openListGift()')
+							button.btn-gift( ng-click='openListGift()' )
 								i.fa.fa-gift
-							button.btn-send
+							button.btn-send(ng-click='sendChatMsg()')
 								i.fa.fa-send
 
 list-video-saved(ng-model='id')

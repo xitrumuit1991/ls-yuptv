@@ -34,4 +34,15 @@ if( process.env.NODE_ENV == 'production' || process.env.NODE_ENV == 'prod')
   object.ENV = 'production';
 }
 
+if( (process.env.NODE_ENV == 'production' || process.env.NODE_ENV == 'prod') && process.env.LOCAL == "yes")
+{
+  object.redis.host = 'localhost';
+  object.redis.port = '6379';
+  object.redis.secret = '1BCB58514FCE3C7C66BB6C91ACD88';
+  object.redis.envPrefix = 'session:web-v2:development:';
+  object.redis.password = null;
+  object.redis.isCluster = false;
+  object.redis.database = 0;
+}
+
 module.exports = object;

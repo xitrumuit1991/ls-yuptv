@@ -63,7 +63,14 @@ switch window.ENV
       fBappId : '1933860780272829'
       API_URL : "http://api.yuptv.vn/api/v1/"
       LIVE_DOMAIN : 'http://livestream.yuptv.vn/'
-      SOCKET_DOMAIN : 'http://socket.yuptv.vn/'
+      SOCKET_DOMAIN : 'https://socket.yuptv.vn/'
+      env : 'production'
+  when 'prod'
+    config = _.extend config,
+      fBappId : '1933860780272829'
+      API_URL : "http://api.yuptv.vn/api/v1/"
+      LIVE_DOMAIN : 'http://livestream.yuptv.vn/'
+      SOCKET_DOMAIN : 'https://socket.yuptv.vn/'
       env : 'production'
 
   when 'development'

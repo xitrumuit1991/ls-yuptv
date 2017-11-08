@@ -20,7 +20,7 @@
 				p.text-danger Không có room nào
 		.row(ng-if='items && items.length > 0 ')
 			.col-md-4
-				.on-air-block-main(ng-if='items && items[0]' )
+				.on-air-block-main(ng-if='items && items[0] && items[0].onAir == true ' )
 					img(src='{{items[0].User.avatars_path.avatar}}' ui-sref='base.room-detail({id : items[0].id})')
 					.bottom
 						p.title {{items[0].title}}
@@ -35,7 +35,7 @@
 						span LIVE
 			.col-md-8
 				.row
-					.col-md-3(ng-repeat='ite in items' ng-if='$index > 0 && $index < 9'
+					.col-md-3(ng-repeat='ite in items' ng-if='$index > 0 && $index < 9 && ite.onAir == true '
 					style='padding: 5px;')
 						.on-air-block-main.on-air-block
 							img(src='{{ite.User.avatars_path.avatar}}' ui-sref='base.room-detail({id : ite.id})')
@@ -51,9 +51,9 @@
 								.icon &nbsp;
 								span LIVE
 
-		.row(ng-if='items.length > 8' style='margin: 30px 0;')
+		.row(ng-if='items.length > 8 ' style='margin: 30px 0;')
 			.col-md-2(style='padding:1px;')
-				.on-air-block-more(ng-repeat='ite in items' ng-if='$index > 8')
+				.on-air-block-more(ng-repeat='ite in items' ng-if='$index > 8 && ite.onAir == true')
 					img(src='{{ite.User.avatars_path.avatar}}' ui-sref='base.room-detail({id : ite.id})')
 					.bottom
 						p.title {{ite.title}}

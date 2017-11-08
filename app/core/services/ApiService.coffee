@@ -239,7 +239,9 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
       data : params
     self.request options, done
 
+
   self.onAir = (params, done)->
+    params.onair = true;
     options =
       url : GlobalConfig.API_URL + "room/list-by-view"
       method : 'GET'
@@ -247,6 +249,7 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
     self.request options, done
 
   self.onAirByCategory = (params, done)->
+    params.onair = true;
     options =
       url : GlobalConfig.API_URL + "room/list-by-category"
       method : 'GET'
@@ -261,6 +264,12 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
     self.request options, done
 
   self.room =
+    sendGift : (params, done)->
+      options =
+        url : GlobalConfig.API_URL + "gift/send"
+        method : 'POST'
+        data : params
+      self.request options, done
     ticketList : (params, done)->
       options =
         url : GlobalConfig.API_URL + "ticket/list"
