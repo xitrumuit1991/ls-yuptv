@@ -20,7 +20,10 @@ data-keyboard="false")
 			.modal-footer
 				button.btn.btn-default(type='button', data-dismiss='modal') Close
 
-.list-video-saved
+
+
+
+.list-video-saved(ng-if='listVideoSaved && listVideoSaved.length > 0')
 	.container
 		.col-md-12
 			.title

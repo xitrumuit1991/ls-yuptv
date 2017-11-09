@@ -2,6 +2,9 @@
   img{
     cursor: pointer;
   }
+  .carousel-item img{
+    width: 100%;
+  }
   .on-air-icon{
     position: absolute;
     left: 10px;
