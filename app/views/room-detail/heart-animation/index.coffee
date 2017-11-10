@@ -1,13 +1,14 @@
 _directive = ($timeout, ApiService, UtilityService,$rootScope) ->
   link = ($scope, $element, $attrs) ->
     $scope.maxTime = 0
+    $scope.isFly = false
 
     randomHeart = ()->
       r_num = Math.floor(Math.random() * 40) + 1
       r_size = Math.floor(Math.random() * 65) + 10
       r_left = Math.floor(Math.random() * 100) + 1
       r_bg = Math.floor(Math.random() * 25) + 100
-      r_time = Math.floor(Math.random()*2)+1
+      r_time = Math.floor(Math.random()*2)+3
       r_num = parseInt(r_num)
       r_size = parseInt(r_size)
       r_left = parseInt(r_left)
@@ -30,7 +31,7 @@ _directive = ($timeout, ApiService, UtilityService,$rootScope) ->
       r_size = Math.floor(Math.random() * 65) + 10
       r_left = Math.floor(Math.random() * 100) + 1
       r_bg = Math.floor(Math.random() * 25) + 100
-      r_time = Math.floor(Math.random())+2
+      r_time = Math.floor(Math.random())+5
       r_num = parseInt(r_num)
       r_size = parseInt(r_size)
       r_left = parseInt(r_left)
@@ -49,27 +50,25 @@ _directive = ($timeout, ApiService, UtilityService,$rootScope) ->
       $('#bg_heart').append(html)
 
     $scope.flyHeart = (cb=null)->
-
+      return if $scope.isFly == true
+      $scope.isFly = true if $scope.isFly == false
       $timeout((->
         randomHeart()
         randomHeart_2()
         randomHeart()
         randomHeart_2()
-#        randomHeart()
-#        randomHeart_2()
-#        randomHeart()
-#        randomHeart_2()
-#        randomHeart()
-#        randomHeart_2()
+        randomHeart()
+        randomHeart_2()
         $timeout(()->
           $scope.maxTime = 0
+          $scope.isFly = false
           cb() if _.isFunction(cb)
         ,$scope.maxTime*1000 + 100)
-        $('#bg_heart .heart').each ->
+
+        $('#bg_heart .heart').each ()->
           top = $(this).css('top').replace(/[^-\d\.]/g, '')
           width = $(this).css('width').replace(/[^-\d\.]/g, '')
-          if top <= -100 or width >= 150
-            $(this).detach()
+          $(this).detach() if top <= -100 or width >= 150
           return
         return
       ), 1)

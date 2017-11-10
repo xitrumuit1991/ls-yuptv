@@ -92,6 +92,11 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     console.error 'on error player', data
 
   $scope.joinRoom = ()->
+    $timeout(()->
+      console.error 'init emoji-wysiwyg-editor'
+      $('.emoji-wysiwyg-editor').keyup (e)->
+        $scope.sendChatMsg() if e.keyCode == 13
+    ,2000)
     return UtilityService.notifyError('Phòng này chưa diễn. Bạn vui lòng quay lại sao ') if $scope.item and !$scope.item.Session
     console.error 'user chua login' unless $rootScope.user
     paramJoin =
@@ -115,11 +120,7 @@ ctrl = ($rootScope, $scope, $timeout, $location,
 
 
 
-  $timeout(()->
-    console.log 'init emoji-wysiwyg-editor'
-    $('.emoji-wysiwyg-editor').keyup (e)->
-      $scope.sendChatMsg() if e.keyCode == 13
-  ,2000)
+
 
 
   $scope.showUserConnectSocket = (data)->
@@ -137,11 +138,11 @@ ctrl = ($rootScope, $scope, $timeout, $location,
   $scope.showReciveHeartSocket = (data)->
     avatar = data.user.avatar || "http://via.placeholder.com/40x40"
     name = data.user.name
-    message = data.message+' <i style="color: #ff2491;" class="fa fa-heart" aria-hidden="true"></i>'
+    message = '<span>'+data.message+'</span> <i style="color: #ff2491;" class="fa fa-heart" aria-hidden="true"></i>'
     re = new RegExp('<br>', 'g')
     message = message.replace(re, '')
     return unless message
-    html = '<div class="item"><p class="text-right">'+message+'</p></div>'
+    html = '<div class="item showReciveHeartSocket"><p class="text-right">'+message+'</p></div>'
     $('#content-chat-list').append(html)
     $('#content-chat-list').animate({ scrollTop: $('#content-chat-list')[0].scrollHeight }, 100)
 
