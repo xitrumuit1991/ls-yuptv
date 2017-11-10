@@ -118,7 +118,30 @@ ctrl = ($rootScope, $scope, $timeout, $location,
       $scope.linkPlayLive = result.linkPlayLive
       player.src({ type: "application/x-mpegURL", src: $scope.linkPlayLive })
       player.play()
-      player.on 'error', onErrorPlayer
+      player.on 'ended', ()->
+        console.log 'ended'
+
+      player.on 'error', (error)->
+        console.log 'error',error
+
+      player.on 'loadeddata', (loadeddata)->
+        console.log 'loadeddata',loadeddata
+
+      player.on 'loadedmetadata', (loadedmetadata)->
+        console.log 'loadedmetadata',loadedmetadata
+
+      player.on 'timeupdate', (timeupdate)->
+        console.log 'timeupdate',timeupdate
+
+      player.on 'useractive', (useractive)->
+        console.log 'useractive',useractive
+
+      player.on 'userinactive', (userinactive)->
+        console.log 'userinactive',userinactive
+
+      player.on 'volumechange', (volumechange)->
+        console.log 'volumechange',volumechange
+
 
 
 

@@ -346,16 +346,24 @@ i.emoji-picker-icon {
   height: 150px;
   .image-user-group {
     padding: 15px 0;
+    width: 110px;
+    text-align: center;
     .image {
       -webkit-border-radius: 50%;
       -moz-border-radius: 50%;
       border-radius: 50%;
       width: 100px !important;
+      margin: 0 auto;
     }
     .name-idol {
       color: #000;
       line-height: 20px;
       font-weight: bold;
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      display: block;
+      text-overflow: ellipsis;
     }
   }
   ul {
