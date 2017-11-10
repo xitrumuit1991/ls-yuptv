@@ -33,8 +33,7 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     ApiService.room.getRoomById {roomId : $scope.id },(err, result)->
       return if err
       $scope.item = result
-      cb()
-
+      cb() if _.isFunction(cb)
 
   $scope.openLichDien = ()->
     $rootScope.$emit 'open-lich-dien-room-detail', {item : $scope.item}
@@ -44,7 +43,6 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     param =
       items : $scope.giftList.items
       action : (item, cb=null )->
-        console.log 'click action', item
         return unless confirm('Tặng quà cho idol ?')
         paramsend =
           userId: if $rootScope.user then $rootScope.user.id else ''
@@ -73,13 +71,13 @@ ctrl = ($rootScope, $scope, $timeout, $location,
 
   $scope.joinRoom = ()->
     return UtilityService.notifyError('Phòng này chưa diễn. Bạn vui lòng quay lại sao ') if $scope.item and !$scope.item.Session
-    return console.error 'user chua login'  unless $rootScope.user
+    console.error 'user chua login' unless $rootScope.user
     paramJoin =
       roomId : $scope.id
-      sessionId: $scope.item.Session.id
+      sessionId: if $scope.item and $scope.item.Session then $scope.item.Session.id else ''
       userId : if $rootScope.user then $rootScope.user.id else ''
     console.log 'paramJoin',paramJoin
-    ApiService.room.joinRoom(paramJoin,(err, result)->
+    ApiService.room.joinRoom paramJoin,(err, result)->
       return if err
       return UtilityService.notifyError(result.message) if result and result.error
       return if !result.linkPlayLive
@@ -88,21 +86,16 @@ ctrl = ($rootScope, $scope, $timeout, $location,
       $scope.linkPlayLive = result.linkPlayLive
       player.src({ type: "application/x-mpegURL", src: $scope.linkPlayLive })
       player.play()
-    )
 
 
 
 
-  querySocket = {query : "Authorization=#{window.localStorage.token}&roomId=#{$scope.id}"}
-  socket = io( GlobalConfig.SOCKET_DOMAIN, querySocket)
-  socket.on 'connect', ()->
-    console.warn "socket.on 'connect'"
-
-  socket.on "isConnected", ()->
-    console.info 'socket isConnected'
-    $scope.socketIsConnected = true
 
 
+  $timeout(()->
+    $('.emoji-wysiwyg-editor').keyup (e)->
+      $scope.sendChatMsg() if e.keyCode == 13
+  ,2000)
 
   $scope.sendChatMsg = ()->
     message = $('.emoji-wysiwyg-editor').html()
@@ -114,11 +107,14 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     $('.emoji-wysiwyg-editor').html('')
 
 
+  querySocket = {query : "Authorization=#{window.localStorage.token}&roomId=#{$scope.id}"}
+  socket = io( GlobalConfig.SOCKET_DOMAIN, querySocket)
+  socket.on 'connect', ()->
+    console.warn "socket.on 'connect'"
 
-  $timeout(()->
-    $('.emoji-wysiwyg-editor').keyup (e)->
-      $scope.sendChatMsg() if e.keyCode == 13
-  ,2000)
+  socket.on "isConnected", ()->
+    console.info 'socket isConnected'
+    $scope.socketIsConnected = true
 
   socket.on 'newComment', (data)->
     console.info "newComment",data
@@ -133,7 +129,6 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     html = '<div class="item"><img src="'+avatar+'" style="width:40px; height: 40px;" class="image"/> <div class="group-name"> <div class="name">'+name+'</div> <div class="subname">'+message+'</div></div> </div>'
     $('#content-chat-list').append(html)
     $('#content-chat-list').animate({ scrollTop: $('#content-chat-list')[0].scrollHeight }, 100)
-
 
   socket.on 'connectUser', (data)->
     console.log 'connect User',data
@@ -176,11 +171,9 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     $('#content-chat-list').append(html)
     $('#content-chat-list').animate({ scrollTop: $('#content-chat-list')[0].scrollHeight }, 100)
 
-
   socket.on 'disconnect', ()->
     console.log 'socket disconnect'
     $scope.socketIsConnected = false
-
 
 
   window.emojiPicker = new EmojiPicker({
@@ -191,6 +184,8 @@ ctrl = ($rootScope, $scope, $timeout, $location,
   window.emojiPicker.discover()
 
 
+
+  #call api
   $scope.getRoomDetail ()->
     $scope.getListGift()
     $scope.getListTicket()

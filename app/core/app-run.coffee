@@ -5,7 +5,9 @@ appRun = (
   $timeout,
   $location,
   ApiService,
-  GlobalConfig, UtilityService)->
+  GlobalConfig,
+  UtilityService)->
+
   console.info 'GlobalConfig=',GlobalConfig
   $rootScope.isHome = true
   $rootScope.user = null
@@ -22,8 +24,8 @@ appRun = (
           $rootScope.user = JSON.parse(window.localStorage.user)
         catch e
           $rootScope.user = null
-  console.info '$rootScope.user',$rootScope.user
-#  console.info 'window.localStorage.token',window.localStorage.token
+  console.warn '$rootScope.user',$rootScope.user
+  console.warn 'window.localStorage.token',window.localStorage.token
 
   $rootScope.$state = $state
   $rootScope.$stateParams = $stateParams
@@ -46,7 +48,8 @@ appRun.$inject = [
   '$timeout',
   '$location',
   'ApiService',
-  'GlobalConfig', 'UtilityService'
+  'GlobalConfig',
+  'UtilityService'
 ]
 
 angular.module("app").run(appRun)
