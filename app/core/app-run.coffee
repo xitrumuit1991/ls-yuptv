@@ -40,6 +40,10 @@ appRun = (
       $rootScope.isHome = true
       $rootScope.menuMain = GlobalConfig.menuMainHome
 
+  ApiService.getListBanner {},(error, result)->
+    return if error
+    $rootScope.homeslides = result if result
+
 
 appRun.$inject = [
   '$rootScope',
