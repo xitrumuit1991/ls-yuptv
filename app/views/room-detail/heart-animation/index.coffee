@@ -64,7 +64,7 @@ _directive = ($timeout, ApiService, UtilityService,$rootScope) ->
           $scope.isFly = false
           $('#bg_heart').html('')
           cb() if _.isFunction(cb)
-        ,$scope.maxTime*1000 + 100)
+        ,$scope.maxTime*1000+1)
 
         $('#bg_heart .heart').each ()->
           top = $(this).css('top').replace(/[^-\d\.]/g, '')
