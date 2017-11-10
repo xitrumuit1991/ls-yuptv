@@ -86,14 +86,13 @@ ctrl = ($rootScope, $scope, $timeout, $location,
   #room
   #room
   #room
-  onLoadPlayer = (data)->
-    console.error 'on onLoadPlayer player', data
-  onPausePlayer = (data)->
-    console.error 'on onPausePlayer player', data
-  onPlayPlayer = (data)->
-    console.error 'on onPlayPlayer player', data
-  onErrorPlayer = (data)->
-    console.error 'on error player', data
+  $scope.initChatIcon = ()->
+    window.emojiPicker = new EmojiPicker({
+      emojiable_selector: '[data-emojiable=true]',
+      assetsPath: 'img/',
+      popupButtonClasses: 'fa fa-smile-o'
+    })
+    window.emojiPicker.discover()
 
   $scope.joinRoom = ()->
     $timeout(()->
@@ -107,7 +106,7 @@ ctrl = ($rootScope, $scope, $timeout, $location,
       roomId : $scope.id
       sessionId: if $scope.item and $scope.item.Session then $scope.item.Session.id else ''
       userId : if $rootScope.user then $rootScope.user.id else ''
-    console.log 'paramJoin',paramJoin
+#    console.log 'paramJoin',paramJoin
     ApiService.room.joinRoom paramJoin,(err, result)->
       $scope.loadedRoomDetail = true
       return if err
@@ -131,7 +130,7 @@ ctrl = ($rootScope, $scope, $timeout, $location,
         console.log 'loadedmetadata',loadedmetadata
 
       player.on 'timeupdate', (timeupdate)->
-        console.log 'timeupdate',timeupdate
+#        console.log 'timeupdate',timeupdate
 
       player.on 'useractive', (useractive)->
         console.log 'useractive',useractive
@@ -176,6 +175,19 @@ ctrl = ($rootScope, $scope, $timeout, $location,
       $('#content-chat-list').animate({ scrollTop: $('#content-chat-list')[0].scrollHeight }, 100)
 
 
+  $scope.showNewCommentSocket = (data)->
+    avatar = data.user.avatar || "http://via.placeholder.com/40x40"
+    name = data.user.name
+    message = data.message
+    re = new RegExp('<br>', 'g')
+    message = message.replace(re, '')
+    return unless message
+    name = "Me" if data and data.user.id == $rootScope.user.id
+    html = '<div class="item"><img src="'+avatar+'" style="width:40px; height: 40px;" class="image"/> <div class="group-name"> <div class="name">'+name+'</div> <div class="subname">'+message+'</div></div> </div>'
+    $('#content-chat-list').append(html)
+    if $('#content-chat-list')[0]
+      $('#content-chat-list').animate({ scrollTop: $('#content-chat-list')[0].scrollHeight }, 100)
+
   $scope.sendChatMsg = ()->
     message = $('.emoji-wysiwyg-editor').html()
     re = new RegExp('<br>', 'g');
@@ -201,18 +213,9 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     $scope.socketIsConnected = true
 
   socket.on 'newComment', (data)->
-    console.info "newComment",data
-    avatar = data.user.avatar || "http://via.placeholder.com/40x40"
-    name = data.user.name
-    message = data.message
-    re = new RegExp('<br>', 'g');
-    message = message.replace(re, '');
-    return unless message
-    name = "Me" if data and data.user.id == $rootScope.user.id
-    html = '<div class="item"><img src="'+avatar+'" style="width:40px; height: 40px;" class="image"/> <div class="group-name"> <div class="name">'+name+'</div> <div class="subname">'+message+'</div></div> </div>'
-    $('#content-chat-list').append(html)
-    if $('#content-chat-list')[0]
-      $('#content-chat-list').animate({ scrollTop: $('#content-chat-list')[0].scrollHeight }, 100)
+#    console.info "newComment",data
+    $scope.showNewCommentSocket(data)
+
 
   socket.on 'connectUser', (data)->
     console.log 'connect User',data
@@ -233,7 +236,7 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     console.log 'sendGift',data
     avatar = data.user.avatar || "http://via.placeholder.com/40x40"
     name = data.user.name
-    message = data.message+' <img style="width:10px; height:10px;" src="'+data.giftIcon+'"/>'
+    message = data.message+' <img style="width:20px; height:20px;" src="'+data.giftIcon+'"/>'
     re = new RegExp('<br>', 'g')
     message = message.replace(re, '')
     return unless message
@@ -253,17 +256,20 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     $scope.socketIsConnected = false
 
 
-  window.emojiPicker = new EmojiPicker({
-    emojiable_selector: '[data-emojiable=true]',
-    assetsPath: 'img/',
-    popupButtonClasses: 'fa fa-smile-o'
-  })
-  window.emojiPicker.discover()
 
 
+
+  $scope.$on('$destroy', ()->
+    if player
+      player.pause() if _.isFunction(player.pause)
+      player.dispose() if _.isFunction(player.dispose)
+    if(videojs.getPlayers()['videojs-room-detail-main'])
+      delete videojs.getPlayers()['videojs-room-detail-main']
+  )
 
   #call api
   $scope.getRoomDetail ()->
+    $scope.initChatIcon()
     $scope.getListGift()
     $scope.joinRoom()
 
