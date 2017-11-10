@@ -141,7 +141,7 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     re = new RegExp('<br>', 'g')
     message = message.replace(re, '')
     return unless message
-    html = '<div class="item"><p>'+message+'</p></div>'
+    html = '<div class="item"><p class="text-right">'+message+'</p></div>'
     $('#content-chat-list').append(html)
     $('#content-chat-list').animate({ scrollTop: $('#content-chat-list')[0].scrollHeight }, 100)
 
