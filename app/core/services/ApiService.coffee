@@ -282,6 +282,14 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
         method : 'POST'
         data : params
       self.request options, done
+
+    sendHeart : (params, done)->
+      options =
+        url : GlobalConfig.API_URL + "stream/send-heart"
+        method : 'PUT'
+        data : params
+      self.request options, done
+
     joinRoom : (params, done)->
       options =
         url : GlobalConfig.API_URL + "room/join"

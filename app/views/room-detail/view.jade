@@ -17,7 +17,7 @@
 						//span Top 3 quà tăng
 			.row
 				.col-md-8.room-content-left(style='padding:0;')
-					.han-che-nguoi-xem(style='z-index: 9;' ng-if='item && item.mode == 2')
+					.han-che-nguoi-xem(style='z-index: 9;' ng-if='item && item.mode == 2 && !linkPlayLive && loadedRoomDetail==true')
 						p Chương trình hạn chế người xem
 						p.text-center
 							span Giá vé:
@@ -27,10 +27,13 @@
 								span Mua vé
 								i.fa.fa-play-circle
 
-					.han-che-nguoi-xem(style='z-index: 9;' ng-if='roomNowLivestream == false || !linkPlayLive ')
-						p: b.price Phòng này chưa diễn. Bạn vui lòng quay lại sau!
 
-					.room-player(ng-show='linkPlayLive && roomNowLivestream == true '
+					.han-che-nguoi-xem(style='z-index: 9;' ng-if='(roomNowLivestream == false || !linkPlayLive) && loadedRoomDetail==true ')
+						p: b.price Phòng này chưa diễn. Bạn vui lòng quay lại sau!
+					.room-player(ng-show=' !linkPlayLive || roomNowLivestream == false && loadedRoomDetail==true '
+					style='background-image: url("{{item.banner || item.background || item.User.avatar}}");')
+
+					.room-player(ng-show='linkPlayLive && roomNowLivestream == true && loadedRoomDetail==true '
 					style='background-image: url("{{item.banner || item.background || item.User.avatar}}");')
 						video#videojs-room-detail-main.video-js.vjs-default-skin(
 						style='width: 100% !important; height: 450px;'
@@ -39,7 +42,6 @@
 						height="450"
 						)
 					list-user-room.list-user-room(ng-model='id')
-
 
 				.col-md-4.room-content-right(style='padding:0;' ng-show='socketIsConnected == true ')
 					//.top-3-tang-qua
@@ -66,6 +68,8 @@
 						div
 							input.chat#chat-input-form(data-emojiable="true" type='text')
 						.group-btn
+							button.btn-gift( ng-click='clickSendHeart()' )
+								i.fa.fa-heart
 							button.btn-gift( ng-click='openListGift()' )
 								i.fa.fa-gift
 							button.btn-send(ng-click='sendChatMsg()')

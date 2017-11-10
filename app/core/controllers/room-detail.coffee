@@ -14,20 +14,15 @@ ctrl = ($rootScope, $scope, $timeout, $location,
   GlobalConfig, $interval, UtilityService) ->
   id = $stateParams.id
   player = null
+  $scope.loadedRoomDetail = false
   $scope.socketIsConnected = false
   $scope.roomNowLivestream = false
   $scope.showHeartAnimation = false
   $scope.linkPlayLive = ''
   $scope.id = $stateParams.id
   $scope.item = {}
-  $scope.ticketList =
-    items : []
-    totalItems:0
-    currentPage:0
   $scope.giftList =
     items : []
-    totalItems:0
-    currentPage:0
 
   $scope.getRoomDetail = (cb)->
     ApiService.room.getRoomById {roomId : $scope.id },(err, result)->
@@ -37,6 +32,14 @@ ctrl = ($rootScope, $scope, $timeout, $location,
 
   $scope.openLichDien = ()->
     $rootScope.$emit 'open-lich-dien-room-detail', {item : $scope.item}
+
+  $scope.clickSendHeart=()->
+    param =
+      roomId : if $scope.item then $scope.item.id else ''
+    ApiService.room.sendHeart param, (err, result)->
+      return if err
+      return UtilityService.notifyError(result.message) if result and result.error
+
 
   $scope.openListGift = ()->
     console.log 'openListGift', param
@@ -65,6 +68,7 @@ ctrl = ($rootScope, $scope, $timeout, $location,
 
   $scope.buyTicket = ()->
     return console.log 'buyTicket user not login' if !$rootScope.user or !$scope.item
+    return unless confirm('Xác nhận mua vé!')
     paramBuy =
       roomId : if $scope.item then $scope.item.id else ''
       sessionId: if $scope.item and $scope.item.Session then $scope.item.Session.id else ''
@@ -105,6 +109,7 @@ ctrl = ($rootScope, $scope, $timeout, $location,
       userId : if $rootScope.user then $rootScope.user.id else ''
     console.log 'paramJoin',paramJoin
     ApiService.room.joinRoom paramJoin,(err, result)->
+      $scope.loadedRoomDetail = true
       return if err
       return UtilityService.notifyError(result.message) if result and result.error
       return if !result.linkPlayLive
@@ -127,29 +132,29 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     console.log 'showUserConnectSocket', data
     html = '<div class="item"><p style="color: #fff;text-align: right;"><i style="color: #1c8abf; font-size: 18px;" class="fa fa-bicycle" aria-hidden="true"></i> '+data.message+'</p></div>'
     $('#content-chat-list').append(html)
-    $('#content-chat-list').animate({ scrollTop: $('#content-chat-list')[0].scrollHeight }, 100)
+    if $('#content-chat-list')[0]
+      $('#content-chat-list').animate({ scrollTop: $('#content-chat-list')[0].scrollHeight }, 100)
 
   $scope.showUserDisConnectSocket = (data)->
     console.log 'showUserDisConnectSocket', data
     html = '<div class="item"><p style="color: #fff; text-align: right;"><i style="color: #ff1c29;font-size: 18px;" class="fa fa-sign-out" aria-hidden="true"></i> '+data.message+'</p></div>'
     $('#content-chat-list').append(html)
-    $('#content-chat-list').animate({ scrollTop: $('#content-chat-list')[0].scrollHeight }, 100)
+    if $('#content-chat-list')[0]
+      $('#content-chat-list').animate({ scrollTop: $('#content-chat-list')[0].scrollHeight }, 100)
 
   $scope.showReciveHeartSocket = (data)->
-    avatar = data.user.avatar || "http://via.placeholder.com/40x40"
-    name = data.user.name
     message = '<span>'+data.message+'</span> <i style="color: #ff2491;" class="fa fa-heart" aria-hidden="true"></i>'
     re = new RegExp('<br>', 'g')
     message = message.replace(re, '')
     return unless message
     html = '<div class="item showReciveHeartSocket"><p class="text-right">'+message+'</p></div>'
     $('#content-chat-list').append(html)
-    $('#content-chat-list').animate({ scrollTop: $('#content-chat-list')[0].scrollHeight }, 100)
+    if $('#content-chat-list')[0]
+      $('#content-chat-list').animate({ scrollTop: $('#content-chat-list')[0].scrollHeight }, 100)
 
 
   $scope.sendChatMsg = ()->
     message = $('.emoji-wysiwyg-editor').html()
-    return unless message
     re = new RegExp('<br>', 'g');
     message = message.replace(re, '')
     return unless message
@@ -177,14 +182,14 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     avatar = data.user.avatar || "http://via.placeholder.com/40x40"
     name = data.user.name
     message = data.message
-    return unless message
     re = new RegExp('<br>', 'g');
     message = message.replace(re, '');
     return unless message
     name = "Me" if data and data.user.id == $rootScope.user.id
     html = '<div class="item"><img src="'+avatar+'" style="width:40px; height: 40px;" class="image"/> <div class="group-name"> <div class="name">'+name+'</div> <div class="subname">'+message+'</div></div> </div>'
     $('#content-chat-list').append(html)
-    $('#content-chat-list').animate({ scrollTop: $('#content-chat-list')[0].scrollHeight }, 100)
+    if $('#content-chat-list')[0]
+      $('#content-chat-list').animate({ scrollTop: $('#content-chat-list')[0].scrollHeight }, 100)
 
   socket.on 'connectUser', (data)->
     console.log 'connect User',data
@@ -199,16 +204,15 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     $rootScope.$emit 'reload-user-in-room'
 
   socket.on 'notification', (data)->
-    console.log 'notification',data
+    console.error 'notification',data
 
   socket.on 'sendGift', (data)->
     console.log 'sendGift',data
     avatar = data.user.avatar || "http://via.placeholder.com/40x40"
     name = data.user.name
-    message = data.message +' <img style="width:10px; height:10px;" src="'+data.giftIcon+'"/>'
-    return unless message
-    re = new RegExp('<br>', 'g');
-    message = message.replace(re, '');
+    message = data.message+' <img style="width:10px; height:10px;" src="'+data.giftIcon+'"/>'
+    re = new RegExp('<br>', 'g')
+    message = message.replace(re, '')
     return unless message
     html = '<div class="item"><img src="'+avatar+'" style="width:40px; height: 40px;" class="image"/> <div class="group-name"> <div class="name">'+name+'</div> <div class="subname">'+message+'</div></div> </div>'
     $('#content-chat-list').append(html)
