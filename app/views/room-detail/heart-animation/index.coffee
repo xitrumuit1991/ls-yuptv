@@ -55,12 +55,12 @@ _directive = ($timeout, ApiService, UtilityService,$rootScope) ->
         randomHeart_2()
         randomHeart()
         randomHeart_2()
-        randomHeart()
-        randomHeart_2()
-        randomHeart()
-        randomHeart_2()
-        randomHeart()
-        randomHeart_2()
+#        randomHeart()
+#        randomHeart_2()
+#        randomHeart()
+#        randomHeart_2()
+#        randomHeart()
+#        randomHeart_2()
         $timeout(()->
           $scope.maxTime = 0
           cb() if _.isFunction(cb)
