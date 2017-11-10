@@ -4,6 +4,9 @@
   .ui-carousel{
     overflow: hidden;
   }
+  .carousel-item img{
+    width: 100%;
+  }
   .carousel-item{
     position: relative;
     .caption-group{
