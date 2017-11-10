@@ -157,7 +157,7 @@ obPaymentController.getPaymentBankResult = function (req,res) {
   console.log('mac=',mac);
   if( !transid || !responCode || !mac)
   {
-    return res.json({
+    return res.status(400).json({
       error : '1',
       message : 'missing param',
       data : {
@@ -209,7 +209,7 @@ obPaymentController.getPaymentBankResult = function (req,res) {
 
             } else {
               console.error('ERROR when get user profile after confirm body=',body);
-              res.json({
+              res.status(400).json({
                 message:body,
                 status:400
               });
