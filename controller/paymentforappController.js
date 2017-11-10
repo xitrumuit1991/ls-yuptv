@@ -141,10 +141,10 @@ obPaymentController.getPaymentHuongDan = function (req,res) {
     });
 };
 
-//router.get('/result/:id',
-obPaymentController.getPaymentResult = function (req,res) {
-  var id = req.params ? req.params.id : '';
-  var mid = req.params ? req.params.mid : '';
+
+obPaymentController.getPaymentBankResult = function (req,res) {
+  var id = req.query ? req.query.id : '';
+  var mid = req.query ? req.query.mid : '';
   var transid = (req.query ? req.query.transid : '') || (req.query ? req.query.transId : '' );
   var responCode = req.query ? req.query.responCode : '';
   var mac = req.query ? req.query.mac : '';
@@ -155,16 +155,35 @@ obPaymentController.getPaymentResult = function (req,res) {
   console.log('transid=',transid);
   console.log('responCode=',responCode);
   console.log('mac=',mac);
+  if( !transid || !responCode || !mac)
+  {
+    return res.json({
+      error : '1',
+      message : 'missing param',
+      data : {
+        id:id ? id : '' ,
+        mid: mid ? mid : '',
+        transid:transid,
+        responCode:responCode,
+        mac:mac
+      }
+    });
+  }
   request.post({
     url:req.configs.api_base_url + 'payment/bank-callback',
     headers:{'content-type':'application/json'},
-    form:{id:id,transid:transid,responCode:responCode,mac:mac, transId:transid }
+    form:{id:id,transid:transid,responCode:responCode,mac:mac, transId:transid },
+    body : {id:id,transid:transid,responCode:responCode,mac:mac, transId:transid }
+
   },function (error,response,body) {
-    if (!error && response && response.statusCode == 200) {
+    console.log('message tu API body=', body);
+    if (!error && response && response.statusCode == 200)
+    {
       try {
         var confirm = JSON.parse(body);
         console.log('confirm megabank=',confirm);
-        if (typeof (req.session.user) != 'undefined' && req.session.user !== undefined && req.session.user) {
+        if (typeof (req.session.user) != 'undefined' && req.session.user !== undefined && req.session.user)
+        {
           request({
             url:req.configs.api_base_url + 'auth/verify-token?token=' + req.session.token,
             headers:{'content-type':'application/json','Authorization' : req.session.token}
@@ -172,20 +191,22 @@ obPaymentController.getPaymentResult = function (req,res) {
             if (!error && response && response.statusCode == 200) {
               try {
                 req.session.user = JSON.parse(body);
-                res.render('paymentforapp/result',
-                  {
-                    token:req.session.token,
-                    user:req.session.user,
-                    confirm:confirm,
-                    page_title:'Thanh toán MegaBank',
-                    flag_mobile:flag_mobile,
-                    layout:layout
-                  });
+                var paramsData = {
+                  token:req.session.token,
+                  user:req.session.user,
+                  confirm:confirm,
+                  page_title:'Thanh toán MegaBank',
+                  flag_mobile:flag_mobile,
+                  layout:layout
+                };
+                console.log('paramsData=',paramsData);
+                res.render('paymentforapp/result',paramsData );
               }
               catch (errorJSONParse) {
                 console.error('ERROR get user profile after confirm megabank errorJSONParse=',errorJSONParse);
                 res.status(400).json(errorJSONParse);
               }
+
             } else {
               console.error('ERROR when get user profile after confirm body=',body);
               res.json({
@@ -214,15 +235,14 @@ obPaymentController.getPaymentResult = function (req,res) {
       }
     } else {
       var message = '';
-      try {
-        message = JSON.parse(body);
-      }
-      catch (e) { }
+      console.log('payment/bank-callback ERROR=', error);
+      try { message = JSON.parse(body); }
+      catch (e) { message = ''; }
       res.render('paymentforapp/result',{
         user:req.session.user,
         token:req.session.token,
         page_title:'Thanh toán',
-        message:message.error,
+        message: (message && message.error) ? message.error : message,
         flag_mobile:flag_mobile,
         layout:layout
       });

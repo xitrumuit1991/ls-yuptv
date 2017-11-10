@@ -74,7 +74,7 @@ var paymentController = require('./controller/paymentforappController');
 app.get('/paymentforapp', paymentController.getPaymentView);
 app.get('/paymentforapp/session', paymentController.getSession);
 app.get('/paymentforapp/huong-dan', paymentController.getPaymentHuongDan);
-app.get('/paymentforapp/result/:id', paymentController.getPaymentResult);
+app.get('/paymentforapp/bank/result', paymentController.getPaymentBankResult);
 //end group payment app
 
 
