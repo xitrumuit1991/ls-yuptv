@@ -64,10 +64,32 @@ ctrl = ($rootScope, $scope, $timeout, $location,
 
 
   $scope.buyTicket = ()->
-    alert('buy ticket')
+    return console.log 'buyTicket user not login' if !$rootScope.user or !$scope.item
+    paramBuy =
+      roomId : if $scope.item then $scope.item.id else ''
+      sessionId: if $scope.item and $scope.item.Session then $scope.item.Session.id else ''
+    ApiService.room.buyTicket paramBuy,(err, result)->
+      return if err
+      return UtilityService.notifyError(result.message) if result and result.error
+      UtilityService.notifySuccess('Mua vé thành công') if result
+      $state.reload()
 
 
 
+
+  #room
+  #room
+  #room
+  #room
+  #room
+  onLoadPlayer = (data)->
+    console.error 'on onLoadPlayer player', data
+  onPausePlayer = (data)->
+    console.error 'on onPausePlayer player', data
+  onPlayPlayer = (data)->
+    console.error 'on onPlayPlayer player', data
+  onErrorPlayer = (data)->
+    console.error 'on error player', data
 
   $scope.joinRoom = ()->
     return UtilityService.notifyError('Phòng này chưa diễn. Bạn vui lòng quay lại sao ') if $scope.item and !$scope.item.Session
@@ -86,6 +108,7 @@ ctrl = ($rootScope, $scope, $timeout, $location,
       $scope.linkPlayLive = result.linkPlayLive
       player.src({ type: "application/x-mpegURL", src: $scope.linkPlayLive })
       player.play()
+      player.on 'error', onErrorPlayer
 
 
 
@@ -93,9 +116,35 @@ ctrl = ($rootScope, $scope, $timeout, $location,
 
 
   $timeout(()->
+    console.log 'init emoji-wysiwyg-editor'
     $('.emoji-wysiwyg-editor').keyup (e)->
       $scope.sendChatMsg() if e.keyCode == 13
   ,2000)
+
+
+  $scope.showUserConnectSocket = (data)->
+    console.log 'showUserConnectSocket', data
+    html = '<div class="item"><p style="color: #fff;text-align: right;"><i style="color: #1c8abf; font-size: 18px;" class="fa fa-bicycle" aria-hidden="true"></i> '+data.message+'</p></div>'
+    $('#content-chat-list').append(html)
+    $('#content-chat-list').animate({ scrollTop: $('#content-chat-list')[0].scrollHeight }, 100)
+
+  $scope.showUserDisConnectSocket = (data)->
+    console.log 'showUserDisConnectSocket', data
+    html = '<div class="item"><p style="color: #fff; text-align: right;"><i style="color: #ff1c29;font-size: 18px;" class="fa fa-sign-out" aria-hidden="true"></i> '+data.message+'</p></div>'
+    $('#content-chat-list').append(html)
+    $('#content-chat-list').animate({ scrollTop: $('#content-chat-list')[0].scrollHeight }, 100)
+
+  $scope.showReciveHeartSocket = (data)->
+    avatar = data.user.avatar || "http://via.placeholder.com/40x40"
+    name = data.user.name
+    message = data.message+' <i style="color: #ff2491;" class="fa fa-heart" aria-hidden="true"></i>'
+    re = new RegExp('<br>', 'g')
+    message = message.replace(re, '')
+    return unless message
+    html = '<div class="item"><p>'+message+'</p></div>'
+    $('#content-chat-list').append(html)
+    $('#content-chat-list').animate({ scrollTop: $('#content-chat-list')[0].scrollHeight }, 100)
+
 
   $scope.sendChatMsg = ()->
     message = $('.emoji-wysiwyg-editor').html()
@@ -107,6 +156,12 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     $('.emoji-wysiwyg-editor').html('')
 
 
+  #socket
+  #socket
+  #socket
+  #socket
+  #socket
+  #socket
   querySocket = {query : "Authorization=#{window.localStorage.token}&roomId=#{$scope.id}"}
   socket = io( GlobalConfig.SOCKET_DOMAIN, querySocket)
   socket.on 'connect', ()->
@@ -132,12 +187,14 @@ ctrl = ($rootScope, $scope, $timeout, $location,
 
   socket.on 'connectUser', (data)->
     console.log 'connect User',data
-    UtilityService.notifySuccess(data.message) if data
+#    UtilityService.notifySuccess(data.message) if data
+    $scope.showUserConnectSocket(data)
     $rootScope.$emit 'reload-user-in-room'
 
   socket.on 'disconnectUser', (data)->
     console.log 'disconnect User',data
-    UtilityService.notifyError(data.message) if data
+#    UtilityService.notifyError(data.message) if data
+    $scope.showUserDisConnectSocket(data)
     $rootScope.$emit 'reload-user-in-room'
 
   socket.on 'notification', (data)->
@@ -161,17 +218,7 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     $scope.showHeartAnimation = true
     $rootScope.$emit 'fly-heart',()->
       $scope.showHeartAnimation = false
-
-    avatar = data.user.avatar || "http://via.placeholder.com/40x40"
-    name = data.user.name
-    message = data.message +' <i style="background: #e0138a;" class="fa fa-heart-o"></i>'
-    return unless message
-    re = new RegExp('<br>', 'g');
-    message = message.replace(re, '');
-    return unless message
-    html = '<div class="item"><img src="'+avatar+'" style="width:40px; height: 40px;" class="image"/> <div class="group-name"> <div class="name">'+name+'</div> <div class="subname">'+message+'</div></div> </div>'
-    $('#content-chat-list').append(html)
-    $('#content-chat-list').animate({ scrollTop: $('#content-chat-list')[0].scrollHeight }, 100)
+    $scope.showReciveHeartSocket(data)
 
   socket.on 'disconnect', ()->
     console.log 'socket disconnect'

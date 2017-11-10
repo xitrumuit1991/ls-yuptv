@@ -301,27 +301,34 @@
   }
 }
 
-i.emoji-picker-icon{
-  color: #fff;
-  font-size: 15px;
-  top: 11px;
-  right: 70px;
+
+#content-chat-list{
+  i.emoji-picker-icon{
+    color: #fff;
+    font-size: 15px;
+    top: 11px;
+    right: 70px;
+  }
+  .emoji-wysiwyg-editor.chat{
+    width: 100%;
+    display: inline-block;
+    height: 40px !important;
+    outline: none;
+    padding-right: 75px;
+  }
+  .emoji-picker-icon.parent-has-scroll {
+    /* right: 28px; */
+    right: 70px;
+    top: 11px;
+    font-size: 18px;
+    color: #fff;
+    font-weight: bold;
+  }
+  .emoji-menu{
+    bottom: 100%;
+  }
 }
-.emoji-wysiwyg-editor.chat{
-  width: 100%;
-  display: inline-block;
-  height: 40px !important;
-  outline: none;
-  padding-right: 75px;
-}
-.emoji-picker-icon.parent-has-scroll {
-  /* right: 28px; */
-  right: 70px;
-  top: 11px;
-  font-size: 18px;
-  color: #fff;
-  font-weight: bold;
-}
+
 
 .room-detail .list-user-room{
   width: 100%; display:block; background: #fff;

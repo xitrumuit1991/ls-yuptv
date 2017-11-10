@@ -276,6 +276,12 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
         method : 'GET'
         data : params
       self.request options, done
+    buyTicket : (params, done)->
+      options =
+        url : GlobalConfig.API_URL + "ticket/buy"
+        method : 'POST'
+        data : params
+      self.request options, done
     joinRoom : (params, done)->
       options =
         url : GlobalConfig.API_URL + "room/join"
