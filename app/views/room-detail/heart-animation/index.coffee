@@ -1,7 +1,7 @@
 _directive = ($timeout, ApiService, UtilityService,$rootScope) ->
   link = ($scope, $element, $attrs) ->
     $scope.maxTime = 0
-    $scope.isFly = false
+    $rootScope.isFly = false
 
     randomHeart = ()->
       r_num = Math.floor(Math.random() * 40) + 1
@@ -50,18 +50,16 @@ _directive = ($timeout, ApiService, UtilityService,$rootScope) ->
       $('#bg_heart').append(html)
 
     $scope.flyHeart = (cb=null)->
-      return if $scope.isFly == true
-      $scope.isFly = true
+      return if $rootScope.isFly == true
+      $rootScope.isFly = true
       $timeout((->
         randomHeart()
         randomHeart_2()
         randomHeart()
         randomHeart_2()
-#        randomHeart()
-#        randomHeart_2()
         $timeout(()->
           $scope.maxTime = 0
-          $scope.isFly = false
+          $rootScope.isFly = false
           $('#bg_heart').html('')
           cb() if _.isFunction(cb)
         ,$scope.maxTime*1000+1)
@@ -75,7 +73,6 @@ _directive = ($timeout, ApiService, UtilityService,$rootScope) ->
       ), 1)
 
     $rootScope.$on 'fly-heart',(event, cb)->
-#      console.log "$rootScope.$on 'fly-heart'"
       $scope.flyHeart(cb)
 
     return
