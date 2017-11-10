@@ -62,11 +62,11 @@ ctrl = ($rootScope, $scope, $timeout, $location,
       $scope.giftList.items = result.items
       console.log '$scope.giftList',$scope.giftList
 
-  $scope.getListTicket = ()->
-    ApiService.room.ticketList {page:0, limit:1000},(err, result)->
-      return if err
-      $scope.ticketList = result
-      console.log '$scope.ticketList',$scope.ticketList
+
+  $scope.buyTicket = ()->
+    alert('buy ticket')
+
+
 
 
   $scope.joinRoom = ()->
@@ -133,10 +133,12 @@ ctrl = ($rootScope, $scope, $timeout, $location,
   socket.on 'connectUser', (data)->
     console.log 'connect User',data
     UtilityService.notifySuccess(data.message) if data
+    $rootScope.$emit 'reload-user-in-room'
 
   socket.on 'disconnectUser', (data)->
     console.log 'disconnect User',data
     UtilityService.notifyError(data.message) if data
+    $rootScope.$emit 'reload-user-in-room'
 
   socket.on 'notification', (data)->
     console.log 'notification',data
@@ -188,7 +190,6 @@ ctrl = ($rootScope, $scope, $timeout, $location,
   #call api
   $scope.getRoomDetail ()->
     $scope.getListGift()
-    $scope.getListTicket()
     $scope.joinRoom()
 
 ctrl.$inject = [

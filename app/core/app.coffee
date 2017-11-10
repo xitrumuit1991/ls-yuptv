@@ -3,8 +3,9 @@ config =
   version : '1.0.0'
   uuid : (new Fingerprint({canvas : true, screen_resolution : false})).get()
   modelName : navigator.userAgent
-  fBappId : '1933860780272829'
-  API_URL : "http://dev.livestar.vn:1010/api/v1/"
+#  fBappId : '1933860780272829' #dev
+  fBappId : '144785392941236' #production
+  API_URL : "http://api.yuptv.vn/api/v1/"
   env : 'production'
 
 config.menuMainHome = [
@@ -60,14 +61,14 @@ config.menuMainProfile = [
 switch window.ENV
   when 'production'
     config = _.extend config,
-      fBappId : '1933860780272829'
+      fBappId : '144785392941236'
       API_URL : "http://api.yuptv.vn/api/v1/"
       LIVE_DOMAIN : 'http://livestream.yuptv.vn/'
       SOCKET_DOMAIN : 'https://socket.yuptv.vn/'
       env : 'production'
   when 'prod'
     config = _.extend config,
-      fBappId : '1933860780272829'
+      fBappId : '144785392941236'
       API_URL : "http://api.yuptv.vn/api/v1/"
       LIVE_DOMAIN : 'http://livestream.yuptv.vn/'
       SOCKET_DOMAIN : 'https://socket.yuptv.vn/'

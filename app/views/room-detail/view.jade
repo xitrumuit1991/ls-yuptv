@@ -23,9 +23,10 @@
 							span Giá vé:
 							span.price 100 Ucoin
 						.buy-ticker
-							button.btn.btn-primary
+							button.btn.btn-primary(ng-click='buyTicket()')
 								span Mua vé
 								i.fa.fa-play-circle
+
 					.han-che-nguoi-xem(style='z-index: 9;' ng-if='roomNowLivestream == false || !linkPlayLive ')
 						p: b.price Phòng này chưa diễn. Bạn vui lòng quay lại sau!
 
