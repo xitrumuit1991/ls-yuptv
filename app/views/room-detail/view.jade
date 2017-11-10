@@ -10,7 +10,7 @@
 							i.fa.fa-eye
 							span(style='margin: 0 15px 0 5px;') {{item.views}}
 							i.fa.fa-heart
-							span(style='margin: 0 15px 0 5px;') {{item.hearts}}
+							span#room-heart-number(style='margin: 0 15px 0 5px;') {{item.hearts}}
 					button.btn.btn-primary.pull-right.btn-schedule(ng-click='openLichDien()') Lịch phát sóng
 				.col-md-4
 					.text-center.text-top3
@@ -78,7 +78,8 @@
 list-video-saved(ng-model='id')
 list-gift(ng-model='id')
 lich-dien-room-detail(ng-model='id')
-heart-animation(ng-model='id' ng-show='showHeartAnimation == true ' )
+//heart-animation#heart-animation(ng-model='id' ng-show='showHeartAnimation == true' )
+heart-animation#heart-animation(ng-model='id'  )
 
 
 

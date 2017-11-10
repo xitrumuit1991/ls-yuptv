@@ -14,6 +14,7 @@ _directive = ($timeout, ApiService, UtilityService,$rootScope) ->
       r_left = parseInt(r_left)
       r_bg = parseInt(r_bg)
       r_time = parseInt(r_time)
+      console.log 'r_time',r_time
       $scope.maxTime = r_time if r_time > $scope.maxTime
       html = '<div class="heart" style="
         width:'+r_size+'px;
@@ -31,12 +32,13 @@ _directive = ($timeout, ApiService, UtilityService,$rootScope) ->
       r_size = Math.floor(Math.random() * 65) + 10
       r_left = Math.floor(Math.random() * 100) + 1
       r_bg = Math.floor(Math.random() * 25) + 100
-      r_time = Math.floor(Math.random())+2
+      r_time = Math.floor(Math.random())+3
       r_num = parseInt(r_num)
       r_size = parseInt(r_size)
       r_left = parseInt(r_left)
       r_bg = parseInt(r_bg)
       r_time = parseInt(r_time)
+      console.log 'r_time',r_time
       $scope.maxTime = r_time if r_time > $scope.maxTime
       html = '<div class="heart" style="
         width:'+(r_size-10)+'px;
@@ -60,14 +62,19 @@ _directive = ($timeout, ApiService, UtilityService,$rootScope) ->
         $timeout(()->
           $scope.maxTime = 0
           $rootScope.isFly = false
-          $('#bg_heart').html('')
           cb() if _.isFunction(cb)
-        ,$scope.maxTime*1000+1)
+          $('#bg_heart .heart').each ()->
+            $(this).remove()
+        ,$scope.maxTime*1000 + 1)
 
         $('#bg_heart .heart').each ()->
           top = $(this).css('top').replace(/[^-\d\.]/g, '')
           width = $(this).css('width').replace(/[^-\d\.]/g, '')
           $(this).detach() if top <= -100 or width >= 150
+          self = $(this)
+#          $timeout(()->
+#            self.remove()
+#          ,Math.floor(Math.random())+5)
           return
         return
       ), 1)

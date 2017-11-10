@@ -39,6 +39,7 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     ApiService.room.sendHeart param, (err, result)->
       return if err
       return UtilityService.notifyError(result.message) if result and result.error
+      $('#room-heart-number').text(result.total_heart) if result
 
 
   $scope.openListGift = ()->
@@ -246,9 +247,11 @@ ctrl = ($rootScope, $scope, $timeout, $location,
 
   socket.on 'sendHeart', (data)->
     console.log 'sendHeart',data
-    $scope.showHeartAnimation = true
+#    $scope.showHeartAnimation = true
+    $('#heart-animation').show()
     $rootScope.$emit 'fly-heart',()->
-      $scope.showHeartAnimation = false
+#      $scope.showHeartAnimation = false
+      $('#heart-animation').hide()
     $scope.showReciveHeartSocket(data)
 
   socket.on 'disconnect', ()->
