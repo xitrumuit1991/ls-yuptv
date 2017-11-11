@@ -14,9 +14,9 @@
 						|             Đăng Nhập
 			.div-profile-logged(ng-if='isLogged == true')
 				ul.list-inline.text-right.list-link-logged
-					li.list-inline-item(ng-if='isHome == false ')
+					//li.list-inline-item(ng-if='isHome == false ')
 						i.fa.fa-search
-					li.list-inline-item
+					li.list-inline-item(ui-sref='base.notifycation' style='cursor:pointer;')
 						i.fa.fa-bell-o
 					li.list-inline-item.group-avatar-logged(
 					ng-mouseenter='openProfileMenuDropdown(true)'

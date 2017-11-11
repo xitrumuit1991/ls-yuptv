@@ -323,40 +323,20 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
 
   self.socket = {}
 
-#    joinRoom : (params, done)->
-#      options =
-#        url : GlobalConfig.API_URL + "room/#{params.roomId}/"
-#        method : 'GET'
-#        data : params
-#      self.request options, done
-#    getListUserInRoom : (params, done)->
-#      options =
-#        url : GlobalConfig.API_URL + "room/#{params.roomId}/"
-#        method : 'GET'
-#        data : params
-#      self.request options, done
-#    sendMessage : (params, done)->
-#      options =
-#        url : GlobalConfig.API_URL + "room/#{params.roomId}/"
-#        method : 'GET'
-#        data : params
-#      self.request options, done
+  self.getListRoomInCategory = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "room/list-by-category"
+      method : 'GET'
+      data : params
+    self.request options, done
 
+  self.notificationList = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "notification/list"
+      method : 'POST'
+      data : params
+    self.request options, done
 
-
-
-
-
-
-
-
-#  self.getListRoomInCategory = (params, done)->
-#    return done('Missing categoryId getListRoomInCategory api', null) unless params.categoryId
-#    options =
-#      url : GlobalConfig.API_URL + "room/list-by-category"
-#      method : 'GET'
-#      data : params
-#    self.request options, done
 
 
   return null

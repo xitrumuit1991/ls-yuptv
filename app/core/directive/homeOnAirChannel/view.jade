@@ -2,7 +2,7 @@
 	.title
 		img(src='/images/onair_title.png')
 		span KÊNH ON AIR
-		.group-button(ng-if='listOnAir && listOnAir.length > 7')
+		//.group-button(ng-if='listOnAir && listOnAir.length > 7')
 			img(src='/images/previous.png')
 			img(src='/images/next.png')
 	.content.row(ng-if='listOnAir && listOnAir.length <= 0')
@@ -15,36 +15,37 @@
 				img.onair-image(src='{{listOnAir[0].banners.banner || listOnAir[0].User.avatars_path.avatar}}'
 				ui-sref='base.room-detail({id : listOnAir[0].id})')
 				.bottom
-					.name {{listOnAir[0].title}}
+					.name(style='cursor:pointer;' ui-sref='base.room-detail({id : listOnAir[0].id})') {{listOnAir[0].title}}
 					.group-icon
 						i.fa.fa-eye
 						span {{listOnAir[0].views}}
 						i.fa.fa-heart
 						span {{listOnAir[0].hearts}}
-				.on-air-icon
+						.btn-lock(ng-if='listOnAir[0].mode == 2')
+							i.fa.fa-lock
+				.on-air-icon(ng-if='listOnAir[0].onAir==true')
 					.icon &nbsp;
 					span LIVE
 		.right.col-md-8
 			.row
-				.col-md-4(ng-repeat='room in listOnAir | limitTo : 6' ng-if='$index > 0')
+				.col-md-4(ng-repeat='room in listOnAir | limitTo : 10' ng-if='$index > 0')
 					.onair-child
-						//img(src='{{room.banners.banner || room.User.avatars_path.avatar || "/images/onair_left.png"}}')
-						img.img-responsive(src='{{room.banners.banner || room.User.avatars_path.avatar || "http://via.placeholder.com/150x150"}}'
+						img.img-responsive(src='{{room.banner || room.background || room.User.avatar || "http://via.placeholder.com/150x150"}}'
 						ui-sref='base.room-detail({id : room.id})')
 						.bottom
 							.group
-								.name {{room.title}}
+								.name(style='cursor:pointer;' ui-sref='base.room-detail({id : room.id})') {{room.title}}
 								.icon
 									i.fa.fa-eye
 									span {{room.views}}
 									i.fa.fa-heart
 									span {{room.hearts}}
-								.btn-lock
+								.btn-lock(ng-if='room.mode == 2')
 									i.fa.fa-lock
-						.on-air-icon
+						.on-air-icon(ng-if='room.onAir==true')
 							.icon &nbsp;
 							span LIVE
 	.view-more(ng-if='listOnAir && listOnAir.length > 7')
-		a.text.pull-right
+		a.text.pull-right(ui-sref='base.on-air')
 			| Xem tất cả
 			img(src='/images/view_more.png')

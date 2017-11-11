@@ -8,9 +8,8 @@
 		.col-md-12.body-top
 			.row
 				.col-md-5
-					//.group-image(ng-if='user && user.Room && user.Room.banners && user.Room.banners.banner')
 					.group-image
-						img.img-responsive(src='{{ (user.Room.banners.banner) || "http://via.placeholder.com/350x200" }}')
+						img.img-responsive(src='{{ user.avatar || user.Room.banner || user.Room.background || "http://via.placeholder.com/350x200" }}')
 						//button.btn-change-room-banner Thay đổi
 						button.btn-change-room-banner(type="file" ngf-select="changeRoomBanner($file, $invalidFiles)"
 						accept="image/*"  ngf-max-size="10MB"

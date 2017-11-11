@@ -1,13 +1,12 @@
 "use strict"
 route = ($stateProvider, GlobalConfig)->
   $stateProvider
-  .state "base",
-    url : "/"
+  .state "base.notifycation",
+    url : "notifycation"
     views :
       "main@" :
-        templateUrl : "/templates/home/home.html"
-        controller : "HomeCtrl"
-
+        templateUrl : "/templates/notifycation/view.html"
+        controller : "NotifycationCtrl"
 route.$inject = ['$stateProvider', 'GlobalConfig']
 
 
@@ -15,13 +14,14 @@ ctrl = ($rootScope,
   $scope, $timeout, $location,
   $window, $state, $stateParams,  ApiService, $http,
   GlobalConfig, $interval) ->
-  console.log 'home coffee '
-  $scope.groupIdol = []
-  ApiService.getHomeContent( {},(error, result)->
-    return if error
-    $scope.groupIdol = result
-    console.log 'home group idol', result
-  )
+  console.log 'notifycation coffee '
+  $scope.pagination =
+    page:0
+    limit: 20
+  $scope.items = []
+  ApiService.notificationList $scope.pagination,(err, result)->
+    console.log 'notificationList result ',result
+
 
 ctrl.$inject = [
   '$rootScope', '$scope', '$timeout', '$location',
@@ -31,4 +31,4 @@ ctrl.$inject = [
 angular
 .module("app")
 .config route
-.controller "HomeCtrl", ctrl
+.controller "NotifycationCtrl", ctrl

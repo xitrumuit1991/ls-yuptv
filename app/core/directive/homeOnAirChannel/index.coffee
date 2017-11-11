@@ -1,12 +1,11 @@
 _directive = ($timeout, ApiService) ->
   link = ($scope, $element, $attrs) ->
     $scope.listOnAir = []
-    ApiService.getRoomOnAir({},(error, result)->
-      console.log 'getRoomOnAir listOnAir=',result
+    ApiService.getRoomOnAir {},(error, result)->
       return if error
       return if result.rooms.length <= 0
       $scope.listOnAir = result.rooms
-    )
+      console.log 'home on air Directive=',result
     return null
 
   directive =
