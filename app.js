@@ -51,27 +51,28 @@ app.use(function(req, res, next)
   if (req && !req.session) return next(new Error('ERROR: can not connect Redis'+configs.redis.host));
   var ua = req.headers['user-agent'];
   var isMobile = (/mobile/i.test(ua)) ? true : false;
-  if(isMobile == true && req.originalUrl && req.originalUrl.indexOf('paymentforapp') != -1)
-    return next();
-  if(isMobile == true && req.originalUrl && req.originalUrl.indexOf('down-app') == -1 )
-    return res.redirect('/down-app');
+
+  if(isMobile == true )
+  {
+    if( req.originalUrl && req.originalUrl.indexOf('paymentforapp') != -1)
+      return next();
+    if( req.originalUrl && req.originalUrl.indexOf('download/ios') != -1 )
+      return next();
+    if( req.originalUrl && req.originalUrl.indexOf('download/android') != -1 )
+      return next();
+    if(req.originalUrl && req.originalUrl.indexOf('down-app') == -1 )
+      return res.redirect('/down-app');
+  }
   if(isMobile == false && req.originalUrl && req.originalUrl.indexOf('down-app') != -1)
     return res.redirect('/');
   return next();
 });
 
-
-app.get('/download/:type', function (req, res) {
-  console.log(req.params);
-  var type = (req.params && req.params.type) ? req.params.type : '';
-  if(!type)
-    return res.json({code:1, message:'can get params type'});
-  if(type !='ios' && type !='android')
-    return res.json({code:1, message:'params type is not ios/android'});
-  return res.render('redirectToStore',{
-    layout:false,
-    type:type
-  });
+app.get('/download/ios', function (req, res) {
+  return res.render('redirectToStore',{ layout:false, type:'ios' });
+});
+app.get('/download/android', function (req, res) {
+  return res.render('redirectToStore',{ layout:false, type:'android' });
 });
 
 app.get('/down-app', function (req, res) {

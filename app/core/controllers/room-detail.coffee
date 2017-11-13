@@ -132,13 +132,11 @@ ctrl = ($rootScope, $scope, $timeout, $location,
 
       player.on 'timeupdate', (timeupdate)->
 #        console.log 'timeupdate',timeupdate
-
-      player.on 'useractive', (useractive)->
-        console.log 'useractive',useractive
-
-      player.on 'userinactive', (userinactive)->
-        console.log 'userinactive',userinactive
-
+#      player.on 'useractive', (useractive)->
+#        console.log 'useractive',useractive
+#      player.on 'userinactive', (userinactive)->
+#        console.log 'userinactive',userinactive
+#
       player.on 'volumechange', (volumechange)->
         console.log 'volumechange',volumechange
 
@@ -225,7 +223,7 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     $rootScope.$emit 'reload-user-in-room'
 
   socket.on 'disconnectUser', (data)->
-    console.log 'disconnect User',data
+    console.error 'disconnect User',data
 #    UtilityService.notifyError(data.message) if data
     $scope.showUserDisConnectSocket(data)
     $rootScope.$emit 'reload-user-in-room'
@@ -247,15 +245,16 @@ ctrl = ($rootScope, $scope, $timeout, $location,
 
   socket.on 'sendHeart', (data)->
     console.log 'sendHeart',data
-#    $scope.showHeartAnimation = true
-    $('#heart-animation').show()
-    $rootScope.$emit 'fly-heart',()->
-#      $scope.showHeartAnimation = false
-      $('#heart-animation').hide()
     $scope.showReciveHeartSocket(data)
+#    $scope.showHeartAnimation = true
+#    $('#heart-animation').show()
+#    $rootScope.$emit 'fly-heart',()->
+#      $scope.showHeartAnimation = false
+#      $('#heart-animation').hide()
+
 
   socket.on 'disconnect', ()->
-    console.log 'socket disconnect'
+    console.error 'socket disconnect'
     $scope.socketIsConnected = false
 
 
