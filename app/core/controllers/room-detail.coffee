@@ -43,7 +43,7 @@ ctrl = ($rootScope, $scope, $timeout, $location,
 
 
   $scope.openListGift = ()->
-    console.log 'openListGift', param
+#    console.log 'openListGift', param
     param =
       items : $scope.giftList.items
       action : (item, cb=null )->
@@ -64,7 +64,7 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     ApiService.room.giftList {page:0, limit:1000},(err, result)->
       return if err
       $scope.giftList.items = result.items
-      console.log '$scope.giftList',$scope.giftList
+#      console.log '$scope.giftList',$scope.giftList
 
 
   $scope.buyTicket = ()->
@@ -150,14 +150,14 @@ ctrl = ($rootScope, $scope, $timeout, $location,
 
 
   $scope.showUserConnectSocket = (data)->
-    console.log 'showUserConnectSocket', data
+#    console.log 'showUserConnectSocket', data
     html = '<div class="item"><p style="color: #fff;text-align: right;"><i style="color: #1c8abf; font-size: 18px;" class="fa fa-bicycle" aria-hidden="true"></i> '+data.message+'</p></div>'
     $('#content-chat-list').append(html)
     if $('#content-chat-list')[0]
       $('#content-chat-list').animate({ scrollTop: $('#content-chat-list')[0].scrollHeight }, 100)
 
   $scope.showUserDisConnectSocket = (data)->
-    console.log 'showUserDisConnectSocket', data
+#    console.log 'showUserDisConnectSocket', data
     html = '<div class="item"><p style="color: #fff; text-align: right;"><i style="color: #ff1c29;font-size: 18px;" class="fa fa-sign-out" aria-hidden="true"></i> '+data.message+'</p></div>'
     $('#content-chat-list').append(html)
     if $('#content-chat-list')[0]
@@ -252,7 +252,6 @@ ctrl = ($rootScope, $scope, $timeout, $location,
 #      $scope.showHeartAnimation = false
 #      $('#heart-animation').hide()
 
-
   socket.on 'disconnect', ()->
     console.error 'socket disconnect'
     $scope.socketIsConnected = false
@@ -261,13 +260,15 @@ ctrl = ($rootScope, $scope, $timeout, $location,
 
 
 
-  $scope.$on('$destroy', ()->
+  $scope.$on '$destroy', ()->
+    console.log '$destroy room detail'
     if player
       player.pause() if _.isFunction(player.pause)
       player.dispose() if _.isFunction(player.dispose)
+      console.log '$destroy room detail player.dispose()'
     if(videojs.getPlayers()['videojs-room-detail-main'])
+      console.log '$destroy room detail delete videojs.getPlayers'
       delete videojs.getPlayers()['videojs-room-detail-main']
-  )
 
   #call api
   $scope.getRoomDetail ()->
