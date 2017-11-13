@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="keywords" content="Giải trí, ca hát, nhảy múa, giao lưu, ngôi sao, idol, hot girl, trò chuyện, Hallostar, trực tuyến, live chat, Hari Won" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i" rel="stylesheet">
+  <title>Download App</title>
+  <link rel="stylesheet" href="/assets/down-app/css/bootstrap.css" type="text/css" />
+  <link rel="stylesheet" href="/assets/down-app/css/font-awesome.css" type="text/css" />
+  <link rel="stylesheet" href="/assets/down-app/css/style.css" type="text/css" />
+  <script type="text/javascript" src="/assets/paymentforapp/js/jquery-1.12.1.min.js"></script>
+</head>
+<body>
+
+<script type="text/javascript" src="/assets/paymentforapp/js/bootstrap.js"></script>
+<script type="text/javascript" src="/assets/paymentforapp/js/notify.min.js"></script>
+<script type="text/javascript" src="/assets/paymentforapp/js/pmodal.js"></script>
+<script type="text/javascript" src='/assets/paymentforapp/js/moment.js'></script>
+<script>
+  $(document).ready(function () {
+    var type = "<%= (typeof(type) != 'undefined' && type!=undefined && type)  ? type : '' %>";
+    console.log(type);
+    //IOS
+    if(type && type.toLowerCase() == 'ios')
+    {
+      window.location.href = 'https://itunes.apple.com/vn/app/yup/id1294969432?mt=8';
+    }
+    //android
+    if(type && type.toLowerCase() == 'android')
+    {
+      window.location.href = 'https://play.google.com/store/apps/details?id=yup.livestream.hotgirl';
+    }
+  });
+</script>
+</body>
+</html>
+
+
+

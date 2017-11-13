@@ -61,6 +61,19 @@ app.use(function(req, res, next)
 });
 
 
+app.get('/download/:type', function (req, res) {
+  console.log(req.params);
+  var type = (req.params && req.params.type) ? req.params.type : '';
+  if(!type)
+    return res.json({code:1, message:'can get params type'});
+  if(type !='ios' && type !='android')
+    return res.json({code:1, message:'params type is not ios/android'});
+  return res.render('redirectToStore',{
+    layout:false,
+    type:type
+  });
+});
+
 app.get('/down-app', function (req, res) {
   return res.render('down-app-view',{
     layout:false
