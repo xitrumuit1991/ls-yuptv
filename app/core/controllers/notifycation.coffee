@@ -20,7 +20,8 @@ ctrl = ($rootScope,
     limit: 20
   $scope.items = []
   ApiService.notificationList $scope.pagination,(err, result)->
-    console.log 'notificationList result ',result
+    console.log 'notificationList in notifycation coffee;  result ',result
+    $scope.items = result.items
 
 
 ctrl.$inject = [

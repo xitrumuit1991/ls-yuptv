@@ -17,8 +17,7 @@ ctrl = ($rootScope,
   console.log 'CategoryCtrl coffee ', $stateParams.id
   $scope.id = $stateParams.id
   return $state.go 'base' unless $stateParams.id
-
-  $scope.category = {}
+  $scope.category = null
   ApiService.getListRoomInCategory {categoryId: $stateParams.id},(err, result)->
     console.log 'getListRoomInCategory', result
     $scope.category = result.category

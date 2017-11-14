@@ -3,7 +3,7 @@ _directive = ($timeout, ApiService) ->
     $scope.listOnAir = []
     ApiService.getRoomOnAir {},(error, result)->
       return if error
-      return if result.rooms.length <= 0
+      return if result and result.rooms and result.rooms.length <= 0
       $scope.listOnAir = result.rooms
       console.log 'home on air Directive=',result
     return null

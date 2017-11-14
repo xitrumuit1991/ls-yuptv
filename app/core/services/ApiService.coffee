@@ -333,7 +333,19 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
   self.notificationList = (params, done)->
     options =
       url : GlobalConfig.API_URL + "notification/list"
-      method : 'POST'
+      method : 'GET'
+      data : params
+    self.request options, done
+  self.notificationListRead = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "notification/listRead"
+      method : 'GET'
+      data : params
+    self.request options, done
+  self.notificationListUnread = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "notification/listUnread"
+      method : 'GET'
       data : params
     self.request options, done
 

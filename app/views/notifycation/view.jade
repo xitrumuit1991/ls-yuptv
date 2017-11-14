@@ -2,3 +2,9 @@
 	.row.profile-manage-room
 		.col-md-12.header
 			h1 Thông báo
+		.col-md-12(ng-if='!items || items.length <=0 ')
+			span.text-danger Không có thông báo nào
+		.col-md-12(ng-if='items && items.length > 0 ')
+			.row
+				.col-md-12(ng-repeat='ite in items')
+					p {{ite.name}}

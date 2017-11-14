@@ -14,8 +14,8 @@ ctrl = ($rootScope,
   GlobalConfig, $interval, UtilityService) ->
 
   $scope.categorySelected = null
-  $scope.items = []
-  $scope.categorys = []
+  $scope.items = null
+  $scope.categorys = null
 
   $scope.selectCategory = (item, index)->
     $scope.categorySelected = item
