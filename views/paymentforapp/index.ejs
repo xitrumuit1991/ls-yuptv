@@ -355,6 +355,7 @@
 
     var package_id = $('#internet_Banking #stepA .box-sms.active a.box-wrapper').attr('package-id');
     var callbackUrl = window.location.origin + "/paymentforapp/bank/result";
+//    var callbackUrl = "http://www.yuptv.vn/paymentforapp/bank/result";
 
     var bank_id =   $('#internet-bank-select option:selected').attr('bank-id');
     var bank_code = $('#internet-bank-select option:selected').attr('bank-code');
@@ -402,6 +403,22 @@
               return;
             }
             window.location.href = data.url
+          },
+          404 :function (data) {
+            $.unblockUI();
+            var msg = (data.responseJSON ? data.responseJSON.message : '') || "Có lỗi xảy ra, vui lòng thử lại sau";
+            btn_internetBank.removeAttr("disabled").button('refresh');
+            btn_internetBank.removeClass('loading');
+            reRenderCaptcha();
+            PModal.modalAlert(msg,function () {btn_internetBank.removeClass('loading'); });
+          },
+          403 :function (data) {
+            $.unblockUI();
+            var msg = (data.responseJSON ? data.responseJSON.message : '') || "Có lỗi xảy ra, vui lòng thử lại sau";
+            btn_internetBank.removeAttr("disabled").button('refresh');
+            btn_internetBank.removeClass('loading');
+            reRenderCaptcha();
+            PModal.modalAlert(msg,function () {btn_internetBank.removeClass('loading'); });
           },
           400:function (data) {
             $.unblockUI();

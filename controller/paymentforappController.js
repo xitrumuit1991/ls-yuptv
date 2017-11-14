@@ -143,38 +143,30 @@ obPaymentController.getPaymentHuongDan = function (req,res) {
 
 
 obPaymentController.getPaymentBankResult = function (req,res) {
-  var id = req.query ? req.query.id : '';
-  var mid = req.query ? req.query.mid : '';
-  var transid = (req.query ? req.query.transid : '') || (req.query ? req.query.transId : '' );
-  var responCode = req.query ? req.query.responCode : '';
-  var mac = req.query ? req.query.mac : '';
-
+  //transid=BANK_1510634097113&responCode=00&mac=41B7B1C385CBEA0E74DB017B035D49DA8D8F3BD3719FD105
+  var transId =     req.query ? req.query.transid : '';
+  var responseCode =  req.query ? req.query.responCode : '';
+  var mac =         req.query ? req.query.mac : '';
   console.log('-----------response tu banking-------');
-  console.log('id=',id);
-  console.log('mid=',mid);
-  console.log('transid=',transid);
-  console.log('responCode=',responCode);
+  console.log('transid=',transId);
+  console.log('responseCode=',responseCode);
   console.log('mac=',mac);
-  if( !transid || !responCode || !mac)
+  if( !transId || !responseCode || !mac)
   {
     return res.status(400).json({
       error : '1',
       message : 'missing param',
       data : {
-        id:id ? id : '' ,
-        mid: mid ? mid : '',
-        transid:transid,
-        responCode:responCode,
-        mac:mac
+        transId : transId,
+        responseCode : responseCode,
+        mac : mac
       }
     });
   }
-  request.post({
-    url:req.configs.api_base_url + 'payment/bank-callback',
-    headers:{'content-type':'application/json'},
-    form:{id:id,transid:transid,responCode:responCode,mac:mac, transId:transid },
-    body : {id:id,transid:transid,responCode:responCode,mac:mac, transId:transid }
-
+  request({
+    method : 'GET',
+    url : req.configs.api_base_url + 'payment/bank-callback?transId='+transId+'&responseCode='+responseCode+'&mac='+mac,
+    headers : {'content-type':'application/json', 'Authorization' : req.session.token}
   },function (error,response,body) {
     console.log('message tu API body=', body);
     if (!error && response && response.statusCode == 200)
@@ -182,12 +174,13 @@ obPaymentController.getPaymentBankResult = function (req,res) {
       try {
         var confirm = JSON.parse(body);
         console.log('confirm megabank=',confirm);
-        if (typeof (req.session.user) != 'undefined' && req.session.user !== undefined && req.session.user)
+        if (typeof (req.session.user) != 'undefined' && req.session.user)
         {
           request({
             url:req.configs.api_base_url + 'auth/verify-token?token=' + req.session.token,
             headers:{'content-type':'application/json','Authorization' : req.session.token}
-          },function (error,response,body) {
+          },function (error,response,body)
+          {
             if (!error && response && response.statusCode == 200) {
               try {
                 req.session.user = JSON.parse(body);
@@ -206,7 +199,6 @@ obPaymentController.getPaymentBankResult = function (req,res) {
                 console.error('ERROR get user profile after confirm megabank errorJSONParse=',errorJSONParse);
                 res.status(400).json(errorJSONParse);
               }
-
             } else {
               console.error('ERROR when get user profile after confirm body=',body);
               res.status(400).json({

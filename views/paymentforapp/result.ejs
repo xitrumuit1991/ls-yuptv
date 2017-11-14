@@ -26,35 +26,6 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
-  <%- include ../layouts/footer %>
 </div>
-<%- contentFor('appjs') %>
-<!--<script src='/assets/javascripts/lib/payment.js' type="text/javascript"></script>-->
-<script type="text/javascript">
-	$(function() {
-		var isMobile = (function() {
-			var userAgent = navigator.userAgent.toLowerCase();
-			if (userAgent.match("mobile")) {
-				return true;
-			} else {
-				return false;
-			}
-		})();
-		if (isMobile) {
-			$("header").hide()
-			$(".main").css({
-				"min-width": 'auto',
-				"overflow": 'hidden'
-			});
-			$(".container").css({
-				"width": 'auto'
-			});
-		}
-	})
-</script>
-<%- contentFor('appcss') %>
 
-<link rel="stylesheet" href="/assets/paymentforapp/css/payment.css" type="text/css" />
-<link rel="stylesheet" href="/assets/paymentforapp/css/payment_2.css" type="text/css" />

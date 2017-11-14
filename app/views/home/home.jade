@@ -13,9 +13,9 @@ home-slider
 			.col-md-12
 				ul.list-inline
 					li.list-inline-item(ng-repeat='groupIdo in groupIdol')
-						a(href='')
-							|{{groupIdo.title}}
-						span(ng-if=' !$last ') &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+						a(ui-sref='base.category({id:groupIdo.id})')
+							span() {{groupIdo.title}}
+						span(ng-if=' !$last ' style='display:inline-block;margin: 0 15px;') /
 
 
 .container.home-block-content(ng-repeat='groupIdo in groupIdol' ng-if='groupIdo && groupIdo.Rooms.length > 0')
