@@ -389,9 +389,11 @@
         beforeSend:function () {
           btn_internetBank.attr("disabled", "disabled").button('refresh');
           btn_internetBank.addClass('loading');
+          $.blockUI();
         },
         statusCode:{
           200:function (data) {
+            $.unblockUI();
             console.log('PaymentMegabank.handlePaymentMegabank data=',data);
             console.log('data=',JSON.stringify(data));
             if(data && data.error)
@@ -402,6 +404,7 @@
             window.location.href = data.url
           },
           400:function (data) {
+            $.unblockUI();
             var msg = (data.responseJSON ? data.responseJSON.message : '') || "Có lỗi xảy ra, vui lòng thử lại sau";
             btn_internetBank.removeAttr("disabled").button('refresh');
             btn_internetBank.removeClass('loading');
@@ -409,6 +412,7 @@
             PModal.modalAlert(msg,function () {btn_internetBank.removeClass('loading'); });
           },
           500:function (data) {
+            $.unblockUI();
             var msg = (data.responseJSON ? data.responseJSON.message : '') || "Có lỗi xảy ra, vui lòng thử lại sau";
             btn_internetBank.removeAttr("disabled").button('refresh');
             btn_internetBank.removeClass('loading');
@@ -416,6 +420,7 @@
             PModal.modalAlert(msg,function () { btn_internetBank.removeClass('loading'); });
           },
           504:function (data) {
+            $.unblockUI();
             var msg = (data.responseJSON ? data.responseJSON.message : '') || "Có lỗi xảy ra, vui lòng thử lại sau";
             btn_internetBank.removeAttr("disabled").button('refresh');
             btn_internetBank.removeClass('loading');
@@ -424,6 +429,7 @@
           }
         }
       }).done(function (data) {
+        $.unblockUI();
         console.log('done(function (data); charge banking data=',data);
         btn_internetBank.removeAttr("disabled").button('refresh');
         btn_internetBank.removeClass('loading');
