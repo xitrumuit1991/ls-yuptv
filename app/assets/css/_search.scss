@@ -1,0 +1,52 @@
+.search-page{
+  .item{
+    width: 100%;
+    text-align: center;
+    background: #f6f5f5;
+    padding: 0 0 10px 0;
+    .item-link{
+
+    }
+
+    .item-group{
+      position: relative;
+      margin: 0;
+      .item-title{
+        padding: 5px;
+        p.title{
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: block;
+          white-space: nowrap;
+          font-size: 14px;
+          font-weight: bold;
+          color: #696969;
+          width: 90%;
+        }
+        .icons{
+          i.fa{
+            margin: 0px 10px 0 5px;
+          }
+          span.value{
+            margin-right: 10px;
+          }
+        }
+      }
+      .item-favorite{
+        position: absolute;
+        right: 0;
+        top: 10%;
+        i.fa{
+          color: #ce06bb;
+          background: #fff;
+          font-size: 20px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .pagination-search{
+
+  }
+}

@@ -14,6 +14,7 @@ ctrl = ($rootScope,
   $scope, $timeout, $location,
   $window, $state, $stateParams,  ApiService, $http,
   GlobalConfig, $interval) ->
+  $scope.keySearch = ''
 
   console.log 'SearchCtrl coffee $stateParams.keyword=', $stateParams.keyword
   $scope.pagination =
@@ -39,10 +40,14 @@ ctrl = ($rootScope,
 
   $rootScope.$watch 'searchKey',(data)->
     console.log 'searchKey change',data
+    $scope.keySearch = data.value
     $scope.loadDataSearch(data.value) if data
   ,true
 
   $scope.loadDataSearch($stateParams.keyword) if $stateParams.keyword
+  if !$rootScope.searchKey or !$rootScope.searchKey.value
+    $rootScope.searchKey =
+      value : $stateParams.keyword
 
 
 ctrl.$inject = [
