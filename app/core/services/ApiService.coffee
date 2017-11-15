@@ -239,6 +239,12 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
       data : params
     self.request options, done
 
+  self.searchRoomByKeyword = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "room/search"
+      method : 'GET'
+      data : params
+    self.request options, done
 
   self.onAir = (params, done)->
     params.onair = true;

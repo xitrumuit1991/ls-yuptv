@@ -40,7 +40,7 @@
         var siteKey = '6Lc0MDAUAAAAAE9gOerDRuT3fAAxIpYf0lZWamqr'; // http://dev.livestar.vn:8000/paymentforapp
         if( window.location.host.indexOf('yuptv.vn') != -1 || window.ENV == "production" || window.ENV == "prod" )
           siteKey = '6Le1nDUUAAAAALQuPcLTTU7QkmFd6q2Q2icKp2K4'; //yuptv.vn
-
+        console.log('-------sitekey=', siteKey);
         widgetCard = grecaptcha.render('captcha-card', {
           'sitekey' : siteKey,
           'theme' : 'light'

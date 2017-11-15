@@ -45,7 +45,7 @@ appRun = (
     $rootScope.homeslides = result if result
 
   ApiService.notificationList {page:0, limit: 1000},(err, result)->
-    console.log 'notificationList', result
+#    console.log 'notificationList', result
 
 
 appRun.$inject = [

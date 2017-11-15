@@ -1,0 +1,43 @@
+.container.home-block-content
+	.row
+		.col-md-12
+			h1 Search page
+
+	.row
+		.col-md-12(
+		ng-if='!items || items.length <=0 ' style='margin: 20px; 0')
+			span.text-danger Đang cập nhật ...
+
+		.col-md-2(ng-repeat='room in items '
+		ng-if=' items && items.length > 0 ' style='margin: 20px 0;'
+		)
+			.item
+				a(ui-sref='base.room-detail({id : room.id})')
+					img.item-image(
+					style='width:100%;'
+					src='{{room.banner || room.background || room.User.avatar || "http://via.placeholder.com/185x185" }}')
+				.item-group.row
+					.item-title.col-md-8
+						a(ui-sref='base.room-detail({id : room.id})')
+							p.title {{room.title}}
+						i.fa.fa-eye
+						span.value {{room.views}} &nbsp;&nbsp;
+						i.fa.fa-heart
+						span.value {{room.hearts}}
+					.item-favorite.col-md-3(ng-if='room.isFollow == false')
+						i.fa.fa-plus-circle
+	.row
+		.col-md-12
+			uib-pagination.table-records-pages(
+			total-items='pagination.total_item',
+			ng-model='pagination.page',
+			items-per-page='pagination.limit'
+			ng-change="pagination.pageOnChange()"
+			max-size="7"
+			boundary-links="true"
+			rotate="false"
+			first-text='«'
+			last-text = '»'
+			next-text ='›'
+			previous-text= '‹'
+			)

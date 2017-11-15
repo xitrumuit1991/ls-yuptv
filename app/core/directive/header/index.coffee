@@ -1,4 +1,4 @@
-_directive = ($rootScope, $timeout, ApiService, $uibModal, $state,GlobalConfig) ->
+_directive = ($rootScope, $timeout, ApiService, $uibModal, $state,GlobalConfig, $location) ->
   link = ($scope, $element, $attrs) ->
     $scope.menu = []
     $scope.classMenuMain = 'col-md-6'
@@ -6,6 +6,20 @@ _directive = ($rootScope, $timeout, ApiService, $uibModal, $state,GlobalConfig) 
     $scope.userProfile = null
     $scope.activeProfileMenu = false
     $scope.menuProfile = GlobalConfig.menuMainProfile
+
+    $rootScope.searchKey =
+      value : ''
+
+    $scope.searchChange = ()->
+      if $state.current.name == 'base.search'
+        $state.transitionTo($state.current, {keyword : $rootScope.searchKey.value}, {
+          reload: false, inherit: false, notify: false
+        })
+        return
+      if $state.current.name != 'base.search'
+        $state.go 'base.search', {keyword :$rootScope.searchKey.value }, {reload: true}
+        return
+
 
     $rootScope.$watch('isHome', (data)->
       $scope.isHome = data
@@ -56,7 +70,7 @@ _directive = ($rootScope, $timeout, ApiService, $uibModal, $state,GlobalConfig) 
   return directive
 
 _directive.$inject = ['$rootScope', '$timeout','ApiService' , '$uibModal', '$state',
-  'GlobalConfig'
+  'GlobalConfig', '$location'
 ]
 angular
 .module 'app'

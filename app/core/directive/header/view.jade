@@ -70,7 +70,10 @@
 		.col-md-6.search-form-top(ng-if='isHome == true')
 			form.pull-right(action='')
 				.input-group
-					input.form-control(type='Search', placeholder='Nhập tên idol hoặc từ khoá...')
+					input.form-control(type='Search', ng-model='searchKey.value'
+					ng-model-options='{ debounce: 500 }'
+					ng-change='searchChange()'
+					placeholder='Nhập tên idol hoặc từ khoá...')
 					.input-group-btn
 						button.btn.btn-default
 							i.fa.fa-search
