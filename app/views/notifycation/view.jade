@@ -1,10 +1,52 @@
-.wrapper.container
+.modal.fade.modal-lich-dien-room-detail(role='dialog' id='{{modalNotify.id}}' tabindex='-1', aria-labelledby='exampleModalLabel', aria-hidden='true'
+data-backdrop="static"
+data-keyboard="false")
+	.modal-dialog(style='width: 800px;')
+		.modal-content
+			.modal-header
+				button.close(type='button', data-dismiss='modal') ×
+				h4.modal-title.text-center {{modalNotify.title}}
+			.modal-body
+				.row
+					.col-md-2
+						img(
+						style='width: 100px; border-radius: 50%;'
+						src='{{modalNotify.item.Message.Room.banner || modalNotify.item.Message.User.avatar }}'
+						)
+					.col-md-10
+						|{{modalNotify.description}}
+						br
+						a.pointer(ng-click='modalNotify.viewNow(modalNotify.item)' ng-if='modalNotify.item.Message.Room.onAir == true')
+							span.text-info.pointer Xem ngay
+
+			.modal-footer
+				button.btn.btn-default(type='button', data-dismiss='modal') Close
+
+
+.wrapper.container.notifycation
 	.row.profile-manage-room
 		.col-md-12.header
 			h1 Thông báo
 		.col-md-12(ng-if='!items || items.length <=0 ')
 			span.text-danger Không có thông báo nào
 		.col-md-12(ng-if='items && items.length > 0 ')
-			.row
-				.col-md-12(ng-repeat='ite in items')
-					p {{ite.name}}
+			table.table.table-hover
+				tbody
+					tr(ng-repeat='ite in items')
+						td.pointer(ng-click='openMessageDetail(ite)')
+							.row.form-group
+								.col-md-2
+									img(
+									style='width: 100px; border-radius: 50%;'
+									src='{{ite.Message.Room.banner || ite.Message.User.avatar }}'
+									)
+								.col-md-6
+									p.black(ng-if='ite.status == 0') {{ite.Message.title}}
+									p(ng-if='ite.status > 0') {{ite.Message.title}}
+									p {{ite.Message.shortDescription}}
+								.col-md-2
+									span() {{ite.updatedAt | date : 'dd-MM-yyyy h:mm:s'}}
+								.col-md-2
+									span.text-danger(ng-if='ite.status == 0') Chưa xem
+									span.text-info(ng-if='ite.status > 0') Đã xem
+

@@ -19,6 +19,27 @@ ctrl = ($rootScope,
     page:0
     limit: 20
   $scope.items = []
+
+  $scope.modalNotify =
+    id : 'id-modal-notifycation'
+    title : 'CHI TIẾT'
+    description:''
+    item : {}
+    show : ()->
+      angular.element("##{@.id}").modal('show')
+    close : ()->
+      angular.element("##{@.id}").modal('hide')
+    viewNow:(item)->
+      $scope.modalNotify.close()
+      $state.go 'base.room-detail', {id :  item.id}, {reload:true}
+
+  $scope.openMessageDetail = (ite)->
+    console.log 'openMessageDetail', ite
+    $scope.modalNotify.show()
+    $scope.modalNotify.item = ite
+    $scope.modalNotify.title = ite.Message.title
+    $scope.modalNotify.description = ite.Message.description
+
   ApiService.notificationList $scope.pagination,(err, result)->
     console.log 'notificationList in notifycation coffee;  result ',result
     $scope.items = result.items
