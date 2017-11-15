@@ -14,6 +14,7 @@ ctrl = ($rootScope, $scope, $timeout, $location,
   GlobalConfig, $interval, UtilityService) ->
   id = $stateParams.id
   player = null
+  socket = null
   $scope.loadedRoomDetail = false
   $scope.socketIsConnected = false
   $scope.roomNowLivestream = false
@@ -202,7 +203,7 @@ ctrl = ($rootScope, $scope, $timeout, $location,
   #socket
   #socket
   #socket
-  querySocket = {query : "Authorization=#{window.localStorage.token}&roomId=#{$scope.id}"}
+  querySocket = {query : "Authorization=#{window.localStorage.token}&roomId=#{$scope.id}", 'forceNew': true, 'force new connection': true }
   socket = io( GlobalConfig.SOCKET_DOMAIN, querySocket)
   socket.on 'connect', ()->
     console.warn "socket.on 'connect'"
@@ -255,6 +256,13 @@ ctrl = ($rootScope, $scope, $timeout, $location,
   socket.on 'disconnect', ()->
     console.error 'socket disconnect'
     $scope.socketIsConnected = false
+    socket.removeAllListeners('sendHeart');
+    socket.removeAllListeners('sendGift');
+    socket.removeAllListeners('connectUser');
+    socket.removeAllListeners('newComment');
+    socket.removeAllListeners('disconnectUser');
+    socket.removeAllListeners('disconnect');
+    io.removeAllListeners('connection');
 
 
 
@@ -262,6 +270,23 @@ ctrl = ($rootScope, $scope, $timeout, $location,
 
   $scope.$on '$destroy', ()->
     console.log '$destroy room detail'
+    if socket
+      console.log 'remove socket', socket
+      socket.removeListener('sendHeart');
+      socket.removeListener('sendGift');
+      socket.removeListener('connectUser');
+      socket.removeListener('newComment');
+      socket.removeListener('disconnectUser');
+      socket.removeListener('disconnect');
+      socket.off('sendHeart')
+      socket.off('sendGift')
+      socket.off('connectUser')
+      socket.off('newComment')
+      socket.off('disconnectUser')
+      socket.disconnect()
+      socket.disconnect(true)
+      socket.removeAllListeners()
+      socket = null
     if player
       player.pause() if _.isFunction(player.pause)
       player.dispose() if _.isFunction(player.dispose)
