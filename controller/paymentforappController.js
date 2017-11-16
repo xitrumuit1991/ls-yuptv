@@ -145,23 +145,23 @@ obPaymentController.getPaymentHuongDan = function (req,res) {
 obPaymentController.getPaymentBankResult = function (req,res) {
   //transid=BANK_1510634097113&responCode=00&mac=41B7B1C385CBEA0E74DB017B035D49DA8D8F3BD3719FD105
   var transId =     req.query ? req.query.transid : '';
-  var responseCode =  req.query ? req.query.responCode : '';
+  var responCode =  req.query ? req.query.responCode : '';
   var mac =         req.query ? req.query.mac : '';
-  console.log('-----------response tu banking-------');
+  console.log('-----------getPaymentBankResult response tu banking-------');
   console.log('transid=',transId);
-  console.log('responseCode=',responseCode);
+  console.log('responCode=',responCode);
   console.log('mac=',mac);
-  if( !transId || !responseCode || !mac)
+  if( !transId || !responCode || !mac)
   {
     return res.status(400).json({
       error : '1',
       message : 'missing param',
-      data : { transId : transId,  responseCode : responseCode, mac : mac }
+      data : { transId : transId,  responCode : responCode, mac : mac }
     });
   }
   var optionRequestBankCallback = {
     method : 'GET',
-    url : req.configs.api_base_url + 'payment/bank-callback?transId='+transId+'&responseCode='+responseCode+'&mac='+mac,
+    url : req.configs.api_base_url + 'payment/bank-callback?transId='+transId+'&responCode='+responCode+'&mac='+mac,
     headers : {'content-type':'application/json', 'Authorization' : req.session.token}
   };
   console.log('optionRequestBankCallback',optionRequestBankCallback);
