@@ -156,19 +156,20 @@ obPaymentController.getPaymentBankResult = function (req,res) {
     return res.status(400).json({
       error : '1',
       message : 'missing param',
-      data : {
-        transId : transId,
-        responseCode : responseCode,
-        mac : mac
-      }
+      data : { transId : transId,  responseCode : responseCode, mac : mac }
     });
   }
-  request({
+  var optionRequestBankCallback = {
     method : 'GET',
     url : req.configs.api_base_url + 'payment/bank-callback?transId='+transId+'&responseCode='+responseCode+'&mac='+mac,
     headers : {'content-type':'application/json', 'Authorization' : req.session.token}
-  },function (error,response,body) {
-    console.log('message tu API body=', body);
+  };
+  console.log('optionRequestBankCallback',optionRequestBankCallback);
+  request(optionRequestBankCallback ,function (error,response,body)
+  {
+    console.log('payment/bank-callback; message tu API body=', body);
+    if(response)
+      console.log('payment/bank-callback; response.statusCode=', response.statusCode);
     if (!error && response && response.statusCode == 200)
     {
       try {
