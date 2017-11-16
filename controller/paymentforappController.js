@@ -166,11 +166,50 @@ obPaymentController.getPaymentBankResult = function (req,res) {
     console.log('payment/bank-callback; message tu API body=', body);
     if(response)
       console.log('payment/bank-callback; response.statusCode=', response.statusCode);
-    if (!error && response && response.statusCode == 200)
+
+    if(error)
+    {
+      var paramsData = {
+        token:req.session.token,
+        user:req.session.user,
+        message : JSON.stringify(error),
+        status : 400,
+        page_title:'Thanh toán MegaBank',
+        flag_mobile:flag_mobile,
+        layout:layout
+      };
+      console.log('error; paramsData=',paramsData);
+      res.render('paymentforapp/result',paramsData );
+      return;
+    }
+
+    if(response && response.statusCode != 200 && body)
+    {
+      var dataParse = null;
+      try {
+        dataParse = JSON.parse(body);
+        console.log('response.statusCode != 200; result=',dataParse);
+      }catch (e){ dataParse=null; }
+      var paramsData = {
+        token:req.session.token,
+        user:req.session.user,
+        message : (dataParse && dataParse.message ) ? dataParse.message : 'Có lỗi xảy ra. Vui lòng thử lại !',
+        status :  (dataParse && dataParse.status ) ? dataParse.status : '400',
+        page_title:'Thanh toán MegaBank',
+        flag_mobile:flag_mobile,
+        layout:layout
+      };
+      console.log('response.statusCode != 200; paramsData=',paramsData);
+      res.render('paymentforapp/result',paramsData );
+      return;
+    }
+
+
+    if (response && response.statusCode == 200)
     {
       try {
         var confirm = JSON.parse(body);
-        console.log('confirm megabank=',confirm);
+        console.log('JSON.parse(body); confirm megabank=',confirm);
         if (typeof (req.session.user) != 'undefined' && req.session.user)
         {
           request({
@@ -184,7 +223,9 @@ obPaymentController.getPaymentBankResult = function (req,res) {
                 var paramsData = {
                   token:req.session.token,
                   user:req.session.user,
-                  confirm:confirm,
+                  // money : req.session.user ? req.session.user.money : '',
+                  message : confirm ? confirm.message : '',
+                  status : confirm ? confirm.status : '',
                   page_title:'Thanh toán MegaBank',
                   flag_mobile:flag_mobile,
                   layout:layout
@@ -200,19 +241,21 @@ obPaymentController.getPaymentBankResult = function (req,res) {
               console.error('ERROR when get user profile after confirm body=',body);
               res.status(400).json({
                 message:body,
-                status:400
+                error : error,
+                status: (response && response.statusCode) ? response.statusCode : ''
               });
             }
           });
         }
         else {
-          // console.log('khong ton tai req.session.user');
           res.render('paymentforapp/result',
             {
               user:req.session.user,
               token:req.session.token,
               page_title: 'Thanh Toán',
-              confirm:confirm,
+              // confirm:confirm,
+              message : 'User chưa login, giao dịch không hợp lệ',
+              status : 400,
               flag_mobile:flag_mobile,
               layout:layout
             });
@@ -222,20 +265,21 @@ obPaymentController.getPaymentBankResult = function (req,res) {
         console.error('ERROR api users/confirm; var confirm = JSON.parse(body); errorJSONParse=',errorJSONParse);
         res.status(400).json(errorJSONParse);
       }
-    } else {
-      var message = '';
-      console.log('payment/bank-callback ERROR=', error);
-      try { message = JSON.parse(body); }
-      catch (e) { message = ''; }
-      res.render('paymentforapp/result',{
-        user:req.session.user,
-        token:req.session.token,
-        page_title:'Thanh toán',
-        message: (message && message.error) ? message.error : message,
-        flag_mobile:flag_mobile,
-        layout:layout
-      });
     }
+    // else {
+    //   var message = '';
+    //   console.log('payment/bank-callback ERROR=', error);
+    //   try { message = JSON.parse(body); }
+    //   catch (e) { message = ''; }
+    //   res.render('paymentforapp/result',{
+    //     user:req.session.user,
+    //     token:req.session.token,
+    //     page_title:'Thanh toán',
+    //     message: (message && message.error) ? message.error : message,
+    //     flag_mobile:flag_mobile,
+    //     layout:layout
+    //   });
+    // }
   });
 };
 
