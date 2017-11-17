@@ -254,8 +254,9 @@
             $.unblockUI();
             btn_Card.removeClass('loading');
             reRenderCaptcha();
-            console.log(data);
-            var msg = (data.responseJSON ? data.responseJSON.message : '') || "Thẻ cào bị lỗi, vui lòng thử lại sau";
+            console.log('400 data= ',data);
+            var msg = (data.responseJSON ? data.responseJSON.MESSAGE : '') || JSON.stringify(data.responseJSON);
+            msg = msg + ' ERROR_CODE:' + (data.responseJSON ? data.responseJSON.ERROR_CODE : '400');
             PModal.modalAlert(msg,function () {btn_Card.removeClass('loading'); });
           },
           401:function (data) {
