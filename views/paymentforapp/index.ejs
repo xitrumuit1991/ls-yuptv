@@ -227,15 +227,19 @@
         packageId : 'packageId_charge_by_telco',
         key_payment:key_payment};
       console.log('API_PATH=', API_PATH + 'payment/card');
-      console.log('data Post=',data);
+      console.log('the cao; data Post=',data);
       $.ajax({
         url : API_PATH + 'payment/card',
         method:"POST",headers:{'Authorization' : token},
         dataType:'json',
         data:data,
-        beforeSend:function () { btn_Card.addClass('loading'); },
+        beforeSend:function () {
+          $.blockUI();
+          btn_Card.addClass('loading');
+        },
         statusCode:{
           200:function (data) {
+            $.unblockUI();
             console.log(data);
             btn_Card.removeClass('loading');
             if(data && data.error)
@@ -247,6 +251,7 @@
             PModal.modalAlert(msg,function () { window.location.reload(); });
           },
           400:function (data) {
+            $.unblockUI();
             btn_Card.removeClass('loading');
             reRenderCaptcha();
             console.log(data);
@@ -254,6 +259,7 @@
             PModal.modalAlert(msg,function () {btn_Card.removeClass('loading'); });
           },
           401:function (data) {
+            $.unblockUI();
             btn_Card.removeClass('loading');
             reRenderCaptcha();
             console.log(data);
@@ -261,12 +267,21 @@
             PModal.modalAlert(msg,function () {btn_Card.removeClass('loading'); });
           },
           403:function (data) {
+            $.unblockUI();
+            console.log(data);
+            reRenderCaptcha();
+            var msg = (data.responseJSON ? data.responseJSON.message : '') || "Thẻ cào bị lỗi, vui lòng thử lại sau";
+            PModal.modalAlert(msg,function () { btn_Card.removeClass('loading'); });
+          },
+          404:function (data) {
+            $.unblockUI();
             console.log(data);
             reRenderCaptcha();
             var msg = (data.responseJSON ? data.responseJSON.message : '') || "Thẻ cào bị lỗi, vui lòng thử lại sau";
             PModal.modalAlert(msg,function () { btn_Card.removeClass('loading'); });
           },
           500:function (data) {
+            $.unblockUI();
             console.log(data);
             btn_Card.removeClass('loading');
             reRenderCaptcha();
@@ -274,6 +289,7 @@
             PModal.modalAlert(msg,function () {btn_Card.removeClass('loading');});
           },
           504:function (data) {
+            $.unblockUI();
             console.log(data);
             btn_Card.removeClass('loading');
             reRenderCaptcha();
@@ -282,6 +298,7 @@
           }
         }
       }).done(function (data) {
+        $.unblockUI();
         console.log('done(function (data) = ',data);
         btn_Card.removeClass('loading');
       });
