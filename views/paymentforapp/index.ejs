@@ -255,8 +255,9 @@
             btn_Card.removeClass('loading');
             reRenderCaptcha();
             console.log('400 data= ',data);
-            var msg = (data.responseJSON ? data.responseJSON.MESSAGE : '') || JSON.stringify(data.responseJSON);
-            msg = msg + ' ERROR_CODE:' + (data.responseJSON ? data.responseJSON.ERROR_CODE : '400');
+            //var msg = (data.responseJSON ? data.responseJSON.MESSAGE : '') || JSON.stringify(data.responseJSON);
+            //msg = msg + ' ERROR_CODE:' + (data.responseJSON ? data.responseJSON.ERROR_CODE : '400');
+            var msg = (data.responseJSON ? data.responseJSON.message : '') || "Thẻ cào bị lỗi, vui lòng thử lại sau";
             PModal.modalAlert(msg,function () {btn_Card.removeClass('loading'); });
           },
           401:function (data) {
