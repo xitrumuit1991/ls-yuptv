@@ -13,7 +13,7 @@ route.$inject = ['$stateProvider', 'GlobalConfig']
 ctrl = ($rootScope,
   $scope, $timeout, $location,
   $window, $state, $stateParams,  ApiService, $http,
-  GlobalConfig, $interval) ->
+  GlobalConfig, $interval, UtilityService) ->
   $scope.keySearch = ''
 
   console.log 'SearchCtrl coffee $stateParams.keyword=', $stateParams.keyword
@@ -49,11 +49,22 @@ ctrl = ($rootScope,
     $rootScope.searchKey =
       value : $stateParams.keyword
 
+  $scope.followIdolSearchPage = (room, index)->
+    return unless room
+    ApiService.followIdol({roomId:room.id},(error, result)->
+      return if error
+      return UtilityService.notifyError(result.message) if result and result.error
+      UtilityService.notifySuccess(result.message)
+      $scope.items[index].isFollow = true
+    )
+
+
+
 
 ctrl.$inject = [
   '$rootScope', '$scope', '$timeout', '$location',
   '$window', '$state', '$stateParams',  'ApiService', '$http',
-  'GlobalConfig', '$interval'
+  'GlobalConfig', '$interval','UtilityService'
 ]
 angular
 .module("app")

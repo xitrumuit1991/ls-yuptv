@@ -70,6 +70,14 @@ ctrl = ($rootScope,
     $scope.getSavedVideo()
 
 
+  $scope.cancelFollowing = (item, index)->
+    return unless item
+    ApiService.unFollowIdol {roomId:item.id},(error, result)->
+      return if error
+      return UtilityService.notifyError(result.message) if result and result.error
+      UtilityService.notifySuccess(result.message)
+#      $scope.following.items[index].isFollow = false
+      $scope.following.items.splice(index,1)
 
 
   $scope.getFollowing = ()->
@@ -80,14 +88,14 @@ ctrl = ($rootScope,
       userId: $rootScope.user.id
     ApiService.getUserFollowing params,(error, result)->
       return UtilityService.notifyError('Không thể lấy danh sách đang theo dõi') if error
-      if result and result.error
-        return UtilityService.notifyError(result.message)
-      console.log 'getFollowing result', result
+      return UtilityService.notifyError(result.message) if result and result.error
       $scope.following.items = result.rooms
       $scope.following.total_page = result.attr.total_page
       $scope.following.total_item = result.attr.total_item
+      console.log 'getFollowing result', $scope.following
 
   $scope.tabFollowingPageChange = ()->
+    console.log '$scope.following.page',$scope.following.page
     $scope.getFollowing()
 
 
