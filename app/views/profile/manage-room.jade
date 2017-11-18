@@ -28,6 +28,7 @@
 					.group-category
 						span Chọn thể loại
 						select.form-control(
+						ng-change='onChangeCategoryRoom()'
 						ng-model="categorySelected"
 						ng-options="item.id as item.title for item in selectCategoryValue")
 		.col-md-12

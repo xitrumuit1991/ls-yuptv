@@ -19,6 +19,14 @@ ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
   $scope.selectCategoryValue = []
   $scope.categorySelected = $rootScope.user.Room.categoryId
 
+  $scope.onChangeCategoryRoom = ()->
+    console.log 'categorySelected',$scope.categorySelected
+    ApiService.room.changeCategory {categoryId:$scope.categorySelected}, (error, result)->
+      return if error
+      return UtilityService.notifyError(result.message) if result and result.error
+      UtilityService.notifySuccess('Thay đổi danh mục thành công')
+
+
   $scope.selectMonthValue = [
     {id:'', title:'----------'},
     {id:'1', title:'Tháng 1'},
@@ -37,6 +45,7 @@ ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
   $scope.monthSelected = ''
 
   $scope.changeMonthSelect = ()->
+
 
   getScheduleOfRoom = ()->
     param =

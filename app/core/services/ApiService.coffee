@@ -270,6 +270,13 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
     self.request options, done
 
   self.room =
+    changeCategory : (params, done)->
+      options =
+        url : GlobalConfig.API_URL + "room/change-category"
+        method : 'POST'
+        data : params
+      self.request options, done
+
     sendGift : (params, done)->
       options =
         url : GlobalConfig.API_URL + "gift/send"
