@@ -19979,11 +19979,38 @@ a[role="button"].loading:before {
         height: 1em;
         font-size: 1.5em; }
 
-/* line 6, main.scss */
+/* line 2, _huong_dan.scss */
+#payment-huong-dan .main-title {
+  font-size: 22px;
+  text-align: center;
+  margin: 20px;
+  font-weight: bold; }
+/* line 8, _huong_dan.scss */
+#payment-huong-dan .title {
+  color: #dc1b32;
+  margin: 10px;
+  font-size: 17px;
+  font-weight: 500;
+  margin-top: 40px; }
+/* line 15, _huong_dan.scss */
+#payment-huong-dan .img-huong-dan {
+  width: 90%;
+  margin: 0 auto; }
+/* line 19, _huong_dan.scss */
+#payment-huong-dan .block-content {
+  padding-left: 20px; }
+  /* line 21, _huong_dan.scss */
+  #payment-huong-dan .block-content .sub-title {
+    margin: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px; }
+
+/* line 7, main.scss */
 body {
   font-family: 'Montserrat', sans-serif !important; }
 
-/* line 9, main.scss */
+/* line 10, main.scss */
 .fa-spin {
   -webkit-animation: fa-spin 2s infinite linear;
   animation: fa-spin 2s infinite linear; }
