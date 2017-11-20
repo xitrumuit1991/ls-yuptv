@@ -14,19 +14,30 @@
 					)
 						span Qua SMS
 						i.fa.fa-check(ng-if='step1ChooseMethod == "sms"')
+
 					li.list-inline-item(
 					ng-click=' goStep2("card")'
 					ng-class='{"selected": step1ChooseMethod == "card" }'
 					)
 						span Thẻ cào điện thoại
 						i.fa.fa-check(ng-if='step1ChooseMethod == "card"')
+
 					li.list-inline-item(
 					style='width:auto; padding: 10px 20px;'
 					ng-click='goStep2("internetbanking")'
 					ng-class='{"selected": step1ChooseMethod == "internetbanking" }'
 					)
-						span Thẻ nội địa và thẻ quốc tế (Visa, Master card)
+						//span Thẻ nội địa và thẻ quốc tế (Visa, Master card)
+						span Thẻ ngân hàng
 						i.fa.fa-check(ng-if='step1ChooseMethod == "internetbanking"')
+
+					li.list-inline-item(
+					style='width:auto; padding: 10px 20px;'
+					ng-click='goStep2("redeemcode")'
+					ng-class='{"selected": step1ChooseMethod == "redeemcode" }'
+					)
+						span Redeem Code
+						i.fa.fa-check(ng-if='step1ChooseMethod == "redeemcode"')
 
 
 
@@ -47,52 +58,8 @@
 			i.fa.fa-angle-left
 		include charge-ucoin/_internet-bank
 
-
-
-		//.col-md-12(ng-if='step1ChooseMethod == "card" ')
-		//	hr
-		//	p.text-left Chọn nhà cung cấp
-		//	.row
-		//		.col-md-2 Nhập mã thẻ cào
-		//		.col-md-4
-		//			input.form-control()
-		//	.row
-		//		.col-md-2 Nhập số seri
-		//		.col-md-4
-		//			input.form-control()
-		//	hr
-		//	.row
-		//		.col-md-6.text-right
-		//			button.btn.btn-primary() NẠP UCOIN
-		//
-		//.col-md-12(ng-if='step1ChooseMethod == "internetbanking" ')
-		//	hr
-		//	p.text-left Chọn loại thẻ
-		//	ul.list-telco-card
-		//		li Thẻ ngân hàng nội địa
-		//		li Thẻ quốc tế (Visa, Master card)
-		//
-		//.col-md-12
-		//	.list
-		//		ul.list-package.list-inline
-		//			li.list-inline-item(ng-repeat='item in listPackage'
-		//			ng-if=' item.status == true && item.code.indexOf("vn.yup.coin") == -1  '
-		//			ng-click='selectedPackage(item, $index)'
-		//			ng-class='{"selected" : packageSelected.id == item.id }')
-		//				span {{item.name}}
-		//				br
-		//				span {{item.coin}} Ucoin
-		//				p Code: {{item.code}}
-		//				i.fa.fa-check(ng-if='packageSelected.id == item.id')
-		//.col-md-12
-		//	hr
-		//.col-md-12
-		//	.row
-		//		.col-md-6
-		//			input(type='checkbox' ng-model='checkPolicy.value' name='policy' )
-		//			| &nbsp; Tôi đã đọc và đồng ý với các chính sách
-		//		.col-md-6.text-right
-		//			button.btn.btn-primary(ng-disabled=" checkPolicy.value==false || !packageSelected.id "
-		//			ng-click='goStep2()') NẠP UCOIN
-
+	.row.profile-charge-ucoin.step2(ng-if='stepView == "step2" && step1ChooseMethod == "redeemcode" ')
+		button.btn.btn-default.btn-back-to-step1(ng-if='stepView == "step2"' ng-click='backToStep1()')
+			i.fa.fa-angle-left
+		include charge-ucoin/_redeem_code
 

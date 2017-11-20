@@ -10,7 +10,7 @@
 			li.list-inline-item(
 			ng-if='listPackage && listPackage.bank && listPackage.bank.Packages'
 			ng-repeat='item in listPackage.bank.Packages'
-			ng-click='step2SelectedPackage(item, $index)'
+			ng-click='step2SelectedPackageBank(item, $index); '
 			ng-class='{"selected": step2PackageSelected.id == item.id }'
 			)
 				span {{item.name}}
@@ -19,7 +19,7 @@
 				//p Code: {{item.code}}
 				i.fa.fa-check(ng-if='step2PackageSelected.id == item.id')
 
-.col-md-12(ng-if='step2PackageSelected.id')
+//.col-md-12(ng-if='step2PackageSelected.id')
 	hr
 	p Chọn loại thẻ
 	.list
@@ -30,6 +30,7 @@
 			)
 				span Thẻ ngân hàng nội địa
 				i.fa.fa-check(ng-if='step2BankSelectedType=="the-noi-dia" ')
+
 			li.list-inline-item(
 			ng-click='step2SelectedBankType("the-quoc-te")'
 			ng-class='{"selected": step2BankSelectedType=="the-quoc-te" }'
@@ -55,14 +56,13 @@
 
 
 
-.col-md-12(ng-if='step2BankSelectedType=="the-quoc-te" && step2PackageSelected.id ')
+//.col-md-12(ng-if='step2BankSelectedType=="the-quoc-te" && step2PackageSelected.id ')
 	hr
 	.col-md-3
 	.col-md-6
 		span.text-danger Oop! Phương thức thanh toán chưa được hỗ trợ
-
-	//.col-md-3
-	//.col-md-6
+	.col-md-3
+	.col-md-6
 		.form
 			.form-group
 				label Vui lòng nhập chính xác thông tin
@@ -75,7 +75,7 @@
 			.form-group
 				label Mã CVV
 				input.form-control(type='text')
-	//.col-md-9.text-right
+	.col-md-9.text-right
 		button.btn.btn-primary(
 		ng-click='submitBankQuocTe()'
 		) NẠP UCOIN

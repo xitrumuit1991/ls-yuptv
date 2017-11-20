@@ -19995,7 +19995,7 @@ a[role="button"].loading:before {
 /* line 15, _huong_dan.scss */
 #payment-huong-dan .img-huong-dan {
   width: 90%;
-  margin: 0 auto; }
+  margin: 10px auto; }
 /* line 19, _huong_dan.scss */
 #payment-huong-dan .block-content {
   padding-left: 20px; }

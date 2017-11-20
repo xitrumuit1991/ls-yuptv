@@ -44,18 +44,26 @@ ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
   $scope.stepView = 'step1'
   $scope.step1ChooseMethod = ''
 
-  $scope.step2SelectedPackage = (item, $index)->
+  $scope.step2SelectedPackageBank = (item, $index)->
     $scope.step2PackageSelected = item # package
-
-
-  $scope.step2SelectedProvider = (item, $index)->
-    $scope.step2ProviderSelected = item
+    $scope.step2BankSelectedType = "the-noi-dia"
 
   $scope.step2SelectedBankType = (type )->
     $scope.step2BankSelectedType = type #noi dia, quoc te
 
   $scope.step2SelectedBank = (item, $index)->
     $scope.step2BankSelected = item # ngan hang nao
+
+
+
+
+  $scope.step2SelectedPackage = (item, $index)->
+    $scope.step2PackageSelected = item # package
+  $scope.step2SelectedProvider = (item, $index)->
+    $scope.step2ProviderSelected = item
+
+
+
 
   $scope.submitTelcoCard = ()->
     console.log 'thanh toan telco'
