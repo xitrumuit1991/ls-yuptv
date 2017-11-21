@@ -40,7 +40,7 @@ ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
         key_redeem:'key_redeem' #only mobile web
         skipCaptcha : true
       ApiService.redeemCode param,(err, result)->
-        return if err
+        return UtilityService.notifyError(err.message) if err
         return UtilityService.notifyError(result.message) if result and result.error
         UtilityService.notifySuccess(result.message) if result
         UtilityService.reloadUserProfile() if result
