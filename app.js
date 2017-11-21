@@ -76,8 +76,15 @@ app.get('/download/android', function (req, res) {
 });
 
 app.get('/down-app', function (req, res) {
-  return res.render('down-app-view',{
-    layout:false
+  var MobileDetect = require('mobile-detect'),
+  md = new MobileDetect(req.headers['user-agent']);
+  var os =  md.os() ?  md.os().toLowerCase() : 'unknown';
+  // console.log( req.headers['user-agent'] );
+  // console.log( md.os() );
+  // console.log( os );
+  return res.render('landing-down-app-view',{
+    layout:false,
+    os : ( os == 'androidos' ? 'android' : (os == 'ios' ? 'ios' : 'unknown'))
   });
 });
 app.get('/health_check', function (req, res) { res.json({service : 'livestar web v2', time : (new Date()).getTime(), message : 'ok' }) });
