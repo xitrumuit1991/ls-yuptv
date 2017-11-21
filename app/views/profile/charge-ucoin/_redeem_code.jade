@@ -1,0 +1,23 @@
+.col-md-12.header
+	h1 Nạp Ucoin
+.col-md-12.body.step-1
+	.step
+		span.title 2
+		span Nhập mã redeem code
+.col-md-12(ng-if='step1ChooseMethod == "redeemcode"')
+	hr
+	.row
+		.form-group
+			.col-md-3
+			.col-md-2 Nhập mã code
+			.col-md-4
+				input.form-control(type='text' ng-model='redeemCode.code' placeholder='nhập mã code')
+				br
+	hr
+	.row
+		.col-md-3
+		.col-md-6.text-right
+			button.btn.btn-primary(
+			ng-disabled=" redeemCode.code == '' "
+			ng-click='redeemCode.submitRedeemCode()'
+			) XÁC NHẬN

@@ -226,6 +226,13 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
       data : params
     self.request options, done
 
+  self.redeemCode = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "payment/redeem-code"
+      method : 'POST'
+      data : params
+    self.request options, done
+
   self.chargeBankLocal = (params, done)->
     options =
       url : GlobalConfig.API_URL + "payment/bank"

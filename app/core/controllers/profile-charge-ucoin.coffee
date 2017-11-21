@@ -13,19 +13,16 @@ ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
   $window, $state, $stateParams,  ApiService, $http,
   GlobalConfig, $interval, $uibModal, Upload)->
 
-  console.log '$location.search().transId', $location.search().transId
-  console.log '$location.search().responseCode', $location.search().responseCode
-  console.log '$location.search().mac', $location.search().mac
-  if $location.search().transId and $location.search().responseCode and  $location.search().mac
-    paramConfirmBankLocal =
-      transId:$location.search().transId
-      responseCode:$location.search().responseCode
-      mac:$location.search().mac
-    ApiService.confirmChargeBankLocal(paramConfirmBankLocal,(error, result)->
-      return UtilityService.notifyError(result.message) if error
-      return UtilityService.notifyError(result.message) if result and result.error
-      UtilityService.notifySuccess(result.message) if result
-    )
+#  if $location.search().transId and $location.search().responseCode and  $location.search().mac
+#    paramConfirmBankLocal =
+#      transId:$location.search().transId
+#      responseCode:$location.search().responseCode
+#      mac:$location.search().mac
+#    ApiService.confirmChargeBankLocal(paramConfirmBankLocal,(error, result)->
+#      return UtilityService.notifyError(result.message) if error
+#      return UtilityService.notifyError(result.message) if result and result.error
+#      UtilityService.notifySuccess(result.message) if result
+#    )
 
   $scope.listPackage = []
   $scope.step2PackageSelected = null
@@ -34,6 +31,20 @@ ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
   $scope.telcoCard =
     serial : ''
     code : ''
+
+  $scope.redeemCode =
+    code : ''
+    submitRedeemCode :()->
+      param =
+        code:$scope.redeemCode.code
+        key_redeem:'key_redeem' #only mobile web
+        skipCaptcha : true
+      ApiService.redeemCode param,(err, result)->
+        return if err
+        return UtilityService.notifyError(result.message) if result and result.error
+        UtilityService.notifySuccess(result.message) if result
+        UtilityService.reloadUserProfile() if result
+
 
   $scope.step2BankSelected = null
   $scope.step2BankSelectedType = null

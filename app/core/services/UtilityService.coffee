@@ -1,4 +1,4 @@
-factory = ($rootScope, $timeout, $window, $http, Notification)->
+factory = ($rootScope, $timeout, $window, $http, Notification, ApiService)->
   test : ()->
 
   removeUserLogged : ()->
@@ -60,11 +60,19 @@ factory = ($rootScope, $timeout, $window, $http, Notification)->
   notifyError : (message)->
     Notification.error(message)
 
+  reloadUserProfile : ()->
+    ApiService.getProfile {}, (error, result)->
+      return  if error
+      return  if result and result.error
+      window.localStorage.user = JSON.stringify(result) if result
+      $rootScope.user = result if result
+
+
 factory.$inject = ['$rootScope',
   '$timeout',
   '$window',
   '$http',
-'Notification'
+'Notification','ApiService'
 ]
 
 angular.module("app").factory "UtilityService", factory
