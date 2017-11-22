@@ -54,6 +54,11 @@ app.use(function(req, res, next)
 
   if(isMobile == true )
   {
+    if( req.originalUrl && req.originalUrl.indexOf('voteapp') != -1){
+      console.log('redirect to vote app; ');
+      return next();
+    }
+
     if( req.originalUrl && req.originalUrl.indexOf('paymentforapp') != -1)
       return next();
     if( req.originalUrl && req.originalUrl.indexOf('download/ios') != -1 )
@@ -68,6 +73,16 @@ app.use(function(req, res, next)
   return next();
 });
 
+app.get('/voteapp', function (req, res) {
+  var MobileDetect = require('mobile-detect'), md = new MobileDetect(req.headers['user-agent']);
+  var os =  md.os() ?  md.os().toLowerCase() : 'unknown';
+  return res.render('redirectToStore',{
+    layout:false,
+    type: ( os == 'androidos' ? 'android' : (os == 'ios' ? 'ios' : 'unknown'))
+  });
+});
+
+
 app.get('/download/ios', function (req, res) {
   return res.render('redirectToStore',{ layout:false, type:'ios' });
 });
@@ -76,12 +91,8 @@ app.get('/download/android', function (req, res) {
 });
 
 app.get('/down-app', function (req, res) {
-  var MobileDetect = require('mobile-detect'),
-  md = new MobileDetect(req.headers['user-agent']);
+  var MobileDetect = require('mobile-detect'),  md = new MobileDetect(req.headers['user-agent']);
   var os =  md.os() ?  md.os().toLowerCase() : 'unknown';
-  // console.log( req.headers['user-agent'] );
-  // console.log( md.os() );
-  // console.log( os );
   return res.render('landing-down-app-view',{
     layout:false,
     os : ( os == 'androidos' ? 'android' : (os == 'ios' ? 'ios' : 'unknown'))

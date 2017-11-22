@@ -22,16 +22,24 @@
 <script>
   $(document).ready(function () {
     var type = "<%= (typeof(type) != 'undefined' && type!=undefined && type)  ? type : '' %>";
-    console.log(type);
+    console.log('type=',type);
+    if(type && type.toLowerCase() == 'unknown')
+    {
+      console.log('redirect to web');
+      window.location.href = '/';
+      return;
+    }
     if(type && type.toLowerCase() == 'ios')
     {
       console.log('https://itunes.apple.com/vn/app/yup/id1294969432?mt=8');
       window.location.href = 'https://itunes.apple.com/vn/app/yup/id1294969432?mt=8';
+      return;
     }
     if(type && type.toLowerCase() == 'android')
     {
       console.log('https://play.google.com/store/apps/details?id=yup.livestream.hotgirl');
       window.location.href = 'https://play.google.com/store/apps/details?id=yup.livestream.hotgirl';
+      return;
     }
   });
 </script>
