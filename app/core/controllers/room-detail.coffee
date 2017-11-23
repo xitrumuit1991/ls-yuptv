@@ -15,6 +15,7 @@ ctrl = ($rootScope, $scope, $timeout, $location,
   id = $stateParams.id
   player = null
   socket = null
+  $scope.linkShareFacebook = "/room-detail/#{id}"
   $scope.loadedRoomDetail = false
   $scope.socketIsConnected = false
   $scope.roomNowLivestream = false

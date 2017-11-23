@@ -110,6 +110,7 @@ angular
   "angular-loading-bar",
   'ngFileUpload',
   '720kb.datepicker',
+  '720kb.socialshare',
   'ui.bootstrap.datetimepicker',
 #  'vjs-video'
 ])
