@@ -444,3 +444,15 @@ i.emoji-picker-icon {
   }
 }
 
+
+.video-js{
+  width: 100% !important;
+  height: auto !important;
+  max-height: 450px !important;
+  &.vjs-fullscreen{
+    width: 100% !important;
+    height: auto !important;
+    max-height: 100% !important;
+  }
+}
+
