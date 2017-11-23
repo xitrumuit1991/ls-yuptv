@@ -288,7 +288,7 @@
   height: 100%; }
 
 .video-js .vjs-tech {
-  position: absolute;
+  /*position: none;*/
   top: 0;
   left: 0;
   width: 100%;

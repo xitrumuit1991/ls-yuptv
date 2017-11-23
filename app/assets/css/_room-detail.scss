@@ -189,7 +189,7 @@
     }
   }
   .room-player {
-    height: 450px;
+    min-height: 450px;
     background-size: cover;
     background-repeat: no-repeat;
     padding: 0;
@@ -206,8 +206,9 @@
   position: relative;
   .chat-form {
     position: absolute;
-    bottom: 0;
+    //bottom: 0;
     width: 100%;
+    bottom: -5px;
   }
   .content-chat {
     overflow-y: scroll;
