@@ -190,6 +190,7 @@
   }
   .room-player {
     min-height: 450px;
+    //max-height: 450px;
     background-size: cover;
     background-repeat: no-repeat;
     padding: 0;
@@ -445,14 +446,28 @@ i.emoji-picker-icon {
 }
 
 
-.video-js{
-  width: 100% !important;
-  height: auto !important;
-  max-height: 450px !important;
+.video-js
+{
+  width: 100%;
+  height: auto;
+  min-height: 450px;
+  video#videojs-room-detail-main_html5_api{
+    width: 100%;
+    height: auto;
+    max-height: 450px;
+  }
+
   &.vjs-fullscreen{
-    width: 100% !important;
-    height: auto !important;
-    max-height: 100% !important;
+    width: auto;
+    height : 100%;
+    video#videojs-room-detail-main_html5_api{
+      width: auto;
+      height: 100%;
+      margin: 0 auto;
+      text-align: center;
+      display: inherit;
+      max-height: 100%;
+    }
   }
 }
 
