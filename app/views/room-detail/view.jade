@@ -11,19 +11,22 @@
 							span(style='margin: 0 15px 0 5px;') {{item.views}}
 							i.fa.fa-heart
 							span#room-heart-number(style='margin: 0 15px 0 5px;') {{item.hearts}}
-					a(
+					a.btn-share-facebook(
 					href="#"
 					socialshare
 					socialshare-provider="facebook"
+					socialshare-type="feed"
+					socialshare-via="1546370315661210"
 					socialshare-display="popup"
 					socialshare-description="{{item.title}}"
 					socialshare-caption="{{item.title}}"
 					socialshare-text="{{item.title}}"
 					socialshare-url="{{linkShareFacebook}}"
 					socialshare-media="{{item.banner || item.background || item.User.avatar}}"
+					socialshare-redirect-uri="{{linkShareFacebook}}"
 					)
 						i.fa.fa-facebook
-						span(style='margin:5px;') Share Facebook
+						//span(style='margin:5px;') Share Facebook
 					button.btn.btn-primary.pull-right.btn-schedule(ng-click='openLichDien()') Lịch phát sóng
 				.col-md-4
 					.text-center.text-top3

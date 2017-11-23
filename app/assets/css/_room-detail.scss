@@ -1,6 +1,15 @@
 .room-detail {
   background: #111111;
   padding: 30px 0;
+  a.btn-share-facebook{
+    font-size: 16px;
+    line-height: 20px;
+    background: #3d6eb1;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #fff;
+    display: inline-block;
+  }
   .title-room {
     color: #fff !important;
     font-size: 20px;
