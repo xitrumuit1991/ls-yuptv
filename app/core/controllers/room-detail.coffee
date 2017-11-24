@@ -253,8 +253,9 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     $('#content-chat-list').animate({ scrollTop: $('#content-chat-list')[0].scrollHeight }, 100)
 
   socket.on 'sendHeart', (data)->
-    console.log 'sendHeart',data
-    $scope.showReciveHeartSocket(data)
+#    console.log 'sendHeart',data
+    console.log 'off show html sendHeart',data
+#    $scope.showReciveHeartSocket(data)
 
   socket.on 'disconnect', ()->
     console.error 'socket disconnect'
