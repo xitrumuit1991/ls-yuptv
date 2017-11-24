@@ -57,6 +57,14 @@ _directive = ($timeout, ApiService, UtilityService,$rootScope) ->
       $timeout((->
         randomHeart()
         randomHeart_2()
+        randomHeart()
+        randomHeart_2()
+        randomHeart()
+        randomHeart_2()
+        randomHeart()
+        randomHeart_2()
+        randomHeart()
+        randomHeart_2()
         $timeout(()->
           $scope.maxTime = 0
           $rootScope.isFly = false

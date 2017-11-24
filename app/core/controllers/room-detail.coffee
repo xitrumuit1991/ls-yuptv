@@ -42,6 +42,9 @@ ctrl = ($rootScope, $scope, $timeout, $location,
       return if err
       return UtilityService.notifyError(result.message) if result and result.error
       $('#room-heart-number').text(result.total_heart) if result
+      $scope.showHeartAnimation = true
+      $rootScope.$emit 'fly-heart',()->
+        $scope.showHeartAnimation = false
 
 
   $scope.openListGift = ()->
@@ -214,19 +217,16 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     $scope.socketIsConnected = true
 
   socket.on 'newComment', (data)->
-#    console.info "newComment",data
     $scope.showNewCommentSocket(data)
 
 
   socket.on 'connectUser', (data)->
     console.log 'connect User',data
-#    UtilityService.notifySuccess(data.message) if data
     $scope.showUserConnectSocket(data)
     $rootScope.$emit 'reload-user-in-room'
 
   socket.on 'disconnectUser', (data)->
     console.error 'disconnect User',data
-#    UtilityService.notifyError(data.message) if data
     $scope.showUserDisConnectSocket(data)
     $rootScope.$emit 'reload-user-in-room'
 
@@ -241,18 +241,13 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     re = new RegExp('<br>', 'g')
     message = message.replace(re, '')
     return unless message
-    html = '<div class="item"><img src="'+avatar+'" style="width:40px; height: 40px;" class="image"/> <div class="group-name"> <div class="name">'+name+'</div> <div class="subname">'+message+'</div></div> </div>'
+    html = '<div class="item" style="margin-bottom: 5px;"><img src="'+avatar+'" style="width:40px; height: 40px;" class="image"/> <div class="group-name"> <div class="name">'+name+'</div> <div class="subname">'+message+'</div></div> </div>'
     $('#content-chat-list').append(html)
     $('#content-chat-list').animate({ scrollTop: $('#content-chat-list')[0].scrollHeight }, 100)
 
   socket.on 'sendHeart', (data)->
     console.log 'sendHeart',data
     $scope.showReciveHeartSocket(data)
-#    $scope.showHeartAnimation = true
-#    $('#heart-animation').show()
-#    $rootScope.$emit 'fly-heart',()->
-#      $scope.showHeartAnimation = false
-#      $('#heart-animation').hide()
 
   socket.on 'disconnect', ()->
     console.error 'socket disconnect'
