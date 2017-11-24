@@ -58,8 +58,8 @@
 								span LIVE
 
 		.row(ng-if='items.length > 8 ' style='margin: 30px 0;')
-			.col-md-2(style='padding:1px;')
-				.on-air-block-more(ng-repeat='ite in items' ng-if='$index > 8 && ite.onAir == true')
+			.col-md-2(style='padding:5px; margin: 20px 0;' ng-repeat='ite in items' ng-if='$index > 8 && ite.onAir == true')
+				.on-air-block-more
 					img(src='{{ite.banner || ite.background || ite.User.avatar}}'
 					ui-sref='base.room-detail({id : ite.id})')
 					.bottom

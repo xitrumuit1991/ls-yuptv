@@ -25,6 +25,8 @@ ctrl = ($rootScope,
     param =
       onair : true
       categoryId : item.id
+      page : 0
+      limit : 1000
     ApiService.onAirByCategory(param, (err, result)->
       return if err
       result if result and result.error
@@ -33,17 +35,16 @@ ctrl = ($rootScope,
 
   $scope.loadData = ()->
 #    ApiService.onAirByCategory({onair : true, categoryId : '9ac8fc48-86f2-11e7-b556-0242ac110005'},(err, result)->
-    ApiService.onAir({onair : true },(err, result)->
+    ApiService.onAir({onair : true, page:0, limit:1000 },(err, result)->
       return if err
       return UtilityService.notifyError(result.message) if result and result.error
       $scope.items = result.rooms
     )
   $scope.loadCategory = ()->
-    ApiService.getCategory({},(err, result)->
+    ApiService.getCategory {},(err, result)->
       return if err
       return UtilityService.notifyError(result.message) if result and result.error
       $scope.categorys = result
-    )
 
   $scope.onairClickFollowIdol = (item, indexRoom)->
     return unless item
