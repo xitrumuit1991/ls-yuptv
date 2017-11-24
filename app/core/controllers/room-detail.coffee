@@ -194,9 +194,14 @@ ctrl = ($rootScope, $scope, $timeout, $location,
 
   $scope.sendChatMsg = ()->
     message = $('.emoji-wysiwyg-editor').html()
-    re = new RegExp('<br>', 'g');
+    re = new RegExp('<br>', 'g')
     message = message.replace(re, '')
+    rex = new RegExp('&nbsp;', 'g')
+    message = message.replace(rex, ' ')
+#    console.error 'sendChatMsg', message
     return unless message
+    return $('.emoji-wysiwyg-editor').html('') if message == '&nbsp;'
+    return $('.emoji-wysiwyg-editor').html('') if message and /^[ ]*$/.test(message) == true
     socket.emit('comment', message)
     $('.emoji-wysiwyg-editor').html('')
 
@@ -217,6 +222,8 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     $scope.socketIsConnected = true
 
   socket.on 'newComment', (data)->
+    console.info 'on newComment', data
+    return if data && data.message == '&nbsp;'
     $scope.showNewCommentSocket(data)
 
 
