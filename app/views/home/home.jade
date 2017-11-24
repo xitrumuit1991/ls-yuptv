@@ -41,5 +41,7 @@ home-slider
 						span.value {{room.views}} &nbsp;&nbsp;
 						i.fa.fa-heart
 						span.value {{room.hearts}}
-					.item-favorite.col-md-3(ng-if='room.isFollow == false')
+					.item-favorite.col-md-3.pointer(
+					ng-if='room.isFollow == false'
+					ng-click='homeClickFollowIdol(room, groupIdo.id, $index)')
 						i.fa.fa-plus-circle

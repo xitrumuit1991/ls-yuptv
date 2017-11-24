@@ -45,6 +45,16 @@ ctrl = ($rootScope,
       $scope.categorys = result
     )
 
+  $scope.onairClickFollowIdol = (item, indexRoom)->
+    return unless item
+    return UtilityService.notifyError('Vui lòng đăng nhập') unless $rootScope.user
+    ApiService.followIdol {roomId:item.id}, (error, result)->
+      return if error
+      return UtilityService.notifyError(result.message)  if result and result.error
+      UtilityService.notifySuccess(result.message) if result
+      if $scope.items and $scope.items[indexRoom]
+        $scope.items[indexRoom].isFollow = true
+
   $scope.loadData()
   $scope.loadCategory()
 
