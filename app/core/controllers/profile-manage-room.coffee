@@ -125,8 +125,15 @@ ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
     return console.error(result) if result and result.error
     $scope.selectCategoryValue = result
 
+  UtilityService.reloadUserProfile ()->
+    if $rootScope.user and $rootScope.user.Room
+      $scope.categorySelected = $rootScope.user.Room.categoryId
+    getScheduleOfRoom()
+    ApiService.getListCategory {},(error, result)->
+      return if error
+      return console.error(result) if result and result.error
+      $scope.selectCategoryValue = result
 
-  getScheduleOfRoom()
 
 
   return

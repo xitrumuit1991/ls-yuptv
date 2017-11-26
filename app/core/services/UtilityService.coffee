@@ -60,12 +60,13 @@ factory = ($rootScope, $timeout, $window, $http, Notification, ApiService)->
   notifyError : (message)->
     Notification.error(message)
 
-  reloadUserProfile : ()->
+  reloadUserProfile : (cb=null)->
     ApiService.getProfile {}, (error, result)->
       return  if error
       return  if result and result.error
       window.localStorage.user = JSON.stringify(result) if result
       $rootScope.user = result if result
+      return cb() if _.isFunction(cb)
 
 
 factory.$inject = ['$rootScope',
