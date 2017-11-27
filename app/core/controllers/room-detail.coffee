@@ -278,13 +278,13 @@ ctrl = ($rootScope, $scope, $timeout, $location,
   socket.on 'disconnect', ()->
     console.error 'socket disconnect'
     $scope.socketIsConnected = false
-    socket.removeAllListeners('sendHeart');
-    socket.removeAllListeners('sendGift');
-    socket.removeAllListeners('connectUser');
-    socket.removeAllListeners('newComment');
-    socket.removeAllListeners('disconnectUser');
-    socket.removeAllListeners('disconnect');
-    io.removeAllListeners('connection');
+    socket.removeAllListeners('sendHeart')
+    socket.removeAllListeners('sendGift')
+    socket.removeAllListeners('connectUser')
+    socket.removeAllListeners('newComment')
+    socket.removeAllListeners('disconnectUser')
+    socket.removeAllListeners('disconnect')
+    io.removeAllListeners('connection') if _.isFunction(io.removeAllListeners)
 
 
 
