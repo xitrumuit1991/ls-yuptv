@@ -1,6 +1,6 @@
 .room-detail
 	.container
-		.col-md-12.content
+		.col-md-12.content(style='padding: 0;')
 			.row(style='background: #1b1b1b;')
 				.col-md-8.top-nav
 					ul.list-inline
@@ -88,23 +88,48 @@
 								i.fa.fa-gift
 							button.btn-send(ng-click='sendChatMsg()')
 								i.fa.fa-send
-	.container.list-room-same-category(ng-if='category && category.Rooms && category.Rooms.length>0')
-		h1 Phòng khác
-		.col-md-2(ng-repeat='room in category.Rooms')
-			.item
-				a(ui-sref='base.room-detail({id : room.id})')
-					img.item-image(src='{{room.banner || room.background || room.User.avatar || "http://via.placeholder.com/185x185" }}')
-				.item-group.row
-					.item-title.col-md-8
+
+
+	.container.list-room-same-category(ng-if='roomNowOnAir && roomNowOnAir.length>0')
+		.col-md-12
+			h1 Phòng đang diễn
+			.row
+				.col-md-2(ng-repeat='room in roomNowOnAir')
+					.item
 						a(ui-sref='base.room-detail({id : room.id})')
-							p.title {{room.title}}
-						i.fa.fa-eye
-						span.value {{room.views}} &nbsp;&nbsp;
-						i.fa.fa-heart
-						span.value {{room.hearts}}
-					.item-favorite.col-md-3.pointer(
-					ng-if='room.isFollow == false' )
-						i.fa.fa-plus-circle
+							img.item-image(src='{{room.banner || room.background || room.User.avatar || "http://via.placeholder.com/185x185" }}')
+						.item-group.row
+							.item-title.col-md-8
+								a(ui-sref='base.room-detail({id : room.id})')
+									p.title {{room.title}}
+								i.fa.fa-eye
+								span.value {{room.views}} &nbsp;&nbsp;
+								i.fa.fa-heart
+								span.value {{room.hearts}}
+							.item-favorite.col-md-3.pointer( ng-if='room.isFollow == false' )
+								i.fa.fa-plus-circle
+							.on-air-icon
+								.icon &nbsp;
+								span LIVE
+
+	.container.list-room-same-category(ng-if='category && category.Rooms && category.Rooms.length>0')
+		.col-md-12
+			h1 Phòng cùng chuyên mục
+			.row
+				.col-md-2(ng-repeat='room in category.Rooms')
+					.item
+						a(ui-sref='base.room-detail({id : room.id})')
+							img.item-image(src='{{room.banner || room.background || room.User.avatar || "http://via.placeholder.com/185x185" }}')
+						.item-group.row
+							.item-title.col-md-8
+								a(ui-sref='base.room-detail({id : room.id})')
+									p.title {{room.title}}
+								i.fa.fa-eye
+								span.value {{room.views}} &nbsp;&nbsp;
+								i.fa.fa-heart
+								span.value {{room.hearts}}
+							.item-favorite.col-md-3.pointer( ng-if='room.isFollow == false' )
+								i.fa.fa-plus-circle
 
 list-video-saved(ng-model='id')
 list-gift(ng-model='id')

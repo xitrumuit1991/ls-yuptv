@@ -505,7 +505,10 @@ i.emoji-picker-icon {
 .list-room-same-category{
   background: #fff;
   padding: 10px 0;
-  margin: 50px 0;
+  margin-top: 50px;
+  .col-md-2{
+    padding: 0 5px;
+  }
   .item{
     width: 100%;
     text-align: center;
@@ -553,5 +556,28 @@ i.emoji-picker-icon {
         color: #6427a9;
       }
     }
+
+    .on-air-icon {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      display: block;
+      .icon {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: red;
+      }
+      span {
+        display: inline-block;
+        color: #fff;
+        margin-left: 5px;
+        line-height: 10px;
+        vertical-align: top;
+        font-size: 10px;
+      }
+    }
+
   }
 }

@@ -24,6 +24,7 @@ ctrl = ($rootScope, $scope, $timeout, $location,
   $scope.id = $stateParams.id
   $scope.item = {}
   $scope.category = {}
+  $scope.roomNowOnAir = []
   $scope.giftList =
     items : []
 
@@ -33,6 +34,8 @@ ctrl = ($rootScope, $scope, $timeout, $location,
       $scope.item = result
       console.error 'getRoomDetail', $scope.item
       cb() if _.isFunction(cb)
+
+
 
   $scope.openLichDien = ()->
     $rootScope.$emit 'open-lich-dien-room-detail', {item : $scope.item}
@@ -85,6 +88,12 @@ ctrl = ($rootScope, $scope, $timeout, $location,
         $scope.category = result.category
         console.log 'getListRoomInCategory', $scope.category
 
+  $scope.roomNowOnAir = ()->
+    ApiService.onAir {onair : true, page:0, limit:1000 },(err, result)->
+      return if err
+      return UtilityService.notifyError(result.message) if result and result.error
+      $scope.roomNowOnAir = result.rooms
+
   $scope.buyTicket = ()->
     return console.log 'buyTicket user not login' if !$rootScope.user or !$scope.item
     return unless confirm('Xác nhận mua vé!')
@@ -115,7 +124,6 @@ ctrl = ($rootScope, $scope, $timeout, $location,
 
   $scope.joinRoom = ()->
     $timeout(()->
-      console.error 'init emoji-wysiwyg-editor'
       $('.emoji-wysiwyg-editor').keyup (e)->
         $scope.sendChatMsg() if e.keyCode == 13
     ,2000)
@@ -138,23 +146,18 @@ ctrl = ($rootScope, $scope, $timeout, $location,
       player.play()
       player.on 'ended', ()->
         console.log 'ended'
-
       player.on 'error', (error)->
         console.log 'error',error
-
       player.on 'loadeddata', (loadeddata)->
         console.log 'loadeddata',loadeddata
-
       player.on 'loadedmetadata', (loadedmetadata)->
         console.log 'loadedmetadata',loadedmetadata
-
       player.on 'timeupdate', (timeupdate)->
 #        console.log 'timeupdate',timeupdate
 #      player.on 'useractive', (useractive)->
 #        console.log 'useractive',useractive
 #      player.on 'userinactive', (userinactive)->
 #        console.log 'userinactive',userinactive
-#
       player.on 'volumechange', (volumechange)->
         console.log 'volumechange',volumechange
 
@@ -315,11 +318,13 @@ ctrl = ($rootScope, $scope, $timeout, $location,
       delete videojs.getPlayers()['videojs-room-detail-main']
 
   #call api
+  $scope.roomNowOnAir()
   $scope.getRoomDetail ()->
     $scope.initChatIcon()
     $scope.getListGift()
     $scope.joinRoom()
     $scope.getListRoomSameCategory()
+
 
 ctrl.$inject = [
   '$rootScope', '$scope', '$timeout', '$location',
