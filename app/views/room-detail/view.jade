@@ -94,7 +94,7 @@
 		.col-md-12
 			h1 Phòng đang diễn
 			.row
-				.col-md-2(ng-repeat='room in roomNowOnAir')
+				.col-md-2(ng-repeat='room in roomNowOnAir | limitTo:12 ')
 					.item
 						a(ui-sref='base.room-detail({id : room.id})')
 							img.item-image(src='{{room.banner || room.background || room.User.avatar || "http://via.placeholder.com/185x185" }}')
@@ -106,7 +106,8 @@
 								span.value {{room.views}} &nbsp;&nbsp;
 								i.fa.fa-heart
 								span.value {{room.hearts}}
-							.item-favorite.col-md-3.pointer( ng-if='room.isFollow == false' )
+							.item-favorite.col-md-3.pointer( ng-if='room.isFollow == false'
+							ng-click='nowOnAirFollowIdol(room, $index )')
 								i.fa.fa-plus-circle
 							.on-air-icon
 								.icon &nbsp;
@@ -116,7 +117,7 @@
 		.col-md-12
 			h1 Phòng cùng chuyên mục
 			.row
-				.col-md-2(ng-repeat='room in category.Rooms')
+				.col-md-2(ng-repeat='room in category.Rooms | limitTo:12 ')
 					.item
 						a(ui-sref='base.room-detail({id : room.id})')
 							img.item-image(src='{{room.banner || room.background || room.User.avatar || "http://via.placeholder.com/185x185" }}')
@@ -128,12 +129,13 @@
 								span.value {{room.views}} &nbsp;&nbsp;
 								i.fa.fa-heart
 								span.value {{room.hearts}}
-							.item-favorite.col-md-3.pointer( ng-if='room.isFollow == false' )
+							.item-favorite.col-md-3.pointer( ng-if='room.isFollow == false'
+							ng-click='sameRoomFollowIdol(room, $index )')
 								i.fa.fa-plus-circle
 
 list-video-saved(ng-model='id')
 list-gift(ng-model='id')
-lich-dien-room-detail(ng-model='id')
+lich-dien-room-detail(ng-model='id' ng-action='callbackAfterFollowThisRoom')
 heart-animation#heart-animation(ng-model='id' ng-show='showHeartAnimation == true' )
 
 

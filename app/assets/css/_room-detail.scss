@@ -1,6 +1,17 @@
 .room-detail {
   background: #111111;
   padding: 30px 0;
+  .room-detail-follow-btn{
+    border-radius: 10px;
+    background: #2ca2e0;
+    border: 1px solid #0d7eb9;
+    outline: none;
+    padding: 2px 15px;
+    color: #fff;
+    font-size: 12px;
+    line-height: 19px;
+    cursor: pointer;
+  }
   a.btn-share-facebook {
     font-size: 16px;
     line-height: 20px;

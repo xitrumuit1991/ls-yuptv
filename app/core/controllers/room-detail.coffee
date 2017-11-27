@@ -88,7 +88,7 @@ ctrl = ($rootScope, $scope, $timeout, $location,
         $scope.category = result.category
         console.log 'getListRoomInCategory', $scope.category
 
-  $scope.roomNowOnAir = ()->
+  $scope.listRoomNowOnAir = ()->
     ApiService.onAir {onair : true, page:0, limit:1000 },(err, result)->
       return if err
       return UtilityService.notifyError(result.message) if result and result.error
@@ -317,8 +317,32 @@ ctrl = ($rootScope, $scope, $timeout, $location,
       console.log '$destroy room detail delete videojs.getPlayers'
       delete videojs.getPlayers()['videojs-room-detail-main']
 
+  $scope.sameRoomFollowIdol = (item, indexRoom)->
+    return unless item
+    return UtilityService.notifyError('Vui lòng đăng nhập') unless $rootScope.user
+    ApiService.followIdol {roomId:item.id}, (error, result)->
+      return if error
+      return UtilityService.notifyError(result.message)  if result and result.error
+      UtilityService.notifySuccess(result.message) if result
+      if $scope.category.Rooms and $scope.category.Rooms[indexRoom]
+        $scope.category.Rooms[indexRoom].isFollow = true
+
+  $scope.nowOnAirFollowIdol = (item, indexRoom)->
+    return unless item
+    return UtilityService.notifyError('Vui lòng đăng nhập') unless $rootScope.user
+    ApiService.followIdol {roomId:item.id}, (error, result)->
+      return if error
+      return UtilityService.notifyError(result.message)  if result and result.error
+      UtilityService.notifySuccess(result.message) if result
+      if $scope.roomNowOnAir and $scope.roomNowOnAir[indexRoom]
+        $scope.roomNowOnAir[indexRoom].isFollow = true
+
+
+  $scope.callbackAfterFollowThisRoom = ()->
+    $scope.item.isFollow = true
+
   #call api
-  $scope.roomNowOnAir()
+  $scope.listRoomNowOnAir()
   $scope.getRoomDetail ()->
     $scope.initChatIcon()
     $scope.getListGift()

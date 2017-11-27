@@ -15,6 +15,7 @@ _directive = ($timeout, ApiService, UtilityService,$rootScope) ->
         return if error
         return if result and result.error
         UtilityService.notifySuccess(result.message)
+        $scope.action() if _.isFunction($scope.action)
       )
 
     $rootScope.$on 'open-lich-dien-room-detail',(event, data)->
@@ -34,6 +35,7 @@ _directive = ($timeout, ApiService, UtilityService,$rootScope) ->
     restrict : 'E'
     scope :
       id : '=ngModel'
+      action : '=ngAction'
     link : link
     templateUrl : '/templates/room-detail/lich-dien/view.html'
   return directive
