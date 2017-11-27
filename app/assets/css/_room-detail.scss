@@ -356,6 +356,26 @@ i.emoji-picker-icon {
   display: block;
   background: #fff;
   height: 150px;
+
+  .ui-carousel
+  {
+    .carousel-dots{
+      display: none;
+    }
+    .carousel-wrapper {
+      position: relative;
+      padding-left: 20px;
+    }
+    .carousel-next .carousel-btn {
+      right: 0;
+      color: #000;
+    }
+    .carousel-prev .carousel-btn {
+      left: 0;
+      color: #000;
+    }
+  }
+
   .image-user-group {
     padding: 15px 0;
     width: 110px;
@@ -481,3 +501,57 @@ i.emoji-picker-icon {
   }
 }
 
+
+.list-room-same-category{
+  background: #fff;
+  padding: 10px 0;
+  margin: 50px 0;
+  .item{
+    width: 100%;
+    text-align: center;
+    background: #f6f5f5;
+    padding: 0 0 10px 0;
+    //margin: 1%;
+    a{
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .item-image{
+      width: 100%;
+      min-height: 100px;
+    }
+    .item-title{
+      text-align: left;
+      padding-left: 20px;
+      padding-top: 5px;
+      padding-right: 0;
+      .value{
+        font-size: 12px;
+        color: #696969;
+      }
+      i.fa{
+        font-size: 12px;
+        color: #696969;
+        margin: 0 2px 0 2px;
+        line-height: 12px;
+      }
+      .title{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
+        white-space: nowrap;
+        font-size: 14px;
+        font-weight: bold;
+        color: #696969;
+      }
+    }
+    .item-favorite{
+      padding: 0;
+      .fa{
+        font-size: 30px;
+        margin-top: 10px;
+        color: #6427a9;
+      }
+    }
+  }
+}

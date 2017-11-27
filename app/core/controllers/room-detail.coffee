@@ -23,6 +23,7 @@ ctrl = ($rootScope, $scope, $timeout, $location,
   $scope.linkPlayLive = ''
   $scope.id = $stateParams.id
   $scope.item = {}
+  $scope.category = {}
   $scope.giftList =
     items : []
 
@@ -30,6 +31,7 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     ApiService.room.getRoomById {roomId : $scope.id },(err, result)->
       return if err
       $scope.item = result
+      console.error 'getRoomDetail', $scope.item
       cb() if _.isFunction(cb)
 
   $scope.openLichDien = ()->
@@ -71,6 +73,17 @@ ctrl = ($rootScope, $scope, $timeout, $location,
       $scope.giftList.items = result.items
 #      console.log '$scope.giftList',$scope.giftList
 
+#  $scope.getListUser = ()->
+#    ApiService.room.listUserInRoom {roomId : $scope.id},(err, result)->
+#      return if err
+#      return if result and result.error
+#      $scope.users = result.items
+  $scope.getListRoomSameCategory = ()->
+    if $scope.item and $scope.item.categoryId
+      ApiService.getListRoomInCategory {categoryId: $scope.item.categoryId},(err, result)->
+        console.log 'getListRoomInCategory', result
+        $scope.category = result.category
+        console.log 'getListRoomInCategory', $scope.category
 
   $scope.buyTicket = ()->
     return console.log 'buyTicket user not login' if !$rootScope.user or !$scope.item
@@ -231,11 +244,13 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     console.log 'connect User',data
     $scope.showUserConnectSocket(data)
     $rootScope.$emit 'reload-user-in-room'
+#    $scope.getListUser()
 
   socket.on 'disconnectUser', (data)->
     console.error 'disconnect User',data
     $scope.showUserDisConnectSocket(data)
     $rootScope.$emit 'reload-user-in-room'
+#    $scope.getListUser()
 
   socket.on 'notification', (data)->
     console.error 'notification',data
@@ -304,6 +319,7 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     $scope.initChatIcon()
     $scope.getListGift()
     $scope.joinRoom()
+    $scope.getListRoomSameCategory()
 
 ctrl.$inject = [
   '$rootScope', '$scope', '$timeout', '$location',

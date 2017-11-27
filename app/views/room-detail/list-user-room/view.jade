@@ -1,5 +1,18 @@
-ul
+//ul
 	li(ng-repeat='user in users')
 		.image-user-group
 			img.img-responsive.image(src='{{user.avatar || user.Room.banner }}')
 			p.text-center.name-idol(style='color:#000;') {{user.name}}
+
+ui-carousel(
+slides="users"
+slides-to-show="5"
+slides-to-scroll="5"
+initial-slide="1"
+autoplay="true"
+autoplay-speed="5000"
+dots="true")
+	carousel-item
+		.image-user-group
+			img.img-responsive.image(src='{{item.avatar || item.Room.banner }}')
+			p.text-center.name-idol(style='color:#000;') {{item.name}}

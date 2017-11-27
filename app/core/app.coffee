@@ -112,6 +112,7 @@ angular
   '720kb.datepicker',
   '720kb.socialshare',
   'ui.bootstrap.datetimepicker',
+  'slick'
 #  'vjs-video'
 ])
 .constant "AppName", "YUP"
