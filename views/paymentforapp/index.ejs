@@ -91,26 +91,6 @@
     $('#modal_Livestar').modal('show');
   };
 
-  var showModalSms = function (code,name,money,coin,isViettel,callback) {
-    $('#modal_livestar_btn_no').hide();
-    $('#modal_livestar_btn_yes').html('OK');
-    var message = '<span>Gói cước dành cho thuê bao<br/>';
-    if (isViettel == true)
-      message += 'Viettel</span>';
-    else
-      message += (typeof user == 'undefined' || (typeof user != 'undefined' && !user.is_mbf)) ? 'Mobifone và Vinaphone ' : 'Vinaphone</span>';
-    $('#modal_Livestar').find('h3').html(message);
-    var sms = '<span class="color-xam">Cú pháp</span>';
-    sms += '<strong class="color-primary">MW LIVESTAR NAP' + money + ' ' + code + '</strong> ' +
-      '<span class="color-xam">gửi đến</span>' +
-      '<strong class="color-primary">9029</strong>';
-    sms += '<span class="color-xam">Vui lòng tải lại trang khi nhận thông báo thành công</span>';
-    $('#modal_Livestar').find('p').html(sms);
-    if (callback !== undefined) {
-      $('#modal_livestar_btn_yes').one("click",callback);
-    }
-    $('#modal_Livestar').modal('show');
-  };
 
   $('#payment .nav-link-method .nav-method-select').on('click',function (event) {
     var div_tager = $(this).attr('div-target');
@@ -137,27 +117,33 @@
     $('#redeem_Code').hide();
   });
 
-  $('#mbp-vnp').on('click','.box-sms',function (event) {
-    $('#payment .box-sms').removeClass('active');
-    $(this).addClass('active');
-    event.preventDefault();
-    var price = parseInt($(this).attr("data-price").replace(/\./gi,""));
-    var coin = $(this).attr("data-coin");
-    var name = $(this).attr("data-name");
-    var code = $('#sms').attr("data-code");
-    showModalSms(code,name,price / 1000,coin,false,function () {
-    });
-  });
 
-  $('#vt').on('click','.box-sms',function (event) {
+  $('#vt').on('click','.box-sms',function (event)
+  {
     $('#payment .box-sms').removeClass('active');
     $(this).addClass('active');
     event.preventDefault();
-    var price = parseInt($(this).attr("data-price").replace(/\./gi,""));
+    var price = $(this).attr("data-price");
     var coin = $(this).attr("data-coin");
     var name = $(this).attr("data-name");
-    var code = $('#sms').attr("data-code");
-    showModalSms(code,name,price,coin,true,function () {
+    var code = $(this).attr("data-code");
+    var id = $(this).attr("data-id");
+    var discount = $(this).attr("data-discount");
+    var syntax = $(this).attr("data-syntax");
+
+    $('#modal_livestar_btn_no').hide();
+    $('#modal_livestar_btn_yes').html('OK');
+    var h3Title = '<span>Đăng kí <b>'+name+'</b> với giá '+price +' vnđ để có thêm '+coin +' Ucoin ?</span>';
+    $('#modal_Livestar').find('h3').html(h3Title);
+
+    var sms = '<span class="color-xam">Cú pháp</span><br/>';
+    sms += '<strong class="color-primary">' + syntax + '</strong> ';
+    sms += '<span class="color-xam">Vui lòng tải lại trang khi nhận thông báo thành công</span>';
+
+    $('#modal_Livestar').find('p').html(sms);
+    $('#modal_Livestar').modal('show');
+    $('#modal_livestar_btn_yes').one("click",function () {
+      console.log('click button ok');
     });
   });
 

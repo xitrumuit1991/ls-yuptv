@@ -45,7 +45,11 @@ obPaymentController.getPaymentView = function (req,res)
   console.log('queryToken=',queryToken);
   async.parallel({
       resultPayment : function (callback) {
-        requestApi({url:req.configs.api_base_url + 'payment/package'},callback);
+        requestApi(
+        {
+          url:req.configs.api_base_url + 'payment/package',
+          headers:{'Authorization' : req.session.token}
+        },callback);
       },
       user:function (callback) {
         if (req.session && !req.session.token)
