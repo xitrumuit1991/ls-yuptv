@@ -16,15 +16,19 @@
 				span {{item.name}}
 				br
 				span {{item.coin}} Ucoin
+				br
+				span {{item.price}} vnđ
 				//p Code: {{item.code}}
 				i.fa.fa-check(ng-if='step2PackageSelected.id == item.id')
 .col-md-12(ng-if='step2PackageSelected.id')
 	hr
-	p.text-center Để đăng kí gói &nbsp;
-		b {{step2PackageSelected.name}}
-	p.text-center Vui lòng soạn tin nhắn với cú pháp:
+	p.text-center Để đăng kí &nbsp;
+		b {{step2PackageSelected.name}} &nbsp;
+		//span với giá &nbsp;
+		//b {{step2PackageSelected.price}} &nbsp;
+		//span để nhận &nbsp;
+		//b {{step2PackageSelected.coin}} Ucoin ?
 	p.text-center
-		b MV LIVESTART NAP{{step2PackageSelected.coin}}
-	p.text-center gửi
-	p.text-center
-		b 9029
+		small Vui lòng soạn tin nhắn với cú pháp:
+	h5.text-center
+		b.text-danger {{step2PackageSelected.syntax}}
