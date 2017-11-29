@@ -19883,41 +19883,49 @@ a[role="button"].loading:before {
   font-size: 12px;
   padding: 5px 20px;
   border: 1px solid #3b6cff; }
+/* line 508, _payment_2.scss */
+#modal_Livestar #modal_livestar_btn_no {
+  color: blue;
+  background: #fff;
+  border-radius: 20px;
+  font-size: 12px;
+  padding: 5px 20px;
+  border: 1px solid #3b6cff; }
 
-/* line 510, _payment_2.scss */
+/* line 519, _payment_2.scss */
 #payment .captcha-group {
   text-align: center;
   margin: 20px auto;
   width: 90%; }
 
-/* line 517, _payment_2.scss */
+/* line 526, _payment_2.scss */
 #payment .tutorial-block {
   padding: 10px; }
-  /* line 519, _payment_2.scss */
+  /* line 528, _payment_2.scss */
   #payment .tutorial-block p {
     margin: 10px 0; }
-  /* line 522, _payment_2.scss */
+  /* line 531, _payment_2.scss */
   #payment .tutorial-block img {
     width: 100%; }
-  /* line 525, _payment_2.scss */
+  /* line 534, _payment_2.scss */
   #payment .tutorial-block .heading {
     padding-bottom: 20px;
     box-shadow: none;
     background: none; }
-    /* line 529, _payment_2.scss */
+    /* line 538, _payment_2.scss */
     #payment .tutorial-block .heading span {
       text-shadow: 0px 0.5px 30px #b7b7b7;
       font-size: 20px;
       text-transform: uppercase;
       font-weight: bold; }
 
-/* line 538, _payment_2.scss */
+/* line 547, _payment_2.scss */
 #payment #redeem_Code {
   display: none;
   padding: 20px;
   margin: 0 auto;
   text-align: left; }
-  /* line 548, _payment_2.scss */
+  /* line 557, _payment_2.scss */
   #payment #redeem_Code .content-body #input_redeem_Code.form-control {
     display: block;
     border: 1px solid #e2e2e2;
@@ -19928,12 +19936,12 @@ a[role="button"].loading:before {
     padding: 18px;
     text-align: left;
     width: 100%; }
-  /* line 562, _payment_2.scss */
+  /* line 571, _payment_2.scss */
   #payment #redeem_Code .content-body .captcha-group {
     text-align: center;
     margin: 20px auto;
     width: 90%; }
-  /* line 568, _payment_2.scss */
+  /* line 577, _payment_2.scss */
   #payment #redeem_Code .content-body #btn_submit_redeem_Code {
     color: #fff;
     background: #03c75b;
@@ -19948,10 +19956,10 @@ a[role="button"].loading:before {
     padding: 7px 15px;
     margin: 20px auto;
     box-shadow: 0px 10px 20px #b9f7d4; }
-    /* line 582, _payment_2.scss */
+    /* line 591, _payment_2.scss */
     #payment #redeem_Code .content-body #btn_submit_redeem_Code.loading {
       color: #03c75b; }
-      /* line 584, _payment_2.scss */
+      /* line 593, _payment_2.scss */
       #payment #redeem_Code .content-body #btn_submit_redeem_Code.loading::before {
         margin: auto;
         position: absolute;

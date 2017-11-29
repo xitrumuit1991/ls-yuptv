@@ -118,6 +118,7 @@
   });
 
 
+  //-------------------------------------------------
   $('#vt').on('click','.box-sms',function (event)
   {
     $('#payment .box-sms').removeClass('active');
@@ -130,9 +131,6 @@
     var id = $(this).attr("data-id");
     var discount = $(this).attr("data-discount");
     var syntax = $(this).attr("data-syntax");
-
-    $('#modal_livestar_btn_no').hide();
-    $('#modal_livestar_btn_yes').html('OK');
     var h3Title = '<span>Đăng kí <b>'+name+'</b> với giá '+price +' vnđ để có thêm '+coin +' Ucoin ?</span>';
     $('#modal_Livestar').find('h3').html(h3Title);
 
@@ -142,11 +140,44 @@
 
     $('#modal_Livestar').find('p').html(sms);
     $('#modal_Livestar').modal('show');
+
+    $('#modal_livestar_btn_yes').show();
+    $('#modal_livestar_btn_yes').html('Nhắn tin');
     $('#modal_livestar_btn_yes').one("click",function () {
-      console.log('click button ok');
+      console.log('click button modal_livestar_btn_yes');
+      $.ajax({
+        url : API_PATH + 'payment/forward/sms',
+        method:"POST", headers:{'Authorization' : token}, dataType:'json',
+        data: {
+          package: { price : price, coin : coin, name : name,
+            code : code, id : id, discount : discount, syntax : syntax
+          },
+          type: 'forward-sms',
+          contact: "9029"
+        },
+        beforeSend:function () { $.blockUI(); },
+        success: function(results, textStatus) {
+          $.unblockUI();
+          console.log("success : " + results);
+        },
+        error: function(xhr, status, error)
+        {
+          $.unblockUI();
+          console.log("error : " + xhr.responseText);
+        }
+      })
+      return;
+    });
+
+    $('#modal_livestar_btn_no').show();
+    $('#modal_livestar_btn_no').html('Đóng');
+    $('#modal_livestar_btn_no').one("click",function () {
+      $('#modal_Livestar').modal('hide');
+      console.log('click button no');
     });
   });
 
+  //-------------------------------------------------
   $('#mbp').on('click','.box-sms',function (event) {
     $('#payment .box-sms').removeClass('active');
     $(this).addClass('active');
