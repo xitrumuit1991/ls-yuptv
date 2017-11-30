@@ -19,3 +19,9 @@
 .lower{
   text-transform: lowercase;
 }
+
+.item-favorite{
+  i.fa-minus-circle{
+    color: #de2618 !important;
+  }
+}

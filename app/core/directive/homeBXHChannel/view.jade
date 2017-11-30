@@ -16,6 +16,10 @@
 					button(ng-if='rankItem.User.Room.isFollow==false'
 					ng-click='followIdolInHome(rankItem)')
 						i.fa.fa-plus
+					button.unfollow(ng-if='rankItem.User.Room.isFollow==true '
+					ng-click='unfollowIdolInHome(rankItem)')
+						i.fa.fa-minus
+
 				.name.text-center {{rankItem.User.name}}
 				.icon.text-center
 					i.fa.fa-rss

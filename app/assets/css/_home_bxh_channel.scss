@@ -48,6 +48,9 @@
           font-size: 13px;
           line-height: 20px;
           text-align: center;
+          &.unfollow{
+            background: #fd1d11;
+          }
         }
       }
       .name{

@@ -45,3 +45,7 @@ home-slider
 					ng-if='room.isFollow == false'
 					ng-click='homeClickFollowIdol(room, groupIdo.id, $index)')
 						i.fa.fa-plus-circle
+					.item-favorite.col-md-3.pointer(
+					ng-if='room.isFollow == true'
+					ng-click='homeClickunFollowIdol(room, groupIdo.id, $index)')
+						i.fa.fa-minus-circle

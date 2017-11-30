@@ -19,6 +19,18 @@ ctrl = ($rootScope,
   $scope.listCategory = []
   $scope.groupIdol = []
 
+  $scope.homeClickunFollowIdol = (item, idGroup, indexRoom)->
+    return unless item
+    return UtilityService.notifyError('Vui lòng đăng nhập') unless $rootScope.user
+    ApiService.unFollowIdol {roomId:item.id}, (error, result)->
+      return if error
+      return UtilityService.notifyError(result.message)  if result and result.error
+      UtilityService.notifySuccess(result.message) if result
+      indexGroup = _.findIndex($scope.groupIdol, {id : idGroup})
+      if indexGroup != -1 and $scope.groupIdol[indexGroup]
+        if $scope.groupIdol[indexGroup].Rooms and $scope.groupIdol[indexGroup].Rooms[indexRoom]
+          $scope.groupIdol[indexGroup].Rooms[indexRoom].isFollow = false
+
   $scope.homeClickFollowIdol = (item, idGroup, indexRoom)->
     return unless item
     return UtilityService.notifyError('Vui lòng đăng nhập') unless $rootScope.user
