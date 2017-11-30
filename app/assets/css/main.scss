@@ -42,3 +42,15 @@ body{
 .bold{
   font-weight: bold;
 }
+
+#scrollToTop{
+  text-align:center;
+  text-decoration: none;
+  position:fixed;
+  bottom:100px;
+  right:50px;
+  display:none;
+  img{
+    cursor: pointer;
+  }
+}

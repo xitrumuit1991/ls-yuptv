@@ -47,6 +47,17 @@ appRun = (
   ApiService.notificationList {page:0, limit: 1000},(err, result)->
 #    console.log 'notificationList', result
 
+  $(document).ready ()->
+    $(window).scroll ()->
+      if $(this).scrollTop() > 100
+        $('#scrollToTop').fadeIn()
+      else
+        $('#scrollToTop').fadeOut()
+      return
+    $('#scrollToTop').click ()->
+      $('html, body').animate { scrollTop: 0 }, 500
+      false
+    return
 
 appRun.$inject = [
   '$rootScope',
