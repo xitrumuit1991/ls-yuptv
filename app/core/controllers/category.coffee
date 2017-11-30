@@ -18,6 +18,8 @@ ctrl = ($rootScope,
   $scope.id = $stateParams.id
   return $state.go 'base' unless $stateParams.id
   $scope.category = null
+  $scope.listCategory = []
+
   ApiService.getListRoomInCategory {categoryId: $stateParams.id},(err, result)->
     console.log 'getListRoomInCategory', result
     $scope.category = result.category
@@ -31,6 +33,10 @@ ctrl = ($rootScope,
       UtilityService.notifySuccess(result.message) if result
       if $scope.category and $scope.category.Rooms and $scope.category.Rooms[indexRoom]
         $scope.category.Rooms[indexRoom].isFollow = true
+
+  ApiService.getListCategory {}, (err, result)->
+    $scope.listCategory = result
+    console.warn 'home list category', $scope.listCategory
 
 
 ctrl.$inject = [

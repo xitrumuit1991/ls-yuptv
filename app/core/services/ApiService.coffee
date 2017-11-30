@@ -166,6 +166,13 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
       data : params
     self.request options, done
 
+  self.getCategory = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "room/category"
+      method : 'GET'
+      data : params
+    self.request options, done
+
   self.getScheduleOfRoom=(params, done)->
     #http://dev.livestar.vn:1010/api/v1/room/schedule?roomId=bbc61145-9a59-49d5-9ebb-73db072ce4f0&type=all
     options =
@@ -269,12 +276,7 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
       data : params
     self.request options, done
 
-  self.getCategory = (params, done)->
-    options =
-      url : GlobalConfig.API_URL + "room/category"
-      method : 'GET'
-      data : params
-    self.request options, done
+
 
   self.room =
     changeCategory : (params, done)->

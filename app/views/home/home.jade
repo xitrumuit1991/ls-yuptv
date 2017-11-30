@@ -12,7 +12,7 @@ home-slider
 		.row
 			.col-md-12
 				ul.list-inline
-					li.list-inline-item(ng-repeat='groupIdo in groupIdol')
+					li.list-inline-item(ng-repeat='groupIdo in listCategory')
 						a(ui-sref='base.category({id:groupIdo.id})')
 							span() {{groupIdo.title}}
 						span(ng-if=' !$last ' style='display:inline-block;margin: 0 15px;') /

@@ -1,4 +1,11 @@
 .container.home-block-content(ng-if='category ')
+	.col-md-12.home-menu-category(style='margin: 0 -15px; margin-top: 50px;')
+		ul.list-inline
+			li.list-inline-item(ng-repeat='groupIdo in listCategory')
+				a(ui-sref='base.category({id:groupIdo.id})')
+					span() {{groupIdo.title}}
+				span(ng-if=' !$last ' style='display:inline-block;margin: 0 15px;') /
+
 	.group-title.col-md-12
 		.left
 			a(ui-sref='base.category({id:category.id})'  id='{{category.id}}')

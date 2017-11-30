@@ -16,6 +16,7 @@ ctrl = ($rootScope,
   $window, $state, $stateParams,  ApiService, $http,
   GlobalConfig, $interval, UtilityService) ->
   console.log 'home coffee '
+  $scope.listCategory = []
   $scope.groupIdol = []
 
   $scope.homeClickFollowIdol = (item, idGroup, indexRoom)->
@@ -31,6 +32,10 @@ ctrl = ($rootScope,
           $scope.groupIdol[indexGroup].Rooms[indexRoom].isFollow = true
     )
 
+  ApiService.getListCategory({}, (err, result)->
+    $scope.listCategory = result
+    console.warn 'home list category', $scope.listCategory
+  )
   ApiService.getHomeContent( {},(error, result)->
     return if error
     $scope.groupIdol = result
