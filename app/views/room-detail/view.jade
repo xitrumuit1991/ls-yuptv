@@ -82,7 +82,9 @@
 							.time.pull-right 11:11
 					.chat-form
 						div
-							input.chat#chat-input-form(data-emojiable="true" type='text')
+							textarea#chat-input-form.chat(
+							data-emojiable="true"
+							data-emoji-input="unicode")
 						.group-btn
 							button.btn-gift( ng-click='clickSendHeart()' )
 								i.fa.fa-heart

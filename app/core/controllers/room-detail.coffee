@@ -118,7 +118,8 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     window.emojiPicker = new EmojiPicker({
       emojiable_selector: '[data-emojiable=true]',
       assetsPath: 'img/',
-      popupButtonClasses: 'fa fa-smile-o'
+      popupButtonClasses: 'fa fa-smile-o',
+      'data-emoji-input' : "unicode"
     })
     window.emojiPicker.discover()
 
