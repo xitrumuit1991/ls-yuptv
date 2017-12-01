@@ -10,13 +10,21 @@ _directive = ($timeout, ApiService, UtilityService,$rootScope) ->
         angular.element("##{@.id}").modal('hide')
 
 
-    $scope.clickFollowRoomInSchedule = ()->
-      ApiService.followIdol({roomId: $scope.id}, (error, result)->
+    $scope.clickFollowRoomInScheduleModal = ()->
+      ApiService.followIdol {roomId: $scope.id}, (error, result)->
         return if error
         return if result and result.error
         UtilityService.notifySuccess(result.message)
         $scope.action() if _.isFunction($scope.action)
-      )
+        $scope.item.isFollow = true
+
+    $scope.clickUnFollowRoomInScheduleModal = ()->
+      ApiService.unFollowIdol {roomId: $scope.id}, (error, result)->
+        return if error
+        return if result and result.error
+        UtilityService.notifySuccess(result.message)
+        $scope.action() if _.isFunction($scope.action)
+        $scope.item.isFollow = false
 
     $rootScope.$on 'open-lich-dien-room-detail',(event, data)->
       $scope.item = data.item if data and data.item
