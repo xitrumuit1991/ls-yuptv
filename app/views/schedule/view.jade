@@ -46,12 +46,14 @@
 									span {{item.Room.hearts}}
 						td(style='border-left: none; border-right: none;')
 							p {{item.start | date:'dd-MM-yyyy' }}
+							//p item.Room.User.id {{item.Room.User.id}}
 						td(style='border-left: none;')
 							.group-time-follow
 								.time.bold {{item.start | date:'HH:mm' }}
 								.follow
-									button(ng-if='item.Room.isFollow == false'
+									button(ng-if='item.Room.isFollow == false && item.Room.User.id != $rootScope.user.id'
 									ng-click='actionFollowRoom(item)') Theo dõi
+									//p item.Room.User.id {{item.Room.User.id}}
 
 		.row(ng-if="activeView == 'now-tomorrow' ")
 			.col-md-6
@@ -78,8 +80,9 @@
 									.group-time-follow
 										.time.bold {{item.start | date:'HH:mm' }}
 										.follow
-											button(ng-if='item.Room.isFollow == false'
+											button(ng-if='item.Room.isFollow == false && item.Room.User.id != $rootScope.user.id'
 											ng-click='actionFollowRoom(item)') Theo dõi
+											//p item.Room.User.id {{item.Room.User.id}}
 
 
 			.col-md-6
@@ -106,7 +109,8 @@
 									.group-time-follow
 										.time.bold {{item.start | date:'HH:mm' }}
 										.follow
-											button(ng-if='item.Room.isFollow==false') Theo dõi
+											button(ng-if='item.Room.isFollow==false && item.Room.User.id != $rootScope.user.id') Theo dõi
+											//p item.Room.User.id {{item.Room.User.id}}
 
 
 		.list-room-schedule-following(ng-if='user && listUserFollowing && listUserFollowing.length > 0')

@@ -42,7 +42,7 @@ config.menuMainProfile = [
     itemClass : 'col-md-2'
   },
   {
-    title : 'Nạp Xu',
+    title : 'Nạp Ucoin',
     href : 'base.profile.charge-ucoin',
     itemClass : 'col-md-2'
   },
