@@ -56,13 +56,13 @@
 						thead
 							th.no-border-right Ngày diễn
 							th.no-border-right.no-border-left Giờ diễn
-							th.no-border-left Thay đổi
+							th.no-border-left.text-center Thay đổi
 						tr(ng-if='listScheduleOfRoom.length <= 0')
 							td(colspan='3') Chưa có lịch diễn nào
 						tr(ng-repeat='item in listScheduleOfRoom' ng-if='listScheduleOfRoom.length > 0')
 							td.no-border-right {{item.start | date : 'dd-MM-yyyy'}}
 							td.no-border-right.no-border-left {{item.start | date : 'h:mm'}}
-							td.no-border-left
-								.text-right
+							td.no-border-left.text-center
+								.text-center
 									i.fa.fa-pencil(ng-click='openModalDetailAddEdit(item)')
 									i.fa.fa-remove(ng-click='deleteItemSchedule(item)')
