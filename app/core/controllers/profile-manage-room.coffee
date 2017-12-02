@@ -120,19 +120,20 @@ ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
     return
 
 
-  ApiService.getListCategory {},(error, result)->
-    return if error
-    return console.error(result) if result and result.error
-    $scope.selectCategoryValue = result
+  $scope.manageRoomGetListCategory = ()->
+    ApiService.getListCategory {},(error, result)->
+      return if error
+      return console.error(result) if result and result.error
+      tempArr = []
+      tempArr = _.filter result,(item)->
+        return true if item.id != '9ac8fc48-86f2-11e7-b556-0242ac110005' and item.id != '9cabad29-80d2-11e7-b0f0-6057187c6b36'
+      $scope.selectCategoryValue = tempArr
 
   UtilityService.reloadUserProfile ()->
     if $rootScope.user and $rootScope.user.Room
       $scope.categorySelected = $rootScope.user.Room.categoryId
     getScheduleOfRoom()
-    ApiService.getListCategory {},(error, result)->
-      return if error
-      return console.error(result) if result and result.error
-      $scope.selectCategoryValue = result
+    $scope.manageRoomGetListCategory()
 
 
 
