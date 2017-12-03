@@ -15,6 +15,7 @@ ctrl = ($rootScope,
   $window, $state, $stateParams,  ApiService, $http,
   GlobalConfig, $interval) ->
   console.log 'notifycation coffee '
+  $scope.loaded = false
   $scope.pagination =
     page:0
     limit: 20
@@ -39,10 +40,16 @@ ctrl = ($rootScope,
     $scope.modalNotify.item = ite
     $scope.modalNotify.title = ite.Message.title
     $scope.modalNotify.description = ite.Message.description
+    ApiService.setNotificationRead({id : ite.id},(err, result)->
+      index = _.findIndex($scope.items,{id: ite.id})
+      if index != -1
+        $scope.items[index].status = 1
+    )
 
   ApiService.notificationList $scope.pagination,(err, result)->
     console.log 'notificationList in notifycation coffee;  result ',result
     $scope.items = result.items
+    $scope.loaded = true
 
 
 ctrl.$inject = [

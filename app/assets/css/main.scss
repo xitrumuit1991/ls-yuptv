@@ -54,3 +54,22 @@ body{
     cursor: pointer;
   }
 }
+
+.bel-unread-notifycation{
+  position: relative;
+  cursor: pointer;
+  span{
+    position: absolute;
+    color: #fff;
+    font-size: 12px;
+    line-height: 18px;
+    background: red;
+    top: -8px;
+    right: -5px;
+    width: 18px;
+    text-align: center;
+    height: 18px;
+    display: inline-block;
+    border-radius: 50%;
+  }
+}

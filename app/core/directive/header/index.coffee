@@ -6,6 +6,8 @@ _directive = ($rootScope, $timeout, ApiService, $uibModal, $state,GlobalConfig, 
     $scope.userProfile = null
     $scope.activeProfileMenu = false
     $scope.menuProfile = GlobalConfig.menuMainProfile
+    $scope.notifycationUnread =
+      items : []
 
     $rootScope.searchKey =
       value : ''
@@ -61,8 +63,11 @@ _directive = ($rootScope, $timeout, ApiService, $uibModal, $state,GlobalConfig, 
         windowClass: 'modal'
         controller: 'LoginHeaderCtrl'
       })
-    return null
 
+    ApiService.notificationListUnread {page:0, limit: 1000},(err, result)->
+      $scope.notifycationUnread = result
+
+    return
   directive =
     restrict : 'E'
     link : link

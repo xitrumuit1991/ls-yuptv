@@ -17,7 +17,10 @@
 					//li.list-inline-item(ng-if='isHome == false ')
 						i.fa.fa-search
 					li.list-inline-item(ui-sref='base.notifycation' style='cursor:pointer;')
-						i.fa.fa-bell-o
+						div.bel-unread-notifycation
+							i.fa.fa-bell-o
+							span(ng-if='notifycationUnread.items && notifycationUnread.items.length > 0')
+								|{{notifycationUnread.items.length}}
 					li.list-inline-item.group-avatar-logged(
 					ng-mouseenter='openProfileMenuDropdown(true)'
 					ng-mouseleave='openProfileMenuDropdown(false)'

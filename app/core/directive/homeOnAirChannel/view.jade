@@ -28,7 +28,7 @@
 					span LIVE
 		.right.col-md-8
 			.row
-				.col-md-4(ng-repeat='room in listOnAir | limitTo : 10' ng-if='$index > 0')
+				.col-md-4(ng-repeat='room in listOnAir | limitTo : 7' ng-if='$index > 0')
 					.onair-child
 						img.img-responsive(src='{{room.banner || room.background || room.User.avatar || "http://via.placeholder.com/150x150"}}'
 						ui-sref='base.room-detail({id : room.id})')

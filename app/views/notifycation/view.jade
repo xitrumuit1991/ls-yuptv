@@ -24,16 +24,19 @@ data-keyboard="false")
 
 
 .wrapper.container.notifycation
-	.row.profile-manage-room
+	.row
 		.col-md-12.header
 			h1 Thông báo
+	.row.profile-manage-room(ng-if='loaded==true')
 		.col-md-12(ng-if='!items || items.length <=0 ')
-			span.text-danger Không có thông báo nào
+			h4.text-danger Không có thông báo nào
 		.col-md-12(ng-if='items && items.length > 0 ')
 			table.table.table-hover
 				tbody
 					tr(ng-repeat='ite in items')
-						td.pointer(ng-click='openMessageDetail(ite)')
+						td.pointer(ng-click='openMessageDetail(ite)'
+						ng-class='{"unread": ite.status <= 0, "read" : ite.status > 0 }'
+						)
 							.row.form-group
 								.col-md-2
 									img(
@@ -47,6 +50,7 @@ data-keyboard="false")
 								.col-md-2
 									span() {{ite.updatedAt | date : 'dd-MM-yyyy h:mm:s'}}
 								.col-md-2
-									span.text-danger(ng-if='ite.status == 0') Chưa xem
+									i.fa.fa-star(ng-if='ite.status <= 0')
+									span.text-danger(ng-if='ite.status <= 0') &nbsp;Chưa xem
 									span.text-info(ng-if='ite.status > 0') Đã xem
 

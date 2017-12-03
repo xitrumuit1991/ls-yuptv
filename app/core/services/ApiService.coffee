@@ -370,6 +370,13 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
       method : 'GET'
       data : params
     self.request options, done
+  self.setNotificationRead = (params, done)->
+    params.status = 1
+    options =
+      url : GlobalConfig.API_URL + "notification/update"
+      method : 'POST'
+      data : params
+    self.request options, done
 
 
 

@@ -44,9 +44,6 @@ appRun = (
     return if error
     $rootScope.homeslides = result if result
 
-  ApiService.notificationList {page:0, limit: 1000},(err, result)->
-#    console.log 'notificationList', result
-
   $(document).ready ()->
     $(window).scroll ()->
       if $(this).scrollTop() > 100

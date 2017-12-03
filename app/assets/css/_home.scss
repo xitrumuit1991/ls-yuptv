@@ -45,21 +45,24 @@
       border: none;
       color: #fff;
       outline: none;
-      .fa{
-        font-size: 25px;
-      }
     }
   }
   .carousel-prev{
-    left: -2%;
+    left: -1%;
     button{
-      padding: 0 0 0 10px;
+      padding: 0 0 0 5px;
+      i.fa{
+        font-size: 30px;
+      }
     }
   }
   .carousel-next{
-    right: -2%;
+    right: -1%;
     button{
-      padding: 0 10px 0 0;
+      padding: 0 5px 0 0;
+      i.fa{
+        font-size: 30px;
+      }
     }
   }
   .download-link{
