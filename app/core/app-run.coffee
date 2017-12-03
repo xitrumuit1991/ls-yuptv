@@ -54,6 +54,18 @@ appRun = (
     $('#scrollToTop').click ()->
       $('html, body').animate { scrollTop: 0 }, 500
       false
+
+    AccountKit_OnInteractive = ()->
+      paramInitAccKit =
+        appId:'144785392941236'
+        state:'pateco_web_accountKit'
+        version:'v2.9'
+      AccountKit.init( paramInitAccKit )
+      #https://developers.facebook.com/docs/accountkit/countrycodes
+      AccountKit.login('PHONE', {country_code: 'VN', phone_number: '841669383915'},(response)->
+        console.log 'AccountKit.login response',response
+      );
+    #AccountKit_OnInteractive()
     return
 
 appRun.$inject = [
