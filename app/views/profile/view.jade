@@ -28,7 +28,7 @@
 								.col-md-2(ng-repeat='followerItem in follower.items')
 									.follower-item
 										//img.img-responsive(src='{{followerItem.banners.banner}}')
-										img.img-responsive(src='{{followerItem.User.avatars_path.avatar}}')
+										img.img-responsive(src='{{followerItem.User.avatar || "http://via.placeholder.com/100x100"}}')
 										.name.text-center {{followerItem.title}}
 
 								.col-md-12
@@ -56,7 +56,7 @@
 									h1 Đang theo dõi ({{following.total_item}})
 								.col-md-2(ng-repeat='followingItem in following.items')
 									.following-item
-										img.img-responsive(src='{{followingItem.User.avatars_path.avatar || followingItem.Following.User.avatars_path.avatar}}')
+										img.img-responsive(src='{{followingItem.User.avatar || followingItem.Following.User.avatar || "http://via.placeholder.com/100x100"}}')
 										.name.text-center {{followingItem.title || followingItem.Following.title}}
 										i.fa.fa-minus.cancel-following(ng-if='followingItem.isFollow == true'
 										ng-click='cancelFollowing(followingItem, $index)')
@@ -117,7 +117,7 @@
 					.row.user-information(ng-show='tabActive == "user-information"')
 						.col-md-12
 							.image
-								img(src='{{user.avatars_path.avatar}}')
+								img(src='{{user.avatar || "http://via.placeholder.com/100x100" }}')
 								button.change-avatar(type="file" ngf-select="uploadNewAvatar($file, $invalidFiles)"
 								accept="image/*"  ngf-max-size="10MB"
 								ngf-max-height="1000", ngf-max-width="2000")
@@ -136,7 +136,8 @@
 									span.title Tên người dùng *
 									span.sub-title tối thiểu 6 kí tự
 								.col-md-5
-									input.form-control(type='text' value='{{user.name}}' readonly='readonly')
+									input.form-control(ng-if='user.fbId' type='text' value='{{user.name}}' readonly='readonly')
+									input.form-control(ng-if='!user.fbId' type='text' value='{{user.name}}' )
 							.row
 								.col-md-4.col-md-offset-2
 									span.title Ngày sinh
