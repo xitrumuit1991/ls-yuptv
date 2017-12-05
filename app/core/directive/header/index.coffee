@@ -67,6 +67,11 @@ _directive = ($rootScope, $timeout, ApiService, $uibModal, $state,GlobalConfig, 
     ApiService.notificationListUnread {page:0, limit: 1000},(err, result)->
       $scope.notifycationUnread = result
 
+    $rootScope.$on 'reload-notify-unread',(event, data)->
+      ApiService.notificationListUnread {page:0, limit: 1000},(err, result)->
+        $scope.notifycationUnread = result
+
+
     return
   directive =
     restrict : 'E'

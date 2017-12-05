@@ -42,11 +42,11 @@ ctrl = ($rootScope,
     $scope.modalNotify.item = ite
     $scope.modalNotify.title = ite.Message.title
     $scope.modalNotify.description = ite.Message.description
-    ApiService.setNotificationRead({id : ite.id},(err, result)->
+    ApiService.setNotificationRead {id : ite.id},(err, result)->
       index = _.findIndex($scope.items,{id: ite.id})
       if index != -1
         $scope.items[index].status = 1
-    )
+      $rootScope.$emit 'reload-notify-unread',{}
 
   ApiService.notificationList $scope.pagination,(err, result)->
     console.log 'notificationList in notifycation coffee;  result ',result
