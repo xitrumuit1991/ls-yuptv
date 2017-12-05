@@ -6,4 +6,15 @@
   .pointer{
     cursor: pointer;
   }
+  .unread{
+    font-weight: bold;
+    background: #fff;
+    .fa-star{
+      color: #a94442;
+    }
+  }
+  .read{
+    font-weight: normal;
+    background: rgba(0, 0, 0, 0.1);
+  }
 }
