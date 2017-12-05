@@ -2,6 +2,7 @@
   margin-bottom: 50px;
   img{
     cursor: pointer;
+    width:100%;
   }
   .carousel-item img{
     width: 100%;
@@ -46,8 +47,9 @@
   .on-air-block-main{
     position: relative;
     cursor: pointer;
-    img{
+    img.on-air-block-main-image{
       width: 100%;
+      height: 400px;
     }
     p.title{
       margin: 0;
@@ -89,6 +91,10 @@
   .on-air-block{
     //margin-bottom: 20px;
     cursor: pointer;
+    img.main--image-room-on-air{
+      width: 100%;
+      height: 180px;
+    }
     p.title{
       margin: 0;
       font-size: 12px;
@@ -114,6 +120,7 @@
     //background: #ccc;
     img{
       width: 100%;
+      //height: 180px;
     }
     .bottom{
       position: relative;

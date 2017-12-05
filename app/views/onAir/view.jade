@@ -5,7 +5,7 @@
 			.col-md-12
 				.pull-left
 					.title
-						img(src='/images/onair_title.png')
+						img(src='/images/onair_title.png' style='width: 20px;height: auto;margin: 0 5px;')
 						span KÊNH ON AIR
 				.pull-right
 					ul.list-inline.on-air-menu-category
@@ -21,7 +21,7 @@
 		.row(ng-if='items && items.length > 0 ')
 			.col-md-4
 				.on-air-block-main(ng-if='items && items[0] && items[0].onAir == true ' )
-					img(
+					img.on-air-block-main-image(
 					src='{{ items[0].banner || items[0].background || items[0].User.avatar || "http://via.placeholder.com/185x185" }}'
 					ui-sref='base.room-detail({id : items[0].id})')
 					.bottom
@@ -41,7 +41,7 @@
 					.col-md-3(ng-repeat='ite in items' ng-if='$index > 0 && $index < 9 && ite.onAir == true '
 					style='padding: 5px;')
 						.on-air-block-main.on-air-block
-							img(
+							img.main--image-room-on-air(
 							src='{{ ite.banner || ite.background || ite.User.avatar || "http://via.placeholder.com/185x185"  }}'
 							ui-sref='base.room-detail({id : ite.id})')
 							.bottom
