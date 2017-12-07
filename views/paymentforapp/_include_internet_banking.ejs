@@ -43,9 +43,9 @@
           </select>
           <i class="fa fa-caret-down"></i>
         </div>
-        <div class="form-group captcha-group">
+        <!--<div class="form-group captcha-group">
           <div id="captcha-payment"></div>
-        </div>
+        </div>-->
         <button type="button" class="btn btn-primary" id="btn-PaymentMegabank-bank">
           Thanh toán
         </button>
@@ -61,10 +61,6 @@
     $('#internet_Banking #stepA .box-sms a.box-wrapper').on('click',(function () {
         setTimeout(function () {
           var package_id = $('#internet_Banking #stepA .box-sms.active a.box-wrapper').attr('package-id');
-//        var bank_id = $('#internet-bank-select option:selected').attr('bank-id');
-//        var key_payment = '';
-//        try { key_payment = grecaptcha.getResponse(widgetMegabank); }
-//        catch (e) {console.error(e);}
           console.log(package_id);
           if (package_id) {
             $('#btn-PaymentMegabank-bank').removeAttr("disabled");
@@ -74,19 +70,5 @@
         },1000);
       })
     );
-
-//    $('#internet-bank-select').on('change',function () {
-//      var package_id = $('#internet_Banking #stepA .box-sms.active a.box-wrapper').attr('package-id');
-//      var bank_id = $('#internet-bank-select option:selected').attr('bank-id');
-////      var key_payment = '';
-////      try { key_payment = grecaptcha.getResponse(widgetMegabank); }
-////      catch (e) {console.error(e);}
-//      if (package_id && bank_id ) {
-//        $('#btn-PaymentMegabank-bank').removeAttr("disabled");
-//      } else {
-//        $('#btn-PaymentMegabank-bank').attr("disabled",true);
-//      }
-//    });
-
   });
 </script>

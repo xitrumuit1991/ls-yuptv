@@ -22,9 +22,9 @@
       <input type="text" class="form-control " name="serial" id="mobile_Serial" />
     </div>
 
-    <div class="captcha-group">
+    <!--<div class="captcha-group">
       <div id="captcha-card"></div>
-    </div>
+    </div>-->
 
     <button type="button" class="btn btn-primary" id="btn-payment-by-card-for-app"> Thanh toán</button>
 
@@ -39,9 +39,6 @@
       var mobile_Code = $('#mobile_Code').val();
       var mobile_Serial = $('#mobile_Serial').val();
       var mobile_Provider = $('#mobile_Provider').val();
-//      var key_payment = '';
-//      try { key_payment = grecaptcha.getResponse(widgetCard); }
-//      catch (e) {console.error(e);}
       if(mobile_Code && mobile_Serial && mobile_Provider){
         $('#btn-payment-by-card-for-app').removeAttr("disabled");
       }else{
@@ -53,29 +50,12 @@
       var mobile_Code = $('#mobile_Code').val();
       var mobile_Serial = $('#mobile_Serial').val();
       var mobile_Provider = $('#mobile_Provider').val();
-//      var key_payment = '';
-//      try { key_payment = grecaptcha.getResponse(widgetCard); }
-//      catch (e) {console.error(e);}
       if(mobile_Code && mobile_Serial && mobile_Provider ){
         $('#btn-payment-by-card-for-app').removeAttr("disabled");
       }else{
         $('#btn-payment-by-card-for-app').attr("disabled", true);
       }
     });
-
-//    $('#captcha-card').on('change',function () {
-//      var mobile_Code = $('#mobile_Code').val();
-//      var mobile_Serial = $('#mobile_Serial').val();
-//      var mobile_Provider = $('#mobile_Provider').val();
-//      var key_payment = '';
-//      try { key_payment = grecaptcha.getResponse(widgetCard); }
-//      catch (e) {console.error(e);}
-//      if(mobile_Code && mobile_Serial && mobile_Provider && key_payment){
-//        $('#btn-payment-by-card-for-app').removeAttr("disabled");
-//      }else{
-//        $('#btn-payment-by-card-for-app').attr("disabled", true);
-//      }
-//    });
 
   });
 </script>

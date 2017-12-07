@@ -41,19 +41,18 @@
         if( window.location.host.indexOf('yuptv.vn') != -1 || window.ENV == "production" || window.ENV == "prod" )
           siteKey = '6Le1nDUUAAAAALQuPcLTTU7QkmFd6q2Q2icKp2K4'; //yuptv.vn
         console.log('-------sitekey=', siteKey);
-        widgetCard = grecaptcha.render('captcha-card', {
-          'sitekey' : siteKey,
-          'theme' : 'light'
-        });
-        widgetMegabank = grecaptcha.render('captcha-payment', {
-          'sitekey' : siteKey,
-          'theme' : 'light'
-        });
-
-        widgetRedeemCode = grecaptcha.render('captcha-redeem-code', {
-          'sitekey' : siteKey,
-          'theme' : 'light'
-        });
+//        widgetCard = grecaptcha.render('captcha-card', {
+//          'sitekey' : siteKey,
+//          'theme' : 'light'
+//        });
+//        widgetMegabank = grecaptcha.render('captcha-payment', {
+//          'sitekey' : siteKey,
+//          'theme' : 'light'
+//        });
+//        widgetRedeemCode = grecaptcha.render('captcha-redeem-code', {
+//          'sitekey' : siteKey,
+//          'theme' : 'light'
+//        });
       }
     };
   </script>
