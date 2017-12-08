@@ -12,7 +12,7 @@
 				input(type='checkbox' ng-model='login.storeInformation')
 				|&nbsp; Lưu thông tin
 			.pull-right
-				a(style='cursor: pointer;' ui-sref='base.forget-pass') Quên mật khẩu
+				a(style='cursor: pointer;' ng-click='gotoForgetPass()' ) Quên mật khẩu
 
 		button.login.text-center(type='button' ng-click='submitLogin()') ĐĂNG NHẬP
 		button.login.facebook.text-center(type='button' ng-click='loginFacebook()')

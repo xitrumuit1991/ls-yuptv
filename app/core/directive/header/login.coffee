@@ -9,6 +9,10 @@ ctrlHandleLogin = ($scope, $uibModalInstance, ApiService, $state, Facebook,Utili
     $uibModalInstance.dismiss 'cancel'
     $state.go 'base.register'
 
+  $scope.gotoForgetPass = ()->
+    $uibModalInstance.dismiss 'cancel'
+    $state.go 'base.forget-pass'
+
   $scope.submitLogin = ()->
     console.log 'submitLogin', $scope.login
     if !$scope.login.phone or !$scope.login.password
