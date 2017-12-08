@@ -71,6 +71,7 @@ ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
   $scope.step2SelectedPackage = (item, $index)->
     $scope.step2PackageSelected = item # package
   $scope.step2SelectedProvider = (item, $index)->
+    console.log 'step2SelectedProvider',item
     $scope.step2ProviderSelected = item
 
 

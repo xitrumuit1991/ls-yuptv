@@ -3,8 +3,9 @@
 .col-md-12.body.step-1
 	.step
 		span.title 2
-		span Chọn gói Ucoin
-.col-md-12
+		span Chọn nhà cung cấp
+
+//.col-md-12
 	.list
 		ul.list-inline.list-package
 			li.list-inline-item(
@@ -16,12 +17,10 @@
 				span {{item.name}}
 				br
 				span {{item.coin}} Ucoin
-				//p Code: {{item.code}}
 				i.fa.fa-check(ng-if='step2PackageSelected.id == item.id')
 
-.col-md-12(ng-if='step1ChooseMethod == "card" && step2PackageSelected.id ')
-	hr
-	p Chọn nhà cung cấp
+.col-md-12(ng-if='step1ChooseMethod == "card" ')
+	p.text-center (1 Ucoin = 1.000VNĐ)
 	.list
 		ul.list-inline.list-package
 			li.list-inline-item(
@@ -35,7 +34,7 @@
 				//span {{item.code}}
 				i.fa.fa-check(ng-if='step2ProviderSelected.id == item.id')
 
-.col-md-12(ng-if='step1ChooseMethod == "card" && step2ProviderSelected.id')
+.col-md-12(ng-if='step1ChooseMethod == "card" && step2ProviderSelected.id ')
 	hr
 	p Nhập thông tin thẻ
 	.row
