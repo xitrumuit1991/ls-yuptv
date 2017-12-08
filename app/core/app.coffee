@@ -4,7 +4,7 @@ config =
   uuid : (new Fingerprint({canvas : true, screen_resolution : false})).get()
   modelName : navigator.userAgent
 #  fBappId : '1933860780272829' #dev
-  fBappId : '144785392941236' #production
+  fBappId : '1933860780272829' #production
   API_URL : "http://api.yuptv.vn/api/v1/"
   env : 'production'
 
