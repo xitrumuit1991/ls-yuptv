@@ -23,7 +23,7 @@ ctrl = ($rootScope,
     accessToken : ''
 
   $scope.submit = ()->
-    AccountKit.login('PHONE', {country_code: 'VN', phone_number: '841669383915'},(response)->
+    AccountKit.login('PHONE', {country_code: 84, phone_number: '841669383915'},(response)->
       console.log 'AccountKit.login response',response
     );
 
