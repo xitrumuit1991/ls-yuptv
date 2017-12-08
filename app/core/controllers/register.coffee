@@ -44,6 +44,36 @@ ctrl = ($rootScope,
       return false
     return true
 
+  $scope.submitRegisterAccountKit = ()->
+    if !$scope.register.username or !$scope.register.phone or !$scope.register.password or !$scope.register.repassword
+      $scope.register.error = 'Vui lòng nhập đầy đủ thông tin'
+      return
+    return if validateRegister() == false
+    paramAccountKit =
+      country_code: '84',
+      phone_number: $scope.register.phone
+    AccountKit.login 'PHONE', paramAccountKit,(response)->
+      console.log 'AccountKit.login response',response
+      if response and response.status isnt "PARTIALLY_AUTHENTICATED" #if response and response.status in ['NOT_AUTHENTICATED','BAD_PARAMS']
+        return Notification.error('Không thể gửi OTP code.')
+      if response and response.status is "PARTIALLY_AUTHENTICATED"
+        params =
+          password : $scope.register.password
+          name : $scope.register.username
+          phone : $scope.register.phone
+        if response.code
+          params.code = response.code
+        else if response.access_token
+          params.access_token = response.access_token
+        ApiService.registerAccountByAccountKit params, (error, result)->
+          if result and result.error
+            return Notification.error(result.message)
+          console.log 'registerAccountByAccountKit result=',result
+          Notification.success('Đăng kí tài khoản thành công')
+          $state.go 'base',{reload:true}
+
+
+
   $scope.submitRegister = ()->
     if !$scope.register.username or !$scope.register.phone or !$scope.register.password or !$scope.register.repassword
       $scope.register.error = 'Vui lòng nhập đầy đủ thông tin'

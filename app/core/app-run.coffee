@@ -45,6 +45,11 @@ appRun = (
     $rootScope.homeslides = result if result
 
   $(document).ready ()->
+    paramInitAccKit =
+      appId: GlobalConfig.fBappId
+      state: '' # 'ed921b9e2248d0cb68329322c08e97b3'
+      version:'v2.10'
+    AccountKit.init(paramInitAccKit)
     $(window).scroll ()->
       if $(this).scrollTop() > 100
         $('#scrollToTop').fadeIn()
@@ -54,14 +59,6 @@ appRun = (
     $('#scrollToTop').click ()->
       $('html, body').animate { scrollTop: 0 }, 500
       false
-
-    paramInitAccKit =
-      appId:'1933860780272829'
-      state:'ed921b9e2248d0cb68329322c08e97b3'
-      version:'v2.10'
-    AccountKit.init( paramInitAccKit )
-
-
     return
 
 appRun.$inject = [

@@ -61,6 +61,13 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
       data : params
     self.request options, done
 
+  self.registerAccountByAccountKit = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "auth/register-acc-kit"
+      method : 'POST'
+      data : params
+    self.request options, done
+
   self.registerAccount = (params, done)->
     options =
       url : GlobalConfig.API_URL + "auth/register"
