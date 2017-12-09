@@ -113,7 +113,7 @@ app.get('/room-detail/:id',function (req,res,next) {
         return res.render('bot-room-detail-for-share-social',{
           layout:false,
           og_title:(data.title || 'YUP - Ứng dụng livestream kiếm tiền số 1'),
-          og_url:'http://yuptv.vn/room-detail/' + data.id,
+          og_url: configs.link_website + 'room-detail/' + data.id,
           og_description:(data.description || 'Tự tin tỏa sáng, thỏa sức kiếm tiền. YUP - Ứng dụng livestream kiếm tiền số 1'),
           og_image:(data.banner || data.background || data.User.avatar),
           id:data.id

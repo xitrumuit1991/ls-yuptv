@@ -2,6 +2,7 @@ var object = {
   port: 5002,
   api_base_url: 'http://dev.livestar.vn:1010/api/v1/',
   api_secrect_key: "fQ+KY11&l624Bu5",
+  link_website : 'http://dev.livestar.vn:8000/',
   // web_SITE_KEY: "6LdVAxkTAAAAAAeES9kxnsXGbKuW3dcrtM2u_NH_",
   // web_SECRET_KEY: "6LdVAxkTAAAAAHBO45vG52ZMogoakzo4wopvuLke",
   ENV :  process.env.NODE_ENV ? process.env.NODE_ENV : 'dev',
@@ -32,6 +33,7 @@ if( process.env.NODE_ENV == 'production' || process.env.NODE_ENV == 'prod')
   object.redis.isCluster = true;
   object.redis.envPrefix = 'session:web-v2:production:';
   object.ENV = 'production';
+  object.link_website = 'http://yuptv.vn/';
 }
 
 if( (process.env.NODE_ENV == 'production' || process.env.NODE_ENV == 'prod') && process.env.LOCAL == "yes")
@@ -43,6 +45,7 @@ if( (process.env.NODE_ENV == 'production' || process.env.NODE_ENV == 'prod') && 
   object.redis.password = null;
   object.redis.isCluster = false;
   object.redis.database = 0;
+  object.link_website = 'http://yuptv.vn/';
 }
 
 module.exports = object;
