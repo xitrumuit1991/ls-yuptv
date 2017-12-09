@@ -13,10 +13,11 @@ ctrl = ($rootScope,
   $window, $state, $stateParams,  ApiService, $http,
   GlobalConfig, $interval, UtilityService, Notification) ->
 
-  $scope.item =
+  basicOb =
     phone : ''
     password : ''
     repassword : ''
+  $scope.item = _.clone basicOb
 
   $scope.submit = ()->
     return Notification.error('Vui lòng nhập vào số điện thoại ') if !$scope.item.phone
@@ -44,8 +45,10 @@ ctrl = ($rootScope,
             return Notification.error(result.message)
           console.log 'resetPasswordByAccountKit result=',result
           Notification.success('Thay đổi mật khẩu mới thành công. Bạn có thể đăng nhập ngay bây giờ!')
+          $scope.item = _.clone basicOb
           $timeout(()->
             $rootScope.$emit 'login-from-reset-password', {}
+            $state.go 'base'
           ,1000)
         )
     );

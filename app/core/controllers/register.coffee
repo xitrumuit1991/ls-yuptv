@@ -7,10 +7,7 @@ route = ($stateProvider, GlobalConfig)->
       "main@" :
         templateUrl : "/templates/register/view.html"
         controller : "registerCtrl"
-
 route.$inject = ['$stateProvider', 'GlobalConfig']
-
-
 ctrl = ($rootScope,
   $scope, $timeout, $location,
   $window, $state, $stateParams,  ApiService, $http,
@@ -18,13 +15,14 @@ ctrl = ($rootScope,
   console.log 'register coffee '
   rexPhone = /^0[1-9]{1}[0-9]{8,12}$/;
   rexEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  $scope.register =
+  basicOb =
     username : ''
     phone: ''
     password: ''
     repassword : ''
     checkPolicy : false
     error : ''
+  $scope.register = _.clone basicOb
 
   validateRegister = ()->
     if $scope.register.username.length < 6
@@ -61,16 +59,18 @@ ctrl = ($rootScope,
           password : $scope.register.password
           name : $scope.register.username
           phone : $scope.register.phone
-        if response.code
-          params.code = response.code
-        else if response.access_token
-          params.access_token = response.access_token
+        params.code = response.code if response.code
+        params.access_token = response.access_token if response.access_token and !params.code
         ApiService.registerAccountByAccountKit params, (error, result)->
           if result and result.error
             return Notification.error(result.message)
           console.log 'registerAccountByAccountKit result=',result
-          Notification.success('Đăng kí tài khoản thành công')
-          $state.go 'base',{reload:true}
+          Notification.success('Đăng kí tài khoản thành công. Bạn có thể đăng nhập ngay bây giờ!')
+          $scope.register = _.clone basicOb
+          $timeout(()->
+            $rootScope.$emit 'login-from-reset-password', {}
+            $state.go 'base'
+          ,1000)
 
 
 
