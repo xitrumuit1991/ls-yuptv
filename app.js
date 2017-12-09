@@ -101,7 +101,8 @@ app.get('/room-detail/:id',function (req,res,next) {
   var userAgent = req.headers['user-agent'];
   if (userAgent.startsWith('facebookexternalhit/1.1') || userAgent === 'Facebot' || userAgent.startsWith('Twitterbot')) {
     request({
-      url:'http://api.yuptv.vn/api/v1/room/' + id + '/', method:'GET'
+      url: configs.api_base_url+'room/' + id + '/',
+      method:'GET'
     },function (error,response,body) {
       if (error) return next();
       if (response && response.statusCode != 200) return next();
@@ -109,16 +110,14 @@ app.get('/room-detail/:id',function (req,res,next) {
       try {
         var data = JSON.parse(body);
         if (!data) return next();
-        if (data) {
-          return res.render('bot-room-detail-for-share-social',{
-            layout:false,
-            og_title:(data.title || 'YUP - Ứng dụng livestream kiếm tiền số 1'),
-            og_url:'http://yuptv.vn/room-detail/' + data.id,
-            og_description:(data.description || 'Tự tin tỏa sáng, thỏa sức kiếm tiền. YUP - Ứng dụng livestream kiếm tiền số 1'),
-            og_image:(data.banner || data.background || data.User.avatar),
-            id:data.id
-          });
-        }
+        return res.render('bot-room-detail-for-share-social',{
+          layout:false,
+          og_title:(data.title || 'YUP - Ứng dụng livestream kiếm tiền số 1'),
+          og_url:'http://yuptv.vn/room-detail/' + data.id,
+          og_description:(data.description || 'Tự tin tỏa sáng, thỏa sức kiếm tiền. YUP - Ứng dụng livestream kiếm tiền số 1'),
+          og_image:(data.banner || data.background || data.User.avatar),
+          id:data.id
+        });
       }
       catch (errorJSONParse) {
         return next();
