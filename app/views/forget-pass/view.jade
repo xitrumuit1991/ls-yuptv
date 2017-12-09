@@ -8,5 +8,11 @@
 					label(for='phone') Số điện thoại:
 					input#phone.form-control(type='text' placeholder='' value='' ng-model='item.phone')
 				.form-group
+					label(for='newpass') Mật khẩu mới:
+					input#newpass.form-control(type='password' placeholder='' value='' ng-model='item.password')
+				.form-group
+					label(for='renewpass') Nhập lại Mật khẩu mới:
+					input#renewpass.form-control(type='password' placeholder='' value='' ng-model='item.repassword')
+				.form-group
 					button.btn.btn-primary(ng-click='submit()') Xác nhận
 

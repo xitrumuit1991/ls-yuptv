@@ -72,6 +72,10 @@ _directive = ($rootScope, $timeout, ApiService, $uibModal, $state,GlobalConfig, 
         $scope.notifycationUnread = result
 
 
+    $rootScope.$on 'login-from-reset-password', (event, data)->
+      $scope.openLogin()
+
+
     return
   directive =
     restrict : 'E'

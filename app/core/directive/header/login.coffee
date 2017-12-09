@@ -1,4 +1,4 @@
-ctrlHandleLogin = ($scope, $uibModalInstance, ApiService, $state, Facebook,UtilityService,cfpLoadingBar) ->
+ctrlHandleLogin = ($rootScope,$scope, $uibModalInstance, ApiService, $state, Facebook,UtilityService,cfpLoadingBar) ->
   $scope.login =
     phone : ''
     password : ''
@@ -70,8 +70,12 @@ ctrlHandleLogin = ($scope, $uibModalInstance, ApiService, $state, Facebook,Utili
     console.log 'cancel'
     $uibModalInstance.dismiss 'cancel'
     return
+
+
+
+
   return
-ctrlHandleLogin.$inject = ['$scope', '$uibModalInstance', 'ApiService', '$state', 'Facebook',
+ctrlHandleLogin.$inject = ['$rootScope', '$scope', '$uibModalInstance', 'ApiService', '$state', 'Facebook',
   'UtilityService', 'cfpLoadingBar'
 ]
 

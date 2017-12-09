@@ -13,23 +13,41 @@ ctrl = ($rootScope,
   $window, $state, $stateParams,  ApiService, $http,
   GlobalConfig, $interval, UtilityService, Notification) ->
 
-
-#code: AQAfHX04GuYTXb4TuaBbp1igmnR7IXVLlKaSmTkgG5sB37L6VOr2bBM4nwaXnHUuE4POKFjY0mJ3l9KG15-750n1WHi07Fe33h_CaFCBAuAEdev7mBJY-WUwflIjXF1ojz0S33AZ4DslPOX5Jyac-YU_VtyDosm5Yj18eyaB4NIIRbcjWzM6LSQnZQY-kQ9YrSnspWEip1XEDP-0HKeHrUjgxkHH336z7xynN1ciWVBBSWtT6Qk4XLxTh6_KcSnlj8xCjV9W8HmhI_FMQDIniiGJ"
-#state: ed921b9e2248d0cb68329322c08e97b3"
-#status: PARTIALLY_AUTHENTICATED"
-
   $scope.item =
     phone : ''
-    accessToken : ''
+    password : ''
+    repassword : ''
 
   $scope.submit = ()->
     return Notification.error('Vui lòng nhập vào số điện thoại ') if !$scope.item.phone
+    return Notification.error('Vui lòng nhập vào mật khẩu ') if !$scope.item.password or !$scope.item.repassword
+    return Notification.error('Mật khẩu ít nhất 6 kí tự') if $scope.item.password.length < 6
+    return Notification.error('Mật khẩu nhập lại không đúng') if $scope.item.password != $scope.item.repassword
     rexPhone = /^0[1-9]{1}[0-9]{8,12}$/;
     if rexPhone.test($scope.item.phone) is false
       Notification.error 'Số điện thoại không đúng định dạng '
       return
-    AccountKit.login('PHONE', {country_code: 84, phone_number: $scope.item.phone},(response)->
+    paramAccKit =
+      countryCode: '+84',
+      phoneNumber: $scope.item.phone
+    AccountKit.login('PHONE', paramAccKit,(response)->
       console.log 'AccountKit.login response',response
+      if response and response.status isnt "PARTIALLY_AUTHENTICATED" #if response and response.status in ['NOT_AUTHENTICATED','BAD_PARAMS']
+        return Notification.error('Không thể gửi OTP code.')
+      if response and response.status is "PARTIALLY_AUTHENTICATED"
+        paramReset =
+          password : $scope.item.password
+          code : response.code
+          flush_token : true
+        ApiService.resetPasswordByAccountKit(paramReset, (err, result)->
+          if result and result.error
+            return Notification.error(result.message)
+          console.log 'resetPasswordByAccountKit result=',result
+          Notification.success('Thay đổi mật khẩu mới thành công. Bạn có thể đăng nhập ngay bây giờ!')
+          $timeout(()->
+            $rootScope.$emit 'login-from-reset-password', {}
+          ,1000)
+        )
     );
 
 ctrl.$inject = [

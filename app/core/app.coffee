@@ -7,8 +7,9 @@ config =
   fBappId : '144785392941236' #production
   API_URL : "http://api.yuptv.vn/api/v1/"
   env : 'production'
+  accKitAppId : '1933860780272829'
   accKitVersion : 'v1.1'
-  accKitToken: '801d3a91720ee4a1550ca9db9c7e3b79'
+  accKitToken: 'ed921b9e2248d0cb68329322c08e97b3'
 
 config.menuMainHome = [
   {

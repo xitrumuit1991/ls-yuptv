@@ -61,6 +61,15 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
       data : params
     self.request options, done
 
+
+  self.resetPasswordByAccountKit = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "auth/reset-password-acc-kit"
+      method : 'POST'
+      data : params
+    self.request options, done
+
+
   self.registerAccountByAccountKit = (params, done)->
     options =
       url : GlobalConfig.API_URL + "auth/register-acc-kit"

@@ -50,8 +50,8 @@ ctrl = ($rootScope,
       return
     return if validateRegister() == false
     paramAccountKit =
-      country_code: '84',
-      phone_number: $scope.register.phone
+      countryCode: '+84',
+      phoneNumber: $scope.register.phone
     AccountKit.login 'PHONE', paramAccountKit,(response)->
       console.log 'AccountKit.login response',response
       if response and response.status isnt "PARTIALLY_AUTHENTICATED" #if response and response.status in ['NOT_AUTHENTICATED','BAD_PARAMS']
