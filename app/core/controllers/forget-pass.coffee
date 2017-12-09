@@ -11,7 +11,7 @@ route.$inject = ['$stateProvider', 'GlobalConfig']
 ctrl = ($rootScope,
   $scope, $timeout, $location,
   $window, $state, $stateParams,  ApiService, $http,
-  GlobalConfig, $interval, UtilityService) ->
+  GlobalConfig, $interval, UtilityService, Notification) ->
 
 
 #code: AQAfHX04GuYTXb4TuaBbp1igmnR7IXVLlKaSmTkgG5sB37L6VOr2bBM4nwaXnHUuE4POKFjY0mJ3l9KG15-750n1WHi07Fe33h_CaFCBAuAEdev7mBJY-WUwflIjXF1ojz0S33AZ4DslPOX5Jyac-YU_VtyDosm5Yj18eyaB4NIIRbcjWzM6LSQnZQY-kQ9YrSnspWEip1XEDP-0HKeHrUjgxkHH336z7xynN1ciWVBBSWtT6Qk4XLxTh6_KcSnlj8xCjV9W8HmhI_FMQDIniiGJ"
@@ -23,14 +23,19 @@ ctrl = ($rootScope,
     accessToken : ''
 
   $scope.submit = ()->
-    AccountKit.login('PHONE', {country_code: 84, phone_number: '841669383915'},(response)->
+    return Notification.error('Vui lòng nhập vào số điện thoại ') if !$scope.item.phone
+    rexPhone = /^0[1-9]{1}[0-9]{8,12}$/;
+    if rexPhone.test($scope.item.phone) is false
+      Notification.error 'Số điện thoại không đúng định dạng '
+      return
+    AccountKit.login('PHONE', {country_code: 84, phone_number: $scope.item.phone},(response)->
       console.log 'AccountKit.login response',response
     );
 
 ctrl.$inject = [
   '$rootScope', '$scope', '$timeout', '$location',
   '$window', '$state', '$stateParams',  'ApiService', '$http',
-  'GlobalConfig', '$interval','UtilityService'
+  'GlobalConfig', '$interval','UtilityService','Notification'
 ]
 angular
   .module("app")
