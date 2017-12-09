@@ -98,6 +98,7 @@ app.get('/health_check',function (req,res) { res.json({service:'livestar web v2'
 app.get('/room-detail/:id',function (req,res,next) {
   //share or SEO facebook og:tag
   var id = req.params ? req.params.id : '';
+  if(!id) return next();
   var userAgent = req.headers['user-agent'];
   if (userAgent.startsWith('facebookexternalhit/1.1') || userAgent === 'Facebot' || userAgent.startsWith('Twitterbot')) {
     request({
@@ -115,7 +116,7 @@ app.get('/room-detail/:id',function (req,res,next) {
           og_title:(data.title || 'YUP - Ứng dụng livestream kiếm tiền số 1'),
           og_url: configs.link_website + 'room-detail/' + data.id,
           og_description:(data.description || 'Tự tin tỏa sáng, thỏa sức kiếm tiền. YUP - Ứng dụng livestream kiếm tiền số 1'),
-          og_image:(data.banner || data.background || data.User.avatar),
+          og_image:(data.banner || data.background || (data.User ? data.User.avatar : 'http://yuptv.vn/images/Ve_Yup.png' ) ),
           id:data.id
         });
       }
