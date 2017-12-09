@@ -32,7 +32,7 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     ApiService.room.getRoomById {roomId : $scope.id },(err, result)->
       return if err
       $scope.item = result
-      console.error 'getRoomDetail', $scope.item
+#      console.error 'getRoomDetail', $scope.item
       cb() if _.isFunction(cb)
 
 
