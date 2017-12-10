@@ -35,8 +35,6 @@ ctrl = ($rootScope, $scope, $timeout, $location,
 #      console.error 'getRoomDetail', $scope.item
       cb() if _.isFunction(cb)
 
-
-
   $scope.openLichDien = ()->
     $rootScope.$emit 'open-lich-dien-room-detail', {item : $scope.item}
 
@@ -76,11 +74,7 @@ ctrl = ($rootScope, $scope, $timeout, $location,
       $scope.giftList.items = result.items
 #      console.log '$scope.giftList',$scope.giftList
 
-#  $scope.getListUser = ()->
-#    ApiService.room.listUserInRoom {roomId : $scope.id},(err, result)->
-#      return if err
-#      return if result and result.error
-#      $scope.users = result.items
+
   $scope.getListRoomSameCategory = ()->
     if $scope.item and $scope.item.categoryId
       ApiService.getListRoomInCategory {categoryId: $scope.item.categoryId},(err, result)->
