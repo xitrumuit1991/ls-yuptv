@@ -203,7 +203,7 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     re = new RegExp('<br>', 'g')
     message = message.replace(re, '')
     return unless message
-    name = "Me" if data and data.user.id == $rootScope.user.id
+    name = "Me" if data and $rootScope.user and data.user.id == $rootScope.user.id
     html = '<div class="item"><img src="'+avatar+'" style="width:40px; height: 40px;" class="image"/> <div class="group-name"> <div class="name">'+name+'</div> <div class="subname">'+message+'</div></div> </div>'
     $('#content-chat-list').append(html)
     if $('#content-chat-list')[0]
@@ -239,7 +239,7 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     $scope.socketIsConnected = true
 
   socket.on 'newComment', (data)->
-    console.info 'on newComment', data
+#    console.info 'on newComment', data
     return if data && data.message == '&nbsp;'
     $scope.showNewCommentSocket(data)
 
