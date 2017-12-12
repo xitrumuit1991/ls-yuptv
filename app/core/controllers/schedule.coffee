@@ -131,15 +131,18 @@ ctrl = ($rootScope,
       return
     d = new Date()
     d.setDate(1)
-    d.setMonth( parseInt($scope.monthSelected)-1)
+#    d.setMonth( parseInt($scope.monthSelected)-1)
+    d.setMonth( parseInt($scope.monthSelected)-1 )
     d.setHours(0)
     d.setMinutes(0)
     d.setSeconds(0)
     d.setMilliseconds(0)
+    console.log 'changeMonthSelect; selected=', d
     paramNowDate=
       keyword	: ''
       type : 'month'
       time : (d.getTime()/1000)
+      monthSelected: parseInt($scope.monthSelected)
     ApiService.getListRoomSchedule paramNowDate, (error, result)->
       return console.error(result) if error
       return console.error(result) if result and result.error

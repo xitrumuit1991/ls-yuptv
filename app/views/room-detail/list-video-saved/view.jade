@@ -1,10 +1,11 @@
 .modal.fade(role='dialog' id='{{modal.id}}' tabindex='-1', aria-labelledby='exampleModalLabel', aria-hidden='true'
 data-backdrop="static"
-data-keyboard="false")
+data-keyboard="false"
+)
 	.modal-dialog
 		.modal-content
 			.modal-header
-				button.close(type='button', data-dismiss='modal') ×
+				button.close(type='button', data-dismiss='modal' ng-click='modal.close()') ×
 				h4.modal-title {{modal.video.title}}
 			.modal-body
 				video(class="video-js vjs-default-skin"
@@ -18,9 +19,7 @@ data-keyboard="false")
 				//vjs-video
 				//vjs-media="mediaToggle"
 			.modal-footer
-				button.btn.btn-default(type='button', data-dismiss='modal') Close
-
-
+				button.btn.btn-default(type='button', data-dismiss='modal' ng-click='modal.close()') Close
 
 
 .list-video-saved(ng-if='listVideoSaved && listVideoSaved.length > 0')
@@ -29,14 +28,12 @@ data-keyboard="false")
 			.title
 				img(src='/images/onair_title.png')
 				span(style='margin-left:10px;') Video đã lưu của kênh
-		//.col-md-12(ng-if='listVideoSaved.length <= 0')
-			p Không có video nào
 		.col-md-12(ng-if='listVideoSaved.length > 0')
 			.row
 				.col-md-2(ng-repeat='video in listVideoSaved | limitTo : 6')
-					.item
-						a(ng-click='openModalVideo(video)')
-							img.item-image(src='{{video.thumb}}')
+					.item.pointer(ng-click='openModalVideo(video)')
+						div
+							img.item-image(src='{{video.thumbs_path.thumb || "http://via.placeholder.com/100x100" }}')
 							p.video-title {{video.title}}
 						.group
 							i.fa.fa-eye

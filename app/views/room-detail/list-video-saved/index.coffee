@@ -1,5 +1,6 @@
 _directive = ($timeout, ApiService, UtilityService) ->
   link = ($scope, $element, $attrs) ->
+    player = null
     $scope.modal =
       id : 'modal-video-saved'
       video:{}
@@ -7,6 +8,10 @@ _directive = ($timeout, ApiService, UtilityService) ->
         angular.element("##{@.id}").modal('show')
       close : ()->
         angular.element("##{@.id}").modal('hide')
+        player.stop() if _.isFunction(player.stop)
+#        player.destroy() if _.isFunction(player.destroy)
+        player.pause() if _.isFunction(player.pause)
+#        player.dispose() if _.isFunction(player.dispose)
 
     $scope.mediaToggle = {
       sources: [
@@ -38,7 +43,7 @@ _directive = ($timeout, ApiService, UtilityService) ->
         ApiService.room.getVideoDetailOfRoom({videoId : video.id, roomId: $scope.id },(err, result)->
           return if err
           return UtilityService.notifyError(result.message) if result and result.error
-          return UtilityService.notifyError('Không thể lấy link play ') unless result.link
+          return UtilityService.notifyError('Không thể lấy link play ') if !result.link and !result.link_play
           $scope.modal.video = result
           $scope.modal.show()
           player = videojs('videojs-modal')
@@ -47,7 +52,7 @@ _directive = ($timeout, ApiService, UtilityService) ->
 #            src: result.linkPlayLive
 #          })
 #          player.play()
-          player.src({src: result.link})
+          player.src({src: (result.link||result.link_play),  type: "application/x-mpegURL"  })
 #          player.src(result.link)
           player.play()
         )
