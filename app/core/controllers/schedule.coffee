@@ -87,18 +87,27 @@ ctrl = ($rootScope,
         $scope.roomAtTomorrowDate = result if type == '+1day'
 
 
-  $scope.actionFollowRoom = (item)->
-    paramFollow =
-      roomId : item.Room.id
-    ApiService.followIdol( paramFollow , (error, result)->
-      return if error
-      return if result and result.error
-      UtilityService.notifySuccess(result.message)
-      getListRoomFollow()
-      if $scope.activeView == 'now-tomorrow'
-        getDataRoom('now', false)
-        getDataRoom('+1day', false)
-    )
+  $scope.lichdienFollowRoom = (item, type="follow")->
+    if type == 'follow'
+      ApiService.followIdol {roomId : item.Room.id} , (error, result)->
+        return if error
+        return if result and result.error
+        UtilityService.notifySuccess(result.message)
+        item.Room.isFollow = !item.Room.isFollow
+        getListRoomFollow()
+        if $scope.activeView == 'now-tomorrow'
+          getDataRoom('now', false)
+          getDataRoom('+1day', false)
+    if type == 'unfollow'
+      ApiService.unFollowIdol {roomId : item.Room.id} , (error, result)->
+        return if error
+        return if result and result.error
+        UtilityService.notifySuccess(result.message)
+        item.Room.isFollow = !item.Room.isFollow
+        getListRoomFollow()
+        if $scope.activeView == 'now-tomorrow'
+          getDataRoom('now', false)
+          getDataRoom('+1day', false)
 
   $scope.changeCategorySelect = ()->
     $scope.activeView = 'filter-search'

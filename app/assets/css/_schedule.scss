@@ -51,12 +51,14 @@
   .group-time-follow{
     .time{
       display: inline-block;
-      width: 48%;
+      width: 35%;
     }
     .follow{
       display: inline-block;
-      width: 48%;
+      width: 60%;
+
       button{
+        &.unfollow{ background:#fe1503; }
         border: none;
         outline: none;
         background: #a70efe;

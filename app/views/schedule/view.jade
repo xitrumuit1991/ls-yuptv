@@ -20,7 +20,7 @@
 				ng-change="changeMonthSelect()"
 				ng-options="item.id as item.title for item in selectMonthValue")
 
-				button.btn-search
+				//button.btn-search
 					i.fa.fa-search
 		hr
 		.row(ng-if="activeView == 'filter-search' ")
@@ -81,8 +81,9 @@
 										.time.bold {{item.start | date:'HH:mm' }}
 										.follow
 											button(ng-if='item.Room.isFollow == false && item.Room.User.id != $rootScope.user.id'
-											ng-click='actionFollowRoom(item)') Theo dõi
-											//p item.Room.User.id {{item.Room.User.id}}
+											ng-click='lichdienFollowRoom(item,"follow")') Theo dõi
+											button.unfollow(ng-if='item.Room.isFollow == true && item.Room.User.id != $rootScope.user.id'
+											ng-click='lichdienFollowRoom(item,"unfollow")') Bỏ theo dõi
 
 
 			.col-md-6
@@ -109,8 +110,10 @@
 									.group-time-follow
 										.time.bold {{item.start | date:'HH:mm' }}
 										.follow
-											button(ng-if='item.Room.isFollow==false && item.Room.User.id != $rootScope.user.id') Theo dõi
-											//p item.Room.User.id {{item.Room.User.id}}
+											button(ng-if='item.Room.isFollow==false && item.Room.User.id != $rootScope.user.id'
+											ng-click='lichdienFollowRoom(item,"follow")') Theo dõi
+											button.unfollow(ng-if='item.Room.isFollow==true && item.Room.User.id != $rootScope.user.id'
+											ng-click='lichdienFollowRoom(item,"unfollow")') Bỏ theo dõi
 
 
 		.list-room-schedule-following(ng-if='user && listUserFollowing && listUserFollowing.length > 0')
