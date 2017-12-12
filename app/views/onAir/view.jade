@@ -31,8 +31,11 @@
 						i.fa.fa-heart
 						span {{items[0].hearts}}
 						button.btn.add-plus(ng-if='items[0].isFollow == false'
-						ng-click='onairClickFollowIdol(items[0], $index)')
+						ng-click='onairClickFollowIdol(items[0], 0, "follow")')
 							i.fa.fa-plus
+						button.btn.add-plus.unfollow(ng-if='items[0].isFollow == true'
+						ng-click='onairClickFollowIdol(items[0], 0, "unfollow")')
+							i.fa.fa-minus
 					.on-air-icon
 						.icon &nbsp;
 						span LIVE
@@ -51,8 +54,11 @@
 								i.fa.fa-heart
 								span {{ite.hearts}}
 								button.btn.add-plus(ng-if='ite.isFollow == false'
-								ng-click='onairClickFollowIdol(ite, $index)')
+								ng-click='onairClickFollowIdol(ite, $index, "follow")')
 									i.fa.fa-plus
+								button.btn.add-plus.unfollow(ng-if='ite.isFollow == true'
+								ng-click='onairClickFollowIdol(ite, $index, "unfollow")')
+									i.fa.fa-minus
 							.on-air-icon
 								.icon &nbsp;
 								span LIVE
@@ -69,8 +75,11 @@
 						i.fa.fa-heart
 						span {{ite.hearts}}
 						button.btn.add-plus(ng-if='ite.isFollow == false'
-						ng-click='onairClickFollowIdol(ite, $index)')
+						ng-click='onairClickFollowIdol(ite, $index, "follow")')
 							i.fa.fa-plus
+						button.btn.add-plus.unfollow(ng-if='ite.isFollow == true'
+						ng-click='onairClickFollowIdol(ite, $index, "unfollow")')
+							i.fa.fa-minus
 					.on-air-icon
 						.icon &nbsp;
 						span LIVE

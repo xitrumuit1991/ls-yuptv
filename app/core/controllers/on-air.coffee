@@ -46,15 +46,21 @@ ctrl = ($rootScope,
       return UtilityService.notifyError(result.message) if result and result.error
       $scope.categorys = result
 
-  $scope.onairClickFollowIdol = (item, indexRoom)->
+  $scope.onairClickFollowIdol = (item, indexRoom, type="follow")->
     return unless item
     return UtilityService.notifyError('Vui lòng đăng nhập') unless $rootScope.user
-    ApiService.followIdol {roomId:item.id}, (error, result)->
-      return if error
-      return UtilityService.notifyError(result.message)  if result and result.error
-      UtilityService.notifySuccess(result.message) if result
-      if $scope.items and $scope.items[indexRoom]
-        $scope.items[indexRoom].isFollow = true
+    if type is "follow"
+      ApiService.followIdol {roomId:item.id}, (error, result)->
+        return if error
+        return UtilityService.notifyError(result.message)  if result and result.error
+        UtilityService.notifySuccess(result.message) if result
+        $scope.items[indexRoom].isFollow = true if $scope.items and $scope.items[indexRoom]
+    if type is "unfollow"
+      ApiService.unFollowIdol {roomId:item.id}, (error, result)->
+        return if error
+        return UtilityService.notifyError(result.message)  if result and result.error
+        UtilityService.notifySuccess(result.message) if result
+        $scope.items[indexRoom].isFollow = false if $scope.items and $scope.items[indexRoom]
 
   $scope.loadData()
   $scope.loadCategory()

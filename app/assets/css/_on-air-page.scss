@@ -73,6 +73,9 @@
       }
     }
     .add-plus{
+      &.unfollow{
+        background: #fe1503;
+      }
       position: absolute;
       right: 3%;
       bottom: 20%;
