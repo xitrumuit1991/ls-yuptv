@@ -43,7 +43,8 @@ obPaymentController.getPaymentView = function (req,res)
 {
   var queryToken = ((req && req.query) ? req.query.token : '');
   console.log('queryToken=',queryToken);
-  if(!queryToken) queryToken = req.session.token;
+  if( queryToken === '' || !queryToken )
+    queryToken = req.session.token;
   async.parallel({
       resultPayment : function (callback) {
         requestApi(
@@ -53,8 +54,6 @@ obPaymentController.getPaymentView = function (req,res)
         },callback);
       },
       user:function (callback) {
-        if (req.session && !req.session.token)
-          return callback(null, null);
         requestApi({
           url:req.configs.api_base_url + 'auth/verify-token?token=' + queryToken,
           headers:{'Authorization' : queryToken}
@@ -67,14 +66,11 @@ obPaymentController.getPaymentView = function (req,res)
             req.session.user = null;
             return callback(null,null);
           }
-          if(result)
-          {
-            req.session.user = result;
+          if(!result) return callback(null, null);
+          req.session.user = result;
+          if(queryToken)
             req.session.token = queryToken;
-            return callback(null,result);
-          }else{
-            return callback(null, null );
-          }
+          return callback(null,result);
         });
       }
     },
