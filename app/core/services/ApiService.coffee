@@ -401,6 +401,13 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
       data : params
     self.request options, done
 
+  self.rutTienMatPaymentRequest = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "user/payment-request"
+      method : 'GET'
+      data : params
+    self.request options, done
+
 
 
   return null

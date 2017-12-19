@@ -85,6 +85,17 @@ ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
       $scope.historyUcoinCharge.items = result.charges
       $scope.historyUcoinCharge.totalItems = result.attr.total_item
 
+  $scope.rutTienMatPaymentRequest = ()->
+    $.blockUI()
+    ApiService.rutTienMatPaymentRequest({},(err, result)->
+      $.unblockUI()
+      if err
+        UtilityService.notifyError(err)
+        return
+      if result and result.error
+        return UtilityService.notifyError(result.message)
+      UtilityService.notifySuccess( (result.message || 'Thành công') )
+    )
 
   ApiService.getProfile {},(error, result)->
     return if error
