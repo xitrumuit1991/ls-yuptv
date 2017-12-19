@@ -5,9 +5,9 @@ popupConfirm = ($rootScope, $timeout) ->
       allowClose : false
       status : false
       type : 'confirm' # 'alert'
-      title : 'Title default '
-      content : 'Content default '
-      textOk : 'Đăng kí '
+      title : 'Thông báo'
+      content : ''
+      textOk : 'Đăng kí'
       textCancel : 'Huỷ '
       okFn : ()->
         console.log 'OK btn click '

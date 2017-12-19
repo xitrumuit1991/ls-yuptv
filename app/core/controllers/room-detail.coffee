@@ -265,6 +265,21 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     $('#content-chat-list').append(html)
     $('#content-chat-list').animate({ scrollTop: $('#content-chat-list')[0].scrollHeight }, 100)
 
+  socket.on 'hostDisconnect', (data)->
+    console.error 'hostDisconnect', data
+    UtilityService.notifyError('Phòng này đã ngừng diễn')
+    params =
+      status : true,
+      type: 'alert',
+      title : 'Thông báo',
+      content : 'Phòng này đã ngừng diễn!',
+      textOk : 'OK'
+      textCancel : 'Cancel'
+      cancelFn : ()->
+        $state.go 'base'
+        return
+    $rootScope.$emit 'popup-confirm', params
+
   socket.on 'sendHeart', (data)->
 #    console.log 'sendHeart',data
     console.log 'off show html sendHeart',data
