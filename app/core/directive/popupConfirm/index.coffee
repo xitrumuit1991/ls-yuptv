@@ -1,57 +1,53 @@
-popupConfirm = ($rootScope, $timeout) ->
-  link = (scope, element, attr) ->
-#    console.info 'Init popupConfirm'
-    scope.popup =
-      allowClose : false
-      status : false
-      type : 'confirm' # 'alert'
+directive = ($rootScope, $document) ->
+  link = ($scope, element, attr) ->
+    $scope.modal =
+      id : 'popup-alert'
       title : 'Thông báo'
-      content : ''
-      textOk : 'Đăng kí'
-      textCancel : 'Huỷ '
-      okFn : ()->
-        console.log 'OK btn click '
-      cancelFn : ()->
-        scope.popup.status = false
-        console.log 'Cancel btn click '
+      message : ''
+      textBtnSave : 'OK'
+      textBtnCancel : 'Cancel'
+      show : ()->
+        $("##{@.id}").modal('show')
+      hide : ()->
+        $("##{@.id}").modal('hide')
 
-    scope.clickOK = ()->
-      scope.closePopup()
-      scope.popup.okFn()
+    $scope.saveAction = null
+    $scope.cancelAction = ()->
+      $scope.modal.hide()
 
-    scope.clickCancel = ()->
-      scope.closePopup()
-      scope.popup.cancelFn()
+    $rootScope.$on 'popup-confirm',(event, data)->
+      $scope.modal.title = data.title if data.title
+      $scope.modal.message = data.message if data.message
+      $scope.modal.textBtnSave = data.textBtnSave if data.textBtnSave
+      $scope.modal.textBtnCancel = data.textBtnCancel if data.textBtnCancel
+      if data.cancel and _.isFunction(data.cancel)
+        $scope.cancelAction = ()->
+          data.cancel()
+          $scope.modal.hide()
+      if data.save and _.isFunction(data.save)
+        $scope.saveAction = ()->
+          data.save()
+          $scope.modal.hide()
+      $scope.modal.show()
 
-    scope.closePopup = ()->
-      scope.popup.status = false
 
-    scope.openPopup = ()->
-      scope.popup.status = true
-
-    $rootScope.$on 'popup-confirm', (event, data) ->
-      return unless data
-      scope.popup = _.extend scope.popup, data
-      scope.popup.type = 'alert' unless data.type
-      scope.openPopup()
-  #params =
-  #    status : true,
-  #    type: 'alert',
-  #    title : 'Thông báo',
-  #    content : 'Vui lòng bật 3G Mobifone để tiếp tục đăng kí và nhận miễn phí gói FIMB30',
-  #    textOk : 'Đăng kí'
-  #    textCancel : 'Huỷ'
-  #    okFn : ()->
-  #        console.log ''
-  #    cancelFn : ()->
-  #        console.log ''
-  #$rootScope.$emit 'popup-confirm', params
+    #call
+#    params =
+#      title : 'Thông báo',
+#      message : 'Phòng này đã ngừng diễn!',
+#      textBtnSave : 'OK'
+#      textBtnCancel : 'Cancel'
+#      cancel : ()->
+#        return $state.go 'base'
+#      save: null
+#    $rootScope.$emit 'popup-confirm', params
+    return
   directive =
-    restrict : 'E'
+    restrict: 'E'
     templateUrl : '/templates/directive/popupConfirm/view.html'
-    link : link
+    link    : link
   return directive
-popupConfirm.$inject = ['$rootScope', '$timeout']
+directive.$inject = ['$rootScope', '$document']
 angular
-.module 'app'
-.directive "popupConfirm", popupConfirm
+  .module 'app'
+  .directive "popupConfirm", directive

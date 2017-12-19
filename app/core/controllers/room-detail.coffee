@@ -32,7 +32,6 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     ApiService.room.getRoomById {roomId : $scope.id },(err, result)->
       return if err
       $scope.item = result
-#      console.error 'getRoomDetail', $scope.item
       cb() if _.isFunction(cb)
 
   $scope.openLichDien = ()->
@@ -72,7 +71,6 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     ApiService.room.giftList {page:0, limit:1000},(err, result)->
       return if err
       $scope.giftList.items = result.items
-#      console.log '$scope.giftList',$scope.giftList
 
 
   $scope.getListRoomSameCategory = ()->
@@ -268,17 +266,7 @@ ctrl = ($rootScope, $scope, $timeout, $location,
   socket.on 'hostDisconnect', (data)->
     console.error 'hostDisconnect', data
     UtilityService.notifyError('Phòng này đã ngừng diễn')
-    params =
-      status : true,
-      type: 'alert',
-      title : 'Thông báo',
-      content : 'Phòng này đã ngừng diễn!',
-      textOk : 'OK'
-      textCancel : 'Cancel'
-      cancelFn : ()->
-        $state.go 'base'
-        return
-    $rootScope.$emit 'popup-confirm', params
+    $scope.showPopupStopLiveStream()
 
   socket.on 'sendHeart', (data)->
 #    console.log 'sendHeart',data
@@ -347,6 +335,16 @@ ctrl = ($rootScope, $scope, $timeout, $location,
       if $scope.roomNowOnAir and $scope.roomNowOnAir[indexRoom]
         $scope.roomNowOnAir[indexRoom].isFollow = true
 
+  $scope.showPopupStopLiveStream = ()->
+    params =
+      title : 'Thông báo',
+      message : 'Phòng này đã ngừng diễn!',
+      textBtnSave : 'OK'
+      textBtnCancel : 'Cancel'
+      cancel : ()->
+        return $state.go 'base'
+      save: null
+    $rootScope.$emit 'popup-confirm', params
 
   $scope.callbackAfterFollowThisRoom = ()->
     $scope.item.isFollow = true
