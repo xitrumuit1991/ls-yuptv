@@ -8,3 +8,4 @@ www/
 sh.exe.stackdump
 npm-debug.log
 dump.rdb
+./dump.rdb

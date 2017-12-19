@@ -1,6 +1,14 @@
 .container.home-block-content(ng-if='category ')
 	.col-md-12.home-menu-category(style='margin: 0 -15px; margin-top: 50px;')
-		ul.list-inline
+		ul.list-inline.list-category-home
+			li.list-inline-item(ng-repeat='groupIdo in listCategory')
+				.text-center.home-menu-item(
+				ui-sref='base.category({id:groupIdo.id})'
+				ng-class='{"allow-border" : !$last }')
+					img.image(src='{{groupIdo.backgroundNormal}}')
+					p.name {{groupIdo.title}}
+
+		//ul.list-inline
 			li.list-inline-item(ng-repeat='groupIdo in listCategory')
 				a(ui-sref='base.category({id:groupIdo.id})')
 					span() {{groupIdo.title}}
