@@ -7,9 +7,13 @@
 			li
 				a(href='' ng-click='changeTab("gift-received")' ng-class='{"active" : activeView == "gift-received" }' )
 					| Quà tặng được nhận
+			li
+				a(href='' ng-click='changeTab("history-ucoin-charge")' ng-class='{"active" : activeView == "history-ucoin-charge" }' )
+					| Lịch sử nạp Ucoin
 	.col-md-9
-		include _manage_property_send
-		include _manage_property_receive
+		include quan-ly-tai-san/_manage_property_send
+		include quan-ly-tai-san/_manage_property_receive
+		include quan-ly-tai-san/_lich-su-nap-ucoin
 
 
 

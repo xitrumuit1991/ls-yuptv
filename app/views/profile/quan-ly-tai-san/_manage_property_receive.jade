@@ -1,6 +1,6 @@
-.row.wrapper(ng-if='activeView == "history-charged" ')
+.row.wrapper(ng-if='activeView == "gift-received" ')
 	.col-md-12.header
-		h1 Lịch sử chi tiêu
+		h1 Quà tặng được nhận
 	.col-md-12
 		.row.group-chi-tieu
 			.col-md-4.text-center
@@ -25,28 +25,32 @@
 		table.table.table-striped
 			thead
 				tr
+					th Ngày giờ
 					th Lịch sử giao dịch
-					th Loại giao dịch
+					th Loại quà
 					th Giá đơn vị (Ucoin)
 					th Discount
 					th Số lượng
 					th Tổng Ucoin
 			tbody
-				tr(ng-if='!send.items || send.items.length <= 0')
-					td(colspan='6') Không có dữ liệu
-				tr(ng-repeat='item in send.items' ng-if='send.items && send.items.length > 0')
+				tr(ng-if='!receive.items || receive.items.length <= 0')
+					td(colspan='7') Không có dữ liệu
+				tr(ng-repeat='item in receive.items' ng-if='receive.items && receive.items.length > 0')
+					td {{item.createdAt | date : 'dd-MM-yyyy HH:mm:ss' }}
 					td {{item.id}}
-					td {{item.Gifts.name}}
-					td {{item.Gifts.price}}
+					td
+						img.img-responsive(src='{{item.Gifts.icons.icon}}' style='width:30px; height:auto;')
+						p {{item.Gifts.name}}
+					td {{item.Gifts.price | currency : "" : 0 }} VNĐ
 					td {{item.discount + item.Gifts.discount}}
 					td {{item.quantity}}
 					td {{item.totalCost}}
 	.col-md-12
-		uib-pagination.table-records-pages(
-		total-items='send.totalItems',
-		ng-model='send.page',
-		items-per-page='send.limit'
-		ng-change="send.onPageChange()"
+		ul.table-records-pages( uib-pagination
+		total-items='receive.totalItems',
+		ng-model='receive.page',
+		items-per-page='receive.limit'
+		ng-change="receive.onPageChange()"
 		max-size="7"
 		boundary-links="true"
 		rotate="false"

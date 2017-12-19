@@ -394,6 +394,13 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
       data : params
     self.request options, done
 
+  self.historyUcoinCharge = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "user/charge-history"
+      method : 'GET'
+      data : params
+    self.request options, done
+
 
 
   return null
