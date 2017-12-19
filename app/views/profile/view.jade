@@ -129,7 +129,7 @@
 								.content
 									|Member since {{user.activeDate | date:'dd/MM/yyyy' }}
 								.content
-									|User id: {{user.id}}
+									|User id: {{user.shortId || user.id}}
 						.col-md-12
 							hr
 						.col-md-12.user-update-info
