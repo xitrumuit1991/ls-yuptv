@@ -8,16 +8,15 @@ data-keyboard="false"
 				button.close(type='button', data-dismiss='modal' ng-click='modal.close()') ×
 				h4.modal-title {{modal.video.title}}
 			.modal-body
-				video(class="video-js vjs-default-skin"
-				style='width: 100% !important;'
-				id='videojs-modal'
-				controls
-				preload="auto"
-				width="600" height="400"
-				autoplay
-				)
-				//vjs-video
-				//vjs-media="mediaToggle"
+				#div-player
+					video(class="video-js vjs-default-skin"
+					style='width: 100% !important;'
+					id='videojs-modal'
+					controls
+					preload="auto"
+					width="600" height="400"
+					autoplay
+					)
 			.modal-footer
 				button.btn.btn-default(type='button', data-dismiss='modal' ng-click='modal.close()') Close
 
