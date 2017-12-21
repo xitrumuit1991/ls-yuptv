@@ -138,8 +138,8 @@
 									span.title Tên người dùng *
 									span.sub-title tối thiểu 6 kí tự
 								.col-md-5
-									input.form-control(ng-if='user.fbId' type='text' value='{{user.name}}' readonly='readonly')
-									input.form-control(ng-if='!user.fbId' type='text' value='{{user.name}}' )
+									//input.form-control(ng-if='user.fbId' type='text' value='{{user.name}}' readonly='readonly')
+									input.form-control(type='text' value='{{user.name}}')
 							.row
 								.col-md-4.col-md-offset-2
 									span.title Ngày sinh
@@ -187,17 +187,17 @@
 								.col-md-4.col-md-offset-2
 									span.title Mật khẩu hiện tại
 								.col-md-5
-									input.form-control(type='password' ng-model='changePass.old')
+									input.form-control(type='password' ng-model='changePass.old' ng-readonly='loginBy=="facebook"')
 							.row
 								.col-md-4.col-md-offset-2
 									span.title Mật khẩu mới
 								.col-md-5
-									input.form-control(type='password' ng-model='changePass.new')
+									input.form-control(type='password' ng-model='changePass.new' ng-readonly='loginBy=="facebook"')
 							.row
 								.col-md-4.col-md-offset-2
 									span.title Xác nhận mật khẩu
 								.col-md-5
-									input.form-control(type='password' ng-model='changePass.renew')
+									input.form-control(type='password' ng-model='changePass.renew' ng-readonly='loginBy=="facebook"')
 							.row
 								.col-md-5.col-md-offset-6
 									button.btn.btn-success.pull-right(ng-click='updateProfile()') LƯU THAY ĐỔI

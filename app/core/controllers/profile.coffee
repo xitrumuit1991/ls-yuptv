@@ -15,6 +15,10 @@ ctrl = ($rootScope,
   $scope, $timeout, $location,
   $window, $state, $stateParams,  ApiService, $http,
   GlobalConfig, $interval, UtilityService, Upload) ->
+
+  if !$rootScope.user or !localStorage.user or !localStorage.token
+    return $state.go 'base',{},{reload : true}
+
   $scope.birthDate =
     dt : if $rootScope.user then new Date($rootScope.user.birthday) else (new Date())
     opened :  false
@@ -175,6 +179,7 @@ ctrl = ($rootScope,
         if result and result.error
           return UtilityService.notifyError( result.message )
         $rootScope.user.birthday = $scope.birthDate.dt
+        console.log 'param update profile=', $rootScope.user
         ApiService.updateUserProfile($rootScope.user,(error, result)->
           if error
             return UtilityService.notifyError(JSON.stringify(error))
@@ -200,6 +205,7 @@ ctrl = ($rootScope,
   $scope.getSavedVideo()
   $scope.getFollowing()
   $scope.getFollower()
+  console.log '$rootScope.loginBy',$rootScope.loginBy
 
 ctrl.$inject = [
   '$rootScope', '$scope', '$timeout', '$location',

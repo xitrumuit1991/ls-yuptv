@@ -34,6 +34,7 @@ ctrlHandleLogin = ($rootScope,$scope, $uibModalInstance, ApiService, $state, Fac
         return
       $scope.login.error = ''
       UtilityService.setUserLogged(result)
+      $rootScope.loginBy = 'phone'
       $state.go 'base', {}, {reload: true}
       $uibModalInstance.dismiss 'cancel'
       return
@@ -59,6 +60,7 @@ ctrlHandleLogin = ($rootScope,$scope, $uibModalInstance, ApiService, $state, Fac
           return
         $scope.login.error = ''
         UtilityService.setUserLogged(result)
+        $rootScope.loginBy = 'facebook'
         $state.go 'base', {}, {reload: true}
         $uibModalInstance.dismiss 'cancel'
         return
@@ -70,8 +72,6 @@ ctrlHandleLogin = ($rootScope,$scope, $uibModalInstance, ApiService, $state, Fac
     console.log 'cancel'
     $uibModalInstance.dismiss 'cancel'
     return
-
-
 
 
   return
