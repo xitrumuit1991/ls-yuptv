@@ -49,11 +49,19 @@ ctrl = ($rootScope, $scope, $timeout, $location,
         $scope.showHeartAnimation = false
 
 
+  showSendGiftSuccess = (itemGift, resultApi)->
+    iconGift = itemGift.icon or itemGift.icons.icon or "http://via.placeholder.com/20x20"
+    message = "Bạn vừa gửi tặng "
+    html = '<div class="item text-right"><div class="group-name"><div class="text-right text-success bold">'+message+'<img style="width:20px;height:20px;" src="'+iconGift+'" /></div></div></div>'
+    $('#content-chat-list').append(html)
+    if $('#content-chat-list')[0]
+      $('#content-chat-list').animate({ scrollTop: $('#content-chat-list')[0].scrollHeight }, 100)
+
   $scope.openListGift = ()->
-#    console.log 'openListGift', param
     param =
       items : $scope.giftList.items
       action : (item, cb=null )->
+        console.log 'click item gift',item
         return unless confirm('Tặng quà cho idol ?')
         paramsend =
           userId: if $rootScope.user then $rootScope.user.id else ''
@@ -63,8 +71,10 @@ ctrl = ($rootScope, $scope, $timeout, $location,
         ApiService.room.sendGift paramsend,(err, result)->
           return if err
           return UtilityService.notifyError(result.message) if result and result.error
-          UtilityService.notifySuccess('Tặng quà thành công ')
-          cb() if _.isFunction(cb)
+          if result
+            UtilityService.notifySuccess( (result.message || 'Tặng quà thành công' ))
+            cb() if _.isFunction(cb)
+            showSendGiftSuccess(item, result)
     $rootScope.$emit 'open-list-gift', param
 
   $scope.getListGift = ()->
@@ -252,7 +262,8 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     console.error 'notification',data
 
   socket.on 'sendGift', (data)->
-    console.log 'sendGift',data
+    console.warn '--------sendGift--------'
+    console.log data
     avatar = data.user.avatar || "http://via.placeholder.com/40x40"
     name = data.user.name
     message = data.message+' <img style="width:20px; height:20px;" src="'+data.giftIcon+'"/>'
