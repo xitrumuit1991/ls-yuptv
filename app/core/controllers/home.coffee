@@ -44,15 +44,18 @@ ctrl = ($rootScope,
           $scope.groupIdol[indexGroup].Rooms[indexRoom].isFollow = true
     )
 
-  ApiService.getListCategory({}, (err, result)->
+  ApiService.getListCategory {}, (err, result)->
     $scope.listCategory = result
     console.warn 'home list category', $scope.listCategory
-  )
-  ApiService.getHomeContent( {},(error, result)->
-    return if error
-    $scope.groupIdol = result
-    console.log 'home group idol', result
-  )
+
+    ApiService.getHomeContent {},(error, result)->
+      return if error
+      console.log 'home group idol', result
+      _.map result, (item)->
+        index = _.findIndex $scope.listCategory, {id : item.id}
+        item.backgroundNormal = $scope.listCategory[index].backgroundNormal
+      $scope.groupIdol = result
+      console.log '$scope.groupIdol',$scope.groupIdol
 
 
 ctrl.$inject = [

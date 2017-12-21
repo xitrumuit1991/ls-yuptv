@@ -25,3 +25,63 @@
     color: #de2618 !important;
   }
 }
+
+.inline{
+  display: inline-block;
+}
+
+.bold{
+  font-weight: bold;;
+}
+.white{
+  color: #ffffff;
+}
+.black{
+  color:#000;
+}
+
+
+$commonSizes: 5 10 15 20 25 30 35 40 45 50;
+@each $size in $commonSizes {
+  .margin-top-#{$size} {
+    margin-top: #{$size}px;
+  }
+  .margin-bottom-#{$size} {
+    margin-bottom: #{$size}px;
+  }
+  .margin-left-#{$size} {
+    margin-left: #{$size}px;
+  }
+  .margin-right-#{$size} {
+    margin-right: #{$size}px;
+  }
+  .margin-#{$size} {
+    margin: #{$size}px;
+  }
+}
+
+
+$fontSize: 10 12 14 15 16 17 18 19 20 22 24 26 28 30;
+@each $size in $fontSize {
+  .font-#{$size} {
+    font-size: #{$size}px;
+  }
+}
+$paddingSize: 5 10 15 20 25 30 35 40 45 50;
+@each $size in $paddingSize {
+  .padding-bottom-#{$size} {
+    padding-bottom: #{$size}px;
+  }
+  .padding-left-#{$size} {
+    padding-left: #{$size}px;
+  }
+  .padding-right-#{$size} {
+    padding-right: #{$size}px;
+  }
+  .padding-top-#{$size} {
+    padding-top: #{$size}px;
+  }
+  .padding-#{$size} {
+    padding: #{$size}px;
+  }
+}

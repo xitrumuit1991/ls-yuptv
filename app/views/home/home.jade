@@ -17,19 +17,20 @@ home-slider
 						ui-sref='base.category({id:groupIdo.id})'
 						ng-class='{"allow-border" : !$last }')
 							img.image(src='{{groupIdo.backgroundNormal}}')
-							p.name {{groupIdo.title}}
+							span.name {{groupIdo.title | uppercase }}
 
 
 .container.home-block-content(ng-repeat='groupIdo in groupIdol' ng-if='groupIdo && groupIdo.Rooms.length > 0')
-	.group-title.col-md-12
-		.left
-			a(ui-sref='base.category({id:groupIdo.id})'  id='{{groupIdo.id}}')
-				i.fa.fa-play-circle-o
-				span       &nbsp; {{groupIdo.title}}
+	.group-title.col-md-12.category-title
+		.pull-left
+			a.link-category(ui-sref='base.category({id:groupIdo.id})' )
+				img.image(src='{{groupIdo.backgroundNormal}}')
+				span.name  {{groupIdo.title}}
 		.right.pull-right(ng-if='groupIdo.Rooms.length > 6')
-			a(ui-sref='base.category({id:groupIdo.id})'  id='{{groupIdo.id}}')
-				span xem thêm &nbsp;
+			a.inline(ui-sref='base.category({id:groupIdo.id})' )
+				span.margin-right-5 xem thêm &nbsp;
 				i.fa.fa-arrow-circle-right
+	.clearfix
 	.group-content
 		.col-md-2(ng-repeat='room in groupIdo.Rooms | limitTo : 6')
 			.item
