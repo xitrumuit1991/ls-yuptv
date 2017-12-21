@@ -20,9 +20,7 @@ ctrl = ($rootScope,
   $scope.category = null
   $scope.listCategory = []
 
-  ApiService.getListRoomInCategory {categoryId: $stateParams.id},(err, result)->
-    console.log 'getListRoomInCategory', result
-    $scope.category = result.category
+
 
   $scope.categoryClickFollowIdol = (item, indexRoom)->
     return unless item
@@ -34,9 +32,16 @@ ctrl = ($rootScope,
       if $scope.category and $scope.category.Rooms and $scope.category.Rooms[indexRoom]
         $scope.category.Rooms[indexRoom].isFollow = true
 
-  ApiService.getListCategory {}, (err, result)->
-    $scope.listCategory = result
-    console.warn 'home list category', $scope.listCategory
+
+  ApiService.getListRoomInCategory {categoryId: $stateParams.id},(err, result)->
+    console.log 'getListRoomInCategory', result
+    $scope.category = result.category
+
+    ApiService.getListCategory {}, (err, result)->
+      $scope.listCategory = result
+      index = _.findIndex $scope.listCategory, {id : $scope.category.id}
+      if index != -1
+        $scope.category.backgroundNormal = $scope.listCategory[index].backgroundNormal
 
 
 ctrl.$inject = [

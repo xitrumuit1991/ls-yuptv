@@ -8,21 +8,11 @@
 					img.image(src='{{groupIdo.backgroundNormal}}')
 					p.name {{groupIdo.title}}
 
-		//ul.list-inline
-			li.list-inline-item(ng-repeat='groupIdo in listCategory')
-				a(ui-sref='base.category({id:groupIdo.id})')
-					span() {{groupIdo.title}}
-				span(ng-if=' !$last ' style='display:inline-block;margin: 0 15px;') /
-
-	.group-title.col-md-12
-		.left
-			a(ui-sref='base.category({id:category.id})'  id='{{category.id}}')
-				i.fa.fa-play-circle-o
-				span       &nbsp; {{category.title}}
-		//.right.pull-right(ng-if='groupIdo.Rooms.length > 6')
-			a(ui-sref='base.category({id:groupIdo.id})'  id='{{groupIdo.id}}')
-				span xem thêm &nbsp;
-				i.fa.fa-arrow-circle-right
+	.group-title.col-md-12.category-title
+		.pull-left
+			a.link-category(ui-sref='base.category({id:category.id})' )
+				img.image(src='{{category.backgroundNormal}}')
+				span.name  {{category.title}}
 	.group-content
 		.row
 			.col-md-12(
