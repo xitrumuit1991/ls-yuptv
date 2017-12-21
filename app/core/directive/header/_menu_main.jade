@@ -1,0 +1,29 @@
+.menu_main_list(class='{{classMenuMain}}')
+	.row
+		//isHome == true
+		.menu_main_list_item(ng-repeat='item in menu'
+		ng-class='{"lasted": $last }'
+		class='{{item.itemClass}}'
+		ui-sref-active="active"
+		ng-if='isHome == true'
+		)
+			a.link-item(ng-if='item.isLink' href='{{item.href}}')
+				//i.fa(class='{{item.icon}}' ng-if='item.icon')
+				img(src='{{item.image}}' ng-if='item.image')
+				span  {{item.title}}
+			a.link-item(href='' ng-if=' !item.isLink '
+			ui-sref='{{item.href}}' )
+				//i.fa(class='{{item.icon}}' ng-if='item.icon')
+				img(src='{{item.image}}' ng-if='item.image')
+				span  {{item.title}}
+
+
+		//isHome == false
+		.menu_main_list_item(ng-repeat='item in menu'
+		ng-class='{"lasted": $last }'
+		class='{{item.itemClass}}'
+		ng-if='isHome == false'
+		)
+			a.link-item(href='' ui-sref='{{item.href}}' )
+				i.fa(class='{{item.icon}}' ng-if='item.icon')
+				span  {{item.title}}

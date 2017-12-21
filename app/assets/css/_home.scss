@@ -6,6 +6,7 @@
   }
   .carousel-item img{
     width: 100%;
+    height: 650px;
   }
   .carousel-item{
     position: relative;
@@ -72,16 +73,23 @@
     bottom: 30px;
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
-    padding: 10px 0;
     font-size: 20px;
-    line-height: 30px;
+    line-height: 60px;
+    height: 60px;
+    /* padding: 10px; */
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#da156f+0,de327a+15,e03b73+25,bd7ead+40,c34a97+49,6c1fa1+67,6c1fa1+67,bfa5ca+83,5c00a1+100 */
+    background: rgb(218,21,111); /* Old browsers */
+    background: -moz-linear-gradient(-45deg, rgba(218,21,111,1) 0%, rgba(222,50,122,1) 15%, rgba(224,59,115,1) 25%, rgba(189,126,173,1) 40%, rgba(195,74,151,1) 49%, rgba(108,31,161,1) 67%, rgba(108,31,161,1) 67%, rgba(191,165,202,1) 83%, rgba(92,0,161,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, rgba(218,21,111,1) 0%,rgba(222,50,122,1) 15%,rgba(224,59,115,1) 25%,rgba(189,126,173,1) 40%,rgba(195,74,151,1) 49%,rgba(108,31,161,1) 67%,rgba(108,31,161,1) 67%,rgba(191,165,202,1) 83%,rgba(92,0,161,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, rgba(218,21,111,1) 0%,rgba(222,50,122,1) 15%,rgba(224,59,115,1) 25%,rgba(189,126,173,1) 40%,rgba(195,74,151,1) 49%,rgba(108,31,161,1) 67%,rgba(108,31,161,1) 67%,rgba(191,165,202,1) 83%,rgba(92,0,161,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
     .ios{
-      border-right: 2px solid #bbb;
+      border-right: 1px solid #fff;
     }
     .ios, .android{
       a{
         display: inline-block;
-        color: #cdcdcd;
+        color: #e4e4e4;
         margin: 0 15px;
         text-decoration: none;
         &:hover{
@@ -182,8 +190,7 @@
         .fa{
           font-size: 30px;
           margin-top: 10px;
-          color: #6427a9;
-          //margin-right: 10px;
+          color: $mauTim;
         }
       }
     }

@@ -31,10 +31,14 @@
       .top{
         position: relative;
         img{
+          //border-radius: 50%;
+          //width: 85%;
+          //margin: 1%;
+          //border: 1px solid #9c9fa2;
           border-radius: 50%;
           width: 85%;
           margin: 1%;
-          border: 1px solid #9c9fa2;
+          border: 7px solid rgba(158, 158, 158, 0.5);
         }
         button{
           position: absolute;

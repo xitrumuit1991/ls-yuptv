@@ -1,5 +1,6 @@
-
+.clearfix
 home-slider
+.clearfix
 
 .container(style='margin-top:10px;')
 	.col-md-9(style='padding:0 10px 0 0;')
@@ -7,6 +8,7 @@ home-slider
 	.col-md-3(style='padding:0;')
 		home-bxh-channel
 
+.clearfix
 .home-menu-category
 	.container
 		.row
@@ -20,6 +22,7 @@ home-slider
 							span.name.margin-left-10 {{groupIdo.title | uppercase }}
 
 
+.clearfix
 .container.home-block-content(ng-repeat='groupIdo in groupIdol' ng-if='groupIdo && groupIdo.Rooms.length > 0')
 	.group-title.col-md-12.category-title
 		.pull-left

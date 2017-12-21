@@ -6,12 +6,14 @@
 			ul.list-inline.text-right.list-link(ng-if='isLogged == false')
 				li.list-inline-item
 					a(href='' ui-sref='base.register')
-						i.fa.fa-user
-						|             Đăng Kí
+						//i.fa.fa-user
+						img(src='images/signup.png')
+						span             Đăng Kí
 				li.list-inline-item
 					a(href='' ng-click='openLogin()')
-						i.fa.fa-sign-in
-						|             Đăng Nhập
+						//i.fa.fa-sign-in
+						img(src='images/login.png')
+						span             Đăng Nhập
 			.div-profile-logged(ng-if='isLogged == true')
 				ul.list-inline.text-right.list-link-logged
 					//li.list-inline-item(ng-if='isHome == false ')
@@ -28,6 +30,8 @@
 						img.avatar(style='width:60px; height:60px;' src='{{userProfile.avatar ||"http://via.placeholder.com/60x60"}}')
 						span.name {{userProfile.name}}
 						i.fa(ng-class='{"fa-angle-down" : activeProfileMenu == false, "fa-angle-up" : activeProfileMenu == true}')
+
+				//Profile dropdown
 				.profile-menu-dropdown(
 					ng-show='activeProfileMenu'
 				ng-mouseenter='openProfileMenuDropdown(true)'
@@ -46,37 +50,15 @@
 
 .menu_main
 	.container
-		.menu_main_list(class='{{classMenuMain}}')
-			.row
-				.menu_main_list_item(ng-repeat='item in menu'
-				ng-class='{"lasted": $last }'
-				class='{{item.itemClass}}'
-				ui-sref-active="active"
-					ng-if='isHome == true'
-				)
-					a(ng-if='item.isLink' href='{{item.href}}')
-						i.fa(class='{{item.icon}}' ng-if='item.icon')
-						|  {{item.title}}
-					a(href='' ng-if=' !item.isLink '
-					ui-sref='{{item.href}}' )
-						i.fa(class='{{item.icon}}' ng-if='item.icon')
-						|  {{item.title}}
+		include _menu_main
 
-				.menu_main_list_item(ng-repeat='item in menu'
-				ng-class='{"lasted": $last }'
-				class='{{item.itemClass}}'
-				ng-if='isHome == false'
-				)
-					a(href='' ui-sref='{{item.href}}' )
-						i.fa(class='{{item.icon}}' ng-if='item.icon')
-						|  {{item.title}}
+		//Search Form
 		.col-md-6.search-form-top(ng-if='isHome == true')
 			form.pull-right(action='')
 				.input-group
-					input.form-control(type='Search', ng-model='searchKey.value'
+					input.form-control.input-search(type='Search', ng-model='searchKey.value'
 					ng-model-options='{ debounce: 500 }'
 					ng-change='searchChange()'
 					placeholder='Nhập tên idol hoặc từ khoá...')
-					.input-group-btn
-						button.btn.btn-default
-							i.fa.fa-search
+					button.btn.btn-default
+						i.fa.fa-search

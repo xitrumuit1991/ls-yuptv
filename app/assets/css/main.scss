@@ -1,3 +1,4 @@
+@import "var";
 @import "animation";
 @import "common";
 @import "nav_top_register_login";
@@ -18,11 +19,11 @@
 @import "room-detail";
 @import "notifycation";
 @import "search";
+@import "search_form_top";
 body{
   background: #fafafa;
   font-family: 'Montserrat', sans-serif;
 }
-
 
 .about_us{
   h5{

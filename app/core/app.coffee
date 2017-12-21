@@ -17,12 +17,14 @@ config.menuMainHome = [
     icon : 'fa-video-camera'
     href : 'base.on-air'
     itemClass : 'col-md-4'
+    image : 'images/icon_livestream.png'
   },
   {
     title : 'Lịch Diễn',
     icon : 'fa-calendar-o'
     href : 'base.schedule'
     itemClass : 'col-md-4'
+    image : 'images/Lich_dien.png'
   },
   {
     title : 'Tin Tức',
@@ -30,6 +32,7 @@ config.menuMainHome = [
     href : 'http://tintuc.livestar.vn'
     isLink : true
     itemClass : 'col-md-4'
+    image : 'images/blog.png'
   },
 ]
 
