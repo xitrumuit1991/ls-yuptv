@@ -17,7 +17,7 @@ home-slider
 						ui-sref='base.category({id:groupIdo.id})'
 						ng-class='{"allow-border" : !$last }')
 							img.image(src='{{groupIdo.backgroundNormal}}')
-							span.name {{groupIdo.title | uppercase }}
+							span.name.margin-left-10 {{groupIdo.title | uppercase }}
 
 
 .container.home-block-content(ng-repeat='groupIdo in groupIdol' ng-if='groupIdo && groupIdo.Rooms.length > 0')
