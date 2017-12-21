@@ -17,7 +17,8 @@
 					src='{{room.banner || room.background || room.User.avatar || "http://via.placeholder.com/185x185" }}')
 				.item-group.row
 					.item-title.col-md-12.text-left
-						p.title.text-left(ui-sref='base.room-detail({id : room.id})') {{room.title}}
+						p.title.text-left(ui-sref='base.room-detail({id : room.id})')
+							|{{room.User.name || room.title}}
 						.icons
 							i.fa.fa-eye
 							span.value {{room.views}} &nbsp;&nbsp;

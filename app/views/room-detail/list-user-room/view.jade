@@ -1,9 +1,3 @@
-//ul
-	li(ng-repeat='user in users')
-		.image-user-group
-			img.img-responsive.image(src='{{user.avatar || user.Room.banner }}')
-			p.text-center.name-idol(style='color:#000;') {{user.name}}
-
 ui-carousel(
 slides="users"
 slides-to-show="5"
