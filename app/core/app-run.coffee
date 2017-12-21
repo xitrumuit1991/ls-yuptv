@@ -7,25 +7,22 @@ appRun = (
   ApiService,
   GlobalConfig,
   UtilityService)->
-
-  console.info 'GlobalConfig=',GlobalConfig
+  console.warn 'GlobalConfig=',GlobalConfig
   $rootScope.isHome = true
-  $rootScope.user = null
   if window.localStorage.user and window.localStorage.token
-    try
-      $rootScope.user = JSON.parse(window.localStorage.user)
-    catch e
-#    console.info 'app run validate user token'
     ApiService.getProfile {}, (error, result)->
       return UtilityService.removeUserLogged() if error
       return UtilityService.removeUserLogged() if result and result.error
       if result
         try
-          $rootScope.user = JSON.parse(window.localStorage.user)
+          window.localStorage.user = JSON.stringify(result)
+          $rootScope.user = result
+          console.warn '$rootScope.user',$rootScope.user
+          console.warn 'window.localStorage.token',window.localStorage.token
         catch e
           $rootScope.user = null
-  console.warn '$rootScope.user',$rootScope.user
-  console.warn 'window.localStorage.token',window.localStorage.token
+  else
+    $rootScope.user = null
 
   $rootScope.$state = $state
   $rootScope.$stateParams = $stateParams
@@ -51,7 +48,7 @@ appRun = (
         state: GlobalConfig.accKitToken
         version: GlobalConfig.accKitVersion
       AccountKit.init(paramInitAccKit)
-      console.warn('AccountKit',AccountKit)
+#      console.warn('AccountKit',AccountKit)
     ,2000)
 
     $(window).scroll ()->
