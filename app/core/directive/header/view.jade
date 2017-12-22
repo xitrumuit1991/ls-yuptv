@@ -27,7 +27,7 @@
 					ng-mouseenter='openProfileMenuDropdown(true)'
 					ng-mouseleave='openProfileMenuDropdown(false)'
 					)
-						img.avatar(style='width:60px; height:60px;' src='{{userProfile.avatar ||"http://via.placeholder.com/60x60"}}')
+						img.avatar( src='{{userProfile.avatar ||"http://via.placeholder.com/50x50"}}')
 						span.name {{userProfile.name}}
 						i.fa(ng-class='{"fa-angle-down" : activeProfileMenu == false, "fa-angle-up" : activeProfileMenu == true}')
 

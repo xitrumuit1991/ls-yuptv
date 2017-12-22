@@ -7,7 +7,7 @@
 			|Không có room nào đang diễn
 
 	.content.row(ng-if='listOnAir && listOnAir.length > 0 && listOnAir[0]')
-		.left.col-md-4
+		.left.col-md-4.first-idol
 			.content-left
 				img.onair-image(src='{{listOnAir[0].banners.banner || listOnAir[0].User.avatars_path.avatar}}'
 				ui-sref='base.room-detail({id : listOnAir[0].id})')
@@ -15,10 +15,10 @@
 					.name(style='cursor:pointer;' ui-sref='base.room-detail({id : listOnAir[0].id})')
 						|{{listOnAir[0].User.name || listOnAir[0].title}}
 					.group-icon
-						i.fa.fa-eye
-						span {{listOnAir[0].views}}
-						i.fa.fa-heart
-						span {{listOnAir[0].hearts}}
+						i.fa.fa-eye.margin-right-5
+						span.views {{listOnAir[0].views}}
+						i.fa.fa-heart.margin-left-20.margin-right-5
+						span.hearts {{listOnAir[0].hearts}}
 						.btn-lock(ng-if='listOnAir[0].mode == 2')
 							i.fa.fa-lock
 				.on-air-icon(ng-if='listOnAir[0].onAir==true')
@@ -35,10 +35,10 @@
 								.name(style='cursor:pointer;' ui-sref='base.room-detail({id : room.id})')
 									|{{room.User.name || room.title}}
 								.icon
-									i.fa.fa-eye
-									span {{room.views}}
-									i.fa.fa-heart
-									span {{room.hearts}}
+									i.fa.fa-eye.margin-right-5
+									span.views {{room.views}}
+									i.fa.fa-heart.margin-right-5.margin-left-15
+									span.hearts {{room.hearts}}
 								.btn-lock(ng-if='room.mode == 2')
 									i.fa.fa-lock
 						.on-air-icon(ng-if='room.onAir==true')

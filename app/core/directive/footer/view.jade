@@ -3,20 +3,22 @@
 		.container
 			ul.list-inline.pull-left.list-information
 				li.list-inline-item
-					a(href='' ui-sref='base.about-us') Về YUP
+					a.title(href='' ui-sref='base.about-us') Về YUP
 				li.list-inline-item
-					| /
+					span.title /
 				li.list-inline-item
-					a(href='' ui-sref='base.policy') Điều kiện sử dụng
+					a.title(href='' ui-sref='base.policy') Điều kiện sử dụng
+
 			ul.list-inline.pull-right.hotline
 				li.list-inline-item
 					img.image(src='/images/hotline.png')
 				li.list-inline-item
-					| HOTLINE
+					span.text-hotline HOTLINE
 				li.list-inline-item
-					| |
+					span(style='color:#464754;') |
 				li.list-inline-item
-					| 091324543543
+					span.text-phone 091324543543
+
 	.footer-bottom
 		.container
 			.col-md-4
@@ -40,11 +42,11 @@
 				.android-ios
 					a(href='https://play.google.com/store/apps/details?id=yup.livestream.hotgirl' target='_blank')
 						i.fa.fa-android
-						|           Android Download
+						span.text-download           Android Download
 				.android-ios
 					a(href="https://itunes.apple.com/vn/app/yup/id1294969432?mt=8" target='_blank')
 						i.fa.fa-apple
-						|           IOS Download
+						span.text-download           IOS Download
 
 			.col-md-4
 				.head Kết nối với chúng tôi

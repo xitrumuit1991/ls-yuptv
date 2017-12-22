@@ -1,35 +1,65 @@
-#footer{
-  a{color : #949099;}
-  .footer-top{
+#footer {
+  a {
+    color: #949099;
+  }
+  .footer-top {
     background: #362e3f;
     padding: 15px 0 5px 0;
     line-height: 20px;
-    .list-information li{
+    .list-information li {
       color: #c0c0c0;
     }
-    .hotline{
+    .hotline {
       color: #fff;
       font-size: 16px;
-      .image{background: #232125;}
+      .image {
+        background: #232125;
+      }
     }
   }
-  .footer-bottom{
+  .footer-bottom {
     background: #261d2f;
     padding: 20px 0 40px 0;
-    .head{
-      color: #fff;
-      font-size: 16px;
+    .head {
+      //color: #fff;
+      //font-size: 16px;
       padding: 10px 0;
       margin-top: 10px;
+      font-size: 13px;
+      font-family: "Montserrat";
+      color: rgba(255, 255, 255, 0.702);
+      font-weight: 500;
+      text-transform: capitalize;
+      //line-height: 2.308;
+      //position: absolute;
+      //left: 133.938px;
+      //top: 2735.555px;
+      //z-index: 22;
     }
-    .title{
-      color: #858585;
-      font-size: 12px;
+    .title {
+      //color: #858585;
+      //font-size: 12px;
+        font-size: 12px;
+        font-family: "Montserrat";
+        color: rgba(255, 255, 255, 0.149);
+        //line-height: 2.083;
+        //position: absolute;
+        //left: 135.911px;
+        //top: 2773.494px;
+        //z-index: 41;
     }
-    .value{
-      color: #c0c0c0;
+    .value {
+      //color: #c0c0c0;
+        font-size: 12px;
+        font-family: "Montserrat";
+        color: rgba(255, 255, 255, 0.502);
+        //line-height: 1.5;
+        //position: absolute;
+        //left: 215.384px;
+        //top: 2795.8px;
+        //z-index: 44;
     }
-    .android-ios{
+    .android-ios {
       position: relative;
       line-height: 30px;
       padding-left: 40px;
@@ -40,7 +70,17 @@
       color: #a8a8a8;
       margin-top: 15px;
       font-size: 12px;
-      i.fa{
+      .text-download{
+          font-size: 12px;
+          font-family: "Montserrat";
+          color: rgba(255, 255, 255, 0.702);
+          //line-height: 2.5;
+          //position: absolute;
+          //left: 535.882px;
+          //top: 2803.5px;
+          //z-index: 19;
+      }
+      i.fa {
         position: absolute;
         background: #433452;
         border-radius: 50%;
@@ -52,7 +92,7 @@
       }
     }
 
-    .social-icon{
+    .social-icon {
       background: #b4b4b4;
       font-size: 18px;
       border-radius: 50%;
@@ -62,15 +102,15 @@
       height: 35px;
       cursor: pointer;
       transition: 0.3s;
-      color:#000;
-      &:hover{
+      color: #000;
+      &:hover {
         background: #fff;
       }
     }
 
-    .form-subscrice{
+    .form-subscrice {
       position: relative;
-      input{
+      input {
         border-radius: 20px;
         background: #3a2d47;
         border: 1px solid #3a2d47;
@@ -78,7 +118,7 @@
         outline: none;
         height: 36px;
       }
-      .btn-subsrice{
+      .btn-subsrice {
         position: absolute;
         right: 5px;
         top: 4px;
@@ -91,5 +131,41 @@
         outline: none;
       }
     }
+  }
+}
+
+ul.list-information {
+  .title {
+    font-size: 12px;
+    font-family: "Montserrat";
+    color: rgba(255, 255, 255, 0.702);
+    //line-height: 2.5;
+    //position: absolute;
+    //left: 135.844px;
+    //top: 2666.8px;
+    //z-index: 24;
+  }
+}
+
+ul.hotline {
+  span.text-hotline {
+    font-size: 12px;
+    font-family: "Montserrat";
+    color: rgba(255, 255, 255, 0.702);
+    //line-height: 2.5;
+    //position: absolute;
+    //left: 983.937px;
+    //top: 2637.5px;
+    //z-index: 25;
+  }
+  span.text-phone {
+    font-size: 18px;
+    font-family: "Montserrat";
+    color: rgba(255, 255, 255, 0.702);
+    //line-height: 1.667;
+    //position: absolute;
+    //left: 1076.844px;
+    //top: 2637.997px;
+    //z-index: 31;
   }
 }

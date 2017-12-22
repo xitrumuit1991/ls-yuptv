@@ -29,10 +29,11 @@ home-slider
 			a.link-category(ui-sref='base.category({id:groupIdo.id})' )
 				img.image(src='{{groupIdo.backgroundNormal}}')
 				span.name  {{groupIdo.title}}
-		.right.pull-right(ng-if='groupIdo.Rooms.length > 6')
+		.right.pull-right.margin-top-15(ng-if='groupIdo.Rooms.length > 6')
 			a.inline(ui-sref='base.category({id:groupIdo.id})' )
-				span.margin-right-5 xem thêm &nbsp;
-				i.fa.fa-arrow-circle-right
+				span.margin-right-5.inline Xem thêm
+				//i.fa.fa-arrow-circle-right
+				img.inline(src='images/view_more.png')
 	.clearfix
 	.group-content
 		.col-md-2(ng-repeat='room in groupIdo.Rooms | limitTo : 6')

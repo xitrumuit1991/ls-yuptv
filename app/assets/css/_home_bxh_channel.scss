@@ -8,6 +8,16 @@
         font-size: 16px;
         font-weight: bold;
         margin-left: 5px;
+
+          //font-size: 16px;
+          font-family: "Montserrat";
+          color: rgb(0, 0, 0);
+          text-transform: uppercase;
+          //line-height: 1.875;
+          //position: absolute;
+          //left: 1065.937px;
+          //top: 608.5px;
+          //z-index: 777;
       }
     }
     .right{
@@ -61,11 +71,23 @@
         }
       }
       .name{
-        font-size: 12px;
-        font-weight: bold;
+        font-weight: 500;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+
+          font-size: 13px;
+          font-family: "Montserrat";
+          color: rgb(0, 0, 0);
+        //text-transform: uppercase;
+          //line-height: 2.308;
+          //-moz-transform: matrix( 0.93271461716937,0,0,0.93103448275862,0,0);
+          //-webkit-transform: matrix( 0.93271461716937,0,0,0.93103448275862,0,0);
+          //-ms-transform: matrix( 0.93271461716937,0,0,0.93103448275862,0,0);
+          //position: absolute;
+          //left: 1240.806px;
+          //top: 903.085px;
+          //z-index: 762;
       }
       .icon{
         font-size: 10px;
