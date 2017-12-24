@@ -18,7 +18,7 @@
 				.item-group.row
 					.item-title.col-md-12.text-left
 						p.title.text-left(ui-sref='base.room-detail({id : room.id})')
-							|{{room.User.name || room.title}}
+							|{{room.title || room.User.name }}
 						.icons
 							i.fa.fa-eye
 							span.value {{room.views}} &nbsp;&nbsp;
@@ -29,7 +29,8 @@
 						i.fa.fa-plus-circle
 	.row
 		.col-md-12
-			uib-pagination.table-records-pages.pagination-search(
+			ul.table-records-pages.pagination-search(
+			uib-pagination
 			total-items='pagination.total_item',
 			ng-model='pagination.page',
 			items-per-page='pagination.limit'

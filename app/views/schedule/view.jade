@@ -40,7 +40,7 @@
 								img.img-responsive(src='{{item.Room.User.avatars_path.avatar}}')
 								.name
 									p(ng-click='openScheduleDetail(item)')
-										|{{item.Room.User.name || item.Room.title}}
+										|{{item.Room.title || item.Room.User.name }}
 									i.fa.fa-eye
 									span {{item.Room.views}}
 									i.fa.fa-heart-o
@@ -73,7 +73,7 @@
 										img.img-responsive(src='{{item.Room.User.avatars_path.avatar}}')
 										.name
 											p(ng-click='openScheduleDetail(item)')
-												|{{item.Room.User.name || item.Room.title}}
+												|{{item.Room.title || item.Room.User.name }}
 											i.fa.fa-eye
 											span {{item.Room.views}}
 											i.fa.fa-heart-o
@@ -104,7 +104,7 @@
 										img.img-responsive(src='{{item.Room.User.avatars_path.avatar}}')
 										.name
 											p(ng-click='openScheduleDetail(item)')
-												|{{item.Room.User.name || item.Room.title}}
+												|{{item.Room.title || item.Room.User.name }}
 											i.fa.fa-eye
 											span {{item.Room.views}}
 											i.fa.fa-heart-o

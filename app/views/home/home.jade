@@ -43,7 +43,7 @@ home-slider
 				.item-group.row
 					.item-title.col-md-8
 						a(ui-sref='base.room-detail({id : room.id})')
-							p.title {{room.User.name || room.title}}
+							p.title {{room.title || room.User.name }}
 						i.fa.fa-eye
 						span.value {{room.views}} &nbsp;&nbsp;
 						i.fa.fa-heart
