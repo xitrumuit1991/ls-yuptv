@@ -36,3 +36,20 @@
 						.item-favorite.col-md-3.pointer(ng-if='room.isFollow == false'
 						ng-click='categoryClickFollowIdol(room, $index)')
 							i.fa.fa-plus-circle
+
+		.row
+			.col-md-12
+				ul.table-records-pages.pagination-search(
+				uib-pagination
+				total-items='pagination.total_item',
+				ng-model='pagination.page',
+				items-per-page='pagination.limit'
+				ng-change="pagination.pageOnChange()"
+				max-size="7"
+				boundary-links="true"
+				rotate="false"
+				first-text='«'
+				last-text = '»'
+				next-text ='›'
+				previous-text= '‹'
+				)
