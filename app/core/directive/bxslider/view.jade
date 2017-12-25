@@ -1,9 +1,7 @@
 ul(class="bxslider" )
 	li(ng-repeat='item in items' ng-click='clickItem(item, $index)' )
-		.image-idol(
-		ng-class='{"selected":item.active == true}'
-		)
-			img.img-responsive.image-idol(src='{{item.User.avatars_path.avatar}}')
+		.image-idol( ng-class='{"selected":item.active == true}' )
+			img.img-responsive.image-idol(src='{{item.User.avatars_path.avatar || "http://via.placeholder.com/130x130"  }}')
 			button
 				i.fa.fa-angle-right
 			p.text-center.name-idol {{item.name || item.title}}

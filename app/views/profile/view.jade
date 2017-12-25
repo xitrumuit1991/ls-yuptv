@@ -76,43 +76,9 @@
 									previous-text= '‹'
 									)
 
-					.row.saved-video(ng-show='tabActive == "saved-video"')
-						.col-md-12(ng-show='!savedVideo.items || savedVideo.items.length <= 0')
-							h1 Video đã lưu
-							p Bạn chưa lưu video nào
-						.col-md-12(ng-show=' savedVideo.items && savedVideo.items.length > 0')
-							.row
-								.col-md-12
-									h1 Video đã lưu ({{savedVideo.total_item}})
-								.col-md-3(ng-repeat='video in savedVideo.items')
-									.video-content(ng-if='video.thumb && video.title')
-										img.img-responsive(src='{{video.thumb}}')
-										.group-name
-											.name {{video.title}}
-											.icon-favorite
-												i.fa.fa-eye
-												span &nbsp;{{video.view}}&nbsp;
-												i.fa.fa-share
-												span &nbsp;{{video.share}}&nbsp;
-										//mode 1/public, 2/restric, 3/private
-										//status  = 1 active, =2 dang xu ly
-										button.btn-lock
-											i.fa.fa-lock
 
-								.col-md-12
-									ul.table-records-pages(uib-pagination
-									total-items='savedVideo.total_item',
-									ng-model='savedVideo.page',
-									items-per-page='savedVideo.limit'
-									ng-change="tabVideoPageChange()"
-									max-size="7"
-									boundary-links="true"
-									rotate="false"
-									first-text='«'
-									last-text = '»'
-									next-text ='›'
-									previous-text= '‹'
-									)
+					include _video_saved
+
 
 					.row.user-information(ng-show='tabActive == "user-information"')
 						.col-md-12

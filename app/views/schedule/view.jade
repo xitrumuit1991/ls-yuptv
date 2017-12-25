@@ -37,7 +37,7 @@
 					tr(ng-repeat='item in listRoomSearch')
 						td(style='border-right: none;')
 							.group-image-name
-								img.img-responsive(src='{{item.Room.User.avatars_path.avatar}}')
+								img.img-responsive(src='{{ item.Room.User.avatars_path.avatar || "http://via.placeholder.com/130x130" }}')
 								.name
 									p(ng-click='openScheduleDetail(item)')
 										|{{item.Room.title || item.Room.User.name }}
@@ -70,7 +70,7 @@
 							tr(ng-repeat='item in roomAtNowDate' ng-if='roomAtNowDate.length > 0')
 								td(style='border-right: none;')
 									.group-image-name
-										img.img-responsive(src='{{item.Room.User.avatars_path.avatar}}')
+										img.img-responsive(src='{{item.Room.User.avatars_path.avatar || "http://via.placeholder.com/130x130" }}')
 										.name
 											p(ng-click='openScheduleDetail(item)')
 												|{{item.Room.title || item.Room.User.name }}
@@ -101,7 +101,7 @@
 							tr(ng-repeat='item in roomAtTomorrowDate' ng-if='roomAtTomorrowDate.length > 0')
 								td(style='border-right: none;')
 									.group-image-name
-										img.img-responsive(src='{{item.Room.User.avatars_path.avatar}}')
+										img.img-responsive(src='{{item.Room.User.avatars_path.avatar || "http://via.placeholder.com/130x130" }}')
 										.name
 											p(ng-click='openScheduleDetail(item)')
 												|{{item.Room.title || item.Room.User.name }}
