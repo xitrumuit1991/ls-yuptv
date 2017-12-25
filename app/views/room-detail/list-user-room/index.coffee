@@ -119,7 +119,7 @@ _directive = ($rootScope, $timeout, ApiService, UtilityService) ->
     restrict : 'E'
     scope :
       id : '=ngModel'
-      item : 'ngItem'
+      item : '=ngItem'
     link : link
     templateUrl : '/templates/room-detail/list-user-room/view.html'
   return directive
