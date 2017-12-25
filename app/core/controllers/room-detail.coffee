@@ -22,9 +22,9 @@ ctrl = ($rootScope, $scope, $timeout, $location,
   $scope.showHeartAnimation = false
   $scope.linkPlayLive = ''
   $scope.id = $stateParams.id
-  $scope.item = {}
-  $scope.category = {}
-  $scope.roomNowOnAir = []
+  $scope.item = null
+  $scope.category = null
+  $scope.roomNowOnAir = null
   $scope.giftList =
     items : []
 
@@ -32,6 +32,7 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     ApiService.room.getRoomById {roomId : $scope.id },(err, result)->
       return if err
       $scope.item = result
+      $scope.loadedRoomDetail = true
       cb() if _.isFunction(cb)
 
   $scope.openLichDien = ()->
@@ -86,24 +87,28 @@ ctrl = ($rootScope, $scope, $timeout, $location,
   $scope.getListRoomSameCategory = ()->
     if $scope.item and $scope.item.categoryId
       ApiService.getListRoomInCategory {categoryId: $scope.item.categoryId},(err, result)->
-        console.log 'getListRoomInCategory', result
+        return if err or !result
+#        console.log 'getListRoomInCategory', result
         $scope.category = result.category
-        console.log 'getListRoomInCategory', $scope.category
+#        console.log 'getListRoomInCategory', $scope.category
 
   $scope.listRoomNowOnAir = ()->
     ApiService.onAir {onair : true, page:0, limit:1000 },(err, result)->
-      return if err
+      return if err or !result
       return UtilityService.notifyError(result.message) if result and result.error
       $scope.roomNowOnAir = result.rooms
 
   $scope.buyTicket = ()->
-    return console.log 'buyTicket user not login' if !$rootScope.user or !$scope.item
+    if !$rootScope.user or !$scope.item
+      console.log 'buyTicket user not login'
+      UtilityService.notifySuccess('Vui lòng đăng nhập ')
+      return
     return unless confirm('Xác nhận mua vé!')
     paramBuy =
       roomId : if $scope.item then $scope.item.id else ''
       sessionId: if $scope.item and $scope.item.Session then $scope.item.Session.id else ''
     ApiService.room.buyTicket paramBuy,(err, result)->
-      return if err
+      return if err or !result
       return UtilityService.notifyError(result.message) if result and result.error
       UtilityService.notifySuccess('Mua vé thành công') if result
       $state.reload()
@@ -138,7 +143,6 @@ ctrl = ($rootScope, $scope, $timeout, $location,
       userId : if $rootScope.user then $rootScope.user.id else ''
 #    console.log 'paramJoin',paramJoin
     ApiService.room.joinRoom paramJoin,(err, result)->
-      $scope.loadedRoomDetail = true
       return if err
       return UtilityService.notifyError(result.message) if result and result.error
       return if !result.linkPlayLive
@@ -163,10 +167,6 @@ ctrl = ($rootScope, $scope, $timeout, $location,
 #        console.log 'userinactive',userinactive
       player.on 'volumechange', (volumechange)->
         console.log 'volumechange',volumechange
-
-
-
-
 
 
 
@@ -231,69 +231,62 @@ ctrl = ($rootScope, $scope, $timeout, $location,
   #socket
   #socket
   #socket
-  querySocket = {query : "Authorization=#{window.localStorage.token}&roomId=#{$scope.id}", 'forceNew': true, 'force new connection': true }
-  socket = io( GlobalConfig.SOCKET_DOMAIN, querySocket)
-  socket.on 'connect', ()->
-    console.warn "socket.on 'connect'"
 
-  socket.on "isConnected", ()->
-    console.info 'socket isConnected'
-    $scope.socketIsConnected = true
+  addListennerSocketInit = ()->
+    socket.on 'connect', ()->
+      console.warn "socket.on 'connect'"
+    socket.on "isConnected", ()->
+      console.info 'socket isConnected'
+      $scope.socketIsConnected = true
+    socket.on 'newComment', (data)->
+  #    console.info 'on newComment', data
+      return if data && data.message == '&nbsp;'
+      $scope.showNewCommentSocket(data)
+    socket.on 'connectUser', (data)->
+      console.log 'connect User',data
+      $scope.showUserConnectSocket(data)
+      $rootScope.$emit 'reload-user-in-room'
+  #    $scope.getListUser()
+    socket.on 'disconnectUser', (data)->
+      console.error 'disconnect User',data
+      $scope.showUserDisConnectSocket(data)
+      $rootScope.$emit 'reload-user-in-room'
+  #    $scope.getListUser()
+    socket.on 'notification', (data)->
+      console.error 'notification',data
+    socket.on 'sendGift', (data)->
+      console.warn '--------sendGift--------'
+      console.log data
+      avatar = data.user.avatar || "http://via.placeholder.com/40x40"
+      name = data.user.name
+      message = data.message+' <img style="width:20px; height:20px;" src="'+data.giftIcon+'"/>'
+      re = new RegExp('<br>', 'g')
+      message = message.replace(re, '')
+      return unless message
+      html = '<div class="item" style="margin-bottom: 5px;"><img src="'+avatar+'" style="width:40px; height: 40px;" class="image"/> <div class="group-name"> <div class="name">'+name+'</div> <div class="subname">'+message+'</div></div> </div>'
+      $('#content-chat-list').append(html)
+      $('#content-chat-list').animate({ scrollTop: $('#content-chat-list')[0].scrollHeight }, 100)
 
-  socket.on 'newComment', (data)->
-#    console.info 'on newComment', data
-    return if data && data.message == '&nbsp;'
-    $scope.showNewCommentSocket(data)
+    socket.on 'hostDisconnect', (data)->
+      console.error 'hostDisconnect', data
+      UtilityService.notifyError('Phòng này đã ngừng diễn')
+      $scope.showPopupStopLiveStream()
 
+    socket.on 'sendHeart', (data)->
+  #    console.log 'sendHeart',data
+      console.log 'off show html sendHeart',data
+  #    $scope.showReciveHeartSocket(data)
 
-  socket.on 'connectUser', (data)->
-    console.log 'connect User',data
-    $scope.showUserConnectSocket(data)
-    $rootScope.$emit 'reload-user-in-room'
-#    $scope.getListUser()
-
-  socket.on 'disconnectUser', (data)->
-    console.error 'disconnect User',data
-    $scope.showUserDisConnectSocket(data)
-    $rootScope.$emit 'reload-user-in-room'
-#    $scope.getListUser()
-
-  socket.on 'notification', (data)->
-    console.error 'notification',data
-
-  socket.on 'sendGift', (data)->
-    console.warn '--------sendGift--------'
-    console.log data
-    avatar = data.user.avatar || "http://via.placeholder.com/40x40"
-    name = data.user.name
-    message = data.message+' <img style="width:20px; height:20px;" src="'+data.giftIcon+'"/>'
-    re = new RegExp('<br>', 'g')
-    message = message.replace(re, '')
-    return unless message
-    html = '<div class="item" style="margin-bottom: 5px;"><img src="'+avatar+'" style="width:40px; height: 40px;" class="image"/> <div class="group-name"> <div class="name">'+name+'</div> <div class="subname">'+message+'</div></div> </div>'
-    $('#content-chat-list').append(html)
-    $('#content-chat-list').animate({ scrollTop: $('#content-chat-list')[0].scrollHeight }, 100)
-
-  socket.on 'hostDisconnect', (data)->
-    console.error 'hostDisconnect', data
-    UtilityService.notifyError('Phòng này đã ngừng diễn')
-    $scope.showPopupStopLiveStream()
-
-  socket.on 'sendHeart', (data)->
-#    console.log 'sendHeart',data
-    console.log 'off show html sendHeart',data
-#    $scope.showReciveHeartSocket(data)
-
-  socket.on 'disconnect', ()->
-    console.error 'socket disconnect'
-    $scope.socketIsConnected = false
-    socket.removeAllListeners('sendHeart')
-    socket.removeAllListeners('sendGift')
-    socket.removeAllListeners('connectUser')
-    socket.removeAllListeners('newComment')
-    socket.removeAllListeners('disconnectUser')
-    socket.removeAllListeners('disconnect')
-    io.removeAllListeners('connection') if _.isFunction(io.removeAllListeners)
+    socket.on 'disconnect', ()->
+      console.error 'socket disconnect'
+      $scope.socketIsConnected = false
+      socket.removeAllListeners('sendHeart')
+      socket.removeAllListeners('sendGift')
+      socket.removeAllListeners('connectUser')
+      socket.removeAllListeners('newComment')
+      socket.removeAllListeners('disconnectUser')
+      socket.removeAllListeners('disconnect')
+      io.removeAllListeners('connection') if _.isFunction(io.removeAllListeners)
 
 
 
@@ -321,9 +314,9 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     if player
       player.pause() if _.isFunction(player.pause)
       player.dispose() if _.isFunction(player.dispose)
-      console.log '$destroy room detail player.dispose()'
-    if(videojs.getPlayers()['videojs-room-detail-main'])
-      console.log '$destroy room detail delete videojs.getPlayers'
+#      console.log '$destroy room detail player.dispose()'
+    if videojs.getPlayers() and videojs.getPlayers()['videojs-room-detail-main']
+#      console.log '$destroy room detail delete videojs.getPlayers'
       delete videojs.getPlayers()['videojs-room-detail-main']
 
   $scope.sameRoomFollowIdol = (item, indexRoom)->
@@ -349,9 +342,9 @@ ctrl = ($rootScope, $scope, $timeout, $location,
   $scope.showPopupStopLiveStream = ()->
     params =
       title : 'Thông báo',
-      message : 'Phòng này đã ngừng diễn!',
+      message : "#{($scope.item.title || "Phòng này")} đã ngừng phát phóng. Bạn xem sang chương trình khác nhé!"
       textBtnSave : 'OK'
-      textBtnCancel : 'Cancel'
+      textBtnCancel : 'Đóng'
       cancel : ()->
         return $state.go 'base'
       save: null
@@ -361,12 +354,20 @@ ctrl = ($rootScope, $scope, $timeout, $location,
     $scope.item.isFollow = true
 
   #call api
-  $scope.listRoomNowOnAir()
+
   $scope.getRoomDetail ()->
-    $scope.initChatIcon()
-    $scope.getListGift()
-    $scope.joinRoom()
+#    console.log 'getRoomDetail; $scope.item',$scope.item
     $scope.getListRoomSameCategory()
+    $scope.listRoomNowOnAir()
+    if $scope.item and ($scope.item.mode == 2 or $scope.item.mode == '2')
+      console.log 'room han che'
+    else
+      querySocket = {query : "Authorization=#{window.localStorage.token}&roomId=#{$scope.id}", 'forceNew': true, 'force new connection': true }
+      socket = io( GlobalConfig.SOCKET_DOMAIN, querySocket)
+      addListennerSocketInit() if socket
+      $scope.initChatIcon()
+      $scope.getListGift()
+      $scope.joinRoom()
 
 
 ctrl.$inject = [

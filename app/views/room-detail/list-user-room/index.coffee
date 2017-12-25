@@ -100,12 +100,14 @@ _directive = ($rootScope, $timeout, ApiService, UtilityService) ->
 
 
     $scope.getListUserInRoom = ()->
-      ApiService.room.listUserInRoom {roomId : $scope.id},(err, result)->
-        return if err
-        return if result and result.error
-        $scope.users = result.items
+      if $scope.item and $scope.item.mode != 2 and $scope.item.mode != '2'
+        ApiService.room.listUserInRoom {roomId : $scope.item.id},(err, result)->
+          return if err
+          return if result and result.error
+          $scope.users = result.items
+          console.log '$scope.users',$scope.users
 
-    $scope.$watch 'id',(data)->
+    $scope.$watch 'item',(data)->
       return unless data
       $scope.getListUserInRoom()
 
@@ -117,6 +119,7 @@ _directive = ($rootScope, $timeout, ApiService, UtilityService) ->
     restrict : 'E'
     scope :
       id : '=ngModel'
+      item : 'ngItem'
     link : link
     templateUrl : '/templates/room-detail/list-user-room/view.html'
   return directive

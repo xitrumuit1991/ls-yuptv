@@ -39,6 +39,8 @@
 						//span Top 3 quà tăng
 			.row
 				.col-md-8.room-content-left(style='padding:0;')
+
+					//item.mode == 2 Han che
 					.han-che-nguoi-xem(style='z-index: 9;' ng-if='item && item.mode == 2 && !linkPlayLive && loadedRoomDetail==true')
 						p Chương trình hạn chế người xem
 						p.text-center
@@ -48,10 +50,9 @@
 							button.btn.btn-primary(ng-click='buyTicket()')
 								span Mua vé
 								i.fa.fa-play-circle
-
-
-					.han-che-nguoi-xem(style='z-index: 9;' ng-if='(roomNowLivestream == false || !linkPlayLive) && loadedRoomDetail==true ')
+					//.han-che-nguoi-xem(style='z-index: 9;' ng-if='(roomNowLivestream == false || !linkPlayLive) && loadedRoomDetail==true ')
 						p: b.price Phòng này chưa diễn. Bạn vui lòng quay lại sau!
+
 					.room-player(ng-show=' !linkPlayLive || roomNowLivestream == false && loadedRoomDetail==true '
 					style='background-image: url("{{item.banner || item.background || item.User.avatar}}");')
 
@@ -61,7 +62,7 @@
 						controls
 						autoplay
 						)
-					list-user-room.list-user-room(ng-model='id')
+					list-user-room.list-user-room(ng-model='id' ng-item='item')
 
 				.col-md-4.room-content-right(style='padding:0;' ng-show='socketIsConnected == true ')
 					//.top-3-tang-qua
