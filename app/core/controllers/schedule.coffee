@@ -61,7 +61,7 @@ ctrl = ($rootScope,
 
   getListRoomFollow = ()->
     ApiService.getUserFollowing {},(error, result)->
-      return if error
+      return if error or !result
       return if result and result.error
       $scope.listUserFollowing = result.rooms
 
@@ -76,7 +76,7 @@ ctrl = ($rootScope,
     paramNowDate.type = 'month' if type in ['+30day', '-30day']
     paramNowDate.time = UtilityService.getMiliSecBeginDay(type)
     ApiService.getListRoomSchedule paramNowDate, (error, result)->
-      return console.error(result) if error
+      return console.error(result) if error or !result
       return console.error(result) if result and result.error
       if filter == true
         $scope.activeView = 'filter-search'
@@ -116,6 +116,7 @@ ctrl = ($rootScope,
   $scope.changeDateSelect = ()->
     $scope.activeView = 'filter-search'
     $scope.monthSelected = ''
+#    console.log '$scope.dateSelected ',$scope.dateSelected
     if $scope.monthSelected == '' and $scope.dateSelected == ''
       getDataRoom('now', false)
       getDataRoom('+1day', false)
@@ -131,24 +132,28 @@ ctrl = ($rootScope,
       return
     d = new Date()
     d.setDate(1)
-#    d.setMonth( parseInt($scope.monthSelected)-1)
     d.setMonth( parseInt($scope.monthSelected)-1 )
     d.setHours(0)
     d.setMinutes(0)
     d.setSeconds(0)
     d.setMilliseconds(0)
-    console.log 'changeMonthSelect; selected=', d
+    d.setTime( d.getTime() - d.getTimezoneOffset()*60*1000 )
+#    console.log 'changeMonthSelect; selected=', d
+#    console.log 'changeMonthSelect; selected=', moment(d).format("YYYY-MM-DD HH:mm:ss:Z")
     paramNowDate=
       keyword	: ''
       type : 'month'
-      time : (d.getTime()/1000)
+      time : Math.floor(d.getTime()/1000)
       monthSelected: parseInt($scope.monthSelected)
     ApiService.getListRoomSchedule paramNowDate, (error, result)->
       return console.error(result) if error
       return console.error(result) if result and result.error
       $scope.listRoomSearch = result
-#      if result and result.length <= 0
-#        return UtilityService.notifyError('Không có lịch diễn')
+      console.log 'getListRoomSchedule result=',result
+#    ApiService.searchRoomSchedule paramNowDate, (error, result)->
+#      return console.error(result) if error
+#      return console.error(result) if result and result.error
+#      console.log 'searchRoomSchedule result=',result
 
   $scope.onItemClick = (item, index)->
     i=0

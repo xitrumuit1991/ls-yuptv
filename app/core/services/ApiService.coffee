@@ -175,6 +175,13 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
       data : params
     self.request options, done
 
+  self.searchRoomSchedule = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "room/search-schedule"
+      method : 'GET'
+      data : params
+    self.request options, done
+
   self.getListCategory = (params, done)->
     options =
       url : GlobalConfig.API_URL + "room/category"

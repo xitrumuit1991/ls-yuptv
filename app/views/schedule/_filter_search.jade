@@ -1,0 +1,32 @@
+.row(ng-if="activeView == 'filter-search' ")
+	.col-md-6.col-md-offset-3
+		h3.text-center Kết quả tìm kiếm
+	.col-md-6.col-md-offset-3(ng-if='listRoomSearch.length <= 0')
+		|Không có lịch diễn nào
+	.col-md-12(ng-if='listRoomSearch && listRoomSearch.length > 0')
+		table.table.table-bordered(style='margin:0 auto; width: 75%;')
+			tr
+				td(width='40%') Idol diễn
+				td(width='20%') Ngày diễn
+				td(width='40%') Giờ diễn
+			tr(ng-repeat='item in listRoomSearch')
+				td(style='border-right: none;')
+					.group-image-name
+						img.img-responsive(src='{{ item.Room.User.avatars_path.avatar || "http://via.placeholder.com/130x130" }}')
+						.name
+							p(ng-click='openScheduleDetail(item)')
+								|{{item.Room.title || item.Room.User.name }}
+							i.fa.fa-eye
+							span {{item.Room.views}}
+							i.fa.fa-heart-o
+							span {{item.Room.hearts}}
+				td(style='border-left: none; border-right: none;')
+					p {{item.start | date:'dd-MM-yyyy' }}
+					//p item.Room.User.id {{item.Room.User.id}}
+				td(style='border-left: none;')
+					.group-time-follow
+						.time.bold {{item.start | date:'HH:mm' }}
+						.follow
+							button(ng-if='item.Room.isFollow == false && item.Room.User.id != $rootScope.user.id'
+							ng-click='actionFollowRoom(item)') Theo dõi
+							//p item.Room.User.id {{item.Room.User.id}}

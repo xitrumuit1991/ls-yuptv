@@ -45,15 +45,19 @@ factory = ($rootScope, $timeout, $window, $http, Notification, ApiService)->
     if type == '+3day'  then  d.setDate(dd.getDate()+3)
     if type == '+1day'  then  d.setDate(dd.getDate()+1)
     if type == 'now'    then d.setDate(dd.getDate())
+    if type == '0day'    then d.setDate(dd.getDate())
     if type == '-1day'  then d.setDate(dd.getDate()-1)
     if type == '-3day'  then d.setDate(dd.getDate()-3)
     if type == '-7day'  then d.setDate(dd.getDate()-7)
     if type == '-30day'  then d.setDate(dd.getDate()-30)
+
+    d.setTime( d.getTime() - d.getTimezoneOffset()*60*1000 )
+
     d.setHours(0)
     d.setMinutes(0)
     d.setSeconds(0)
     d.setMilliseconds(0)
-    return (d.getTime()/1000)
+    return Math.floor(d.getTime()/1000)
 
   notifySuccess : (message)->
     Notification.success(message)
