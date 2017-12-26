@@ -4,8 +4,13 @@
   }
   .footer-top {
     background: #362e3f;
-    padding: 15px 0 5px 0;
     line-height: 20px;
+    height: 56px;
+    line-height: 55px;
+    border: none;
+    vertical-align: top;
+    margin-bottom: -1px;
+
     .list-information li {
       color: #c0c0c0;
     }
@@ -30,11 +35,7 @@
       color: rgba(255, 255, 255, 0.702);
       font-weight: 500;
       text-transform: capitalize;
-      //line-height: 2.308;
-      //position: absolute;
-      //left: 133.938px;
-      //top: 2735.555px;
-      //z-index: 22;
+      margin-bottom: 30px;
     }
     .title {
       //color: #858585;
