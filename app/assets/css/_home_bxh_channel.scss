@@ -1,35 +1,35 @@
-.bxh-channel{
-  .title{
+.bxh-channel {
+  .title {
     //line-height: 24px;
 
-    .left{
+    .left {
       display: inline-block;
-      span{
+      span {
         font-size: 16px;
         font-weight: bold;
         margin-left: 5px;
 
-          //font-size: 16px;
-          font-family: "Montserrat";
-          color: rgb(0, 0, 0);
-          text-transform: uppercase;
-          //line-height: 1.875;
-          //position: absolute;
-          //left: 1065.937px;
-          //top: 608.5px;
-          //z-index: 777;
+        //font-size: 16px;
+        font-family: "Montserrat";
+        color: rgb(0, 0, 0);
+        text-transform: uppercase;
+        //line-height: 1.875;
+        //position: absolute;
+        //left: 1065.937px;
+        //top: 608.5px;
+        //z-index: 777;
       }
     }
-    .right{
-      a{
+    .right {
+      a {
         color: #676767;
       }
     }
   }
-  .content{
+  .content {
     margin-top: 0px;
     padding: 15px;
-    .item{
+    .item {
       padding: 0;
       margin: 0 auto;
       //min-height: 150px;
@@ -38,9 +38,9 @@
       display: inline-block;
       text-align: center;
       margin-bottom: 5px;
-      .top{
+      .top {
         position: relative;
-        img{
+        img {
           //border-radius: 50%;
           //width: 85%;
           //margin: 1%;
@@ -50,7 +50,7 @@
           margin: 1%;
           border: 7px solid rgba(158, 158, 158, 0.5);
         }
-        button{
+        button {
           position: absolute;
           bottom: 5%;
           right: 5%;
@@ -65,37 +65,37 @@
           font-size: 13px;
           line-height: 20px;
           text-align: center;
-          &.unfollow{
+          &.unfollow {
             background: #fd1d11;
           }
         }
       }
-      .name{
+      .name {
         font-weight: 500;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
-
-          font-size: 13px;
-          font-family: "Montserrat";
-          color: rgb(0, 0, 0);
+        font-size: 12px;
+        font-family: "Montserrat";
+        color: rgb(0, 0, 0);
+        width: 90%;
         //text-transform: uppercase;
-          //line-height: 2.308;
-          //-moz-transform: matrix( 0.93271461716937,0,0,0.93103448275862,0,0);
-          //-webkit-transform: matrix( 0.93271461716937,0,0,0.93103448275862,0,0);
-          //-ms-transform: matrix( 0.93271461716937,0,0,0.93103448275862,0,0);
-          //position: absolute;
-          //left: 1240.806px;
-          //top: 903.085px;
-          //z-index: 762;
+        //line-height: 2.308;
+        //-moz-transform: matrix( 0.93271461716937,0,0,0.93103448275862,0,0);
+        //-webkit-transform: matrix( 0.93271461716937,0,0,0.93103448275862,0,0);
+        //-ms-transform: matrix( 0.93271461716937,0,0,0.93103448275862,0,0);
+        //position: absolute;
+        //left: 1240.806px;
+        //top: 903.085px;
+        //z-index: 762;
       }
-      .icon{
+      .icon {
         font-size: 10px;
         color: #8b8b8b;
-        .fa{
-        margin-right: 5px;
+        .fa {
+          margin-right: 5px;
         }
-        span{
+        span {
         }
       }
     }
