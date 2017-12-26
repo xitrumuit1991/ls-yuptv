@@ -1,6 +1,7 @@
 .room-detail {
   background: #111111;
-  padding: 30px 0;
+  padding: 50px 0;
+  font-family:"Montserrat";
 
   a.btn-share-facebook {
     font-size: 16px;
@@ -13,14 +14,19 @@
   }
   .title-room {
     color: #fff !important;
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 16px;
+    //font-weight: bold;
+    font-family:"Montserrat";
+
   }
   .content {
     color: #fff;
     .text-top3 {
       line-height: 70px;
-      font-size: 20px;
+      //font-size: 20px;
+      font-size: 16px;
+      color: #fff;
+      font-family:"Montserrat";
     }
     .top-nav {
       background: #1b1b1b;
@@ -41,6 +47,15 @@
         color: #18d1ff;
         border-radius: 5px;
         border: 1px solid #1a525f;
+
+        font-size: 13px;
+        font-family: "Montserrat";
+        color: rgb(26, 208, 254);
+        //line-height: 2.308;
+        //position: absolute;
+        //left: 852.938px;
+        //top: 200.386px;
+        //z-index: 379;
       }
     }
   }
@@ -154,10 +169,12 @@
         background: transparent;
         border: none;
         line-height: 40px;
-        width: 20px;
-        height: 40px;
+        width: 30px;
+        /* height: 30px; */
         padding: 0;
         margin: 0;
+        margin-top: 0px;
+        padding-bottom: 0;
         i.fa {
           font-size: 14px;
         }
@@ -233,13 +250,16 @@
 }
 
 .list-video-saved {
-  background: #fff;
-  margin: 20px 0;
+  //background: #fff;
+  padding: 20px 0;
+  padding-bottom: 50px;
+  background: #efefef;
   .title {
     margin: 20px 0;
   }
   .item {
-    background: #f1f1f1;
+    //background: #f1f1f1;
+    background: #fff;
     position: relative;
     a {
       cursor: pointer;
@@ -295,7 +315,7 @@
 }
 
 .modal-lich-dien-room-detail {
-  .room-detail-follow-btn{
+  .room-detail-follow-btn {
     border-radius: 10px;
     background: #2ca2e0;
     border: 1px solid #0d7eb9;
@@ -305,7 +325,7 @@
     font-size: 12px;
     line-height: 19px;
     cursor: pointer;
-    &.unfollow{
+    &.unfollow {
       background: #e03820 !important;
       border: 1px solid #e03820 !important;
     }
@@ -341,7 +361,8 @@ i.emoji-picker-icon {
   color: #fff;
   font-size: 16px;
   top: 12px;
-  right: 72px;
+  //right: 100px;
+  right: 110px;
 }
 
 .emoji-wysiwyg-editor.chat {
@@ -370,12 +391,12 @@ i.emoji-picker-icon {
 .room-detail .list-user-room {
   width: 100%;
   display: block;
-  background: #fff;
+  //background: #fff;
+  background: #272727;
   height: 150px;
 
-  .ui-carousel
-  {
-    .carousel-dots{
+  .ui-carousel {
+    .carousel-dots {
       display: none;
     }
     .carousel-wrapper {
@@ -403,11 +424,13 @@ i.emoji-picker-icon {
       width: 100px !important;
       height: 100px;
       margin: 0 auto;
+      border: 2.5px solid #1ad0fe;
     }
     .name-idol {
-      color: #000;
-      line-height: 20px;
-      font-weight: bold;
+      color: #fff;
+      font-size: 12px;
+      line-height: 14px;
+      margin-top: 10px;
       width: 100%;
       overflow: hidden;
       white-space: nowrap;
@@ -518,61 +541,75 @@ i.emoji-picker-icon {
   }
 }
 
-
-.list-room-same-category{
-  background: #fff;
+.list-room-same-category {
+  //background: #fff;
   padding: 10px 0;
   margin-top: 50px;
-  .col-md-2{
+  .col-md-2 {
     padding: 0 5px;
     margin-bottom: 20px;
   }
-  .item{
+  .item {
     width: 100%;
     text-align: center;
-    background: #f6f5f5;
+    //background: #f6f5f5;
+    background: #fff;
     padding: 0 0 10px 0;
     //margin: 1%;
-    a{
+    a {
       cursor: pointer;
       text-decoration: none;
     }
-    .item-image{
+    .item-image {
       width: 100%;
       //min-height: 100px;
       height: 180px;
     }
-    .item-title{
+    .item-title {
       text-align: left;
       padding-left: 20px;
       padding-top: 5px;
       padding-right: 0;
-      .value{
-        font-size: 12px;
-        color: #696969;
+      .value {
+        font-size: 10px;
+        //color: #696969;
+        margin-left: 5px;
+          //font-size: 24.547px;
+          font-family: "Montserrat";
+          color: #181818;
+        line-height: 12px;
+          //line-height: 1.222;
+          //-moz-transform: matrix( 0.45375871002323,0,0,0.45536784228953,0,0);
+          //-webkit-transform: matrix( 0.45375871002323,0,0,0.45536784228953,0,0);
+          //-ms-transform: matrix( 0.45375871002323,0,0,0.45536784228953,0,0);
+          //position: absolute;
+          //left: 567.763px;
+          //top: 594.002px;
+          //z-index: 349;
       }
-      i.fa{
-        font-size: 12px;
-        color: #696969;
+      i.fa {
+        font-size: 10px;
+        color: #181818;
         margin: 0 2px 0 2px;
         line-height: 12px;
       }
-      .title{
+      .title {
         overflow: hidden;
         text-overflow: ellipsis;
         display: block;
         white-space: nowrap;
-        font-size: 14px;
+        font-size: 13px;
         font-weight: bold;
-        color: #696969;
+        color: #000;
+        font-family: "Montserrat";
       }
     }
-    .item-favorite{
+    .item-favorite {
       padding: 0;
-      .fa{
+      .fa {
         font-size: 30px;
         margin-top: 10px;
-        color: #6427a9;
+        color: #a60efd;
       }
     }
 
@@ -599,4 +636,11 @@ i.emoji-picker-icon {
     }
 
   }
+}
+
+.icon-onair-room-detail{
+  width: 25px;
+  height: auto;
+  margin-top: -7px;
+  margin-right: 10px;
 }

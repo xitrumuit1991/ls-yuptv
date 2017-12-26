@@ -21,12 +21,11 @@ data-keyboard="false"
 				button.btn.btn-default(type='button', data-dismiss='modal' ng-click='modal.close()') Close
 
 
-.list-video-saved(ng-if='listVideoSaved && listVideoSaved.length > 0')
-	.container
-		.col-md-12
-			.title
-				img(src='/images/onair_title.png')
-				span(style='margin-left:10px;') Video đã lưu của kênh
+.container.list-video-saved.margin-top-30(ng-if='listVideoSaved && listVideoSaved.length > 0')
+	.row
+		.col-md-12.margin-bottom-30
+			img.inline.icon-onair-room-detail(src='/images/onair_title_2.png' style='width: 20px;height: auto;')
+			span.margin-left-5.margin-bottom-30.font-20.black.bold Video đã lưu
 		.col-md-12(ng-if='listVideoSaved.length > 0')
 			.row
 				.col-md-2(ng-repeat='video in listVideoSaved | limitTo : 6')

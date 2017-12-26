@@ -35,8 +35,7 @@
 					//	i.fa.fa-facebook
 					button.btn.btn-primary.pull-right.btn-schedule(ng-click='openLichDien()') Lịch phát sóng
 				.col-md-4
-					.text-center.text-top3
-						//span Top 3 quà tăng
+					.text-center.text-top3 Live Chat
 			.row
 				.col-md-8.room-content-left(style='padding:0;')
 
@@ -98,10 +97,13 @@
 							button.btn-send(ng-click='sendChatMsg()')
 								i.fa.fa-send
 
-
+.clearfix
+div(style='background: #efefef; padding-top:50px;')
 	.container.list-room-same-category(ng-if='roomNowOnAir && roomNowOnAir.length>0')
 		.col-md-12
-			h1 Phòng đang diễn
+			.row.margin-bottom-30
+				img.inline.icon-onair-room-detail(src='/images/onair_title_2.png' style='width: 20px;height: auto;')
+				span.margin-left-5.margin-bottom-30.font-20.black.bold On Air
 			.row
 				.col-md-2(ng-repeat='room in roomNowOnAir | limitTo:12 ')
 					.item
@@ -124,7 +126,9 @@
 
 	.container.list-room-same-category(ng-if='category && category.Rooms && category.Rooms.length>0')
 		.col-md-12
-			h1 Phòng cùng chuyên mục
+			.row.margin-bottom-30
+				img.inline.icon-onair-room-detail(src='/images/onair_title_2.png' style='width: 20px;height: auto;')
+				span.margin-left-5.margin-bottom-30.font-20.black.bold Cùng Chuyên Mục
 			.row
 				.col-md-2(ng-repeat='room in category.Rooms | limitTo:12 ')
 					.item
@@ -142,7 +146,13 @@
 							ng-click='sameRoomFollowIdol(room, $index )')
 								i.fa.fa-plus-circle
 
-list-video-saved(ng-model='id')
+	.clearfix
+	list-video-saved(ng-model='id')
+
+.clearfix
+div.block(style='height: 100px; background: #efefef;')
+.clearfix
+
 list-gift(ng-model='id')
 lich-dien-room-detail(ng-model='id' ng-action='callbackAfterFollowThisRoom')
 heart-animation#heart-animation(ng-model='id' ng-show='showHeartAnimation == true' )
