@@ -257,10 +257,14 @@
   .title {
     margin: 20px 0;
   }
+  .col-md-2{
+    padding: 0 5px;
+  }
   .item {
     //background: #f1f1f1;
     background: #fff;
     position: relative;
+
     a {
       cursor: pointer;
     }
@@ -269,6 +273,7 @@
     }
     .video-title {
       text-align: center;
+      //padding: 5px;
     }
     .group {
       padding: 5px;
