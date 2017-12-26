@@ -163,7 +163,8 @@
           color: #cbcbcb;
         }
         img{
-          height: 20px;
+          width: 16px;
+          height: 16px;
           display: inline-block;
           /* line-height: 18px; */
           vertical-align: middle;
@@ -174,16 +175,15 @@
           line-height: 20px;
           display: inline-block;
           vertical-align: middle;
-
-            font-size: 14px;
-            font-family: "Montserrat";
-            color: rgb(255, 255, 255);
-            //line-height: 2.143;
-            text-align: left;
-            //position: absolute;
-            //left: 159.937px;
-            //top: 97.249px;
-            //z-index: 923;
+          font-size: 12px;
+          font-family: "Montserrat";
+          color: rgb(255, 255, 255);
+          //line-height: 2.143;
+          text-align: left;
+          //position: absolute;
+          //left: 159.937px;
+          //top: 97.249px;
+          //z-index: 923;
         }
       }
       &.active{
