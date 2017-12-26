@@ -18,21 +18,6 @@
 					href="http://www.facebook.com/sharer/sharer.php?u=http://yuptv.vn/room-detail/{{item.id}}&t={{item.title}}"
 					target="_blank" )
 						i.fa.fa-facebook
-					//a.btn-share-facebook(
-					//href="#"
-					//socialshare
-					//socialshare-provider="facebook"
-					//socialshare-type="feed"
-					//socialshare-via="{{GlobalConfig.fBappId}}"
-					//socialshare-display="popup"
-					//socialshare-description="{{item.title}}"
-					//socialshare-caption="{{item.title}}"
-					//socialshare-text="{{item.title}}"
-					//socialshare-url="{{linkShareFacebook}}"
-					//socialshare-redirect-uri="{{linkShareFacebook}}"
-					//socialshare-media="{{item.banner || item.background || item.User.avatar}}"
-					//)
-					//	i.fa.fa-facebook
 					button.btn.btn-primary.pull-right.btn-schedule(ng-click='openLichDien()') Lịch phát sóng
 				.col-md-4
 					.text-center.text-top3 Live Chat
@@ -52,8 +37,9 @@
 					//.han-che-nguoi-xem(style='z-index: 9;' ng-if='(roomNowLivestream == false || !linkPlayLive) && loadedRoomDetail==true ')
 						p: b.price Phòng này chưa diễn. Bạn vui lòng quay lại sau!
 
-					.room-player(ng-show=' !linkPlayLive || roomNowLivestream == false && loadedRoomDetail==true '
+					.room-player.relative(ng-show=' !linkPlayLive || roomNowLivestream == false && loadedRoomDetail==true '
 					style='background-image: url("{{item.banner || item.background || item.User.avatar}}");')
+						list-room-hot(ng-item='item')
 
 					.room-player(ng-show='linkPlayLive && roomNowLivestream == true && loadedRoomDetail==true '
 					style='background-image: url("{{item.banner || item.background || item.User.avatar}}");')
@@ -105,7 +91,7 @@ div(style='background: #efefef; padding-top:50px;')
 				img.inline.icon-onair-room-detail(src='/images/onair_title_2.png' style='width: 20px;height: auto;')
 				span.margin-left-5.margin-bottom-30.font-20.black.bold On Air
 			.row
-				.col-md-2(ng-repeat='room in roomNowOnAir | limitTo:12 ')
+				.col-md-2(ng-repeat='room in roomNowOnAir | limitTo:6 ')
 					.item
 						a(ui-sref='base.room-detail({id : room.id})')
 							img.item-image(src='{{room.banner || room.background || room.User.avatar || "http://via.placeholder.com/185x185" }}')
@@ -130,7 +116,7 @@ div(style='background: #efefef; padding-top:50px;')
 				img.inline.icon-onair-room-detail(src='/images/onair_title_2.png' style='width: 20px;height: auto;')
 				span.margin-left-5.margin-bottom-30.font-20.black.bold Cùng Chuyên Mục
 			.row
-				.col-md-2(ng-repeat='room in category.Rooms | limitTo:12 ')
+				.col-md-2(ng-repeat='room in category.Rooms | limitTo:6 ')
 					.item
 						a(ui-sref='base.room-detail({id : room.id})')
 							img.item-image(src='{{room.banner || room.background || room.User.avatar || "http://via.placeholder.com/185x185" }}')

@@ -43,6 +43,16 @@
   color:#000;
 }
 
+.relative{
+  position: relative;
+
+}
+.absolute{
+  position: absolute;
+}
+
+
+
 
 $commonSizes: 5 10 15 20 25 30 35 40 45 50;
 @each $size in $commonSizes {
