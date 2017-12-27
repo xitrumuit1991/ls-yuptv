@@ -13,11 +13,17 @@ data-keyboard="false")
 						style='width: 100px; border-radius: 50%;'
 						src='{{modalNotify.item.Message.Room.banner || modalNotify.item.Message.User.avatar }}'
 						)
+
 					.col-md-10
 						|{{modalNotify.description}}
 						br
-						a.pointer(ng-click='modalNotify.viewNow(modalNotify.item)' ng-if='modalNotify.item.Message.Room.onAir == true')
-							span.text-info.pointer Xem ngay
+						a.pointer(ng-click='modalNotify.viewNow(modalNotify.item.Room)'
+						ng-if='modalNotify.item.Room.onAir == true'
+						)
+							span.text-info.pointer: strong Xem ngay
+						div.margin-top-30
+							span.text-danger.pointer Ngày: {{modalNotify.item.updatedAt | date : 'dd-MM-yyyy h:mm:s'}}
+
 
 			.modal-footer
 				button.btn.btn-default(type='button', data-dismiss='modal') Close
@@ -53,4 +59,18 @@ data-keyboard="false")
 									i.fa.fa-star(ng-if='ite.status <= 0')
 									span.text-danger(ng-if='ite.status <= 0') &nbsp;Chưa xem
 									span.text-info(ng-if='ite.status > 0') Đã xem
-
+		.col-md-12
+			ul.table-records-pages.pagination-search(
+			uib-pagination
+			total-items='pagination.total_item',
+			ng-model='pagination.page',
+			items-per-page='pagination.limit'
+			ng-change="pagination.pageOnChange()"
+			max-size="7"
+			boundary-links="true"
+			rotate="false"
+			first-text='«'
+			last-text = '»'
+			next-text ='›'
+			previous-text= '‹'
+			)

@@ -112,6 +112,13 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
       data : params
     self.request options, done
 
+  self.getRoomDetail = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "room/#{params.roomId}/"
+      method : 'GET'
+      data : params
+    self.request options, done
+
   self.getRoomOnAir = (params, done)->
     options =
       url : GlobalConfig.API_URL + "room/list-by-view"

@@ -19,6 +19,10 @@ ctrl = ($rootScope,
   $scope.pagination =
     page:0
     limit: 20
+    total_item:0
+    pageOnChange:()->
+      $scope.getListNotify()
+
   $scope.items = []
 
   $scope.modalNotify =
@@ -34,24 +38,37 @@ ctrl = ($rootScope,
       $scope.modalNotify.close()
       $timeout(()->
         $state.go 'base.room-detail', {id :  item.id}, {reload:true}
-      ,500)
+      ,1)
 
   $scope.openMessageDetail = (ite)->
     console.log 'openMessageDetail', ite
-    $scope.modalNotify.show()
-    $scope.modalNotify.item = ite
-    $scope.modalNotify.title = ite.Message.title
-    $scope.modalNotify.description = ite.Message.description
-    ApiService.setNotificationRead {id : ite.id},(err, result)->
-      index = _.findIndex($scope.items,{id: ite.id})
-      if index != -1
-        $scope.items[index].status = 1
-      $rootScope.$emit 'reload-notify-unread',{}
+    ApiService.getRoomDetail {roomId : ite.Message.Room.id},(err, room)->
+      console.log 'getRoomDetail', room
+      ite.Room = room
+      $scope.modalNotify.show()
+      $scope.modalNotify.item = ite
+      $scope.modalNotify.title = ite.Message.title
+      $scope.modalNotify.description = ite.Message.description
+      console.log 'openMessageDetail', ite
+      #update read
+      ApiService.setNotificationRead {id : ite.id},(err, result)->
+        index = _.findIndex($scope.items,{id: ite.id})
+        $scope.items[index].status = 1 if index != -1
+        $rootScope.$emit 'reload-notify-unread',{}
 
-  ApiService.notificationList $scope.pagination,(err, result)->
-    console.log 'notificationList in notifycation coffee;  result ',result
-    $scope.items = result.items
-    $scope.loaded = true
+  $scope.getListNotify = ()->
+    param =
+      page : $scope.pagination.page
+      limit : $scope.pagination.limit
+    ApiService.notificationList param,(err, result)->
+      return if err or !result
+      console.log 'notificationList in notifycation coffee;  result ',result
+      $scope.items = result.items
+      $scope.loaded = true
+      $scope.pagination.total_item = result.attr.total_item
+
+
+  $scope.getListNotify()
 
 
 ctrl.$inject = [
