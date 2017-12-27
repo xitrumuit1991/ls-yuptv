@@ -6,7 +6,7 @@
 				img.background(src='/images/top1.png')
 			.name.text-center {{rankFacebook[0].User.name}}
 			.icon.text-center
-				i.fa.fa-heart-o
+				i.fa.fa-facebook
 				span {{rankFacebook[0].value}}
 			button.btn-follow(ng-if='rankFacebook[0].User.Room.isFollow==false'
 			ng-click='followIdol("facebook", rankFacebook[0] )' ) Theo dõi
@@ -19,7 +19,7 @@
 						img.background(src='/images/top2.png')
 					.name.text-center {{rankFacebook[1].User.name}}
 					.icon.text-center
-						i.fa.fa-heart-o
+						i.fa.fa-facebook
 						span {{rankFacebook[1].value}}
 					button.btn-follow(ng-if='rankFacebook[1].User.Room.isFollow==false'
 					ng-click='followIdol("facebook", rankFacebook[1] )' ) Theo dõi
@@ -30,7 +30,7 @@
 						img.background(src='/images/top3.png')
 					.name.text-center {{rankFacebook[2].User.name}}
 					.icon.text-center
-						i.fa.fa-heart-o
+						i.fa.fa-facebook
 						span {{rankFacebook[2].value}}
 					button.btn-follow(ng-if='rankFacebook[2].User.Room.isFollow==false'
 					ng-click='followIdol("facebook", rankFacebook[2] )' ) Theo dõi
@@ -48,7 +48,7 @@
 						.col-md-6
 							.name.text-left {{rankItem.User.name}}
 							.icon.text-left
-								i.fa.fa-heart-o
+								i.fa.fa-facebook
 								span &nbsp;{{rankItem.value}}
 						.col-md-6.text-right
 							button.btn-follow(ng-if='rankItem.User.Room.isFollow==false'

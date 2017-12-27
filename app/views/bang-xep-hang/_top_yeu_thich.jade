@@ -1,4 +1,4 @@
-.col-md-12(ng-if='tab == "top-yeu-thich"')
+.col-md-12(ng-if='tab == "top-yeu-thich"' class='{{tab}}')
 	.row
 		.col-md-12.text-center.item-first(ng-if='rankHeart[0]')
 			.top
@@ -6,7 +6,8 @@
 				img.background(src='/images/top1.png')
 			.name.text-center {{rankHeart[0].User.name}}
 			.icon.text-center
-				i.fa.fa-heart-o
+				//i.fa.fa-heart-o
+				img.img-responsive.image(src='/images/money.png')
 				span {{rankHeart[0].value}}
 			button.btn-follow(ng-if='rankHeart[0].User.Room.isFollow==false'
 			ng-click='followIdol("heart", rankHeart[0] )') Theo dõi
@@ -19,7 +20,8 @@
 						img.background(src='/images/top2.png')
 					.name.text-center {{rankHeart[1].User.name}}
 					.icon.text-center
-						i.fa.fa-heart-o
+						//i.fa.fa-heart-o
+						img.img-responsive(src='/images/money.png')
 						span {{rankHeart[1].value}}
 					button.btn-follow(ng-if='rankHeart[1].User.Room.isFollow==false'
 					ng-click='followIdol("heart", rankHeart[1] )') Theo dõi
@@ -29,7 +31,8 @@
 						img.background(src='/images/top3.png')
 					.name.text-center {{rankHeart[2].User.name}}
 					.icon.text-center
-						i.fa.fa-heart-o
+						//i.fa.fa-heart-o
+						img.img-responsive(src='/images/money.png')
 						span {{rankHeart[2].value}}
 					button.btn-follow(ng-if='rankHeart[2].User.Room.isFollow==false'
 					ng-click='followIdol("heart", rankHeart[2] )') Theo dõi
@@ -46,7 +49,8 @@
 						.col-md-6
 							.name.text-left {{rankItem.User.name}}
 							.icon.text-left
-								i.fa.fa-heart-o
+								//i.fa.fa-heart-o
+								img.img-responsive(src='/images/money.png')
 								span &nbsp;{{rankItem.value}}
 						.col-md-6.text-right
 							button.btn-follow(ng-if='rankItem.User.Room.isFollow==false'
