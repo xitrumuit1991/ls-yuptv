@@ -236,13 +236,13 @@
     position: absolute;
     //bottom: 0;
     width: 100%;
-    bottom: -5px;
+    bottom: 0px;
+    height: 40px;
   }
   .content-chat {
     overflow-y: scroll;
-    //height: 380px;
-    //height: 560px;
     height: 565px;
+    padding-bottom: 10px;
   }
   .top-3-tang-qua {
     height: 180px;
@@ -376,6 +376,11 @@ i.emoji-picker-icon {
   height: 40px !important;
   outline: none;
   padding-right: 75px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border: none;
+  padding-top: 5px;
+  overflow: hidden;
 }
 
 .emoji-picker-icon.parent-has-scroll {
