@@ -2,7 +2,7 @@
 	.row
 		.col-md-12.text-center.item-first(ng-if='rankCoin[0]')
 			.top
-				img.logo(src='{{rankCoin[0].User.avatar}}')
+				img.logo(src='{{rankCoin[0].User.avatar || "http://via.placeholder.com/120x120" }}')
 				img.background(src='/images/top1.png')
 			.name.text-center {{rankCoin[0].User.name}}
 			.icon.text-center
@@ -16,7 +16,7 @@
 				.col-md-2
 				.col-md-4.item-second.text-center(ng-if='rankCoin[1]')
 					.top
-						img.logo(src='{{rankCoin[1].User.avatar}}')
+						img.logo(src='{{rankCoin[1].User.avatar || "http://via.placeholder.com/120x120" }}')
 						img.background(src='/images/top2.png')
 					.name.text-center {{rankCoin[1].User.name}}
 					.icon.text-center
@@ -27,7 +27,7 @@
 					ng-click='followIdol("coin", rankCoin[1] )' ) Theo dõi
 				.col-md-4.item-thirst.text-center(ng-if='rankCoin[2]')
 					.top
-						img.logo(src='{{rankCoin[2].User.avatar}}')
+						img.logo(src='{{rankCoin[2].User.avatar || "http://via.placeholder.com/120x120" }}')
 						img.background(src='/images/top3.png')
 					.name.text-center {{rankCoin[2].User.name}}
 					.icon.text-center
@@ -42,7 +42,7 @@
 			.row
 				.col-md-4
 					.top.text-right
-						img(src='{{rankItem.User.avatar}}')
+						img(src='{{rankItem.User.avatar || "http://via.placeholder.com/120x120" }}')
 						.number {{$index+1}}
 				.col-md-6.item-content
 					.row
