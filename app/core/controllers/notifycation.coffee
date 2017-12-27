@@ -36,9 +36,11 @@ ctrl = ($rootScope,
       angular.element("##{@.id}").modal('hide')
     viewNow:(item)->
       $scope.modalNotify.close()
+      angular.element("##{@.id}").modal('hide')
       $timeout(()->
         $state.go 'base.room-detail', {id :  item.id}, {reload:true}
-      ,1)
+      ,1000)
+      return
 
   $scope.openMessageDetail = (ite)->
     console.log 'openMessageDetail', ite
