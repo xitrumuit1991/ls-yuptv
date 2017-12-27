@@ -7,7 +7,7 @@
 			.name.text-center {{rankHeart[0].User.name}}
 			.icon.text-center
 				i.fa.fa-heart-o
-				span {{rankHeart[0].User.Room.views}}
+				span {{rankHeart[0].value}}
 			button.btn-follow(ng-if='rankHeart[0].User.Room.isFollow==false'
 			ng-click='followIdol("heart", rankHeart[0] )') Theo dõi
 		.col-md-12
@@ -20,7 +20,7 @@
 					.name.text-center {{rankHeart[1].User.name}}
 					.icon.text-center
 						i.fa.fa-heart-o
-						span {{rankHeart[1].User.Room.views}}
+						span {{rankHeart[1].value}}
 					button.btn-follow(ng-if='rankHeart[1].User.Room.isFollow==false'
 					ng-click='followIdol("heart", rankHeart[1] )') Theo dõi
 				.col-md-4.item-thirst.text-center(ng-if='rankHeart[2]')
@@ -30,7 +30,7 @@
 					.name.text-center {{rankHeart[2].User.name}}
 					.icon.text-center
 						i.fa.fa-heart-o
-						span {{rankHeart[2].User.Room.views}}
+						span {{rankHeart[2].value}}
 					button.btn-follow(ng-if='rankHeart[2].User.Room.isFollow==false'
 					ng-click='followIdol("heart", rankHeart[2] )') Theo dõi
 				.col-md-2
@@ -47,7 +47,7 @@
 							.name.text-left {{rankItem.User.name}}
 							.icon.text-left
 								i.fa.fa-heart-o
-								span &nbsp;{{rankItem.User.Room.views}}
+								span &nbsp;{{rankItem.value}}
 						.col-md-6.text-right
 							button.btn-follow(ng-if='rankItem.User.Room.isFollow==false'
 							ng-click='followIdol("heart", rankItem )') Theo dõi

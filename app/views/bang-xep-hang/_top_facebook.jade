@@ -7,7 +7,7 @@
 			.name.text-center {{rankFacebook[0].User.name}}
 			.icon.text-center
 				i.fa.fa-heart-o
-				span {{rankFacebook[0].User.Room.views}}
+				span {{rankFacebook[0].value}}
 			button.btn-follow(ng-if='rankFacebook[0].User.Room.isFollow==false'
 			ng-click='followIdol("facebook", rankFacebook[0] )' ) Theo dõi
 		.col-md-12
@@ -20,7 +20,7 @@
 					.name.text-center {{rankFacebook[1].User.name}}
 					.icon.text-center
 						i.fa.fa-heart-o
-						span {{rankFacebook[1].User.Room.views}}
+						span {{rankFacebook[1].value}}
 					button.btn-follow(ng-if='rankFacebook[1].User.Room.isFollow==false'
 					ng-click='followIdol("facebook", rankFacebook[1] )' ) Theo dõi
 
@@ -31,7 +31,7 @@
 					.name.text-center {{rankFacebook[2].User.name}}
 					.icon.text-center
 						i.fa.fa-heart-o
-						span {{rankFacebook[2].User.Room.views}}
+						span {{rankFacebook[2].value}}
 					button.btn-follow(ng-if='rankFacebook[2].User.Room.isFollow==false'
 					ng-click='followIdol("facebook", rankFacebook[2] )' ) Theo dõi
 
@@ -49,7 +49,7 @@
 							.name.text-left {{rankItem.User.name}}
 							.icon.text-left
 								i.fa.fa-heart-o
-								span &nbsp;{{rankItem.User.Room.views}}
+								span &nbsp;{{rankItem.value}}
 						.col-md-6.text-right
 							button.btn-follow(ng-if='rankItem.User.Room.isFollow==false'
 							ng-click='followIdol("facebook", rankItem )' ) Theo dõi

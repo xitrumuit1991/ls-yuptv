@@ -20,7 +20,7 @@
 					.name.text-center {{rankCoin[1].User.name}}
 					.icon.text-center
 						i.fa.fa-heart-o
-						span {{rankCoin[1].User.Room.views}}
+						span {{rankCoin[1].value}}
 					button.btn-follow(ng-if='rankCoin[1].User.Room.isFollow==false'
 					ng-click='followIdol("coin", rankCoin[1] )' ) Theo dõi
 				.col-md-4.item-thirst.text-center(ng-if='rankCoin[2]')
@@ -30,7 +30,7 @@
 					.name.text-center {{rankCoin[2].User.name}}
 					.icon.text-center
 						i.fa.fa-heart-o
-						span {{rankCoin[2].User.Room.views}}
+						span {{rankCoin[2].value}}
 					button.btn-follow(ng-if='rankCoin[2].User.Room.isFollow==false'
 					ng-click='followIdol("coin", rankCoin[2] )' ) Theo dõi
 				.col-md-2
@@ -47,7 +47,7 @@
 							.name.text-left {{rankItem.User.name}}
 							.icon.text-left
 								i.fa.fa-heart-o
-								span &nbsp;{{rankItem.User.Room.views}}
+								span &nbsp;{{rankItem.value}}
 						.col-md-6.text-right
 							button.btn-follow(ng-if='rankItem.User.Room.isFollow==false'
 							ng-click='followIdol("coin", rankItem )' ) Theo dõi
