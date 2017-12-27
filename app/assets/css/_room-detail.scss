@@ -680,6 +680,10 @@ i.emoji-picker-icon {
         padding: 10px;
         .icons{
           position: relative;
+          //color: $mauXam;
+          .list-icon{
+            color: $mauXam;
+          }
         }
         button.btn{
           display: none;
