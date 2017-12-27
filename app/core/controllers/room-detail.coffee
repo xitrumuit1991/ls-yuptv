@@ -342,11 +342,11 @@ ctrl = ($rootScope, $scope, $timeout, $location,
   $scope.showPopupStopLiveStream = ()->
     params =
       title : 'Thông báo',
-      message : "#{($scope.item.title || "Phòng này")} đã ngừng phát phóng. Bạn xem sang chương trình khác nhé!"
+      message : "#{($scope.item.title || "Phòng này")} đã ngừng phát sóng. Bạn xem sang chương trình khác nhé!"
       textBtnSave : 'OK'
       textBtnCancel : 'Đóng'
       cancel : ()->
-        return $state.go 'base'
+        return $state.go 'base',{},{reload: true }
       save: null
     $rootScope.$emit 'popup-confirm', params
 
