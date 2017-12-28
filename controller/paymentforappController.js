@@ -49,8 +49,8 @@ obPaymentController.getPaymentView = function (req,res)
       resultPayment : function (callback) {
         requestApi(
         {
-          url:req.configs.api_base_url + 'payment/package',
-          headers:{'Authorization' : req.session.token}
+          url:req.configs.api_base_url + 'payment/package?token='+queryToken,
+          headers:{'Authorization' : queryToken}
         },callback);
       },
       user:function (callback) {
@@ -60,8 +60,8 @@ obPaymentController.getPaymentView = function (req,res)
         },function (error,result) {
           if (error)
           {
-            if (req.session && req.session.user)
-              return callback(null,req.session.user);
+            //if (req.session && req.session.user)
+            //  return callback(null,req.session.user);
             req.session.token = null;
             req.session.user = null;
             return callback(null,null);
