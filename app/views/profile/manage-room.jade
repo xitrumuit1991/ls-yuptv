@@ -24,26 +24,26 @@
 						span {{user.Room.views}}
 						i.fa.fa-heart-o
 						span {{user.Room.hearts}}
-					p {{user.Room.description}}
+					p(ng-if='user.Room.description') {{user.Room.description}}
 					.group-category
 						span Chọn thể loại
 						select.form-control(
 						ng-change='onChangeCategoryRoom()'
 						ng-model="categorySelected"
 						ng-options="item.id as item.title for item in selectCategoryValue")
+
 		.col-md-12
 			hr
 
-		.col-md-12.body-bottom
+		.col-md-12.body-bottom(ng-if=' user.idIdol ')
 			.row
 				.col-md-8.col-md-offset-2
 					.left
 						span Lịch diễn
 						button(ng-click='openModalDetailAddEdit(null)')
 							i.fa.fa-plus
-					.right
+					//.right
 						span Hiển thị
-
 						select.form-control.month(
 						ng-model="monthSelected"
 						ng-change="changeMonthSelect()"

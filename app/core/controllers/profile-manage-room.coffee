@@ -11,13 +11,14 @@ route.$inject = ['$stateProvider', 'GlobalConfig']
 ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
   $window, $state, $stateParams,  ApiService, $http,
   GlobalConfig, $interval, $uibModal, Upload)->
+
   $scope.scheduleDate =
     dt : null
     opened : false
 
   $scope.listScheduleOfRoom = []
   $scope.selectCategoryValue = []
-  $scope.categorySelected = $rootScope.user.Room.categoryId
+  $scope.categorySelected = if $rootScope.user and $rootScope.user.Room then $rootScope.user.Room.categoryId else ''
 
   $scope.onChangeCategoryRoom = ()->
     console.log 'categorySelected',$scope.categorySelected

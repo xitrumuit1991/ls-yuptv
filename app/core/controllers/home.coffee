@@ -14,7 +14,12 @@ ctrl = ($rootScope,
   $scope, $timeout, $location,
   $window, $state, $stateParams,  ApiService, $http,
   GlobalConfig, $interval, UtilityService) ->
-#  console.warn 'home coffee '
+
+  if !$rootScope.user and localStorage.user and localStorage.token
+    try
+      $rootScope.user = JSON.parse(localStorage.user)
+    catch  e
+
   $scope.listCategory = []
   $scope.groupIdol = []
 
