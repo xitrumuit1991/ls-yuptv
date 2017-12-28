@@ -1,4 +1,4 @@
-.col-md-12(ng-if='tab == "top-dai-gia"' class='{{tab}}')
+.col-md-12(ng-show='tab == "top-dai-gia"' class='{{tab}}')
 	.row
 		.col-md-12.text-center.item-first(ng-if='rankCoin[0]')
 			.top
@@ -6,11 +6,11 @@
 				img.background(src='/images/top1.png')
 			.name.text-center {{rankCoin[0].User.name}}
 			.icon.text-center
-				//i.fa.fa-heart-o
 				img.img-responsive(src='/images/wallet.png')
 				span {{rankCoin[0].User.Room.views}}
-			button.btn-follow(ng-if='rankCoin[0].User.Room.isFollow==false'
-			ng-click='followIdol("coin", rankCoin[0] )' ) Theo dõi
+
+			button-follow(ng-item='rankCoin[0]' ng-type='"coin"' ng-action-follow='followIdol' ng-action-unfollow='unfollowIdol' )
+
 		.col-md-12
 			.row
 				.col-md-2
@@ -20,11 +20,10 @@
 						img.background(src='/images/top2.png')
 					.name.text-center {{rankCoin[1].User.name}}
 					.icon.text-center
-						//i.fa.fa-heart-o
 						img.img-responsive(src='/images/wallet.png')
 						span {{rankCoin[1].value}}
-					button.btn-follow(ng-if='rankCoin[1].User.Room.isFollow==false'
-					ng-click='followIdol("coin", rankCoin[1] )' ) Theo dõi
+					button-follow(ng-item='rankCoin[1]' ng-type='"coin"' ng-action-follow='followIdol' ng-action-unfollow='unfollowIdol' )
+
 				.col-md-4.item-thirst.text-center(ng-if='rankCoin[2]')
 					.top
 						img.logo(src='{{rankCoin[2].User.avatar || "http://via.placeholder.com/120x120" }}')
@@ -34,8 +33,8 @@
 						//i.fa.fa-heart-o
 						img.img-responsive(src='/images/wallet.png')
 						span {{rankCoin[2].value}}
-					button.btn-follow(ng-if='rankCoin[2].User.Room.isFollow==false'
-					ng-click='followIdol("coin", rankCoin[2] )' ) Theo dõi
+
+					button-follow(ng-item='rankCoin[2]' ng-type='"coin"' ng-action-follow='followIdol' ng-action-unfollow='unfollowIdol' )
 				.col-md-2
 		.col-md-12 &nbsp;
 		.col-md-12.text-center.item(ng-repeat='rankItem in rankCoin | limitTo : 30', ng-if='$index > 2 && rankCoin.length > 3')
@@ -49,9 +48,7 @@
 						.col-md-6
 							.name.text-left {{rankItem.User.name}}
 							.icon.text-left
-								//i.fa.fa-heart-o
 								img.img-responsive(src='/images/wallet.png')
 								span &nbsp;{{rankItem.value}}
 						.col-md-6.text-right
-							button.btn-follow(ng-if='rankItem.User.Room.isFollow==false'
-							ng-click='followIdol("coin", rankItem )' ) Theo dõi
+							button-follow(ng-item='rankItem' ng-type='"coin"' ng-action-follow='followIdol' ng-action-unfollow='unfollowIdol' )

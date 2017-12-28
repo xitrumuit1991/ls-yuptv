@@ -41,7 +41,7 @@
 									.group-image-name
 										img.img-responsive(src='{{item.Room.User.avatars_path.avatar || "http://via.placeholder.com/130x130" }}')
 										.name
-											p(ng-click='openScheduleDetail(item)')
+											p.limit-length-140.block(ng-click='openScheduleDetail(item)')
 												|{{item.Room.title || item.Room.User.name }}
 											i.fa.fa-eye
 											span {{item.Room.views}}
@@ -72,7 +72,7 @@
 									.group-image-name
 										img.img-responsive(src='{{item.Room.User.avatars_path.avatar || "http://via.placeholder.com/130x130" }}')
 										.name
-											p(ng-click='openScheduleDetail(item)')
+											p.limit-length-140.block(ng-click='openScheduleDetail(item)')
 												|{{item.Room.title || item.Room.User.name }}
 											i.fa.fa-eye
 											span {{item.Room.views}}

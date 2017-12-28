@@ -6,11 +6,9 @@
 				img.background(src='/images/top1.png')
 			.name.text-center {{rankHeart[0].User.name}}
 			.icon.text-center
-				//i.fa.fa-heart-o
 				img.img-responsive.image(src='/images/money.png')
 				span {{rankHeart[0].value}}
-			button.btn-follow(ng-if='rankHeart[0].User.Room.isFollow==false'
-			ng-click='followIdol("heart", rankHeart[0] )') Theo dõi
+			button-follow(ng-item='rankHeart[0]' ng-type='"heart"' ng-action-follow='followIdol' ng-action-unfollow='unfollowIdol' )
 		.col-md-12
 			.row
 				.col-md-2
@@ -20,22 +18,19 @@
 						img.background(src='/images/top2.png')
 					.name.text-center {{rankHeart[1].User.name}}
 					.icon.text-center
-						//i.fa.fa-heart-o
 						img.img-responsive(src='/images/money.png')
 						span {{rankHeart[1].value}}
-					button.btn-follow(ng-if='rankHeart[1].User.Room.isFollow==false'
-					ng-click='followIdol("heart", rankHeart[1] )') Theo dõi
+					button-follow(ng-item='rankHeart[1]' ng-type='"heart"' ng-action-follow='followIdol' ng-action-unfollow='unfollowIdol' )
+
 				.col-md-4.item-thirst.text-center(ng-if='rankHeart[2]')
 					.top
 						img.logo(src='{{rankHeart[2].User.avatar || "http://via.placeholder.com/120x120"}}')
 						img.background(src='/images/top3.png')
 					.name.text-center {{rankHeart[2].User.name}}
 					.icon.text-center
-						//i.fa.fa-heart-o
 						img.img-responsive(src='/images/money.png')
 						span {{rankHeart[2].value}}
-					button.btn-follow(ng-if='rankHeart[2].User.Room.isFollow==false'
-					ng-click='followIdol("heart", rankHeart[2] )') Theo dõi
+					button-follow(ng-item='rankHeart[2]' ng-type='"heart"' ng-action-follow='followIdol' ng-action-unfollow='unfollowIdol' )
 				.col-md-2
 		.col-md-12 &nbsp;
 		.col-md-12.text-center.item(ng-repeat='rankItem in rankHeart | limitTo : 30', ng-if='$index > 2 && rankHeart.length > 3')
@@ -49,9 +44,7 @@
 						.col-md-6
 							.name.text-left {{rankItem.User.name}}
 							.icon.text-left
-								//i.fa.fa-heart-o
 								img.img-responsive(src='/images/money.png')
 								span &nbsp;{{rankItem.value}}
 						.col-md-6.text-right
-							button.btn-follow(ng-if='rankItem.User.Room.isFollow==false'
-							ng-click='followIdol("heart", rankItem )') Theo dõi
+							button-follow(ng-item='rankItem' ng-type='"heart"' ng-action-follow='followIdol' ng-action-unfollow='unfollowIdol' )

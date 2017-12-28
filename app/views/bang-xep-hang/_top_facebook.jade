@@ -8,8 +8,7 @@
 			.icon.text-center
 				i.fa.fa-facebook
 				span {{rankFacebook[0].value}}
-			button.btn-follow(ng-if='rankFacebook[0].User.Room.isFollow==false'
-			ng-click='followIdol("facebook", rankFacebook[0] )' ) Theo dõi
+			button-follow(ng-item='rankFacebook[0]' ng-type='"facebook"' ng-action-follow='followIdol' ng-action-unfollow='unfollowIdol' )
 		.col-md-12
 			.row
 				.col-md-2
@@ -21,8 +20,7 @@
 					.icon.text-center
 						i.fa.fa-facebook
 						span {{rankFacebook[1].value}}
-					button.btn-follow(ng-if='rankFacebook[1].User.Room.isFollow==false'
-					ng-click='followIdol("facebook", rankFacebook[1] )' ) Theo dõi
+					button-follow(ng-item='rankFacebook[1]' ng-type='"facebook"' ng-action-follow='followIdol' ng-action-unfollow='unfollowIdol' )
 
 				.col-md-4.item-thirst.text-center(ng-if='rankFacebook[2]')
 					.top
@@ -32,8 +30,7 @@
 					.icon.text-center
 						i.fa.fa-facebook
 						span {{rankFacebook[2].value}}
-					button.btn-follow(ng-if='rankFacebook[2].User.Room.isFollow==false'
-					ng-click='followIdol("facebook", rankFacebook[2] )' ) Theo dõi
+					button-follow(ng-item='rankFacebook[2]' ng-type='"facebook"' ng-action-follow='followIdol' ng-action-unfollow='unfollowIdol' )
 
 				.col-md-2
 		.col-md-12 &nbsp;
@@ -51,5 +48,4 @@
 								i.fa.fa-facebook
 								span &nbsp;{{rankItem.value}}
 						.col-md-6.text-right
-							button.btn-follow(ng-if='rankItem.User.Room.isFollow==false'
-							ng-click='followIdol("facebook", rankItem )' ) Theo dõi
+							button-follow(ng-item='rankItem' ng-type='"facebook"' ng-action-follow='followIdol' ng-action-unfollow='unfollowIdol' )
