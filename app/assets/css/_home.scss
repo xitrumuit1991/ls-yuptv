@@ -167,6 +167,10 @@
     .col-md-2 {
       padding: 3px;
     }
+    .col-md-2:nth-child(6n+1){
+      clear:left
+    }
+
     .item {
       width: 100%;
       text-align: center;
