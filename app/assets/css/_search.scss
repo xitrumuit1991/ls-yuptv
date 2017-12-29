@@ -1,13 +1,14 @@
 .search-page{
+  .search-page-item:nth-child(6n+1){
+    clear:left
+  }
   .item{
     width: 100%;
     text-align: center;
     background: #f6f5f5;
     padding: 0 0 10px 0;
     .item-link{
-
     }
-
     .item-group{
       position: relative;
       margin: 0;
