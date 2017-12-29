@@ -15,10 +15,12 @@ data-keyboard="false")
 					ng-if='item.isFollow == false'
 					ng-click='clickFollowRoomInScheduleModal()'
 					) Theo dõi
-					button.btn-follow.room-detail-follow-btn.unfollow(
+					button.btn-follow.room-detail-follow-btn(
 					ng-if='item.isFollow == true'
-					ng-click='clickUnFollowRoomInScheduleModal()'
-					) Bõ theo dõi
+					ng-click='clickUnFollowRoomInScheduleModal()' )
+						i.fa.fa-check.margin-right-5
+						span Đang theo dõi
+
 					.group-icon
 						i.fa.fa-eye
 						span {{item.views}}
