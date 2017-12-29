@@ -34,7 +34,8 @@ factory = ($rootScope, $timeout, $window, $http, Notification, ApiService)->
 
   getSettingNotify : (type)->
     type = 'live-notification' unless type
-    return 'off' unless window.localStorage[type]
+    if window.localStorage[type] is undefined  or typeof(window.localStorage[type]) == 'undefined'
+      return null
     return window.localStorage[type]
 
   getMiliSecBeginDay : (type='now')->

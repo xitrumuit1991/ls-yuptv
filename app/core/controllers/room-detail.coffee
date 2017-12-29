@@ -135,7 +135,8 @@ ctrl = ($rootScope, $scope, $timeout, $location,
       $('.emoji-wysiwyg-editor').keyup (e)->
         $scope.sendChatMsg() if e.keyCode == 13
     ,2000)
-    return UtilityService.notifyError('Phòng này chưa diễn. Bạn vui lòng quay lại sao ') if $scope.item and !$scope.item.Session
+#    return UtilityService.notifyError('Phòng này chưa diễn. Bạn vui lòng quay lại sao ') if $scope.item and !$scope.item.Session
+    return UtilityService.notifyError("#{$scope.item.title} hiện chưa phát sóng. Bạn trở lại sau nhé.") if $scope.item and !$scope.item.Session
     console.error 'user chua login' unless $rootScope.user
     paramJoin =
       roomId : $scope.id
