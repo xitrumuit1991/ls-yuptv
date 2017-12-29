@@ -330,6 +330,16 @@ ctrl = ($rootScope, $scope, $timeout, $location,
       if $scope.category.Rooms and $scope.category.Rooms[indexRoom]
         $scope.category.Rooms[indexRoom].isFollow = true
 
+  $scope.sameRoomUnfollowIdol = (item, indexRoom)->
+    return unless item
+    return UtilityService.notifyError('Vui lòng đăng nhập') unless $rootScope.user
+    ApiService.followIdol {roomId:item.id}, (error, result)->
+      return if error
+      return UtilityService.notifyError(result.message)  if result and result.error
+      UtilityService.notifySuccess(result.message) if result
+      if $scope.category.Rooms and $scope.category.Rooms[indexRoom]
+        $scope.category.Rooms[indexRoom].isFollow = false
+
   $scope.nowOnAirFollowIdol = (item, indexRoom)->
     return unless item
     return UtilityService.notifyError('Vui lòng đăng nhập') unless $rootScope.user
@@ -339,6 +349,16 @@ ctrl = ($rootScope, $scope, $timeout, $location,
       UtilityService.notifySuccess(result.message) if result
       if $scope.roomNowOnAir and $scope.roomNowOnAir[indexRoom]
         $scope.roomNowOnAir[indexRoom].isFollow = true
+
+  $scope.nowOnAirUnfollowIdol = (item, indexRoom)->
+    return unless item
+    return UtilityService.notifyError('Vui lòng đăng nhập') unless $rootScope.user
+    ApiService.unFollowIdol {roomId:item.id}, (error, result)->
+      return if error
+      return UtilityService.notifyError(result.message)  if result and result.error
+      UtilityService.notifySuccess(result.message) if result
+      if $scope.roomNowOnAir and $scope.roomNowOnAir[indexRoom]
+        $scope.roomNowOnAir[indexRoom].isFollow = false
 
   $scope.showPopupStopLiveStream = ()->
     params =

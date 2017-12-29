@@ -103,9 +103,11 @@ div(style='background: #efefef; padding-top:50px;')
 								span.value {{room.views}} &nbsp;&nbsp;
 								i.fa.fa-heart
 								span.value {{room.hearts}}
-							.item-favorite.col-md-3.pointer( ng-if='room.isFollow == false'
-							ng-click='nowOnAirFollowIdol(room, $index )')
-								i.fa.fa-plus-circle
+							.col-md-3
+								button-follow-plus-minus(ng-item='room' ng-index='$index' ng-action-follow='nowOnAirFollowIdol' ng-action-unfollow='nowOnAirUnfollowIdol')
+								//.item-favorite.col-md-3.pointer( ng-if='room.isFollow == false'
+								//ng-click='nowOnAirFollowIdol(room, $index )')
+								//	i.fa.fa-plus-circle
 							.on-air-icon
 								.icon &nbsp;
 								span LIVE
@@ -128,9 +130,11 @@ div(style='background: #efefef; padding-top:50px;')
 								span.value {{room.views}} &nbsp;&nbsp;
 								i.fa.fa-heart
 								span.value {{room.hearts}}
-							.item-favorite.col-md-3.pointer( ng-if='room.isFollow == false'
-							ng-click='sameRoomFollowIdol(room, $index )')
-								i.fa.fa-plus-circle
+							.col-md-3
+								button-follow-plus-minus(ng-item='room' ng-index='$index' ng-action-follow='sameRoomFollowIdol' ng-action-unfollow='sameRoomUnfollowIdol')
+							//.item-favorite.col-md-3.pointer( ng-if='room.isFollow == false'
+							//ng-click='sameRoomFollowIdol(room, $index )')
+							//	i.fa.fa-plus-circle
 
 	.clearfix
 	list-video-saved(ng-model='id')

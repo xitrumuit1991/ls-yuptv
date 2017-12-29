@@ -1,3 +1,45 @@
+.directive-btn-follow
+{
+  outline: none !important;
+  border: none;
+  border-radius: 50%;
+  height: 22px;
+  width: 22px;
+  line-height: 22px;
+  text-align: center;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  background: #a60eff;
+  color: #fff;
+  margin-top: 10px;
+  &.red{
+    background: #de2618;
+    color: #fff;
+  }
+  &:hover{
+    color: #fff;
+    i.fa{
+      color: #fff;
+    }
+  }
+  &:focus{
+    color: #fff;
+    outline: none;
+    i.fa{
+      color: #fff;
+    }
+  }
+  i.fa{
+    font-size: 11px;
+    display: inline-block;
+    vertical-align: top;
+    line-height: 22px;
+    margin: 0;
+    padding: 0;
+  }
+}
+
 
 .wrapper{
   background: #fff;
