@@ -4,6 +4,35 @@
     cursor: pointer;
     width:100%;
   }
+  .home-menu-category{
+    background: #f1f1f1;
+    .list-category-home{
+      .home-menu-item{
+        .name{
+          color: #7e7e7e !important;
+        }
+        &.active{
+          .name{
+            color: #000 !important;
+          }
+        }
+      }
+    }
+  }
+
+  .header{
+    .title-header{
+      display: inline-block;
+      vertical-align: top;
+      font-weight: 600;
+      margin-left: 5px;
+      line-height: 24px;
+      font-size: 16px;
+      font-family: "Montserrat";
+      color: black;
+      text-transform: uppercase;
+    }
+  }
   .carousel-item img{
     width: 100%;
   }

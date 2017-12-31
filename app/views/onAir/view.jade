@@ -2,21 +2,42 @@
 	.clearfix
 	home-slider
 	.clearfix
-	.container
+
+	div
 		.row
 			.col-md-12
+				.home-menu-category
+					.container
+						.row
+							.col-md-12(style='padding-left: 0;')
+								ul.list-inline.list-category-home
+									li.list-inline-item(ng-repeat='category in categorys')
+										//ui-sref='base.category({id : category.id})'
+										.text-center.home-menu-item(
+										ng-class='{ "active" : categorySelected.id == category.id }'
+										ng-click='selectCategory(category, $index)'
+										)
+											img.image(src='{{category.backgroundNormal}}')
+											span.name.margin-left-10 {{category.title | uppercase }}
+
+	.clearfix
+	.container
+		.row.margin-top-50.margin-bottom-30
+			.col-md-12
 				.pull-left
-					.title
+					.header
 						img(src='/images/onair_title.png' style='width: 20px;height: auto;margin: 0 5px;')
-						span KÊNH ON AIR
-				.pull-right
+						span.title-header KÊNH ON AIR
+				//.pull-right
 					ul.list-inline.on-air-menu-category
-						li.list-inline-item(ng-repeat='category in categorys'
+						li.list-inline-item(
+						ng-repeat='category in categorys'
 						ng-class='{"active" : categorySelected.id == category.id }'
 						ng-click='selectCategory(category, $index)')
 							a(href='')
 								| {{category.title}}
-							span(ng-if=' !$last ') &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+							span(ng-if=' !$last ') &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+
 		.row(ng-if='!items || items.length <=0 ')
 			.col-md-12
 				p.text-danger Không có room nào
