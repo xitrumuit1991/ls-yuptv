@@ -3,7 +3,7 @@
 		.row
 			.col-md-6
 				h2.head-title LỊCH DIỄN
-				p Cập nhật ngày 10/10/2017
+				//p Cập nhật ngày 10/10/2017
 			.col-md-6.text-right
 				span.label.black Hiển thị
 				//#category
@@ -53,8 +53,10 @@
 										.follow
 											button(ng-if='item.Room.isFollow == false && item.Room.User.id != $rootScope.user.id'
 											ng-click='lichdienFollowRoom(item,"follow")') Theo dõi
-											button.unfollow(ng-if='item.Room.isFollow == true && item.Room.User.id != $rootScope.user.id'
-											ng-click='lichdienFollowRoom(item,"unfollow")') Bỏ theo dõi
+											button(ng-if='item.Room.isFollow == true && item.Room.User.id != $rootScope.user.id'
+											ng-click='lichdienFollowRoom(item,"unfollow")')
+												i.fa.fa-check.margin-right-5
+												span Đang theo dõi
 
 
 			.col-md-6
@@ -63,8 +65,8 @@
 					.col-md-12
 						table.table.table-bordered
 							tr
-								td(width='60%') Idol diễn
-								td(width='40%') Giờ diễn
+								td(width='50%') Idol diễn
+								td(width='50%') Giờ diễn
 							tr(ng-if='!roomAtTomorrowDate || roomAtTomorrowDate.length <= 0')
 								td(colspan='2') Không có lịch diễn nào
 							tr(ng-repeat='item in roomAtTomorrowDate' ng-if='roomAtTomorrowDate.length > 0')
@@ -84,8 +86,10 @@
 										.follow
 											button(ng-if='item.Room.isFollow==false && item.Room.User.id != $rootScope.user.id'
 											ng-click='lichdienFollowRoom(item,"follow")') Theo dõi
-											button.unfollow(ng-if='item.Room.isFollow==true && item.Room.User.id != $rootScope.user.id'
-											ng-click='lichdienFollowRoom(item,"unfollow")') Bỏ theo dõi
+											button(ng-if='item.Room.isFollow==true && item.Room.User.id != $rootScope.user.id'
+											ng-click='lichdienFollowRoom(item,"unfollow")')
+												i.fa.fa-check.margin-right-5
+												span Đang theo dõi
 
 
 		//Lịch phát sóng Idol của bạn
