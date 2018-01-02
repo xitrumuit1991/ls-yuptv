@@ -29,7 +29,8 @@ _directive = ($timeout, ApiService, UtilityService) ->
           return UtilityService.notifyError('Không thể lấy link play ') if !result.link and !result.link_play
           $scope.modal.video = result
           player = videojs('videojs-modal')
-          player.src({src: (result.link||result.link_play),  type: "application/x-mpegURL"  })
+          if result.link_play
+            player.src({src: (result.link_play) ,  type: "application/x-mpegURL"  })
           player.play()
           $scope.modal.show()
       ,100)
