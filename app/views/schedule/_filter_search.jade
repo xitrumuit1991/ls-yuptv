@@ -27,13 +27,10 @@
 					.group-time-follow
 						.time.bold {{item.start | date:'HH:mm' }}
 						.follow
-							//button(ng-if='item.Room.isFollow == false && item.Room.User.id != $rootScope.user.id'
-							//ng-click='actionFollowRoom(item)') Theo dõi
-							//p item.Room.User.id {{item.Room.User.id}}
-							button(ng-if='item.Room.isFollow==false && item.Room.User.id != $rootScope.user.id'
+							button(ng-if='item.Room.isFollow==false && item.Room.User.id != user.id'
 							ng-click='lichdienFollowRoom(item,"follow")') Theo dõi
 
-							button(ng-if='item.Room.isFollow==true && item.Room.User.id != $rootScope.user.id'
+							button(ng-if='item.Room.isFollow==true && item.Room.User.id != user.id'
 							ng-click='lichdienFollowRoom(item,"unfollow")')
 								i.fa.fa-check.margin-right-5
 								span Đang theo dõi
