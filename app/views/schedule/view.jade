@@ -3,10 +3,8 @@
 		.row
 			.col-md-6
 				h2.head-title LỊCH DIỄN
-				//p Cập nhật ngày 10/10/2017
 			.col-md-6.text-right
 				span.label.black Hiển thị
-				//#category
 				select.form-control(
 				ng-model="categorySelected"
 				ng-change="changeCategorySelect()"
@@ -20,8 +18,6 @@
 				ng-change="changeMonthSelect()"
 				ng-options="item.id as item.title for item in selectMonthValue")
 
-				//button.btn-search
-					i.fa.fa-search
 		hr
 		include _filter_search
 
@@ -51,9 +47,9 @@
 									.group-time-follow
 										.time.bold {{item.start | date:'HH:mm' }}
 										.follow
-											button(ng-if='item.Room.isFollow == false && item.Room.User.id != $rootScope.user.id'
+											button(ng-if='item.Room.isFollow == false && item.Room.User.id != user.id'
 											ng-click='lichdienFollowRoom(item,"follow")') Theo dõi
-											button(ng-if='item.Room.isFollow == true && item.Room.User.id != $rootScope.user.id'
+											button(ng-if='item.Room.isFollow == true && item.Room.User.id != user.id'
 											ng-click='lichdienFollowRoom(item,"unfollow")')
 												i.fa.fa-check.margin-right-5
 												span Đang theo dõi
@@ -84,9 +80,9 @@
 									.group-time-follow
 										.time.bold {{item.start | date:'HH:mm' }}
 										.follow
-											button(ng-if='item.Room.isFollow==false && item.Room.User.id != $rootScope.user.id'
+											button(ng-if='item.Room.isFollow==false && item.Room.User.id != user.id'
 											ng-click='lichdienFollowRoom(item,"follow")') Theo dõi
-											button(ng-if='item.Room.isFollow==true && item.Room.User.id != $rootScope.user.id'
+											button(ng-if='item.Room.isFollow==true && item.Room.User.id != user.id'
 											ng-click='lichdienFollowRoom(item,"unfollow")')
 												i.fa.fa-check.margin-right-5
 												span Đang theo dõi
