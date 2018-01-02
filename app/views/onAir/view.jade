@@ -50,9 +50,9 @@
 					.bottom
 						p.title {{ items[0].title || items[0].User.name }}
 						i.fa.fa-eye
-						span {{items[0].views}}
+						span {{items[0].views | thousandSuffix : 1}}
 						i.fa.fa-heart
-						span {{items[0].hearts}}
+						span {{items[0].hearts | thousandSuffix : 1}}
 						button.btn.add-plus(ng-if='items[0].isFollow == false'
 						ng-click='onairClickFollowIdol(items[0], 0, "follow")')
 							i.fa.fa-plus
@@ -73,9 +73,9 @@
 							.bottom
 								p.title {{ite.title || ite.User.name }}
 								i.fa.fa-eye
-								span {{ite.views}}
+								span {{ite.views | thousandSuffix : 1}}
 								i.fa.fa-heart
-								span {{ite.hearts}}
+								span {{ite.hearts | thousandSuffix : 1}}
 								button.btn.add-plus(ng-if='ite.isFollow == false'
 								ng-click='onairClickFollowIdol(ite, $index, "follow")')
 									i.fa.fa-plus
@@ -94,9 +94,9 @@
 					.bottom
 						p.title {{ ite.title || ite.User.name }}
 						i.fa.fa-eye
-						span {{ite.views}}
+						span {{ite.views | thousandSuffix : 1}}
 						i.fa.fa-heart
-						span {{ite.hearts}}
+						span {{ite.hearts | thousandSuffix : 1}}
 						button.btn.add-plus(ng-if='ite.isFollow == false'
 						ng-click='onairClickFollowIdol(ite, $index, "follow")')
 							i.fa.fa-plus

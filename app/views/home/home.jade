@@ -45,9 +45,9 @@ home-slider
 						a(ui-sref='base.room-detail({id : room.id})')
 							p.title {{room.title || room.User.name }}
 						i.fa.fa-eye
-						span.value {{room.views}} &nbsp;&nbsp;
+						span.value {{room.views | thousandSuffix : 1 }} &nbsp;&nbsp;
 						i.fa.fa-heart
-						span.value {{room.hearts}}
+						span.value {{room.hearts | thousandSuffix : 1 }}
 					.item-favorite.col-md-3.pointer(
 					ng-if='room.isFollow == false && room.id != user.Room.id '
 					ng-click='homeClickFollowIdol(room, groupIdo.id, $index)')

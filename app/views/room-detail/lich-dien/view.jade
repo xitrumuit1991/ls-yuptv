@@ -23,9 +23,9 @@ data-keyboard="false")
 
 					.group-icon
 						i.fa.fa-eye
-						span {{item.views}}
+						span {{item.views | thousandSuffix : 1}}
 						i.fa.fa-heart-o
-						span {{item.hearts}}
+						span {{item.hearts | thousandSuffix : 1}}
 				.content
 					table.table.table-bordered
 						tr

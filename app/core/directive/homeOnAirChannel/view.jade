@@ -16,7 +16,7 @@
 						|{{listOnAir[0].User.name || listOnAir[0].title}}
 					.group-icon
 						i.fa.fa-eye.margin-right-5
-						span.views {{listOnAir[0].views}}
+						span.views {{listOnAir[0].views | thousandSuffix : 1 }}
 						i.fa.fa-heart.margin-left-20.margin-right-5
 						span.hearts {{listOnAir[0].hearts}}
 						.btn-lock(ng-if='listOnAir[0].mode == 2')
@@ -36,9 +36,9 @@
 									|{{room.User.name || room.title}}
 								.icon
 									i.fa.fa-eye.margin-right-5
-									span.views {{room.views}}
+									span.views {{room.views | thousandSuffix : 1 }}
 									i.fa.fa-heart.margin-right-5.margin-left-15
-									span.hearts {{room.hearts}}
+									span.hearts {{room.hearts | thousandSuffix : 1 }}
 								.btn-lock(ng-if='room.mode == 2')
 									i.fa.fa-lock
 						.on-air-icon(ng-if='room.onAir==true')

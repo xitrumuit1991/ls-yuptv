@@ -7,7 +7,7 @@
 			.name.text-center {{rankFacebook[0].User.name}}
 			.icon.text-center
 				i.fa.fa-facebook
-				span {{rankFacebook[0].value}}
+				span {{rankFacebook[0].value | thousandSuffix : 1}}
 			button-follow(ng-item='rankFacebook[0]' ng-type='"facebook"' ng-action-follow='followIdol' ng-action-unfollow='unfollowIdol' )
 		.col-md-12
 			.row
@@ -19,7 +19,7 @@
 					.name.text-center {{rankFacebook[1].User.name}}
 					.icon.text-center
 						i.fa.fa-facebook
-						span {{rankFacebook[1].value}}
+						span {{rankFacebook[1].value | thousandSuffix : 1}}
 					button-follow(ng-item='rankFacebook[1]' ng-type='"facebook"' ng-action-follow='followIdol' ng-action-unfollow='unfollowIdol' )
 
 				.col-md-4.item-thirst.text-center(ng-if='rankFacebook[2]')
@@ -29,7 +29,7 @@
 					.name.text-center {{rankFacebook[2].User.name}}
 					.icon.text-center
 						i.fa.fa-facebook
-						span {{rankFacebook[2].value}}
+						span {{rankFacebook[2].value | thousandSuffix : 1}}
 					button-follow(ng-item='rankFacebook[2]' ng-type='"facebook"' ng-action-follow='followIdol' ng-action-unfollow='unfollowIdol' )
 
 				.col-md-2
@@ -46,6 +46,6 @@
 							.name.text-left {{rankItem.User.name}}
 							.icon.text-left
 								i.fa.fa-facebook
-								span &nbsp;{{rankItem.value}}
+								span &nbsp;{{rankItem.value | thousandSuffix : 1}}
 						.col-md-6.text-right
 							button-follow(ng-item='rankItem' ng-type='"facebook"' ng-action-follow='followIdol' ng-action-unfollow='unfollowIdol' )

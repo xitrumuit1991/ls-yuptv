@@ -7,7 +7,8 @@
 			.name.text-center {{rankCoin[0].User.name}}
 			.icon.text-center
 				img.img-responsive(src='/images/wallet.png')
-				span {{rankCoin[0].User.Room.views}}
+				//span {{rankCoin[0].User.Room.views | thousandSuffix : 1 }}
+				span {{rankCoin[0].value | thousandSuffix : 1 }}
 
 			button-follow(ng-item='rankCoin[0]' ng-type='"coin"' ng-action-follow='followIdol' ng-action-unfollow='unfollowIdol' )
 
@@ -21,7 +22,7 @@
 					.name.text-center {{rankCoin[1].User.name}}
 					.icon.text-center
 						img.img-responsive(src='/images/wallet.png')
-						span {{rankCoin[1].value}}
+						span {{rankCoin[1].value | thousandSuffix : 1}}
 					button-follow(ng-item='rankCoin[1]' ng-type='"coin"' ng-action-follow='followIdol' ng-action-unfollow='unfollowIdol' )
 
 				.col-md-4.item-thirst.text-center(ng-if='rankCoin[2]')
@@ -32,7 +33,7 @@
 					.icon.text-center
 						//i.fa.fa-heart-o
 						img.img-responsive(src='/images/wallet.png')
-						span {{rankCoin[2].value}}
+						span {{rankCoin[2].value | thousandSuffix : 1}}
 
 					button-follow(ng-item='rankCoin[2]' ng-type='"coin"' ng-action-follow='followIdol' ng-action-unfollow='unfollowIdol' )
 				.col-md-2
@@ -49,6 +50,6 @@
 							.name.text-left {{rankItem.User.name}}
 							.icon.text-left
 								img.img-responsive(src='/images/wallet.png')
-								span &nbsp;{{rankItem.value}}
+								span &nbsp;{{rankItem.value | thousandSuffix : 1}}
 						.col-md-6.text-right
 							button-follow(ng-item='rankItem' ng-type='"coin"' ng-action-follow='followIdol' ng-action-unfollow='unfollowIdol' )

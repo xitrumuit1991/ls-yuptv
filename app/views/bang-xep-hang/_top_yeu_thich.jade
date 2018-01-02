@@ -7,7 +7,7 @@
 			.name.text-center {{rankHeart[0].User.name}}
 			.icon.text-center
 				img.img-responsive.image(src='/images/money.png')
-				span {{rankHeart[0].value}}
+				span {{rankHeart[0].value | thousandSuffix : 1}}
 			button-follow(ng-item='rankHeart[0]' ng-type='"heart"' ng-action-follow='followIdol' ng-action-unfollow='unfollowIdol' )
 		.col-md-12
 			.row
@@ -19,7 +19,7 @@
 					.name.text-center {{rankHeart[1].User.name}}
 					.icon.text-center
 						img.img-responsive(src='/images/money.png')
-						span {{rankHeart[1].value}}
+						span {{rankHeart[1].value | thousandSuffix : 1}}
 					button-follow(ng-item='rankHeart[1]' ng-type='"heart"' ng-action-follow='followIdol' ng-action-unfollow='unfollowIdol' )
 
 				.col-md-4.item-thirst.text-center(ng-if='rankHeart[2]')
@@ -29,7 +29,7 @@
 					.name.text-center {{rankHeart[2].User.name}}
 					.icon.text-center
 						img.img-responsive(src='/images/money.png')
-						span {{rankHeart[2].value}}
+						span {{rankHeart[2].value | thousandSuffix : 1}}
 					button-follow(ng-item='rankHeart[2]' ng-type='"heart"' ng-action-follow='followIdol' ng-action-unfollow='unfollowIdol' )
 				.col-md-2
 		.col-md-12 &nbsp;
@@ -45,6 +45,6 @@
 							.name.text-left {{rankItem.User.name}}
 							.icon.text-left
 								img.img-responsive(src='/images/money.png')
-								span &nbsp;{{rankItem.value}}
+								span &nbsp;{{rankItem.value | thousandSuffix : 1}}
 						.col-md-6.text-right
 							button-follow(ng-item='rankItem' ng-type='"heart"' ng-action-follow='followIdol' ng-action-unfollow='unfollowIdol' )

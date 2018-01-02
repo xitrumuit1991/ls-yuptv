@@ -23,5 +23,5 @@
 				.name.text-center {{rankItem.User.name}}
 				.icon.text-center
 					i.fa.fa-rss
-					span {{rankItem.User.Room.views}}
+					span {{rankItem.User.Room.views | thousandSuffix : 1}}
 

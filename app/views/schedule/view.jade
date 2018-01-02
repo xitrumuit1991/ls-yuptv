@@ -44,9 +44,9 @@
 											p.limit-length-140.block(ng-click='openScheduleDetail(item)')
 												|{{item.Room.title || item.Room.User.name }}
 											i.fa.fa-eye
-											span {{item.Room.views}}
+											span {{item.Room.views | thousandSuffix : 1}}
 											i.fa.fa-heart-o
-											span {{item.Room.hearts}}
+											span {{item.Room.hearts | thousandSuffix : 1}}
 								td(style='border-left: none;')
 									.group-time-follow
 										.time.bold {{item.start | date:'HH:mm' }}
@@ -77,9 +77,9 @@
 											p.limit-length-140.block(ng-click='openScheduleDetail(item)')
 												|{{item.Room.title || item.Room.User.name }}
 											i.fa.fa-eye
-											span {{item.Room.views}}
+											span {{item.Room.views | thousandSuffix : 1}}
 											i.fa.fa-heart-o
-											span {{item.Room.hearts}}
+											span {{item.Room.hearts | thousandSuffix : 1}}
 								td(style='border-left: none;')
 									.group-time-follow
 										.time.bold {{item.start | date:'HH:mm' }}

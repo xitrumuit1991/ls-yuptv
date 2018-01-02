@@ -8,11 +8,10 @@
 							span.title-room {{item.title}}
 						li.list-inline-item
 							i.fa.fa-eye
-							span(style='margin: 0 15px 0 5px;') {{item.views}}
+							span(style='margin: 0 15px 0 5px;') {{item.views | thousandSuffix : 1}}
 							i.fa.fa-heart
-							span#room-heart-number(style='margin: 0 15px 0 5px;') {{item.hearts}}
-					//socialshare-url="{{linkShareFacebook}}"
-					//socialshare-redirect-uri="{{linkShareFacebook}}"
+							span#room-heart-number(style='margin: 0 15px 0 5px;') {{item.hearts | thousandSuffix : 1}}
+
 					a.btn-share-facebook(
 					onclick="window.open(this.href,'targetWindow','toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=800,height=500'); return false;"
 					href="http://www.facebook.com/sharer/sharer.php?u=http://yuptv.vn/room-detail/{{item.id}}&t={{item.title}}"
@@ -100,9 +99,9 @@ div(style='background: #efefef; padding-top:50px;')
 								a(ui-sref='base.room-detail({id : room.id})')
 									p.title {{room.title}}
 								i.fa.fa-eye
-								span.value {{room.views}} &nbsp;&nbsp;
+								span.value {{room.views | thousandSuffix : 1}} &nbsp;&nbsp;
 								i.fa.fa-heart
-								span.value {{room.hearts}}
+								span.value {{room.hearts | thousandSuffix : 1}}
 							.col-md-3
 								button-follow-plus-minus(ng-item='room' ng-index='$index' ng-action-follow='nowOnAirFollowIdol' ng-action-unfollow='nowOnAirUnfollowIdol')
 								//.item-favorite.col-md-3.pointer( ng-if='room.isFollow == false'
@@ -127,14 +126,12 @@ div(style='background: #efefef; padding-top:50px;')
 								a(ui-sref='base.room-detail({id : room.id})')
 									p.title {{room.title}}
 								i.fa.fa-eye
-								span.value {{room.views}} &nbsp;&nbsp;
+								span.value {{room.views | thousandSuffix : 1}} &nbsp;&nbsp;
 								i.fa.fa-heart
-								span.value {{room.hearts}}
+								span.value {{room.hearts | thousandSuffix : 1}}
 							.col-md-3
 								button-follow-plus-minus(ng-item='room' ng-index='$index' ng-action-follow='sameRoomFollowIdol' ng-action-unfollow='sameRoomUnfollowIdol')
-							//.item-favorite.col-md-3.pointer( ng-if='room.isFollow == false'
-							//ng-click='sameRoomFollowIdol(room, $index )')
-							//	i.fa.fa-plus-circle
+
 
 	.clearfix
 	list-video-saved(ng-model='id')

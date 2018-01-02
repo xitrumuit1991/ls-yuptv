@@ -21,9 +21,9 @@
 					h3.room-title {{user.Room.title}}
 					.group-icon
 						i.fa.fa-eye
-						span {{user.Room.views}}
+						span {{user.Room.views | thousandSuffix : 1 }}
 						i.fa.fa-heart-o
-						span {{user.Room.hearts}}
+						span {{user.Room.hearts | thousandSuffix : 1 }}
 					p(ng-if='user.Room.description') {{user.Room.description}}
 					.group-category(ng-show=' user.isIdol == true || user.isIdol == "true" ')
 						span Chọn thể loại

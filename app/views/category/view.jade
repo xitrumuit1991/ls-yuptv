@@ -30,9 +30,9 @@
 							a(ui-sref='base.room-detail({id : room.id})')
 								p.title {{room.title || room.User.name }}
 							i.fa.fa-eye
-							span.value {{room.views}} &nbsp;&nbsp;
+							span.value {{room.views | thousandSuffix : 1}} &nbsp;&nbsp;
 							i.fa.fa-heart
-							span.value {{room.hearts}}
+							span.value {{room.hearts | thousandSuffix : 1}}
 						.col-md-3
 							button-follow-plus-minus(ng-item='room' ng-index='$index' ng-action-follow='categoryClickFollowIdol' ng-action-unfollow='categoryClickUnfollowIdol')
 						//.item-favorite.col-md-3.pointer(ng-if='room.isFollow == false'
