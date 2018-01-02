@@ -13,16 +13,6 @@ ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
   $window, $state, $stateParams,  ApiService, $http,
   GlobalConfig, $interval, $uibModal, Upload)->
 
-#  if $location.search().transId and $location.search().responseCode and  $location.search().mac
-#    paramConfirmBankLocal =
-#      transId:$location.search().transId
-#      responseCode:$location.search().responseCode
-#      mac:$location.search().mac
-#    ApiService.confirmChargeBankLocal(paramConfirmBankLocal,(error, result)->
-#      return UtilityService.notifyError(result.message) if error
-#      return UtilityService.notifyError(result.message) if result and result.error
-#      UtilityService.notifySuccess(result.message) if result
-#    )
 
   $scope.listPackage = []
   $scope.step2PackageSelected = null
@@ -70,6 +60,7 @@ ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
 
   $scope.step2SelectedPackage = (item, $index)->
     $scope.step2PackageSelected = item # package
+
   $scope.step2SelectedProvider = (item, $index)->
     console.log 'step2SelectedProvider',item
     $scope.step2ProviderSelected = item
@@ -78,26 +69,30 @@ ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
 
 
   $scope.submitTelcoCard = ()->
-    console.log 'thanh toan telco'
     console.log '$scope.step2PackageSelected',$scope.step2PackageSelected
     console.log '$scope.step2ProviderSelected',$scope.step2ProviderSelected
     return if $scope.step1ChooseMethod != 'card'
-    return UtilityService.notifyError('Vui lòng điền thông tin thẻ') unless $scope.telcoCard.serial
-    return UtilityService.notifyError('Vui lòng điền thông tin thẻ') unless $scope.telcoCard.code
+    return UtilityService.notifyError('Vui lòng điền thông tin thẻ') if !$scope.telcoCard.serial or !$scope.telcoCard.code
     params =
       card_pin	: $scope.telcoCard.code
       card_serial : $scope.telcoCard.serial
       card_serviceProvider	: $scope.step2ProviderSelected.name
       sourceId :  $scope.step2ProviderSelected.id
-      packageId : $scope.step2PackageSelected.id
+      packageId : if $scope.step2PackageSelected then $scope.step2PackageSelected.id else ''
       skipCaptcha : true
       key_payment : 'key_payment'
     console.log 'options submitTelcoCard', params
-    ApiService.chargeByTelcoCard(params,(error , result)->
-      return UtilityService.notifyError(result.message) if error
-      return UtilityService.notifyError(result.message) if result and result.error
-      UtilityService.notifySuccess(result.message) if result
-    )
+    ApiService.chargeByTelcoCard params,(error , result)->
+      if error
+        msg = if result and result.message then result.message else 'Hệ thống đang bận, vui lòng thử lại sau'
+        UtilityService.notifyError(msg)
+        return
+      if result and result.error
+        msg = result.message or 'Hệ thống đang bận, vui lòng thử lại sau'
+        UtilityService.notifyError(msg)
+        return
+      if result
+        UtilityService.notifySuccess(result.message)
 
 
 
