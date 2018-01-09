@@ -60,7 +60,7 @@ _directive = ($rootScope, $timeout, ApiService, $uibModal, $state,GlobalConfig, 
       $uibModal.open({
         templateUrl: '/templates/directive/header/login.html'
         backdrop: true
-        windowClass: 'modal'
+        windowClass : "window-modal-login",
         controller: 'LoginHeaderCtrl'
       })
 

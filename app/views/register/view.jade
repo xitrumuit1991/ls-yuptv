@@ -2,31 +2,31 @@
 	.register.wrapper
 		.title.text-center
 			i.fa.fa-user
-			span ĐĂNG KÍ
+			span.text-dang-ki ĐĂNG KÍ
 		hr
 		.content
 			.row(ng-if='register.error')
 				.col-md-12.text-center.text-danger {{register.error}}
 			.row
 				.col-md-4.text-right
-					label Tên người dùng *
-					span tối thiểu 6 kí tự
+					label.left-label Tên người dùng *
+					span.min-6-character tối thiểu 6 kí tự
 				.col-md-5
 					input.form-control(type='text' placeholder='' value='' ng-model='register.username')
 			.row
 				.col-md-4.text-right
-					label Số điện thoại *
+					label.left-label Số điện thoại *
 				.col-md-5
 					input.form-control(type='text' placeholder='' value='' ng-model='register.phone')
 			.row
 				.col-md-4.text-right
-					label Mật khẩu
-					span tối thiểu 6 kí tự
+					label.left-label Mật khẩu
+					span.min-6-character tối thiểu 6 kí tự
 				.col-md-5
 					input.form-control(type='password' placeholder='' value='' ng-model='register.password')
 			.row
 				.col-md-4.text-right
-					label Nhập lại mật khẩu
+					label.left-label Nhập lại mật khẩu
 				.col-md-5
 					input.form-control(type='password' placeholder='' value='' ng-model='register.repassword')
 			.row
@@ -34,11 +34,11 @@
 					|&nbsp;
 				.col-md-8
 					input(type='checkbox' ng-model='register.checkPolicy')
-					|&nbsp; Tôi đồng ý với các &nbsp;
+					span.text-toi-dong-y &nbsp; Tôi đồng ý với các &nbsp;
 					a(ui-sref='base.policy' href='#') Điều khoản sử dụng
 			.row
 				.col-md-4.text-right
 					| &nbsp;
 				.col-md-5
-					button.btn.btn-primary(ng-click='submitRegisterAccountKit()') Đăng ký
+					button.btn.btn-primary.btn-dang-ki(ng-click='submitRegisterAccountKit()') Đăng ký
 					//button.btn.btn-primary(ng-click='submitRegister()') Đăng ký
