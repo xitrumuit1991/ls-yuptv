@@ -2,28 +2,27 @@
 	.schedule.wrapper
 		.row
 			.col-md-6
-				h2.head-title LỊCH DIỄN
+				h2.head-title.text-lich-dien LỊCH DIỄN
+
 			.col-md-6.text-right
-				span.label.black Hiển thị
-				select.form-control(
+				span.label.black.text-hien-thi Hiển thị
+				select.form-control.select-search-dropdown(
 				ng-model="categorySelected"
 				ng-change="changeCategorySelect()"
 				ng-options="item.id as item.title for item in selectCategoryValue")
 
-				select.form-control(ng-model="dateSelected"
+				select.form-control.select-search-dropdown(ng-model="dateSelected"
 				ng-change="changeDateSelect()"
 				ng-options="item.id as item.title for item in selectDateValue")
 
-				select.form-control(ng-model="monthSelected"
+				select.form-control.select-search-dropdown(ng-model="monthSelected"
 				ng-change="changeMonthSelect()"
 				ng-options="item.id as item.title for item in selectMonthValue")
-
 		hr
 		include _filter_search
-
 		.row(ng-if="activeView == 'now-tomorrow' ")
 			.col-md-6
-				h4 {{textNowDate}}
+				h4.text-hom-nay {{textNowDate}}
 				.row
 					.col-md-12
 						table.table.table-bordered
@@ -56,7 +55,7 @@
 
 
 			.col-md-6
-				h4 {{textTomorrowDate}}
+				h4.text-hom-nay {{textTomorrowDate}}
 				.row
 					.col-md-12
 						table.table.table-bordered

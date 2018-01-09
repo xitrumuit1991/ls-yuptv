@@ -1,64 +1,125 @@
-.schedule{
-  .head-title{
+.schedule {
+  background: #fff;
+  margin: 50px auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 0px !important;
+  padding: 40px;
+
+  .select-search-dropdown {
+    font-size: 15px;
+    font-family: "Montserrat";
+    color: rgba(0, 0, 0, 0.702);
+  }
+
+  .text-hom-nay {
+    font-size: 18px;
+    font-family: "Montserrat";
+    color: rgb(0, 0, 0);
+  }
+
+  .follow {
+    span {
+      font-size: 12px;
+      font-family: "Montserrat";
+      color: rgb(255, 255, 255);
+      //line-height: 2.5;
+      //-moz-transform: matrix( 0.93271461716937,0,0,0.93103448275862,0,0);
+      //-webkit-transform: matrix( 0.93271461716937,0,0,0.93103448275862,0,0);
+      //-ms-transform: matrix( 0.93271461716937,0,0,0.93103448275862,0,0);
+      //position: absolute;
+      //left: 1163.17px;
+      //top: 425.5px;
+      //z-index: 306;
+    }
+  }
+  .head-title {
     margin: 0;
     padding: 0;
   }
-  select.form-control{
+  .text-lich-dien {
+    font-size: 27px;
+    font-family: "Montserrat";
+    color: rgb(0, 0, 0);
+    //line-height: 1.2;
+    //text-align: left;
+    //-moz-transform: matrix( 0.92672413793103,0,0,0.93150684931507,0,0);
+    //-webkit-transform: matrix( 0.92672413793103,0,0,0.93150684931507,0,0);
+    //-ms-transform: matrix( 0.92672413793103,0,0,0.93150684931507,0,0);
+    //position: absolute;
+    //left: 172.067px;
+    //top: 185.004px;
+    //z-index: 5;
+  }
+  .text-hien-thi {
+    font-size: 15px;
+    font-family: "Montserrat";
+    color: rgb(0, 0, 0);
+    //line-height: 1.2;
+    //text-align: left;
+    //position: absolute;
+    //left: 774.938px;
+    //top: 203.708px;
+    //z-index: 54;
+  }
+
+  select.form-control {
     display: inline-block;
     width: auto;
     margin: 0 7px;
     padding: 0 15px;
   }
-  button.btn-search{
+  button.btn-search {
     cursor: pointer;
     border-radius: 50%;
     outline: none;
     border: none;
     background: #dedede;
-    i.fa-search{
+    i.fa-search {
       color: #565656;
       font-size: 16px;
     }
   }
 
-  .title-table{
+  .title-table {
 
   }
 
-  .group-image-name{
-    img.img-responsive{
+  .group-image-name {
+    img.img-responsive {
       display: inline-block;
       width: 20%;
       border-radius: 50%;
     }
-    .name{
+    .name {
       display: inline-block;
       line-height: 100%;
       vertical-align: middle;
       margin-left: 10px;
-      p{
-        font-weight:bold;
+      p {
+        font-weight: bold;
         cursor: pointer;
       }
-      i.fa{
+      i.fa {
         margin: 5px;
       }
-      span{
+      span {
         margin-right: 5px;
       }
     }
   }
-  .group-time-follow{
-    .time{
+  .group-time-follow {
+    .time {
       display: inline-block;
       width: 30%;
     }
-    .follow{
+    .follow {
       display: inline-block;
       width: 67%;
       text-align: right;
-      button{
-        &.unfollow{ background:#fe1503; }
+      button {
+        &.unfollow {
+          background: #fe1503;
+        }
         border: none;
         outline: none;
         background: #a70efe;
@@ -69,32 +130,32 @@
     }
   }
 
-  .list-room-schedule-following{
+  .list-room-schedule-following {
     list-style: none;
     overflow: scroll;
     width: auto;
     white-space: nowrap;
-    .list-inline-item{
+    .list-inline-item {
       margin: 10px 30px;
       list-style: none;
     }
-    .carousel-item{
+    .carousel-item {
       margin-right: 20px;
     }
-    .image-idol{
+    .image-idol {
       position: relative;
       cursor: pointer;
-      &.selected{
-        img{
+      &.selected {
+        img {
           box-shadow: 0px 0px 20px #c3005f;
         }
       }
-      img{
+      img {
         width: 100%;
         display: block;
         border-radius: 50%;
       }
-      button{
+      button {
         position: absolute;
         bottom: 20%;
         outline: none;
@@ -111,23 +172,22 @@
         border: 1px solid #fff;
       }
     }
-    .name-idol{
+    .name-idol {
 
     }
   }
 
 }
 
-.schedule-modal-detail
-{
-  .modal-body{
+.schedule-modal-detail {
+  .modal-body {
     padding: 0 15px 15px 15px;
   }
-  .title-main{
+  .title-main {
     font-size: 20px;
     font-weight: bold;
   }
-  i.fa.fa-close{
+  i.fa.fa-close {
     margin: 5px;
     z-index: 9999;
     cursor: pointer;
@@ -135,43 +195,43 @@
     font-size: 20px;
   }
 
-  .group-image{
+  .group-image {
     display: inline-block;
     width: 15%;
-    .image{
+    .image {
       border-radius: 50%;
     }
   }
-  .group-name{
+  .group-name {
     display: inline-block;
     width: 80%;
     vertical-align: top;
     margin-top: 20px;
     margin-left: 20px;
-    .group-icon{
-      .fa{
+    .group-icon {
+      .fa {
         margin-right: 5px;
       }
-      span{
+      span {
         margin-right: 10px;
       }
     }
   }
-  .btn-follow{
+  .btn-follow {
     border: none;
     outline: none;
     background: #a70efe;
     color: #fff;
     border-radius: 40px;
     padding: 3px 15px;
-    &.btn-get-noty{
+    &.btn-get-noty {
       background: #ce75fe;
     }
   }
-  .label-hour{
+  .label-hour {
     font-size: 12px;
   }
-  .hour{
+  .hour {
     font-weight: bold;
   }
 }
