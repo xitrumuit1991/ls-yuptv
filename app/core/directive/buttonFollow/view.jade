@@ -1,11 +1,11 @@
-div
+div(ng-if='item.User.id != user.id')
 	button.btn-follow(
-	ng-if='item.User.Room.isFollow==false'
+	ng-if='item.User.Room.isFollow==false '
 	ng-click='followIdol( type, item )' )
 		span Theo dõi
 
 	button.btn-follow(
-	ng-if='item.User.Room.isFollow==true'
+	ng-if='item.User.Room.isFollow==true '
 	ng-click='unfollowIdol( type, item )' )
 		i.fa.fa-check.margin-right-5
 		span Đang theo dõi
