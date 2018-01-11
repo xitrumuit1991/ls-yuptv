@@ -7,7 +7,7 @@
 	autoplay-speed='4000',
 	dots='true')
 		carousel-item
-			img.img-responsive(src='{{ item.images_path.w1080h622 }}', alt='{{ item.caption }}')
+			img.img-responsive(src='{{ item.images_path.w1440h445 || item.images_path.w1080h622 }}', alt='{{ item.caption }}')
 			.caption-group
 				.caption
 					a(href='{{item.url}}') {{item.caption}}
