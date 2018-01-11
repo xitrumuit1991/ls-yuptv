@@ -22,7 +22,7 @@ home-slider
 							span.name.margin-left-10 {{groupIdo.title | uppercase }}
 
 
-.clearfix
+.clearfix(style='height:41px; ') &nbsp;
 .container.home-block-content(ng-repeat='groupIdo in groupIdol' ng-if='groupIdo && groupIdo.Rooms.length > 0')
 	.group-title.col-md-12.category-title
 		.pull-left
@@ -31,28 +31,28 @@ home-slider
 				span.name  {{groupIdo.title}}
 		.right.pull-right.margin-top-15(ng-if='groupIdo.Rooms.length > 6')
 			a.inline(ui-sref='base.category({id:groupIdo.id})' )
-				span.margin-right-5.inline Xem thêm
+				span.margin-right-5.inline.home-text-xem-them Xem thêm
 				//i.fa.fa-arrow-circle-right
 				img.inline(src='images/view_more.png')
-	.clearfix
 	.group-content
 		.col-md-2(ng-repeat='room in groupIdo.Rooms | limitTo : 6')
 			.item
 				a(ui-sref='base.room-detail({id : room.id})')
 					img.item-image(src='{{room.banner || room.background || room.User.avatar || "http://via.placeholder.com/185x185" }}')
-				.item-group.row
-					.item-title.col-md-8
+				.item-group
+					.item-title
 						a(ui-sref='base.room-detail({id : room.id})')
 							p.title {{room.title || room.User.name }}
 						i.fa.fa-eye
 						span.value {{room.views | thousandSuffix : 1 }} &nbsp;&nbsp;
 						i.fa.fa-heart
 						span.value {{room.hearts | thousandSuffix : 1 }}
-					.item-favorite.col-md-3.pointer(
+
+					.item-favorite.pointer(
 					ng-if='room.isFollow == false && room.id != user.Room.id '
 					ng-click='homeClickFollowIdol(room, groupIdo.id, $index)')
 						i.fa.fa-plus-circle
-					.item-favorite.col-md-3.pointer(
+					.item-favorite.pointer(
 					ng-if='room.isFollow == true && room.id != user.Room.id'
 					ng-click='homeClickunFollowIdol(room, groupIdo.id, $index)')
 						i.fa.fa-minus-circle

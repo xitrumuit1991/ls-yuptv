@@ -18,7 +18,7 @@
 				select.form-control.select-search-dropdown(ng-model="monthSelected"
 				ng-change="changeMonthSelect()"
 				ng-options="item.id as item.title for item in selectMonthValue")
-		hr
+		.schedule-line-hr &nbsp;
 		include _filter_search
 		.row(ng-if="activeView == 'now-tomorrow' ")
 			.col-md-6
@@ -27,8 +27,10 @@
 					.col-md-12
 						table.table.table-bordered
 							tr
-								td(width='50%') Idol diễn
-								td(width='50%') Giờ diễn
+								td(width='50%')
+									span.table-th-text Idol diễn
+								td(width='50%')
+									span.table-th-text Giờ diễn
 							tr(ng-if='!roomAtNowDate || roomAtNowDate.length <= 0')
 								td(colspan='2') Không có lịch diễn nào
 							tr(ng-repeat='item in roomAtNowDate' ng-if='roomAtNowDate.length > 0')
@@ -38,10 +40,11 @@
 										.name
 											p.limit-length-140.block(ng-click='openScheduleDetail(item)')
 												|{{item.Room.title || item.Room.User.name }}
-											i.fa.fa-eye
-											span {{item.Room.views | thousandSuffix : 1}}
-											i.fa.fa-heart-o
-											span {{item.Room.hearts | thousandSuffix : 1}}
+											.icons
+												i.fa.fa-eye
+												span {{item.Room.views | thousandSuffix : 1}}
+												i.fa.fa-heart-o
+												span {{item.Room.hearts | thousandSuffix : 1}}
 								td(style='border-left: none;')
 									.group-time-follow
 										.time.bold {{item.start | date:'HH:mm' }}
@@ -60,8 +63,10 @@
 					.col-md-12
 						table.table.table-bordered
 							tr
-								td(width='50%') Idol diễn
-								td(width='50%') Giờ diễn
+								td(width='50%')
+									span.table-th-text Idol diễn
+								td(width='50%')
+									span.table-th-text Giờ diễn
 							tr(ng-if='!roomAtTomorrowDate || roomAtTomorrowDate.length <= 0')
 								td(colspan='2') Không có lịch diễn nào
 							tr(ng-repeat='item in roomAtTomorrowDate' ng-if='roomAtTomorrowDate.length > 0')
@@ -71,10 +76,11 @@
 										.name
 											p.limit-length-140.block(ng-click='openScheduleDetail(item)')
 												|{{item.Room.title || item.Room.User.name }}
-											i.fa.fa-eye
-											span {{item.Room.views | thousandSuffix : 1}}
-											i.fa.fa-heart-o
-											span {{item.Room.hearts | thousandSuffix : 1}}
+											.icons
+												i.fa.fa-eye
+												span {{item.Room.views | thousandSuffix : 1}}
+												i.fa.fa-heart-o
+												span {{item.Room.hearts | thousandSuffix : 1}}
 								td(style='border-left: none;')
 									.group-time-follow
 										.time.bold {{item.start | date:'HH:mm' }}
@@ -93,7 +99,7 @@
 				.col-md-12
 					hr
 				.col-md-12
-					h3 Lịch phát sóng Idol của bạn ({{listUserFollowing.length}})
+					h3.text-lich-phat-song-idol-cua-ban Lịch phát sóng Idol của bạn ({{listUserFollowing.length}})
 					br
 					br
 				.col-md-12
