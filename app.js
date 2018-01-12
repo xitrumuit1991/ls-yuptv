@@ -95,31 +95,43 @@ app.get('/down-app',function (req,res) {
 });
 app.get('/health_check',function (req,res) { res.json({service:'livestar web v2',time:(new Date()).getTime(),message:'ok'}) });
 
-app.get('/room-detail/:id',function (req,res,next) {
+app.get('/room-detail/:id',function (req,res,next)
+{
   //share or SEO facebook og:tag
   var id = req.params ? req.params.id : '';
   var userAgent = req.headers['user-agent'];
-  console.log('----------------------------');
+  console.log('--------------share fb--------------');
   console.log('id',id);
   console.log('userAgent',userAgent);
-  if(!id) return next();
-  if (userAgent.startsWith('facebookexternalhit/1.1') || userAgent === 'Facebot' || userAgent.startsWith('Twitterbot')) {
+  if (userAgent.startsWith('facebookexternalhit/1.1') || userAgent === 'Facebot' || userAgent.startsWith('Twitterbot'))
+  {
+    if(!id || !userAgent)
+    {
+      return next();
+      // return res.json({ botFacebook : true, msg : 'userAgent null or id null' , userAgent: (userAgent || ''), id : (id || '') });
+    }
     request({
       url: configs.api_base_url+'room/' + id + '/',
       method:'GET'
     },function (error,response,body) {
-      if (error) return next();
-      if (response && response.statusCode != 200)
+      if (error || (response && response.statusCode != 200) || (response && !body) )
+      {
         return next();
-      if (response && !body) return next();
+        // return res.json({ botFacebook : true,
+        //   msg : 'response.statusCode != 200 or body null' , userAgent: (userAgent || ''), id : (id || '')
+        // });
+      }
       try {
         var data = JSON.parse(body);
         console.log('configs.api_base_url',data);
-        if (!data) return next();
+        if (!data){
+          return next();
+          // return res.json({ botFacebook : true,  msg : 'parse json error' , detail: data});
+        }
         var dataPass = {
           layout:false,
           og_title:(data.title || 'YUP - Ứng dụng livestream kiếm tiền số 1'),
-          og_url: configs.link_website + 'room-detail/' + data.id,
+          og_url: (configs.link_website || 'http://www.yuptv.vn/' ) + 'room-detail/' + data.id,
           og_description:(data.description || 'Tự tin tỏa sáng, thỏa sức kiếm tiền. YUP - Ứng dụng livestream kiếm tiền số 1'),
           og_image:(data.banner || data.background || (data.User ? data.User.avatar : 'http://yuptv.vn/images/Ve_Yup.png' ) ),
           id:data.id
@@ -130,8 +142,10 @@ app.get('/room-detail/:id',function (req,res,next) {
       catch (errorJSONParse) {
         console.log('errorJSONParse',errorJSONParse);
         return next();
+        // return res.json({ botFacebook : true,  msg : 'parse json error' , detail: errorJSONParse});
       }
     });
+    return;
   }
   return next();
 });
