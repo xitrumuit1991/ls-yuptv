@@ -88,6 +88,7 @@ ctrl = ($rootScope,
 
 
   $scope.lichdienFollowRoom = (item, type="follow")->
+    return UtilityService.notifyError('Vui lòng đăng nhập ') unless $rootScope.user
     if type == 'follow'
       ApiService.followIdol {roomId : item.Room.id} , (error, result)->
         return if error
