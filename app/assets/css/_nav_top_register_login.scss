@@ -62,8 +62,8 @@
       .avatar {
         border-radius: 50%;
         margin-right: 5px;
-        width: 50px;
-        height: 50px;
+        width: 42px;
+        height: 42px;
       }
       .name {
         margin-right: 2px;
@@ -150,40 +150,37 @@
     margin-top: 0;
 
     .menu_main_list_item {
-      border-right: 1px solid #ccc;
+      border-right: 1px solid rgba(255, 255, 255, .15);
       text-align: center;
       font-size: 16px;
+      line-height: 20px;
+      margin-top: 20px;
       .link-item{
         color: #cbcbcb;
         text-decoration: none;
         display: inline-block;
         vertical-align: middle;
+        line-height: 20px;
         &.active{
           //color: #fff;
           color: #cbcbcb;
         }
         img{
-          width: 13px;
-          height: 13px;
+          width: 14px;
+          height: auto;
           display: inline-block;
-          /* line-height: 18px; */
-          /* vertical-align: middle; */
           margin-top: 0px;
+          line-height: 20px;
         }
         span{
+          font-family: Montserrat;
+          font-size: 14px;
+          color: #ffffff;
           height: 20px;
           line-height: 20px;
           display: inline-block;
           vertical-align: middle;
-          font-size: 12px;
-          font-family: "Montserrat";
-          color: rgb(255, 255, 255);
-          //line-height: 2.143;
           text-align: left;
-          //position: absolute;
-          //left: 159.937px;
-          //top: 97.249px;
-          //z-index: 923;
         }
       }
       &.active{

@@ -40,13 +40,18 @@
     transform: translate(0%, -50%);
     overflow: hidden;
     button {
-      background: #820f5a;
+      //background: #820f5a;
       border-radius: 50%;
+      opacity: 0.5;
+      background-color: #280c45;
       width: 60px;
       height: 60px;
       border: none;
       color: #fff;
       outline: none;
+      i.fa{
+        color: #fff;
+      }
     }
   }
   .carousel-prev {
@@ -90,22 +95,21 @@
     .ios, .android {
       a {
         display: inline-block;
-        //color: #e4e4e4;
-        margin: 0 15px;
+        margin: 0 60px;
         text-decoration: none;
-
         font-size: 14px;
         font-family: "Montserrat";
         color: rgb(255, 255, 255);
-        //line-height: 2.143;
-        //text-align: left;
-        //position: absolute;
-        //left: 789.795px;
-        //top: 551.249px;
-        //z-index: 916;
-
-        &:hover {
-          color: #fff;
+        .text-download{
+          font-family: Montserrat;
+          font-size: 14px;
+          //line-height: 2.14;
+          //text-align: left;
+          color: #ffffff;
+          margin-left: 12px;
+          &:hover {
+            color: #fff;
+          }
         }
       }
     }
@@ -271,23 +275,15 @@
       cursor: pointer;
     }
     .name {
-      font-weight: bold;
-      //font-size: 15px;
       cursor: pointer;
       line-height: 40px;
       display: inline-block;
-      //vertical-align: middle;
-
-      font-size: 16px;
-      font-family: "Montserrat";
-      color: rgb(0, 0, 0);
       text-transform: uppercase;
-      //line-height: 1.875;
-      //position: absolute;
-      //left: 298.937px;
-      //top: 1139px;
-      //z-index: 634;
-
+      font-family: Montserrat;
+      font-size: 16px;
+      font-weight: 500;
+      text-align: left;
+      color: #000000;
     }
   }
 }
