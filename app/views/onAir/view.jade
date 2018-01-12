@@ -22,8 +22,8 @@
 
 	.clearfix
 	.container
-		.row.margin-top-50.margin-bottom-30
-			.col-md-12
+		.row.margin-top-50.margin-bottom-10
+			.col-md-12(style='padding: 0;')
 				.pull-left
 					.header
 						img(src='/images/onair_title.png' style='width: 20px;height: auto;margin: 0 5px;')
@@ -42,7 +42,7 @@
 			.col-md-12
 				p.text-danger Không có room nào
 		.row(ng-if='items && items.length > 0 ')
-			.col-md-4
+			.col-md-4(style='padding: 5px;')
 				.on-air-block-main(ng-if='items && items[0] && items[0].onAir == true ' )
 					img.on-air-block-main-image(
 					src='{{ items[0].banner || items[0].background || items[0].User.avatar || "http://via.placeholder.com/185x185" }}'
@@ -106,4 +106,6 @@
 					.on-air-icon
 						.icon &nbsp;
 						span LIVE
+
+		.clearfix.margin-bottom-50 &nbsp;
 
