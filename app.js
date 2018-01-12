@@ -98,29 +98,37 @@ app.get('/health_check',function (req,res) { res.json({service:'livestar web v2'
 app.get('/room-detail/:id',function (req,res,next) {
   //share or SEO facebook og:tag
   var id = req.params ? req.params.id : '';
-  if(!id) return next();
   var userAgent = req.headers['user-agent'];
+  console.log('----------------------------');
+  console.log('id',id);
+  console.log('userAgent',userAgent);
+  if(!id) return next();
   if (userAgent.startsWith('facebookexternalhit/1.1') || userAgent === 'Facebot' || userAgent.startsWith('Twitterbot')) {
     request({
       url: configs.api_base_url+'room/' + id + '/',
       method:'GET'
     },function (error,response,body) {
       if (error) return next();
-      if (response && response.statusCode != 200) return next();
+      if (response && response.statusCode != 200)
+        return next();
       if (response && !body) return next();
       try {
         var data = JSON.parse(body);
+        console.log('configs.api_base_url',data);
         if (!data) return next();
-        return res.render('bot-room-detail-for-share-social',{
+        var dataPass = {
           layout:false,
           og_title:(data.title || 'YUP - Ứng dụng livestream kiếm tiền số 1'),
           og_url: configs.link_website + 'room-detail/' + data.id,
           og_description:(data.description || 'Tự tin tỏa sáng, thỏa sức kiếm tiền. YUP - Ứng dụng livestream kiếm tiền số 1'),
           og_image:(data.banner || data.background || (data.User ? data.User.avatar : 'http://yuptv.vn/images/Ve_Yup.png' ) ),
           id:data.id
-        });
+        };
+        console.log('dataPass',dataPass);
+        return res.render('bot-room-detail-for-share-social',dataPass);
       }
       catch (errorJSONParse) {
+        console.log('errorJSONParse',errorJSONParse);
         return next();
       }
     });
