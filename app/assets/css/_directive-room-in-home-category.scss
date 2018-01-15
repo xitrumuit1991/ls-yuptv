@@ -1,3 +1,11 @@
 .directive-room-in-home-category{
+  img.item-image{
+    opacity: 0.9;
+  }
 
+  &:hover{
+    img.item-image{
+      opacity: 1;
+    }
+  }
 }
