@@ -14,25 +14,26 @@ config =
 config.menuMainHome = [
   {
     title : 'Kênh On Air',
-    icon : 'fa-video-camera'
+#    icon : 'fa-video-camera'
     href : 'base.on-air'
     itemClass : 'col-md-4'
     image : 'images/icon_livestream.png'
+#    backgroundColor : '#BB1275'
   },
   {
     title : 'Lịch Diễn',
     icon : 'fa-calendar-o'
     href : 'base.schedule'
     itemClass : 'col-md-4'
-    image : 'images/Lich_dien.png'
+#    image : 'images/Lich_dien.png'
   },
   {
     title : 'Tin Tức',
-    icon : 'fa-file'
+    icon : 'fa-bell-o'
     href : 'http://tintuc.livestar.vn'
     isLink : true
     itemClass : 'col-md-4'
-    image : 'images/blog.png'
+#    image : 'images/blog.png'
   },
 ]
 
