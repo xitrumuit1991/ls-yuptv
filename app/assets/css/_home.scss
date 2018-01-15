@@ -97,7 +97,7 @@
         display: inline-block;
         margin: 0 60px;
         text-decoration: none;
-        font-size: 14px;
+        font-size: 20px;
         font-family: "Montserrat";
         color: rgb(255, 255, 255);
         .text-download{
@@ -157,8 +157,7 @@
   .group-content {
     margin-top: 10px;
     .col-md-2 {
-      //padding: 3px;
-      padding: 0px 5px;
+      padding: 0px 2.5px;
     }
     .col-md-2:nth-child(6n+1){
       clear:left
