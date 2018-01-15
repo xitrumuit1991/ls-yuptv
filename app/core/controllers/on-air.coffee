@@ -31,6 +31,7 @@ ctrl = ($rootScope,
       return if err
       result if result and result.error
       $scope.items = if result and result.category then result.category.Rooms else []
+#      UtilityService.notifyError('') if _.isEmpty($scope.items)
     )
 
   $scope.loadData = ()->
