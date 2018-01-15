@@ -2,7 +2,7 @@
 	.row
 		.col-md-12.text-center.item-first(ng-if='rankFacebook[0]')
 			.top
-				img.logo(src='{{rankFacebook[0].User.avatar || "http://via.placeholder.com/120x120" }}')
+				img.logo(src='{{rankFacebook[0].User.avatar || "/images/default_room.png" }}')
 				img.background(src='/images/top1.png')
 			.name.text-center {{rankFacebook[0].User.name}}
 			.icon.text-center
@@ -14,7 +14,7 @@
 				.col-md-2
 				.col-md-4.item-second.text-center(ng-if='rankFacebook[1]')
 					.top
-						img.logo(src='{{rankFacebook[1].User.avatar || "http://via.placeholder.com/120x120" }}')
+						img.logo(src='{{rankFacebook[1].User.avatar || "/images/default_room.png" }}')
 						img.background(src='/images/top2.png')
 					.name.text-center {{rankFacebook[1].User.name}}
 					.icon.text-center
@@ -24,7 +24,7 @@
 
 				.col-md-4.item-thirst.text-center(ng-if='rankFacebook[2]')
 					.top
-						img.logo(src='{{rankFacebook[2].User.avatar || "http://via.placeholder.com/120x120" }}')
+						img.logo(src='{{rankFacebook[2].User.avatar || "/images/default_room.png" }}')
 						img.background(src='/images/top3.png')
 					.name.text-center {{rankFacebook[2].User.name}}
 					.icon.text-center
@@ -38,7 +38,7 @@
 			.row
 				.col-md-4
 					.top.text-right
-						img(src='{{rankItem.User.avatar || "http://via.placeholder.com/120x120" }}')
+						img(src='{{rankItem.User.avatar || "/images/default_room.png" }}')
 						.number {{$index+1}}
 				.col-md-6.item-content
 					.row
