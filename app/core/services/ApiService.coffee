@@ -27,6 +27,7 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
     .error self.requestError.bind(self, done)
 
   self.getListBanner = (params, done)->
+    params.isapp = false
     options =
       url : GlobalConfig.API_URL + "app/poster"
       method : 'GET'
