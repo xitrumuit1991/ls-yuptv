@@ -38,7 +38,7 @@ home-slider
 		.col-md-2(ng-repeat='room in groupIdo.Rooms | limitTo : 6')
 			.item
 				a(ui-sref='base.room-detail({id : room.id})')
-					img.item-image(src='{{room.banner || room.background || room.User.avatar || "http://via.placeholder.com/185x185" }}')
+					img.item-image(src='{{room.banner || room.background || room.User.avatar || "/images/default_room.png" }}')
 				.item-group
 					.item-title
 						a(ui-sref='base.room-detail({id : room.id})')

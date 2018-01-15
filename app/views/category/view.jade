@@ -22,9 +22,9 @@
 			.col-md-2(ng-repeat='room in category.Rooms '
 			ng-if=' category.Rooms && category.Rooms.length > 0 ' style='margin: 20px 0;'
 			)
-				.item
+				.item.category-item-room
 					a(ui-sref='base.room-detail({id : room.id})')
-						img.item-image(src='{{room.banner || room.background || room.User.avatar || "http://via.placeholder.com/185x185" }}')
+						img.item-image(src='{{room.banner || room.background || room.User.avatar || "/images/default_room.png" }}')
 					.item-group.row
 						.item-title.col-md-8
 							a(ui-sref='base.room-detail({id : room.id})')
@@ -35,9 +35,6 @@
 							span.value {{room.hearts | thousandSuffix : 1}}
 						.col-md-3
 							button-follow-plus-minus(ng-item='room' ng-index='$index' ng-action-follow='categoryClickFollowIdol' ng-action-unfollow='categoryClickUnfollowIdol')
-						//.item-favorite.col-md-3.pointer(ng-if='room.isFollow == false'
-						//ng-click='categoryClickFollowIdol(room, $index)')
-						//	i.fa.fa-plus-circle
 		.row
 			.col-md-12
 				ul.table-records-pages.pagination-search(
