@@ -1,6 +1,8 @@
 .row(ng-if="activeView == 'filter-search' ")
 	.col-md-6.col-md-offset-3
-		h3.text-center Kết quả tìm kiếm
+		h3.text-center
+			span Kết quả tìm kiếm
+			b.margin-left-10 {{textResultTimKiem}}
 	.col-md-6.col-md-offset-3(ng-if='listRoomSearch.length <= 0')
 		|Không có lịch diễn nào
 	.col-md-12(ng-if='listRoomSearch && listRoomSearch.length > 0')
@@ -15,9 +17,11 @@
 			tr(ng-repeat='item in listRoomSearch')
 				td(style='border-right: none;')
 					.group-image-name
-						img.img-responsive(src='{{ item.Room.User.avatars_path.avatar || "http://via.placeholder.com/130x130" }}')
+						img.img-responsive.pointer(
+						ng-click='openScheduleDetail(item)'
+						src='{{ item.Room.User.avatars_path.avatar || "http://via.placeholder.com/130x130" }}')
 						.name
-							p(ng-click='openScheduleDetail(item)')
+							.pointer(ng-click='openScheduleDetail(item)')
 								|{{item.Room.title || item.Room.User.name }}
 							.icons
 								i.fa.fa-eye
@@ -25,8 +29,8 @@
 								i.fa.fa-heart-o
 								span {{item.Room.hearts | thousandSuffix : 1 }}
 				td(style='border-left: none; border-right: none;')
-					p {{item.start | date:'dd-MM-yyyy' }}
-					//p item.Room.User.id {{item.Room.User.id}}
+					.group-time-follow
+						span {{item.start | date:'dd-MM-yyyy' }}
 				td(style='border-left: none;')
 					.group-time-follow
 						.time.bold {{item.start | date:'HH:mm' }}
@@ -38,3 +42,18 @@
 							ng-click='lichdienFollowRoom(item,"unfollow")')
 								i.fa.fa-check.margin-right-5
 								span Đang theo dõi
+	//.col-md-12
+		ul.table-records-pages.pagination-search(
+		uib-pagination
+		total-items='param.total_item',
+		ng-model='param.page',
+		items-per-page='param.limit'
+		ng-change="filterSearchPageOnChange()"
+		max-size="7"
+		boundary-links="true"
+		rotate="false"
+		first-text='«'
+		last-text = '»'
+		next-text ='›'
+		previous-text= '‹'
+		)
