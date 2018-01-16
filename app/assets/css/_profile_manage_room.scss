@@ -1,46 +1,123 @@
 .profile-manage-room{
   .header{
-
+    .text-main{
+      height: 27px;
+      font-family: Montserrat;
+      font-size: 25px;
+      font-weight: 500;
+      text-align: left;
+      color: #000000;
+    }
+    .description{
+      //width: 314px;
+      //height: 16px;
+      opacity: 0.8;
+      font-family: Montserrat;
+      font-size: 14px;
+      text-align: left;
+      color: rgba(66, 66, 66, 0.8);
+    }
   }
+
+  .line-manage-room{
+    display: block;
+    height: 1px;
+    border-radius: 0.5px;
+    background-color: #efefef;
+    margin-top: 36px;
+    margin-bottom: 41px;
+  }
+
   .body-top{
+    .room-title{
+      span{
+        font-family: Montserrat;
+        font-size: 20px;
+        font-weight: 500;
+        text-align: left;
+        color: #000000;
+      }
+    }
     .group-image{
       position: relative;
       img{
         width: 100%;
+        border-radius: 5px;
+        background-color: #efefef;
+        box-shadow: 0 7px 8px 0 rgba(138, 138, 138, 0.28);
       }
       button.btn-change-room-banner{
         position: absolute;
         bottom: 10px;
         right: 10px;
-        border-radius: 5px;
         outline: none;
-        background: #00bf74;
-        color: #fff;
         border: none;
+        font-family: Montserrat;
+        font-size: 10px;
+        line-height: 10px;
+        font-weight: 600;
+        color: #ffffff;
+        border-radius: 3px;
+        background-color: #20cdff;
+        border: solid 1px #14bdee;
+        padding: 5px 6px 3px 6px;
       }
     }
     .group-info{
+      margin-top: 13px;
       .left{
         display: inline-block;
         width: 50%;
         float: left;
+        opacity: 0.8;
+        font-family: Montserrat;
+        font-size: 12px;
+        //line-height: 2.08;
+        text-align: left;
+        color: rgba(0, 0, 0, 0.8);
       }
       .right{
         display: inline-block;
         width: 50%;
         float: left;
         text-align: right;
+        opacity: 0.8;
+        font-family: Montserrat;
+        font-size: 12px;
+        font-style: italic;
+        line-height: 2.08;
+        color: rgba(0, 0, 0, 0.8);
       }
     }
     .room-title{
 
     }
+    .room-description{
+      //height: 40px;
+      font-family: Montserrat;
+      font-size: 14px;
+      //line-height: 1.79;
+      text-align: left;
+      color: #424242;
+      margin-bottom: 35px;
+    }
     .group-icon{
-      i.fa{
+      margin-top: 18px;
+      margin-bottom: 36px;
+      i.fa, span{
         margin-right: 5px;
+        opacity: 0.7;
+        font-size: 14px;
+        line-height: 1.57;
+        text-align: left;
+        color: rgba(24, 24, 24, 0.7);
       }
       span{
         margin-right: 10px;
+        font-family: Montserrat;
+      }
+      .fa-heart-o{
+        margin-left: 33px;
       }
     }
     .group-category{
@@ -63,6 +140,8 @@
       width: 50%;
       float: left;
       display: inline-block;
+      margin-bottom: 15px;
+      margin-top: 20px;
       span{
         font-weight: bold;
         font-size: 16px;
@@ -103,12 +182,27 @@
       cursor: pointer;
 
     }
-
     .no-border-left{
       border-left: none !important;
     }
     .no-border-right{
       border-right: none !important;
+    }
+    .lich-dien-title {
+      opacity: 0.7;
+      font-family: Montserrat;
+      font-size: 14px;
+      text-align: left;
+      color: rgba(0, 0, 0, 0.7);
+      padding: 15px 0 13px 26px;
+    }
+    span.value{
+      font-family: Montserrat;
+      font-size: 14px;
+      text-align: left;
+      color: #000000;
+      padding: 15px 0 14px 26px;
+      display: inline-block;
     }
   }
 }

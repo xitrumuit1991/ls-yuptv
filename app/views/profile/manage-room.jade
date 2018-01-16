@@ -1,16 +1,15 @@
-.wrapper
-	.row.profile-manage-room
+.wrapper.profile-manage-room
+	.row
 		.col-md-12.header
-			h1 Quản lý phòng diễn
-			p Thay đổi ảnh đại diện phòng, cài đặt lịch diễn
-		.col-md-12
-			hr
+			h1.text-main Quản lý phòng diễn
+			.description Thay đổi ảnh đại diện phòng, cài đặt lịch diễn
+	.line-manage-room
+	.row
 		.col-md-12.body-top
 			.row
 				.col-md-5
 					.group-image
 						img.img-responsive(src='{{ user.avatar || user.Room.banner || user.Room.background || "http://via.placeholder.com/350x200" }}')
-						//button.btn-change-room-banner Thay đổi
 						button.btn-change-room-banner(type="file" ngf-select="changeRoomBanner($file, $invalidFiles)"
 						accept="image/*"  ngf-max-size="10MB"
 						ngf-max-height="1000", ngf-max-width="2000") Thay đổi
@@ -18,13 +17,14 @@
 						.left Ảnh phòng diễn
 						.right Size chuẩn: 350x200 px
 				.col-md-7
-					h3.room-title {{user.Room.title}}
+					.room-title
+						span {{user.Room.title}}
 					.group-icon
 						i.fa.fa-eye
 						span {{user.Room.views | thousandSuffix : 1 }}
 						i.fa.fa-heart-o
 						span {{user.Room.hearts | thousandSuffix : 1 }}
-					p(ng-if='user.Room.description') {{user.Room.description}}
+					.room-description(ng-if='user.Room.description') {{user.Room.description}}
 					.group-category(ng-show=' user.isIdol == true || user.isIdol == "true" ')
 						span Chọn thể loại
 						select.form-control(
@@ -42,27 +42,20 @@
 						span Lịch diễn
 						button(ng-click='openModalDetailAddEdit(null)')
 							i.fa.fa-plus
-					//.right
-						span Hiển thị
-						select.form-control.month(
-						ng-model="monthSelected"
-						ng-change="changeMonthSelect()"
-						ng-options="item.id as item.title for item in selectMonthValue"
-						)
-						select.form-control.year
-							option Năm
 				.col-md-8.col-md-offset-2
 					table.table-bordered.table
 						thead
-							th.no-border-right Ngày diễn
-							th.no-border-right.no-border-left Giờ diễn
-							th.no-border-left.text-center Thay đổi
+							th.no-border-right.lich-dien-title Ngày diễn
+							th.no-border-right.no-border-left.lich-dien-title Giờ diễn
+							th.no-border-left.lich-dien-title.text-center(style='text-align: center;') Thay đổi
 						tr(ng-if='listScheduleOfRoom.length <= 0')
 							td(colspan='3') Chưa có lịch diễn nào
 						tr(ng-repeat='item in listScheduleOfRoom' ng-if='listScheduleOfRoom.length > 0')
-							td.no-border-right {{item.start | date : 'dd-MM-yyyy'}}
-							td.no-border-right.no-border-left {{item.start | date : 'h:mm'}}
+							td.no-border-right
+								span.value {{item.start | date : 'dd-MM-yyyy'}}
+							td.no-border-right.no-border-left
+								span.value {{item.start | date : 'h:mm'}}
 							td.no-border-left.text-center
-								.text-center
+								span.value
 									i.fa.fa-pencil(ng-click='openModalDetailAddEdit(item)')
 									i.fa.fa-remove(ng-click='deleteItemSchedule(item)')

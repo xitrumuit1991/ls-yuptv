@@ -67,6 +67,8 @@
         span.name {
           font-size: 20px;
           font-weight: bold;
+          line-height: 20px;
+          display: inline-block;
         }
         span.level {
           margin-left: 10px;
@@ -75,6 +77,9 @@
           color: #fff;
           font-size: 10px;
           padding: 5px 12px;
+          line-height: 10px;
+          display: inline-block;
+          vertical-align: top;
         }
       }
       .content {
@@ -152,6 +157,7 @@
     }
     .following{
       .following-item{
+        margin-bottom: 20px;
         .img-responsive{
           border-radius: 50%;
           width: 100px;
@@ -183,6 +189,7 @@
     }
     .follower{
       .follower-item{
+        margin-bottom: 20px;
         .img-responsive{
           border-radius: 50%;
           width: 100px;
