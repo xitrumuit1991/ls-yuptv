@@ -6,15 +6,14 @@ _directive = ($rootScope,$timeout, ApiService) ->
     restrict : 'E'
     scope :
       room : '=ngItem'
-      groupIdol : '=ngGroupIdol'
       indexRoom : '=ngIndexRoom'
-      homeClickFollowIdol : '=ngActionFollow'
-      homeClickunFollowIdol : '=ngActionUnfollow'
+      fnFollow : '=ngActionFollow'
+      fnUnfollow : '=ngActionUnfollow'
     link : link
-    templateUrl : '/templates/directive/roomInHome/view.html'
+    templateUrl : '/templates/directive/roomInCategory/view.html'
   return directive
 _directive.$inject = ['$rootScope', '$timeout','ApiService']
 angular
-  .module 'app'
-  .directive "roomInHome", _directive
+.module 'app'
+.directive "roomInCategory", _directive
 

@@ -17,9 +17,9 @@
 
 			.item-favorite.pointer(
 			ng-if='room.isFollow == false && room.id != user.Room.id '
-			ng-click='homeClickFollowIdol(room, groupIdol.id, indexRoom)')
+			ng-click='fnFollow(room, indexRoom)')
 				i.fa.fa-plus-circle
 			.item-favorite.pointer(
 			ng-if='room.isFollow == true && room.id != user.Room.id'
-			ng-click='homeClickunFollowIdol(room, groupIdol.id, indexRoom)')
+			ng-click='fnUnfollow(room, indexRoom)')
 				i.fa.fa-minus-circle
