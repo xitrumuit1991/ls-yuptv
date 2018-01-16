@@ -14,7 +14,7 @@
 					span.table-th-text Ngày diễn
 				td(width='40%')
 					span.table-th-text Giờ diễn
-			tr(ng-repeat='item in listRoomSearch')
+			tr(ng-repeat='item in items')
 				td(style='border-right: none;')
 					.group-image-name
 						img.img-responsive.pointer(
@@ -42,18 +42,19 @@
 							ng-click='lichdienFollowRoom(item,"unfollow")')
 								i.fa.fa-check.margin-right-5
 								span Đang theo dõi
-	//.col-md-12
-		ul.table-records-pages.pagination-search(
-		uib-pagination
-		total-items='param.total_item',
-		ng-model='param.page',
-		items-per-page='param.limit'
-		ng-change="filterSearchPageOnChange()"
-		max-size="7"
-		boundary-links="true"
-		rotate="false"
-		first-text='«'
-		last-text = '»'
-		next-text ='›'
-		previous-text= '‹'
-		)
+			tr
+				td.text-center(colspan='3')
+					ul.table-records-pages.pagination-search(
+					uib-pagination
+					total-items='pagination.total_item',
+					ng-model='pagination.page',
+					items-per-page='pagination.limit'
+					ng-change="pagination.filterSearchPageOnChange()"
+					max-size="7"
+					boundary-links="true"
+					rotate="false"
+					first-text='«'
+					last-text = '»'
+					next-text ='›'
+					previous-text= '‹'
+					)

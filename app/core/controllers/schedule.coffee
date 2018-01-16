@@ -19,11 +19,13 @@ ctrl = ($rootScope,
   dd.setDate(d.getDate()+1)
   $scope.textNowDate = "Hôm nay, #{d.getDate()} tháng #{d.getMonth()+1}, #{d.getFullYear()}"
   $scope.textTomorrowDate = "Ngày mai, #{dd.getDate()} tháng #{dd.getMonth()+1}, #{dd.getFullYear()}"
+  $scope.activeView = 'now-tomorrow'
   $scope.textResultTimKiem = ''
   $scope.roomAtNowDate = []
   $scope.roomAtTomorrowDate = []
-  $scope.activeView = 'now-tomorrow'
+
   $scope.listRoomSearch = []
+  $scope.items = []
 
   $scope.selectCategoryValue = []
   $scope.categorySelected = ''
@@ -58,16 +60,29 @@ ctrl = ($rootScope,
   $scope.monthSelected = ''
   $scope.listUserFollowing = []
 
+  $scope.pagination =
+    page : 1
+    limit : 10
+    total_item : 0
+    filterSearchPageOnChange:()->
+      start = ($scope.pagination.page-1)*$scope.pagination.limit
+      end = ($scope.pagination.page-1)*$scope.pagination.limit + $scope.pagination.limit
+      $scope.items = []
+      i = start
+      while i < end and i <= $scope.pagination.total_item
+        $scope.items.push($scope.listRoomSearch[i])
+        i++
+      console.log '$scope.pagination.page',$scope.pagination.page
+      console.log '$scope.items',$scope.items
+      console.log 'start',start
+      console.log 'end',end
 
   $scope.param =
     keyword	: ''
     type : 'day'
     time : ''
-    page : 0
-    limit : 10
-
-  $scope.filterSearchPageOnChange = ()->
-
+    page : $scope.pagination.page
+    limit : $scope.pagination.limit
 
   getListRoomFollow = ()->
     ApiService.getUserFollowing {},(error, result)->
@@ -87,6 +102,8 @@ ctrl = ($rootScope,
       if filter == true
         $scope.activeView = 'filter-search'
         $scope.listRoomSearch = result
+        $scope.pagination.total_item = result.length if result
+        $scope.pagination.filterSearchPageOnChange()
       else
         $scope.activeView = 'now-tomorrow'
         $scope.roomAtNowDate = result if type == 'now'
@@ -134,7 +151,7 @@ ctrl = ($rootScope,
     $scope.activeView = 'filter-search'
     $scope.listRoomSearch = []
     $scope.getTextTimKiem()
-    $scope.param.page = 0
+    $scope.pagination.page = 1
 
   $scope.changeDateSelect = ()->
     $scope.activeView = 'filter-search'
@@ -143,7 +160,7 @@ ctrl = ($rootScope,
       getDataRoom('now', false)
       getDataRoom('+1day', false)
       return
-    $scope.param.page = 0
+    $scope.pagination.page = 1
     getDataRoom($scope.dateSelected, true)
     $scope.getTextTimKiem()
 
@@ -154,7 +171,7 @@ ctrl = ($rootScope,
       getDataRoom('now', false)
       getDataRoom('+1day', false)
       return
-    $scope.param.page = 0
+    $scope.pagination.page = 1
     $scope.getTextTimKiem()
     d = new Date()
     d.setDate(1)
