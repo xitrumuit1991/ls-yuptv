@@ -65,10 +65,11 @@ ctrl = ($rootScope, $scope, $timeout, $location,
         console.log 'click item gift',item
         return unless confirm('Tặng quà cho idol ?')
         paramsend =
-          userId: if $rootScope.user then $rootScope.user.id else ''
+          userId: if $scope.item and $scope.item.User then $scope.item.User.id else ''
           giftId: item.id
-          quantity:1
-          sessionId: if $scope.item.Session then $scope.item.Session.id else ''
+          quantity : 1
+          sessionId : if $scope.item.Session then $scope.item.Session.id else ''
+        return if !paramsend.userId or !paramsend.giftId or !paramsend.sessionId
         ApiService.room.sendGift paramsend,(err, result)->
           return if err
           return UtilityService.notifyError(result.message) if result and result.error
