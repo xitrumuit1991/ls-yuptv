@@ -10,9 +10,9 @@
 			tr
 				td(width='40%')
 					span.table-th-text Idol diễn
-				td(width='20%')
+				td(width='30%')
 					span.table-th-text Ngày diễn
-				td(width='40%')
+				td(width='30%')
 					span.table-th-text Giờ diễn
 			tr(ng-repeat='item in items')
 				td(style='border-right: none;')
@@ -22,12 +22,13 @@
 						src='{{ item.Room.User.avatars_path.avatar || "http://via.placeholder.com/130x130" }}')
 						.name
 							.pointer(ng-click='openScheduleDetail(item)')
-								|{{item.Room.title || item.Room.User.name }}
-							.icons
-								i.fa.fa-eye
-								span {{item.Room.views | thousandSuffix : 1 }}
-								i.fa.fa-heart-o
-								span {{item.Room.hearts | thousandSuffix : 1 }}
+								span.name-room {{item.Room.title || item.Room.User.name }}
+							.title-schedule {{item.title}}
+						.icons
+							i.fa.fa-eye
+							span.value {{item.Room.views | thousandSuffix : 1 }}
+							i.fa.fa-heart-o
+							span.value {{item.Room.hearts | thousandSuffix : 1 }}
 				td(style='border-left: none; border-right: none;')
 					.group-time-follow
 						span {{item.start | date:'dd-MM-yyyy' }}
@@ -36,12 +37,13 @@
 						.time.bold {{item.start | date:'HH:mm' }}
 						.follow
 							button(ng-if='item.Room.isFollow==false && item.Room.User.id != user.id'
-							ng-click='lichdienFollowRoom(item,"follow")') Theo dõi
+							ng-click='lichdienFollowRoom(item,"follow")')
+								span.text-follow Theo dõi
 
 							button(ng-if='item.Room.isFollow==true && item.Room.User.id != user.id'
 							ng-click='lichdienFollowRoom(item,"unfollow")')
 								i.fa.fa-check.margin-right-5
-								span Đang theo dõi
+								span.text-follow Đang theo dõi
 			tr
 				td.text-center(colspan='3')
 					ul.table-records-pages.pagination-search(

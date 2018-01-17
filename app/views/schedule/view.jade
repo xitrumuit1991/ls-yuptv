@@ -18,18 +18,20 @@
 				select.form-control.select-search-dropdown(ng-model="monthSelected"
 				ng-change="changeMonthSelect()"
 				ng-options="item.id as item.title for item in selectMonthValue")
+
 		.schedule-line-hr &nbsp;
 		include _filter_search
+
 		.row(ng-if="activeView == 'now-tomorrow' ")
-			.col-md-6
+			.col-md-6(style='padding:5px;')
 				h4.text-hom-nay {{textNowDate}}
 				.row
 					.col-md-12
 						table.table.table-bordered
 							tr
-								td(width='50%')
+								td.first-colum(style='border: none;')
 									span.table-th-text Idol diễn
-								td(width='50%')
+								td(style='border: none;')
 									span.table-th-text Giờ diễn
 							tr(ng-if='!roomAtNowDate || roomAtNowDate.length <= 0')
 								td(colspan='2') Không có lịch diễn nào
@@ -41,33 +43,34 @@
 										src='{{item.Room.User.avatars_path.avatar || "http://via.placeholder.com/130x130" }}')
 										.name
 											.limit-length-140.block.pointer(ng-click='openScheduleDetail(item)')
-												|{{item.Room.title || item.Room.User.name }}
-											.icons
-												i.fa.fa-eye
-												span {{item.Room.views | thousandSuffix : 1}}
-												i.fa.fa-heart-o
-												span {{item.Room.hearts | thousandSuffix : 1}}
+												span.name-room {{item.Room.title || item.Room.User.name }}
+											.title-schedule {{item.title}}
+										.icons
+											i.fa.fa-eye
+											span.value {{item.Room.views | thousandSuffix : 1}}
+											i.fa.fa-heart-o
+											span.value {{item.Room.hearts | thousandSuffix : 1}}
 								td(style='border-left: none;')
 									.group-time-follow
 										.time.bold {{item.start | date:'HH:mm' }}
 										.follow
 											button(ng-if='item.Room.isFollow == false && item.Room.User.id != user.id'
-											ng-click='lichdienFollowRoom(item,"follow")') Theo dõi
+											ng-click='lichdienFollowRoom(item,"follow")')
+												span.text-follow Theo dõi
 											button(ng-if='item.Room.isFollow == true && item.Room.User.id != user.id'
 											ng-click='lichdienFollowRoom(item,"unfollow")')
 												i.fa.fa-check.margin-right-5
-												span Đang theo dõi
+												span.text-follow Đang theo dõi
 
-
-			.col-md-6
+			.col-md-6(style='padding:5px;')
 				h4.text-hom-nay {{textTomorrowDate}}
 				.row
 					.col-md-12
 						table.table.table-bordered
 							tr
-								td(width='50%')
+								td.first-colum(style='border: none;')
 									span.table-th-text Idol diễn
-								td(width='50%')
+								td(style='border: none;')
 									span.table-th-text Giờ diễn
 							tr(ng-if='!roomAtTomorrowDate || roomAtTomorrowDate.length <= 0')
 								td(colspan='2') Không có lịch diễn nào
@@ -79,22 +82,24 @@
 										src='{{item.Room.User.avatars_path.avatar || "http://via.placeholder.com/130x130" }}')
 										.name
 											.limit-length-140.block.pointer(ng-click='openScheduleDetail(item)')
-												|{{item.Room.title || item.Room.User.name }}
-											.icons
-												i.fa.fa-eye
-												span {{item.Room.views | thousandSuffix : 1}}
-												i.fa.fa-heart-o
-												span {{item.Room.hearts | thousandSuffix : 1}}
+												span.name-room {{item.Room.title || item.Room.User.name }}
+											.title-schedule {{item.title}}
+										.icons
+											i.fa.fa-eye
+											span.value {{item.Room.views | thousandSuffix : 1}}
+											i.fa.fa-heart-o
+											span.value {{item.Room.hearts | thousandSuffix : 1}}
 								td(style='border-left: none;')
 									.group-time-follow
 										.time.bold {{item.start | date:'HH:mm' }}
 										.follow
 											button(ng-if='item.Room.isFollow==false && item.Room.User.id != user.id'
-											ng-click='lichdienFollowRoom(item,"follow")') Theo dõi
+											ng-click='lichdienFollowRoom(item,"follow")')
+												span.text-follow Theo dõi
 											button(ng-if='item.Room.isFollow==true && item.Room.User.id != user.id'
 											ng-click='lichdienFollowRoom(item,"unfollow")')
 												i.fa.fa-check.margin-right-5
-												span Đang theo dõi
+												span.text-follow Đang theo dõi
 
 
 		//Lịch phát sóng Idol của bạn

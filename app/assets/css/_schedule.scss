@@ -35,14 +35,7 @@
       font-size: 12px;
       font-family: "Montserrat";
       color: rgb(255, 255, 255);
-      //line-height: 2.5;
-      //-moz-transform: matrix( 0.93271461716937,0,0,0.93103448275862,0,0);
-      //-webkit-transform: matrix( 0.93271461716937,0,0,0.93103448275862,0,0);
-      //-ms-transform: matrix( 0.93271461716937,0,0,0.93103448275862,0,0);
-      //position: absolute;
-      //left: 1163.17px;
-      //top: 425.5px;
-      //z-index: 306;
+
     }
   }
   .head-title {
@@ -92,50 +85,66 @@
 
   }
 
+  td.first-colum{
+    padding: 8px 0;
+    margin: 0;
+    width: 335px;
+  }
+
+
+  .title-schedule{
+    margin-top: 0px;
+    font-family: Montserrat;
+    font-size: 12px;
+    text-align: left;
+    color: #000000;
+  }
+
   .group-image-name {
     padding: 10px 0 10px 18px;
     img.img-responsive {
       display: inline-block;
-      width: 20%;
+      //width: 20%;
+      width: 43px;
+      height: 43px;
       border-radius: 50%;
     }
     .name {
       display: inline-block;
-      line-height: 100%;
+      width: 105px;
+      margin-left: 5px;
+      margin-right: 25px;
       vertical-align: middle;
-      margin-left: 10px;
-      p {
+      //line-height : 13px;
+      span.name-room{
         font-family: Montserrat;
         font-size: 13px;
         font-weight: 500;
         text-align: left;
         color: #000000;
-        padding: 0;
-        margin-bottom: 5px;
       }
-      i.fa {
-        margin: 5px;
+    }
+    .icons{
+      display: inline-block;
+      vertical-align: middle;
+      i.fa, span.value {
+        margin: 0 2px;
         opacity: 0.7;
-        //font-family: Montserrat;
-        font-size: 11.7px;
-        line-height: 1.57;
-        text-align: left;
+        font-size: 11px;
         color: rgba(24, 24, 24, 0.7);
-        margin-top: 0px;
       }
-      span {
-        margin-right: 5px;
-        opacity: 0.7;
+      .fa-heart-o{
+        margin-left: 10px;
+      }
+      span.value{
         font-family: Montserrat;
-        font-size: 11.7px;
-        line-height: 1.57;
-        text-align: left;
-        color: rgba(24, 24, 24, 0.7);
       }
     }
   }
   .group-time-follow {
     padding: 10px 0 10px 18px;
+    vertical-align: middle;
+    line-height: 42px;
     .time {
       display: inline-block;
       width: 30%;
@@ -155,20 +164,19 @@
         }
         border: none;
         outline: none;
-        //background: #a70efe;
         color: #fff;
-        //border-radius: 20px;
-        padding: 5px 16px;
+        //padding: 6px 16px 7px 17px;
+        padding: 6px;
         border-radius: 11px;
+        line-height: 11px;
         background-color: #a60efd;
-        line-height: 13px;
-        //height: 20px;
-        span{
-          font-family: Montserrat;
+        i.fa, .text-follow{
           font-size: 11px;
-          //line-height: 2.5;
-          text-align: left;
+          line-height: 11px;
           color: #ffffff;
+        }
+        .text-follow{
+          font-family: Montserrat;
         }
       }
     }
