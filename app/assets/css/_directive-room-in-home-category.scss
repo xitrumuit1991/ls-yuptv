@@ -1,0 +1,120 @@
+.directive-room-in-home-category {
+  img.item-image {
+    opacity: 0.9;
+  }
+
+  &:hover {
+    img.item-image {
+      opacity: 1;
+    }
+  }
+
+
+  .group-image {
+    position: relative;
+    .icons {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 8px 0 0 8px;
+      span.value {
+        font-family: Montserrat;
+        font-size: 12px;
+        font-weight: 500;
+        color: #ffffff;
+      }
+      i.fa {
+        color: #fff;
+        position: absolute;
+        left: 0;
+        background: red;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        top: 0;
+        line-height: 20px;
+        text-align: center;
+        font-size: 10px;
+      }
+      .view, .heart {
+        display: inline-block;
+        line-height: 20px;
+        width: auto;
+        height: 20px;
+        border-radius: 10px;
+        position: relative;
+        padding-left: 25px;
+        padding-right: 15px;
+
+      }
+      .view {
+        background-color: rgba(45, 187, 200, 0.55);
+        i.fa.fa-eye {
+          background-color: #01b3c8;
+        }
+      }
+      .heart {
+        background-color: rgba(239, 66, 89, 0.55);
+        margin-left: 6px;
+        i.fa.fa-heart {
+          background-color: #ec1a35;
+        }
+      }
+    }
+  }
+
+  .item-group {
+    position: relative;
+    background-color: #f6f5f5;
+    .item-title {
+      text-align: left;
+      padding: 0;
+      margin: 0;
+      padding-left: 9px;
+      padding-top: 10px;
+      padding-right: 0;
+      width: 100%;
+      display: inline-block;
+      padding-bottom: 12px;
+    }
+    .item-favorite {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      .fa {
+        font-size: 24px;
+        margin-top: 0px;
+        color: $mauTim;
+      }
+    }
+  }
+
+  .item-title .title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    white-space: nowrap;
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: 500;
+    color: #181818;
+    font-family: "Montserrat";
+    margin: 0;
+    padding: 0;
+    margin-bottom: 5px;
+    width: 80%;
+  }
+  .description {
+    width: 95%;
+    white-space: nowrap;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    font-family: Montserrat;
+    font-size: 12px;
+    //line-height: 1.22;
+    //text-align: left;
+    color: #181818;
+  }
+}

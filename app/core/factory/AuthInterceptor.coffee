@@ -15,8 +15,7 @@ AuthInterceptor = ($rootScope, $q, $window, HttpBuffer, GlobalConfig) ->
   responseError : (response) ->
     if(response.config.complete)
       response.config.complete(response)
-    if response.status == 403
-      console.error 'token expried'
+    console.error response if response.status in [403]
     $q.reject response
 
 AuthInterceptor.$inject = ["$rootScope", "$q", "$window", "HttpBuffer", "GlobalConfig"]

@@ -1,14 +1,22 @@
-.popup-notify(ng-if='popup.status')
-	.close(ng-if='popup.allowClose' ng-click='closePopup()')
-		i.fa.fa-close
-	.notify-wrapper(style='width: {{ popup.width || 50}}%;')
-		.notify-header(ng-if='popup.title') {{popup.title}}
-		.notify-body
-			span(ng-if='popup.content') {{popup.content}}
+.modal.popup-alert-confirm(id="{{modal.id}}" tabindex='-1',
+role='dialog',
+aria-labelledby='exampleModalLabel',
+aria-hidden='true'
+data-backdrop="static"
+data-keyboard="false"
+)
+	.modal-dialog(role='document')
+		.modal-content
+			.modal-header
+				h5.modal-title.text-center.bold {{modal.title || "Confirm"}}
+				//button.close.pull-right(type='button', data-dismiss='modal', aria-label='Close')
+					span(aria-hidden='true') ×
+			.modal-body.text-center(ng-if='modal.message')
+				p(ng-if='modal.message') {{modal.message}}
+			.modal-footer
+				.text-center
+					button.btn.btn-default(type='button', data-dismiss='modal' ng-click='cancelAction()')
+						| {{modal.textBtnCancel || 'Close'}}
+					button.btn.btn-primary(type='button' ng-click='saveAction()' ng-if='saveAction')
+						| {{modal.textBtnSave   || 'Confirm'}}
 
-		.notify-action.confirm(ng-if='popup.type == "confirm" ')
-			a.confirm(ng-click='clickOK()') {{popup.textOk}}
-			a(ng-click='clickCancel()') {{popup.textCancel}}
-
-		.notify-action.alert(ng-if='popup.type == "alert" ')
-			a(ng-click='clickCancel()') {{popup.textCancel}}

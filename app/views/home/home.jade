@@ -1,5 +1,6 @@
-
+.clearfix(style='height: 1px;width: 100%; background: #280c45;')
 home-slider
+.clearfix
 
 .container(style='margin-top:10px;')
 	.col-md-9(style='padding:0 10px 0 0;')
@@ -7,41 +8,38 @@ home-slider
 	.col-md-3(style='padding:0;')
 		home-bxh-channel
 
+.clearfix
 .home-menu-category
 	.container
 		.row
-			.col-md-12
-				ul.list-inline
-					li.list-inline-item(ng-repeat='groupIdo in groupIdol')
-						a(href='')
-							|{{groupIdo.title}}
-						span(ng-if=' !$last ') &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+			.col-md-12(style='padding-left: 0;')
+				ul.list-inline.list-category-home
+					li.list-inline-item(ng-repeat='groupIdo in listCategory')
+						.text-center.home-menu-item(
+						ui-sref='base.category({id:groupIdo.id})'
+						ng-class='{"allow-border" : !$last }')
+							img.image(src='{{groupIdo.backgroundNormal}}')
+							span.name.margin-left-10 {{groupIdo.title | uppercase }}
 
 
-.container.home-block-content(ng-repeat='groupIdo in groupIdol')
-	.group-title.col-md-12
-		.left
-			a(ui-sref='base.group-idol' href='{{groupIdo.slug}}' id='{{groupIdo.id}}')
-				i.fa.fa-play-circle-o
-				span       &nbsp; {{groupIdo.title}}
-		.right.pull-right
-			a(ui-sref='base.group-idol' href='{{groupIdo.slug}}' id='{{groupIdo.id}}')
-				span xem thêm &nbsp;
-				i.fa.fa-arrow-circle-right
+.clearfix(style='height:41px; ') &nbsp;
+.container.home-block-content(ng-repeat='groupIdo in groupIdol' ng-if='groupIdo && groupIdo.Rooms.length > 0')
+	.group-title.col-md-12.category-title
+		.pull-left
+			a.link-category(ui-sref='base.category({id:groupIdo.id})' )
+				img.image(src='{{groupIdo.backgroundNormal}}')
+				span.name  {{groupIdo.title}}
+		.right.pull-right.margin-top-15(ng-if='groupIdo.Rooms.length > 6')
+			a.inline(ui-sref='base.category({id:groupIdo.id})' )
+				span.margin-right-5.inline.home-text-xem-them Xem thêm
+				//i.fa.fa-arrow-circle-right
+				img.inline(src='images/view_more.png')
 	.group-content
 		.col-md-2(ng-repeat='room in groupIdo.Rooms | limitTo : 6')
-			.item
-				a(ui-sref='base.room-detail')
-					//img.item-image(src='/images/image_am_nhac.png')
-					//img.item-image(src='{{room.banners.w512h512}}')
-					img.item-image(src='{{room.banners.w330h330}}')
-				.item-group.row
-					.item-title.col-md-8
-						a(ui-sref='base.room-detail')
-							p.title {{room.title}}
-						i.fa.fa-eye
-						span.value {{room.views}} &nbsp;&nbsp;
-						i.fa.fa-heart
-						span.value {{room.hearts}}
-					.item-favorite.col-md-3
-						i.fa.fa-plus-circle
+			room-in-home(
+			ng-item='room'
+			ng-group-idol='groupIdo'
+			ng-index-room='$index'
+			ng-action-follow='homeClickFollowIdol'
+			ng-action-unfollow='homeClickunFollowIdol'
+			)

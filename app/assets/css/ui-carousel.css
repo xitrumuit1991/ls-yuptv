@@ -9,11 +9,8 @@
 
 @font-face {
   font-family: "ui-carousel";
-  src: url("../fonts/ui-carousel.eot");
-  src: url("../fonts/ui-carousel.eot?#iefix") format("embedded-opentype"),
-  url("../fonts/ui-carousel.woff") format("woff"),
-  url("../fonts/ui-carousel.ttf") format("truetype"),
-  url("../fonts/ui-carousel.svg#ui-carousel") format("svg");
+  src: url("fonts/ui-carousel.eot");
+  src: url("fonts/ui-carousel.eot?#iefix") format("embedded-opentype"), url("fonts/ui-carousel.woff") format("woff"), url("fonts/ui-carousel.ttf") format("truetype"), url("fonts/ui-carousel.svg#ui-carousel") format("svg");
   font-weight: normal;
   font-style: normal; }
 

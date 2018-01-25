@@ -1,4 +1,4 @@
-ctrlHandleLogin = ($scope, $uibModalInstance, ApiService, $state, Facebook,UtilityService,cfpLoadingBar) ->
+ctrlHandleLogin = ($rootScope,$scope, $uibModalInstance, ApiService, $state, Facebook,UtilityService,cfpLoadingBar) ->
   $scope.login =
     phone : ''
     password : ''
@@ -8,6 +8,10 @@ ctrlHandleLogin = ($scope, $uibModalInstance, ApiService, $state, Facebook,Utili
   $scope.goRegister = ()->
     $uibModalInstance.dismiss 'cancel'
     $state.go 'base.register'
+
+  $scope.gotoForgetPass = ()->
+    $uibModalInstance.dismiss 'cancel'
+    $state.go 'base.forget-pass'
 
   $scope.submitLogin = ()->
     console.log 'submitLogin', $scope.login
@@ -30,6 +34,7 @@ ctrlHandleLogin = ($scope, $uibModalInstance, ApiService, $state, Facebook,Utili
         return
       $scope.login.error = ''
       UtilityService.setUserLogged(result)
+      $rootScope.loginBy = 'phone'
       $state.go 'base', {}, {reload: true}
       $uibModalInstance.dismiss 'cancel'
       return
@@ -55,6 +60,7 @@ ctrlHandleLogin = ($scope, $uibModalInstance, ApiService, $state, Facebook,Utili
           return
         $scope.login.error = ''
         UtilityService.setUserLogged(result)
+        $rootScope.loginBy = 'facebook'
         $state.go 'base', {}, {reload: true}
         $uibModalInstance.dismiss 'cancel'
         return
@@ -66,8 +72,10 @@ ctrlHandleLogin = ($scope, $uibModalInstance, ApiService, $state, Facebook,Utili
     console.log 'cancel'
     $uibModalInstance.dismiss 'cancel'
     return
+
+
   return
-ctrlHandleLogin.$inject = ['$scope', '$uibModalInstance', 'ApiService', '$state', 'Facebook',
+ctrlHandleLogin.$inject = ['$rootScope', '$scope', '$uibModalInstance', 'ApiService', '$state', 'Facebook',
   'UtilityService', 'cfpLoadingBar'
 ]
 

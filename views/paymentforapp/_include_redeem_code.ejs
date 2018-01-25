@@ -6,9 +6,9 @@
     </div>
     <input type="text" class="form-control " name="input_redeem_Code" id="input_redeem_Code" />
 
-    <div class="form-group captcha-group">
+    <!--<div class="form-group captcha-group">
       <div id="captcha-redeem-code"></div>
-    </div>
+    </div>-->
 
     <div class="group-btn">
       <button type="button" class="btn btn-primary" id="btn_submit_redeem_Code"> Thanh toán</button>
@@ -16,3 +16,18 @@
   </div>
 </div>
 <!--end redeem_Code-->
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#btn_submit_redeem_Code').attr("disabled", true);
+
+    $('#input_redeem_Code').blur(function(){
+      var input_redeem_Code = $('#input_redeem_Code').val();
+      if(input_redeem_Code){
+        $('#btn_submit_redeem_Code').removeAttr("disabled");
+      }else{
+        $('#btn_submit_redeem_Code').attr("disabled", true);
+      }
+    });
+  });
+</script>

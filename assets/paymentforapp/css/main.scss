@@ -3,6 +3,11 @@
 @import "global";
 @import "global_2";
 @import "payment_2";
+@import "huong_dan";
 body{
   font-family: 'Montserrat', sans-serif !important;
+}
+.fa-spin {
+  -webkit-animation: fa-spin 2s infinite linear;
+  animation: fa-spin 2s infinite linear;
 }

@@ -1,0 +1,28 @@
+#payment-huong-dan{
+  .main-title{
+    font-size: 22px;
+    text-align: center;
+    margin: 20px;
+    font-weight: bold;
+  }
+  .title{
+    color: #dc1b32;
+    margin: 10px;
+    font-size: 17px;
+    font-weight: 500;
+    margin-top: 40px;
+  }
+  .img-huong-dan{
+    width: 90%;
+    margin: 10px auto;
+  }
+  .block-content{
+    padding-left: 20px;
+    .sub-title{
+      margin: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 18px;
+    }
+  }
+}

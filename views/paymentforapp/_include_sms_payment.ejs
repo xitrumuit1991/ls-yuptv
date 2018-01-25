@@ -1,70 +1,53 @@
 <!--SMS-->
-<div id="sms" class="payment-content-sms" data-code="<%= user != undefined ? user.active_code : "[Mã tài khoản]" %>">
+<div id="sms" class="payment-content-sms">
   <% if (user && user != undefined && user.is_mbf){ %>
-
-  <div class="description">
-    <div class="title">Gói cước dành cho thuê bao <span class="color-primary">Mobifone</span></div>
-  </div>
-  <div id="mbp">
-    <div class="box-sms" data-price="5.000" data-coin="50" data-name="Gói 1">
-      <a href="javascript:void(0)" class="box-wrapper" data-value="1">
-        <div class="box-coin" data-unit="">50 Ucoin</div>
-        <div class="box-cash" data-unit="">5.000<sup>vnđ</sup></div>
-      </a>
-    </div>
-    <div class="box-sms" data-price="10.000" data-coin="100" data-name="Gói 2">
-      <a href="javascript:void(0)" class="box-wrapper" data-value="1">
-        <div class="box-coin" data-unit="">100 Ucoin</div>
-        <div class="box-cash" data-unit="">10.000<sup>vnđ</sup></div>
-      </a>
-    </div>
-    <div class="box-sms" data-price="20.000" data-coin="200" data-name="Gói 3">
-      <a href="javascript:void(0)" class="box-wrapper" data-value="1">
-        <div class="box-coin" data-unit="">200 Ucoin</div>
-        <div class="box-cash" data-unit="">20.000<sup>vnđ</sup></div>
-      </a>
-    </div>
-  </div>
-  <br>
-  <br>
-  <br>
+      <div class="description">
+        <div class="title">Gói cước dành cho thuê bao <span class="color-primary">Mobifone</span></div>
+      </div>
+      <div id="mbp">
+        <div class="box-sms" data-price="5.000" data-coin="50" data-name="Gói 1">
+          <a href="javascript:void(0)" class="box-wrapper" data-value="1">
+            <div class="box-coin" data-unit="">50 Ucoin</div>
+            <div class="box-cash" data-unit="">5.000<sup>vnđ</sup></div>
+          </a>
+        </div>
+        <div class="box-sms" data-price="10.000" data-coin="100" data-name="Gói 2">
+          <a href="javascript:void(0)" class="box-wrapper" data-value="1">
+            <div class="box-coin" data-unit="">100 Ucoin</div>
+            <div class="box-cash" data-unit="">10.000<sup>vnđ</sup></div>
+          </a>
+        </div>
+        <div class="box-sms" data-price="20.000" data-coin="200" data-name="Gói 3">
+          <a href="javascript:void(0)" class="box-wrapper" data-value="1">
+            <div class="box-coin" data-unit="">200 Ucoin</div>
+            <div class="box-cash" data-unit="">20.000<sup>vnđ</sup></div>
+          </a>
+        </div>
+      </div>
+      <br>
+      <br>
+      <br>
   <% } %>
 
-  <div class="description">
-    <div class="title">Gói cước dành cho thuê bao
-      <% if (( user && typeof (user) != 'undefined' && !user.is_mbf) || (!user || typeof (user) == 'undefined')  ){ %>
-      <span class="color-primary">Mobiphone</span> và
-      <% } %>
-      <span class="color-primary">Vinaphone</span>
-    </div>
-  </div>
-  <div id="mbp-vnp">
-    <% if( sms && sms.length > 0){ %>
-    <% sms.forEach(function(sms,key){ %>
-    <div class="box-sms" onclick="((!user || user==undefined || typeof(user)=='undefined' ) ? $('.btn-signin').trigger('click') : null)" data-price="<%= sms.price %>" data-coin="<%= sms.coin %>" data-name="Gói <%= key + 1 %>">
-      <a href="javascript:void(0)" class="box-wrapper" data-value="1">
-        <div class="box-coin" data-unit=""><%= sms.coin %> Ucoin</div>
-        <div class="box-cash" data-unit=""><%= sms.price %><sup>vnđ</sup></div>
-      </a>
-    </div>
-    <% }) %>
-    <% } %>
-  </div>
-
 
   <br>
-  <br>
-  <br>
-  <div class="description">
-    <div class="title">Gói cước dành cho thuê bao <span class="color-primary">Viettel</span></div>
-  </div>
   <div id="vt">
     <% if( sms && sms.length > 0){ %>
     <% sms.forEach(function(sms,key){ %>
-    <div class="box-sms" onclick="((!user || user==undefined || typeof(user)=='undefined' ) ? $('.btn-signin').trigger('click') : null)" data-price="<%= sms.price %>" data-coin="<%= sms.coin %>" data-name="Gói <%= key + 1 %>">
-      <a href="javascript:void(0)" class="box-wrapper" data-value="1">
-        <div class="box-coin" data-unit=""><%= sms.coin %> Ucoin</div>
-        <div class="box-cash" data-unit=""><%= sms.price %><sup>vnđ</sup></div>
+    <div class="box-sms"
+         onclick="((!user || user==undefined || typeof(user)=='undefined' ) ? $('.btn-signin').trigger('click') : null)"
+         data-id="<%= sms.id %>"
+         data-code="<%= sms.code %>"
+         data-name="<%= sms.name %>"
+         data-price="<%= sms.price %>"
+         data-coin="<%= sms.coin %>"
+         data-discount="<%= sms.discount %>"
+         data-syntax="<%= sms.syntax %>"
+    >
+      <a href="javascript:void(0)" class="box-wrapper">
+        <div class="box-coin"><%= sms.name %></div>
+        <div class="box-coin"><%= sms.coin %> Ucoin</div>
+        <div class="box-cash"><%= sms.price %><sup>vnđ</sup></div>
       </a>
     </div>
     <% }) %>

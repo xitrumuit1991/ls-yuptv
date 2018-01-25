@@ -1,0 +1,62 @@
+.row(ng-if="activeView == 'filter-search' ")
+	.col-md-6.col-md-offset-3
+		h3.text-center
+			span Kết quả tìm kiếm
+			b.margin-left-10 {{textResultTimKiem}}
+	.col-md-6.col-md-offset-3(ng-if='listRoomSearch.length <= 0')
+		|Không có lịch diễn nào
+	.col-md-12(ng-if='listRoomSearch && listRoomSearch.length > 0')
+		table.table.table-bordered(style='margin:0 auto; width: 75%;')
+			tr
+				td(width='40%')
+					span.table-th-text Idol diễn
+				td(width='30%')
+					span.table-th-text Ngày diễn
+				td(width='30%')
+					span.table-th-text Giờ diễn
+			tr(ng-repeat='item in items')
+				td(style='border-right: none;')
+					.group-image-name
+						img.img-responsive.pointer(
+						ng-click='openScheduleDetail(item)'
+						src='{{ item.Room.User.avatars_path.avatar || "http://via.placeholder.com/130x130" }}')
+						.name
+							.pointer(ng-click='openScheduleDetail(item)')
+								span.name-room {{item.Room.title || item.Room.User.name }}
+							.title-schedule {{item.title}}
+						.icons
+							i.fa.fa-eye
+							span.value {{item.Room.views | thousandSuffix : 1 }}
+							i.fa.fa-heart-o
+							span.value {{item.Room.hearts | thousandSuffix : 1 }}
+				td(style='border-left: none; border-right: none;')
+					.group-time-follow
+						span {{item.start | date:'dd-MM-yyyy' }}
+				td(style='border-left: none;')
+					.group-time-follow
+						.time.bold {{item.start | date:'HH:mm' }}
+						.follow
+							button(ng-if='item.Room.isFollow==false && item.Room.User.id != user.id'
+							ng-click='lichdienFollowRoom(item,"follow")')
+								span.text-follow Theo dõi
+
+							button(ng-if='item.Room.isFollow==true && item.Room.User.id != user.id'
+							ng-click='lichdienFollowRoom(item,"unfollow")')
+								i.fa.fa-check.margin-right-5
+								span.text-follow Đang theo dõi
+			tr
+				td.text-center(colspan='3')
+					ul.table-records-pages.pagination-search(
+					uib-pagination
+					total-items='pagination.total_item',
+					ng-model='pagination.page',
+					items-per-page='pagination.limit'
+					ng-change="pagination.filterSearchPageOnChange()"
+					max-size="7"
+					boundary-links="true"
+					rotate="false"
+					first-text='«'
+					last-text = '»'
+					next-text ='›'
+					previous-text= '‹'
+					)

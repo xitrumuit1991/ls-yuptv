@@ -1,0 +1,25 @@
+.directive-room-in-home-category
+	.item
+		.group-image(ui-sref='base.room-detail({id : room.id})')
+			img.item-image.pointer(src='{{room.banner || room.background || room.User.avatar || "/images/default_room.png" }}' )
+			.icons
+				.view
+					i.fa.fa-eye
+					span.value {{room.views | thousandSuffix : 1 }}
+				.heart
+					i.fa.fa-heart
+					span.value {{room.hearts | thousandSuffix : 1 }}
+		.item-group
+			.item-title
+				a.pointer(ui-sref='base.room-detail({id : room.id})')
+					.title {{room.title || room.User.name }}
+				.description {{room.description}}
+
+			.item-favorite.pointer(
+			ng-if='room.isFollow == false && room.id != user.Room.id '
+			ng-click='homeClickFollowIdol(room, groupIdol.id, indexRoom)')
+				i.fa.fa-plus-circle
+			.item-favorite.pointer(
+			ng-if='room.isFollow == true && room.id != user.Room.id'
+			ng-click='homeClickunFollowIdol(room, groupIdol.id, indexRoom)')
+				i.fa.fa-minus-circle

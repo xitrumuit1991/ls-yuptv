@@ -1,0 +1,34 @@
+.col-md-12.header
+	h1 Nạp Ucoin
+.col-md-12.body.step-1
+	.step
+		span.title 2
+		span Chọn gói Ucoin
+.col-md-12
+	.list
+		ul.list-inline.list-package
+			li.list-inline-item(
+			ng-if='listPackage && listPackage.sms && listPackage.sms.Packages'
+			ng-repeat='item in listPackage.sms.Packages'
+			ng-click='step2SelectedPackage(item, $index)'
+			ng-class='{"selected": step2PackageSelected.id == item.id }'
+			)
+				span {{item.name}}
+				br
+				span {{item.coin}} Ucoin
+				br
+				span {{item.price}} vnđ
+				//p Code: {{item.code}}
+				i.fa.fa-check(ng-if='step2PackageSelected.id == item.id')
+.col-md-12(ng-if='step2PackageSelected.id')
+	hr
+	p.text-center Để đăng kí &nbsp;
+		b {{step2PackageSelected.name}} &nbsp;
+		//span với giá &nbsp;
+		//b {{step2PackageSelected.price}} &nbsp;
+		//span để nhận &nbsp;
+		//b {{step2PackageSelected.coin}} Ucoin ?
+	p.text-center
+		small Vui lòng soạn tin nhắn với cú pháp:
+	h5.text-center
+		b.text-danger {{step2PackageSelected.syntax}}

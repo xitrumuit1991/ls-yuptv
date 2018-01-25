@@ -67,6 +67,8 @@
         span.name {
           font-size: 20px;
           font-weight: bold;
+          line-height: 20px;
+          display: inline-block;
         }
         span.level {
           margin-left: 10px;
@@ -75,6 +77,9 @@
           color: #fff;
           font-size: 10px;
           padding: 5px 12px;
+          line-height: 10px;
+          display: inline-block;
+          vertical-align: top;
         }
       }
       .content {
@@ -85,7 +90,7 @@
     .user-update-info {
       .title{
         color: #000;
-        font-weight: bold;
+        font-weight: 500;
       }
       .sub-title{
         display: block;
@@ -152,6 +157,7 @@
     }
     .following{
       .following-item{
+        margin-bottom: 20px;
         .img-responsive{
           border-radius: 50%;
           width: 100px;
@@ -165,10 +171,25 @@
           font-weight: bold;
           margin: 5px 0;
         }
+        .cancel-following{
+          position: absolute;
+          bottom: 20%;
+          right: 10%;
+          color: #ff2b05;
+          background: #ffffff;
+          border-radius: 50%;
+          line-height: 20px;
+          width: 20px;
+          height: 20px;
+          text-align: center;
+          cursor: pointer;
+          border: 1px solid #ccc;
+        }
       }
     }
     .follower{
       .follower-item{
+        margin-bottom: 20px;
         .img-responsive{
           border-radius: 50%;
           width: 100px;

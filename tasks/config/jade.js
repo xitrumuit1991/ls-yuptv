@@ -31,7 +31,16 @@ module.exports = function (grunt) {
       files: {
         'www/index.html': ["app/views/layout/index.jade"]
       }
-    }
+    },
+    countdown: {
+      options: {
+        pretty: true
+      },
+      files: {
+        'www/countdown.html': ["app/views/countdown.jade"]
+      }
+    },
+
   })
   ;
   grunt.loadNpmTasks('grunt-contrib-jade');

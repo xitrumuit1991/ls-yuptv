@@ -1,0 +1,16 @@
+.list-room-hot-in-detail.absolute
+	.col-md-3(ng-repeat='ite in hotRoom | limitTo: 4')
+		.item-room.relative
+			.content.pointer(ng-click='gotoDetailRoom(ite)')
+				img.image.img-responsive(src='{{ite.banner || ite.banners.banner || ite.User.avatar}}')
+				.bottom.absolute
+					.name.margin-bottom-5 {{ite.title}}
+					.icons.relative
+						.list-icon
+							i.fa.fa-eye
+							span.margin-left-5 {{ite.views | thousandSuffix : 1}}
+							i.fa.fa-heart.margin-left-15
+							span.margin-left-5 {{ite.hearts | thousandSuffix : 1}}
+					button.btn.btn-danger.absolute
+						i.fa.fa-lock
+

@@ -27,6 +27,7 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
     .error self.requestError.bind(self, done)
 
   self.getListBanner = (params, done)->
+    params.isapp = false
     options =
       url : GlobalConfig.API_URL + "app/poster"
       method : 'GET'
@@ -58,6 +59,22 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
     options =
       url : GlobalConfig.API_URL + "user/rank-share-fb"
       method : 'GET'
+      data : params
+    self.request options, done
+
+
+  self.resetPasswordByAccountKit = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "auth/reset-password-acc-kit"
+      method : 'POST'
+      data : params
+    self.request options, done
+
+
+  self.registerAccountByAccountKit = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "auth/register-acc-kit"
+      method : 'POST'
       data : params
     self.request options, done
 
@@ -93,6 +110,13 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
     options =
       url : GlobalConfig.API_URL + "auth/fb-register"
       method : 'POST'
+      data : params
+    self.request options, done
+
+  self.getRoomDetail = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "room/#{params.roomId}/"
+      method : 'GET'
       data : params
     self.request options, done
 
@@ -153,16 +177,27 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
     self.request options, done
 
   self.getListRoomSchedule = (params, done)->
-#    keyword	String
-#    type	String Type in [day, day3, week, month, all]
-#    time optional	Timestamp Tính từ ngày
     options =
       url : GlobalConfig.API_URL + "room/list-by-schedule"
       method : 'GET'
       data : params
     self.request options, done
 
+  self.searchRoomSchedule = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "room/search-schedule"
+      method : 'GET'
+      data : params
+    self.request options, done
+
   self.getListCategory = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "room/category"
+      method : 'GET'
+      data : params
+    self.request options, done
+
+  self.getCategory = (params, done)->
     options =
       url : GlobalConfig.API_URL + "room/category"
       method : 'GET'
@@ -214,6 +249,7 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
       method : 'POST'
       data : params
     self.request options, done
+
   self.getListPackage =(params, done)->
     options =
       url : GlobalConfig.API_URL + "payment/package"
@@ -221,15 +257,172 @@ _service = ($rootScope, $http, $resource, GlobalConfig)->
       data : params
     self.request options, done
 
+  self.chargeByTelcoCard = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "payment/card"
+      method : 'POST'
+      data : params
+    self.request options, done
+
+  self.redeemCode = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "payment/redeem-code"
+      method : 'POST'
+      data : params
+    self.request options, done
+
+  self.chargeBankLocal = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "payment/bank"
+      method : 'POST'
+      data : params
+    self.request options, done
+  self.confirmChargeBankLocal = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "payment/bank-callback"
+      method : 'GET'
+      data : params
+    self.request options, done
+
+  self.searchRoomByKeyword = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "room/search"
+      method : 'GET'
+      data : params
+    self.request options, done
+
+  self.onAir = (params, done)->
+    params.onair = true;
+    options =
+      url : GlobalConfig.API_URL + "room/list-by-view"
+      method : 'GET'
+      data : params
+    self.request options, done
+
+  self.onAirByCategory = (params, done)->
+    params.onair = true;
+    options =
+      url : GlobalConfig.API_URL + "room/list-by-category"
+      method : 'GET'
+      data : params
+    self.request options, done
 
 
-#  self.getListRoomInCategory = (params, done)->
-#    return done('Missing categoryId getListRoomInCategory api', null) unless params.categoryId
-#    options =
-#      url : GlobalConfig.API_URL + "room/list-by-category"
-#      method : 'GET'
-#      data : params
-#    self.request options, done
+
+  self.room =
+    changeCategory : (params, done)->
+      options =
+        url : GlobalConfig.API_URL + "room/change-category"
+        method : 'POST'
+        data : params
+      self.request options, done
+
+    sendGift : (params, done)->
+      options =
+        url : GlobalConfig.API_URL + "gift/send"
+        method : 'POST'
+        data : params
+      self.request options, done
+    ticketList : (params, done)->
+      options =
+        url : GlobalConfig.API_URL + "ticket/list"
+        method : 'GET'
+        data : params
+      self.request options, done
+    buyTicket : (params, done)->
+      options =
+        url : GlobalConfig.API_URL + "ticket/buy"
+        method : 'POST'
+        data : params
+      self.request options, done
+
+    sendHeart : (params, done)->
+      options =
+        url : GlobalConfig.API_URL + "stream/send-heart"
+        method : 'PUT'
+        data : params
+      self.request options, done
+
+    joinRoom : (params, done)->
+      options =
+        url : GlobalConfig.API_URL + "room/join"
+        method : 'POST'
+        data : params
+      self.request options, done
+    listUserInRoom : (params, done)->
+      options =
+        url : GlobalConfig.API_URL + "room/list-user"
+        method : 'GET'
+        data : params
+      self.request options, done
+    getRoomById : (params, done)->
+      options =
+        url : GlobalConfig.API_URL + "room/#{params.roomId}/"
+        method : 'GET'
+        data : params
+      self.request options, done
+    giftList : (params, done)->
+      options =
+        url : GlobalConfig.API_URL + "gift/list"
+        method : 'GET'
+        data : params
+      self.request options, done
+    getVideoDetailOfRoom : (params, done)->
+      options =
+        url : GlobalConfig.API_URL + "user/video"
+        method : 'GET'
+        data : params
+      self.request options, done
+
+  self.socket = {}
+
+  self.getListRoomInCategory = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "room/list-by-category"
+      method : 'GET'
+      data : params
+    self.request options, done
+
+  self.notificationList = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "notification/list"
+      method : 'GET'
+      data : params
+    self.request options, done
+  self.notificationListRead = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "notification/listRead"
+      method : 'GET'
+      data : params
+    self.request options, done
+  self.notificationListUnread = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "notification/listUnread"
+      method : 'GET'
+      data : params
+    self.request options, done
+  self.setNotificationRead = (params, done)->
+    params.status = 1
+    options =
+      url : GlobalConfig.API_URL + "notification/update"
+      method : 'POST'
+      data : params
+    self.request options, done
+
+  self.historyUcoinCharge = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "user/charge-history"
+      method : 'GET'
+      data : params
+    self.request options, done
+
+  self.rutTienMatPaymentRequest = (params, done)->
+    options =
+      url : GlobalConfig.API_URL + "user/payment-request"
+      method : 'GET'
+      data : params
+    self.request options, done
+
 
 
   return null

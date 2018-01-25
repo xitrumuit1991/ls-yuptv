@@ -1,0 +1,10 @@
+button.btn.directive-btn-follow.pointer(
+ng-if='item.isFollow == false && item.id != user.Room.id '
+ng-click='actionFollow(item, index)')
+	i.fa.fa-plus
+
+button.btn.directive-btn-follow.pointer(
+ng-class='{"red" : item.isFollow == true }'
+ng-if='item.isFollow == true && item.id != user.Room.id'
+ng-click='actionUnfollowIdol(item, index)')
+	i.fa.fa-minus

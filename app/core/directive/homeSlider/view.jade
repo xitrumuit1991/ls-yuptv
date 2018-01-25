@@ -7,12 +7,12 @@
 	autoplay-speed='4000',
 	dots='true')
 		carousel-item
-			img.img-responsive(src='{{ item.images_path.w1080h622 }}', alt='{{ item.caption }}')
+			img.img-responsive(src='{{ item.images_path.w1440h445 || item.images_path.w1080h622 }}', alt='{{ item.caption }}')
 			.caption-group
 				.caption
 					a(href='{{item.url}}') {{item.caption}}
-				.description {{item.description}}
-			//h3  {{ item.text }}
+				.description
+					a(href='{{item.url}}')  {{item.description}}
 		carousel-prev
 			button
 				i.fa.fa-angle-left
@@ -22,19 +22,10 @@
 	.download-link(ng-if='loadedBanner ==true ')
 		.row
 			.col-md-6.ios.text-right
-				a(href="https://itunes.apple.com/vn/app/livestar-san-khau-cho-sao/id1074154728?mt=8")
+				a(href="https://itunes.apple.com/vn/app/yup/id1294969432?mt=8" target='_blank')
 					i.fa.fa-apple
-					| &nbsp; Tải IOS App
+					span.text-download &nbsp; Tải IOS App
 			.col-md-6.android.text-left
-				a(href="https://play.google.com/store/apps/details?id=vn.LS.LiveStar&hl=en")
+				a(href="https://play.google.com/store/apps/details?id=yup.livestream.hotgirl" target='_blank')
 					i.fa.fa-android
-					| &nbsp; Tải Android App
-
-
-//.home-slider
-//	carousel(interval="myInterval")
-//		slide(ng-repeat="slide in slides" active="slide.active")
-//			img(ng-src="{{slide.image}}" style="margin:auto;")
-//			.carousel-caption
-//				h4 Slide {{$index}}
-//				p {{slide.text}}
+					span.text-download  &nbsp; Tải Android App

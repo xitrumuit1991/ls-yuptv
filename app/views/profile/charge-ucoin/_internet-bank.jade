@@ -1,0 +1,47 @@
+.col-md-12.header
+	h1 Nạp Ucoin
+.col-md-12.body.step-1
+	.step
+		span.title 2
+		span Chọn gói Ucoin
+.col-md-12
+	.list
+		ul.list-inline.list-package
+			li.list-inline-item(
+			ng-if='listPackage && listPackage.bank && listPackage.bank.Packages'
+			ng-repeat='item in listPackage.bank.Packages'
+			ng-click='step2SelectedPackageBank(item, $index); '
+			ng-class='{"selected": step2PackageSelected.id == item.id }'
+			)
+				span {{item.name}}
+				br
+				span {{item.coin}} Ucoin
+				//p Code: {{item.code}}
+				i.fa.fa-check(ng-if='step2PackageSelected.id == item.id')
+
+
+.col-md-12(ng-if='step2PackageSelected.id && step2BankSelectedType=="the-noi-dia" ')
+	hr
+	p Chọn ngân hàng
+	.list
+		ul.list-inline.list-package
+			li.list-inline-item(
+			ng-if='listPackage && listPackage.bank && listPackage.bank.Sources'
+			ng-repeat='item in listPackage.bank.Sources'
+			ng-click='step2SelectedBank(item, $index)'
+			ng-class='{"selected": step2BankSelected.id == item.id }'
+			)
+				span {{item.name}}
+				//br
+				//span {{item.code}}
+				i.fa.fa-check(ng-if='step2BankSelected.id == item.id')
+
+
+
+.col-md-12(ng-if='step2BankSelectedType=="the-noi-dia" && step2BankSelected.id && step2PackageSelected.id ')
+	hr
+	.col-md-9.text-right
+		button.btn.btn-primary(
+		ng-disabled=" !step2BankSelected || !step2BankSelected.id "
+		ng-click='submitBankNoiDia()'
+		) NẠP UCOIN

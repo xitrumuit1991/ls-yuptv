@@ -1,0 +1,46 @@
+.container.home-block-content(ng-if='category ')
+	.col-md-12.home-menu-category(style='margin: 0 -15px; margin-top: 50px;')
+		ul.list-inline.list-category-home
+			li.list-inline-item(ng-repeat='groupIdo in listCategory')
+				.text-center.home-menu-item(
+				ui-sref='base.category({id:groupIdo.id})'
+				ng-class='{"allow-border" : !$last }')
+					img.image(src='{{groupIdo.backgroundNormal}}')
+					span.name.margin-left-10 {{groupIdo.title}}
+
+	.group-title.col-md-12.category-title
+		.pull-left
+			a.link-category(ui-sref='base.category({id:category.id})' )
+				img.image(src='{{category.backgroundNormal}}')
+				span.name  {{category.title}}
+	.group-content
+		.row
+			.col-md-12(
+			ng-if='!category.Rooms || category.Rooms.length <=0 ' style='margin: 20px; 0')
+				span.text-danger Đang cập nhật ...
+
+			.col-md-2(ng-repeat='room in category.Rooms '
+			ng-if=' category.Rooms && category.Rooms.length > 0 ' style='margin: 20px 0;'
+			)
+				room-in-category(
+				ng-item='room'
+				ng-index-room='$index'
+				ng-action-follow='categoryClickFollowIdol'
+				ng-action-unfollow='categoryClickUnfollowIdol'
+				)
+		.row
+			.col-md-12
+				ul.table-records-pages.pagination-search(
+				uib-pagination
+				total-items='pagination.total_item',
+				ng-model='pagination.page',
+				items-per-page='pagination.limit'
+				ng-change="pagination.pageOnChange()"
+				max-size="7"
+				boundary-links="true"
+				rotate="false"
+				first-text='«'
+				last-text = '»'
+				next-text ='›'
+				previous-text= '‹'
+				)

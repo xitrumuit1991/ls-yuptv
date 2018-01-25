@@ -25,6 +25,7 @@
 		table.table.table-striped
 			thead
 				tr
+					th Ngày giờ
 					th Lịch sử giao dịch
 					th Loại quà
 					th Giá đơn vị (Ucoin)
@@ -33,17 +34,19 @@
 					th Tổng Ucoin
 			tbody
 				tr(ng-if='!receive.items || receive.items.length <= 0')
-					td(colspan='5') Không có dữ liệu
+					td(colspan='7') Không có dữ liệu
 				tr(ng-repeat='item in receive.items' ng-if='receive.items && receive.items.length > 0')
+					td {{item.createdAt | date : 'dd-MM-yyyy HH:mm:ss' }}
 					td {{item.id}}
 					td
-						img.img-responsive(src='{{item.Gifts.icon}}' style='width:30px; height:auto;')
-					td {{item.Gifts.price}}
+						img.img-responsive(src='{{item.Gifts.icons.icon}}' style='width:30px; height:auto;')
+						p {{item.Gifts.name}}
+					td {{item.Gifts.price | currency : "" : 0 }} VNĐ
 					td {{item.discount + item.Gifts.discount}}
 					td {{item.quantity}}
 					td {{item.totalCost}}
 	.col-md-12
-		uib-pagination.table-records-pages(
+		ul.table-records-pages( uib-pagination
 		total-items='receive.totalItems',
 		ng-model='receive.page',
 		items-per-page='receive.limit'
@@ -56,3 +59,5 @@
 		next-text ='›'
 		previous-text= '‹'
 		)
+	.col-md-12.text-right
+		button.btn.btn-primary(ng-click='rutTienMatPaymentRequest()') Rút Tiền Mặt

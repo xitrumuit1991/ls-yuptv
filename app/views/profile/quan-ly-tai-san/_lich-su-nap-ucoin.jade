@@ -1,0 +1,37 @@
+.row.wrapper(ng-if='activeView == "history-ucoin-charge" ')
+	.col-md-12.header
+		h1 Lịch sử nạp Ucoin
+	.col-md-12
+		table.table.table-striped
+			thead
+				tr
+					th Ngày giờ
+					th ID
+					th Phương thức
+					th Giá
+					th Ucoin nhận
+					th Trạng thái
+			tbody
+				//tr(ng-if='!historyUcoinCharge.items || historyUcoinCharge.items.length <= 0')
+					td(colspan='6') Không có dữ liệu
+				tr(ng-repeat='item in historyUcoinCharge.items' ng-if='historyUcoinCharge.items && historyUcoinCharge.items.length > 0')
+					td {{item.createdAt | date : 'dd-MM-yyyy HH:mm:ss' }}
+					td {{item.id}}
+					td {{item.Method.name}}
+					td: span.text-danger {{item.price | currency : "" : 0 }} VNĐ
+					td {{item.receivedCoin}}
+					td: span.text-info {{item.status}}
+	.col-md-12
+		ul.table-records-pages(uib-pagination
+		total-items='historyUcoinCharge.totalItems',
+		ng-model='historyUcoinCharge.page',
+		items-per-page='historyUcoinCharge.limit'
+		ng-change="historyUcoinCharge.onPageChange()"
+		max-size="7"
+		boundary-links="true"
+		rotate="false"
+		first-text='«'
+		last-text = '»'
+		next-text ='›'
+		previous-text= '‹'
+		)

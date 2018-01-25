@@ -1,0 +1,13 @@
+ui-carousel(
+slides="users"
+slides-to-show="5"
+slides-to-scroll="5"
+initial-slide="1"
+autoplay="true"
+autoplay-speed="10000"
+infinite="false"
+dots="false")
+	carousel-item
+		.image-user-group
+			img.img-responsive.image(src='{{item.avatar || item.Room.banner || "http://via.placeholder.com/100x100" }}')
+			p.text-center.name-idol {{item.name}}

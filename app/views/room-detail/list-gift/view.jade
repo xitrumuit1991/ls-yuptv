@@ -1,0 +1,16 @@
+.modal.fade.modal-list-gift(role='dialog' id='{{modal.id}}' tabindex='-1', aria-labelledby='exampleModalLabel', aria-hidden='true'
+data-backdrop="static"
+data-keyboard="false")
+	.modal-dialog(style='width: 800px;')
+		.modal-content
+			.modal-header
+				button.close(type='button', data-dismiss='modal') ×
+				h4.modal-title.text-center Chọn quà tặng
+			.modal-body
+				.item(ng-repeat='ite in items' ng-click='buyGift(ite)')
+					img.image(src='{{ite.icon}}')
+					.price Ucoin {{ite.price}}
+					.exp Exp {{ite.exp}}
+					.maxVote(ng-if='ite.maxVote') {{ite.maxVote}}
+			.modal-footer
+				button.btn.btn-default(type='button', data-dismiss='modal') Close

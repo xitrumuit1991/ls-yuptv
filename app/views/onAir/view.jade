@@ -1,0 +1,72 @@
+.on-air-page
+	.on-air-slide
+		img(src='/images/on_air_slide.jpg' style='width: 100%;')
+
+	.container.margin-bottom-30
+		.row
+			.col-md-12
+				.pull-left
+					.header
+						img(src='/images/onair_title.png' )
+						span.title-header.text-kenh-on-air KÊNH ON AIR
+				.pull-right
+					ul.list-inline.on-air-menu-category
+						li.list-inline-item(
+						ng-repeat='category in categorys'
+						ng-click='selectCategory(category, $index)'
+						)
+							span.onair-menu-text.pointer(ng-class='{"active" : categorySelected.id == category.id }')
+								|{{category.title}}
+
+
+	.on-air-block-top(ng-if='items && items.length > 0 ')
+		.container
+			.row
+				.col-md-4.block-top-main-item
+					.on-air-block-main(ng-if='items && items[0] && items[0].onAir == true ' )
+						img.on-air-block-main-image(
+						src='{{ items[0].banner || items[0].background || items[0].User.avatar || "http://via.placeholder.com/185x185" }}'
+						ui-sref='base.room-detail({id : items[0].id})')
+						.bottom
+							.title.main-room-text {{ items[0].title || items[0].User.name }}
+							.icons
+								i.fa.fa-eye
+								span {{items[0].views | thousandSuffix : 1}}
+								i.fa.fa-heart
+								span {{items[0].hearts | thousandSuffix : 1}}
+							button.btn.add-plus(ng-if='items[0].isFollow == false'
+							ng-click='onairClickFollowIdol(items[0], 0, "follow")')
+								i.fa.fa-plus
+							button.btn.add-plus.unfollow(ng-if='items[0].isFollow == true'
+							ng-click='onairClickFollowIdol(items[0], 0, "unfollow")')
+								i.fa.fa-minus
+						.on-air-icon
+							.icon &nbsp;
+							span LIVE
+						//img.on-air-icon-play(src='/images/on_air_play.png')
+
+				.col-md-8
+					.row
+						.col-md-3.block-top-one-item(ng-repeat='ite in items' ng-if='$index > 0 && $index < 9 && ite.onAir == true ')
+							.on-air-block-main.on-air-block
+								img.on-air-room-image(
+								src='{{ ite.banner || ite.background || ite.User.avatar || "http://via.placeholder.com/185x185"  }}'
+								ui-sref='base.room-detail({id : ite.id})')
+								.bottom
+									.room-title {{ite.title || ite.User.name }}
+									.icons
+										i.fa.fa-eye
+										span {{ite.views | thousandSuffix : 1}}
+										i.fa.fa-heart
+										span {{ite.hearts | thousandSuffix : 1}}
+									button.btn.add-plus(ng-if='ite.isFollow == false'
+									ng-click='onairClickFollowIdol(ite, $index, "follow")')
+										i.fa.fa-plus
+									button.btn.add-plus.unfollow(ng-if='ite.isFollow == true'
+									ng-click='onairClickFollowIdol(ite, $index, "unfollow")')
+										i.fa.fa-minus
+								.on-air-icon
+									.icon &nbsp;
+									span LIVE
+								img.on-air-icon-play(src='/images/on_air_play.png' ui-sref='base.room-detail({id : ite.id})')
+	include _more_room

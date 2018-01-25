@@ -1,98 +1,223 @@
-.schedule{
-  .head-title{
+.schedule {
+  background: #fff;
+  margin: 50px auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 0px !important;
+  padding: 40px;
+
+  .select-search-dropdown {
+    opacity: 0.7;
+    font-family: "Montserrat";
+    font-size: 15px;
+    text-align: left;
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  .text-hom-nay {
+    font-family: "Montserrat";
+    font-size: 18px;
+    font-weight: 500;
+    text-align: left;
+    color: #000000;
+    margin-bottom: 19px;
+  }
+  .table-th-text{
+    opacity: 0.7;
+    font-family: Montserrat;
+    font-size: 14px;
+    text-align: left;
+    color: rgba(0, 0, 0, 0.7);
+    display: block;
+    padding: 15px 0 15px 26px;
+  }
+  .follow {
+    span {
+      font-size: 12px;
+      font-family: "Montserrat";
+      color: rgb(255, 255, 255);
+
+    }
+  }
+  .head-title {
     margin: 0;
     padding: 0;
   }
-  select.form-control{
+  .text-lich-dien {
+    font-family: "Montserrat";
+    font-size: 25px;
+    font-weight: 500;
+    text-align: left;
+    color: #000000;
+  }
+  .text-hien-thi {
+    font-family: "Montserrat";
+    font-size: 15px;
+    text-align: left;
+    color: #000000;
+  }
+  .schedule-line-hr{
+    margin-top: 36px;
+    margin-bottom: 49px;
+    height: 1px;
+    border-radius: 0.5px;
+    background-color: #efefef;
+  }
+
+  select.form-control {
     display: inline-block;
     width: auto;
     margin: 0 7px;
     padding: 0 15px;
   }
-  button.btn-search{
+  button.btn-search {
     cursor: pointer;
     border-radius: 50%;
     outline: none;
     border: none;
     background: #dedede;
-    i.fa-search{
+    i.fa-search {
       color: #565656;
       font-size: 16px;
     }
   }
 
-  .title-table{
+  .title-table {
 
   }
 
-  .group-image-name{
-    img.img-responsive{
+  td.first-colum{
+    padding: 8px 0;
+    margin: 0;
+    width: 335px;
+  }
+
+
+  .title-schedule{
+    margin-top: 0px;
+    font-family: Montserrat;
+    font-size: 12px;
+    text-align: left;
+    color: #000000;
+  }
+
+  .group-image-name {
+    padding: 10px 0 10px 18px;
+    img.img-responsive {
       display: inline-block;
-      width: 20%;
+      //width: 20%;
+      width: 43px;
+      height: 43px;
       border-radius: 50%;
     }
-    .name{
+    .name {
       display: inline-block;
-      line-height: 100%;
+      width: 105px;
+      margin-left: 5px;
+      margin-right: 25px;
       vertical-align: middle;
-      margin-left: 10px;
-      p{
-        font-weight:bold;
-        cursor: pointer;
+      //line-height : 13px;
+      span.name-room{
+        font-family: Montserrat;
+        font-size: 13px;
+        font-weight: 500;
+        text-align: left;
+        color: #000000;
       }
-      i.fa{
-        margin: 5px;
+    }
+    .icons{
+      display: inline-block;
+      vertical-align: middle;
+      i.fa, span.value {
+        margin: 0 2px;
+        opacity: 0.7;
+        font-size: 11px;
+        color: rgba(24, 24, 24, 0.7);
       }
-      span{
-        margin-right: 5px;
+      .fa-heart-o{
+        margin-left: 10px;
+      }
+      span.value{
+        font-family: Montserrat;
       }
     }
   }
-  .group-time-follow{
-    .time{
+  .group-time-follow {
+    padding: 10px 0 10px 18px;
+    vertical-align: middle;
+    line-height: 42px;
+    .time {
       display: inline-block;
-      width: 48%;
+      width: 30%;
+      font-family: Montserrat;
+      font-size: 15px;
+      font-weight: 600;
+      text-align: left;
+      color: #000000;
     }
-    .follow{
+    .follow {
       display: inline-block;
-      width: 48%;
-      button{
+      width: 67%;
+      text-align: right;
+      button {
+        &.unfollow {
+          background: #fe1503;
+        }
         border: none;
         outline: none;
-        background: #a70efe;
         color: #fff;
-        border-radius: 40px;
-        padding: 3px 15px;
+        //padding: 6px 16px 7px 17px;
+        padding: 6px;
+        border-radius: 11px;
+        line-height: 11px;
+        background-color: #a60efd;
+        i.fa, .text-follow{
+          font-size: 11px;
+          line-height: 11px;
+          color: #ffffff;
+        }
+        .text-follow{
+          font-family: Montserrat;
+        }
       }
     }
   }
 
-  .list-room-schedule-following{
+  .list-room-schedule-following {
     list-style: none;
-    overflow: scroll;
+    //overflow: scroll;
+    //overflow-x: scroll;
+    overflow-x: hidden;
     width: auto;
     white-space: nowrap;
-    .list-inline-item{
+
+    .text-lich-phat-song-idol-cua-ban{
+      font-family: Montserrat;
+      font-size: 15px;
+      font-weight: 500;
+      text-align: left;
+      color: #000000;
+    }
+    .list-inline-item {
       margin: 10px 30px;
       list-style: none;
     }
-    .carousel-item{
+    .carousel-item {
       margin-right: 20px;
     }
-    .image-idol{
+    .image-idol {
       position: relative;
       cursor: pointer;
-      &.selected{
-        img{
+      &.selected {
+        img {
           box-shadow: 0px 0px 20px #c3005f;
         }
       }
-      img{
+      img {
         width: 100%;
         display: block;
         border-radius: 50%;
       }
-      button{
+      button {
         position: absolute;
         bottom: 20%;
         outline: none;
@@ -109,23 +234,26 @@
         border: 1px solid #fff;
       }
     }
-    .name-idol{
-
+    .name-idol {
+      font-family: Montserrat;
+      font-size: 12px;
+      text-align: center ;
+      color: #000000;
+      margin-top: 12px;
     }
   }
 
 }
 
-.schedule-modal-detail
-{
-  .modal-body{
+.schedule-modal-detail {
+  .modal-body {
     padding: 0 15px 15px 15px;
   }
-  .title-main{
+  .title-main {
     font-size: 20px;
     font-weight: bold;
   }
-  i.fa.fa-close{
+  i.fa.fa-close {
     margin: 5px;
     z-index: 9999;
     cursor: pointer;
@@ -133,43 +261,43 @@
     font-size: 20px;
   }
 
-  .group-image{
+  .group-image {
     display: inline-block;
     width: 15%;
-    .image{
+    .image {
       border-radius: 50%;
     }
   }
-  .group-name{
+  .group-name {
     display: inline-block;
     width: 80%;
     vertical-align: top;
     margin-top: 20px;
     margin-left: 20px;
-    .group-icon{
-      .fa{
+    .group-icon {
+      .fa {
         margin-right: 5px;
       }
-      span{
+      span {
         margin-right: 10px;
       }
     }
   }
-  .btn-follow{
+  .btn-follow {
     border: none;
     outline: none;
     background: #a70efe;
     color: #fff;
     border-radius: 40px;
     padding: 3px 15px;
-    &.btn-get-noty{
+    &.btn-get-noty {
       background: #ce75fe;
     }
   }
-  .label-hour{
+  .label-hour {
     font-size: 12px;
   }
-  .hour{
+  .hour {
     font-weight: bold;
   }
 }

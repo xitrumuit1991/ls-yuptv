@@ -1,0 +1,35 @@
+.search-form-top{
+  position: relative;
+  .input-search{
+    //font-size: 12px;
+    border: none;
+    padding: 0px 15px;
+    border-radius: 4px !important;
+    outline: none;
+
+      font-size: 13px;
+      font-family: "Montserrat";
+      color: rgb(131, 131, 131);
+      //line-height: 2.308;
+      //text-align: left;
+      //position: absolute;
+      //left: 889.938px;
+      //top: 98.555px;
+      //z-index: 931;
+  }
+  .btn-default{
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+    height: 34px;
+    outline: none;
+    background: transparent;
+    z-index: 998;
+    border-radius: 4px;
+  }
+  .fa-search{
+    font-size: 20px;
+    font-weight: 100;
+  }
+}

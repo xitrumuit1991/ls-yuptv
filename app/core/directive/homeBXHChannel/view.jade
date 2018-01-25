@@ -6,7 +6,7 @@
 		.right.pull-right
 			//a(ng-if='listRank && listRank.length > 9' ui-sref='base.bang-xep-hang')
 			a(ui-sref='base.bang-xep-hang')
-				|xem thêm
+				|Xem thêm
 	.content
 		.row
 			.col-md-4.item(ng-repeat='rankItem in listRank | limitTo : 9')
@@ -16,8 +16,12 @@
 					button(ng-if='rankItem.User.Room.isFollow==false'
 					ng-click='followIdolInHome(rankItem)')
 						i.fa.fa-plus
+					button.unfollow(ng-if='rankItem.User.Room.isFollow==true '
+					ng-click='unfollowIdolInHome(rankItem)')
+						i.fa.fa-minus
+
 				.name.text-center {{rankItem.User.name}}
 				.icon.text-center
 					i.fa.fa-rss
-					span {{rankItem.User.Room.views}}
+					span {{rankItem.User.Room.views | thousandSuffix : 1}}
 

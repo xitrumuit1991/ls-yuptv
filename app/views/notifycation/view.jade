@@ -1,0 +1,76 @@
+.modal.fade.modal-lich-dien-room-detail(role='dialog' id='{{modalNotify.id}}' tabindex='-1', aria-labelledby='exampleModalLabel', aria-hidden='true'
+data-backdrop="static"
+data-keyboard="false")
+	.modal-dialog(style='width: 800px;')
+		.modal-content
+			.modal-header
+				button.close(type='button', data-dismiss='modal') ×
+				h4.modal-title.text-center {{modalNotify.title}}
+			.modal-body
+				.row
+					.col-md-2
+						img(
+						style='width: 100px; border-radius: 50%;'
+						src='{{modalNotify.item.Message.Room.banner || modalNotify.item.Message.User.avatar }}'
+						)
+
+					.col-md-10
+						|{{modalNotify.description}}
+						br
+						a.pointer(ng-click='modalNotify.viewNow(modalNotify.item.Room)'
+						ng-if='modalNotify.item.Room.onAir == true'
+						)
+							span.text-info.pointer: strong Xem ngay
+						div.margin-top-30
+							span.text-danger.pointer Ngày: {{modalNotify.item.updatedAt | date : 'dd-MM-yyyy h:mm:s'}}
+
+
+			.modal-footer
+				button.btn.btn-default(type='button', data-dismiss='modal') Close
+
+
+.wrapper.container.notifycation
+	.row
+		.col-md-12.header
+			h1 Thông báo
+	.row.profile-manage-room(ng-if='loaded==true')
+		.col-md-12(ng-if='!items || items.length <=0 ')
+			h4.text-danger Không có thông báo nào
+		.col-md-12(ng-if='items && items.length > 0 ')
+			table.table.table-hover
+				tbody
+					tr(ng-repeat='ite in items')
+						td.pointer(ng-click='openMessageDetail(ite)'
+						ng-class='{"unread": ite.status <= 0, "read" : ite.status > 0 }'
+						)
+							.row.form-group
+								.col-md-2
+									img(
+									style='width: 100px; border-radius: 50%;'
+									src='{{ite.Message.Room.banner || ite.Message.User.avatar }}'
+									)
+								.col-md-6
+									p.black(ng-if='ite.status == 0') {{ite.Message.title}}
+									p(ng-if='ite.status > 0') {{ite.Message.title}}
+									p {{ite.Message.shortDescription}}
+								.col-md-2
+									span() {{ite.updatedAt | date : 'dd-MM-yyyy h:mm:s'}}
+								.col-md-2
+									i.fa.fa-star(ng-if='ite.status <= 0')
+									span.text-danger(ng-if='ite.status <= 0') &nbsp;Chưa xem
+									span.text-info(ng-if='ite.status > 0') Đã xem
+		.col-md-12
+			ul.table-records-pages.pagination-search(
+			uib-pagination
+			total-items='pagination.total_item',
+			ng-model='pagination.page',
+			items-per-page='pagination.limit'
+			ng-change="pagination.pageOnChange()"
+			max-size="7"
+			boundary-links="true"
+			rotate="false"
+			first-text='«'
+			last-text = '»'
+			next-text ='›'
+			previous-text= '‹'
+			)

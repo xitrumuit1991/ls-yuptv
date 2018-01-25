@@ -1,6 +1,12 @@
 <!--Thẻ cào điện thoại -->
 <div id="mobile_Card">
-  <div class="head-title">Chọn gói (1 Ucoin = 100 <sup>vnđ</sup>)</div>
+  <!--<div class="head-title">Chọn gói
+    (1 Ucoin = 1.000 <sup>vnđ</sup>)
+  </div>-->
+  <div class="head-title" style="text-align: center;">
+    <small style="color: #5e5e5e;">(Mỗi 10.000VNĐ = 8 Ucoin)</small>
+  </div>
+
   <div class="content">
     <div class="title">1. Chọn nhà mạng</div>
     <div class="body">
@@ -22,12 +28,38 @@
       <input type="text" class="form-control " name="serial" id="mobile_Serial" />
     </div>
 
-    <div class="captcha-group">
+    <!--<div class="captcha-group">
       <div id="captcha-card"></div>
-    </div>
-
+    </div>-->
     <button type="button" class="btn btn-primary" id="btn-payment-by-card-for-app"> Thanh toán</button>
-
   </div>
 </div>
 <!--end the cao dien thoai-->
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#btn-payment-by-card-for-app').attr("disabled", true);
+
+    $('#mobile_Code').blur(function(){
+      var mobile_Code = $('#mobile_Code').val();
+      var mobile_Serial = $('#mobile_Serial').val();
+      var mobile_Provider = $('#mobile_Provider').val();
+      if(mobile_Code && mobile_Serial && mobile_Provider){
+        $('#btn-payment-by-card-for-app').removeAttr("disabled");
+      }else{
+        $('#btn-payment-by-card-for-app').attr("disabled", true);
+      }
+    });
+
+    $('#mobile_Serial').blur(function(){
+      var mobile_Code = $('#mobile_Code').val();
+      var mobile_Serial = $('#mobile_Serial').val();
+      var mobile_Provider = $('#mobile_Provider').val();
+      if(mobile_Code && mobile_Serial && mobile_Provider ){
+        $('#btn-payment-by-card-for-app').removeAttr("disabled");
+      }else{
+        $('#btn-payment-by-card-for-app').attr("disabled", true);
+      }
+    });
+
+  });
+</script>

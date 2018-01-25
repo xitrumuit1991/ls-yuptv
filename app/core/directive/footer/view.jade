@@ -1,70 +1,53 @@
 #footer
 	.footer-top
 		.container
-			ul.list-inline.pull-left.list-information
-				li.list-inline-item
-					a(href='' ui-sref='base.about-us') Về Livestar
-				li.list-inline-item
-					| /
-				li.list-inline-item
-					a(href='' ui-sref='base.policy') Điều kiện sử dụng
-				//li.list-inline-item
-					| /
-				//li.list-inline-item
-					a(href='' ui-sref='base.policy') Quy định bảo mật
-			ul.list-inline.pull-right.hotline
-				li.list-inline-item
-					img.image(src='/images/hotline.png')
-				li.list-inline-item
-					| HOTLINE
-				li.list-inline-item
-					| |
-				li.list-inline-item
-					| 091324543543
+			.col-md-12
+				ul.list-inline.pull-left.list-information
+					li.list-inline-item
+						a.title(href='' ui-sref='base.about-us') Về YUP
+					li.list-inline-item
+						span.title /
+					li.list-inline-item
+						a.title(href='' ui-sref='base.policy') Điều kiện sử dụng
+
+				ul.list-inline.pull-right.hotline
+					li.list-inline-item
+						img.image(src='/images/hotline.png')
+					li.list-inline-item
+						span.text-hotline HOTLINE
+					li.list-inline-item
+						span(style='color:#464754;') |
+					li.list-inline-item
+						span.text-phone 02466539859
+
 	.footer-bottom
 		.container
-			.col-md-3
+			.col-md-5
 				.head Copyright@Pateco VietNam 2017
-				.row
-					.col-md-3.title Website
-					.col-md-8.value www.livestar.vn
-				.row
+				//.row
 					.col-md-3.title Địa chỉ
 					.col-md-8.value Tầng 7, tòa nhà Kim Hoàn, ngõ 19 Duy Tân, Dịch Vọng Hậu, Cầu giấy, Hà Nội
-				.row
+				.row.margin-top-5
 					.col-md-3.title Email
-					.col-md-8.value info@livestar.vn
-				//.row
+					.col-md-8.value contact@yuptv.vn
+				.row.margin-top-5
 					.col-md-3.title Giấy phép
 					.col-md-8.value GPMXH Số 113/GP-BTTT cấp ngày 09/03/2016
-				//.row
-					.col-md-12.value
-						br
-						| Người chịu trách nhiệm nội dung:
-						b Nguyễn Tuấn Anh
-			.col-md-3
+			.col-md-4
 				.head Tải app miễn phí
 				.android-ios
-					a(href='https://play.google.com/store/apps/details?id=vn.LS.LiveStar&hl=en')
+					a(href='https://play.google.com/store/apps/details?id=yup.livestream.hotgirl' target='_blank')
 						i.fa.fa-android
-						|           Android Download
+						span.text-download           Android Download
 				.android-ios
-					a(href="https://itunes.apple.com/vn/app/livestar-san-khau-cho-sao/id1074154728?mt=8")
+					a(href="https://itunes.apple.com/vn/app/yup/id1294969432?mt=8" target='_blank')
 						i.fa.fa-apple
-						|           IOS Download
+						span.text-download           IOS Download
+
 
 			.col-md-3
 				.head Kết nối với chúng tôi
-				a(href='')
+				a(href='https://www.facebook.com/YUPTV/' target='_blank')
 					i.fa.fa-facebook.social-icon
-				a(href='')
+				a(href='https://www.youtube.com/channel/UCB4--XtMNmVy-ZcmKMeODfQ' target='_blank')
 					i.fa.fa-youtube.social-icon
-				a(href='')
-					i.fa.fa-twitter.social-icon
-				a(href='')
-					i.fa.fa-google-plus.social-icon
-			.col-md-3
-				.head Subscribes
-				form.form-horizontal.form-subscrice
-					input.form-control(type='text', placeholder='Your email')
-					button.btn.btn-subsrice(type='button') Gửi

@@ -7,7 +7,12 @@
 
 		.row
 			.col-md-3
-				|Bắt đầu
+				label Tiêu đề
+			.col-md-9
+				input.form-control(ng-model='item.title' placeholder='')
+		.row
+			.col-md-3
+				label Bắt đầu
 			.col-md-9
 				datetimepicker(
 				ng-model="scheduleDate.start"
@@ -15,27 +20,8 @@
 				date-options="dateOptions"
 				show-spinners="true"
 				)
-			.col-md-3
-				| Kết thúc
-			.col-md-9
-				datetimepicker(
-				ng-model="scheduleDate.end"
-				date-format="dd-MM-yyyy"
-				date-options="dateOptions"
-				show-spinners="true"
-				)
 			.col-md-10
 				button.pull-right.btn.btn-primary(ng-click='addOrEdit()') Cập nhật
 
-				//input.form-control(
-				//type="text"
-				//datetime-picker="MM/dd/yyyy HH:mm"
-				//enableDate = 'true'
-				//enableTime = 'true'
-				//ng-model="scheduleDate.dt"
-				//is-open="scheduleDate.opened"
-				//)
-				//button.pull-right.btn.btn-primary( ng-click="openDatePopup()"
-				//style='position: absolute; right: 15px; top: 0;')
-				//	i.fa.fa-calendar
+
 

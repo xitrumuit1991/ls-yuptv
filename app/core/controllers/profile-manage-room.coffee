@@ -11,13 +11,22 @@ route.$inject = ['$stateProvider', 'GlobalConfig']
 ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
   $window, $state, $stateParams,  ApiService, $http,
   GlobalConfig, $interval, $uibModal, Upload)->
+
   $scope.scheduleDate =
     dt : null
     opened : false
 
   $scope.listScheduleOfRoom = []
   $scope.selectCategoryValue = []
-  $scope.categorySelected = $rootScope.user.Room.categoryId
+  $scope.categorySelected = if $rootScope.user and $rootScope.user.Room then $rootScope.user.Room.categoryId else ''
+
+  $scope.onChangeCategoryRoom = ()->
+    console.log 'categorySelected',$scope.categorySelected
+    ApiService.room.changeCategory {categoryId:$scope.categorySelected}, (error, result)->
+      return if error
+      return UtilityService.notifyError(result.message) if result and result.error
+      UtilityService.notifySuccess('Thay đổi danh mục thành công')
+
 
   $scope.selectMonthValue = [
     {id:'', title:'----------'},
@@ -37,6 +46,7 @@ ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
   $scope.monthSelected = ''
 
   $scope.changeMonthSelect = ()->
+
 
   getScheduleOfRoom = ()->
     param =
@@ -111,13 +121,21 @@ ctrl = ($rootScope, UtilityService, $scope, $timeout, $location,
     return
 
 
-  ApiService.getListCategory {},(error, result)->
-    return if error
-    return console.error(result) if result and result.error
-    $scope.selectCategoryValue = result
+  $scope.manageRoomGetListCategory = ()->
+    ApiService.getListCategory {},(error, result)->
+      return if error
+      return console.error(result) if result and result.error
+      tempArr = []
+      tempArr = _.filter result,(item)->
+        return true if item.id != '9ac8fc48-86f2-11e7-b556-0242ac110005' and item.id != '9cabad29-80d2-11e7-b0f0-6057187c6b36'
+      $scope.selectCategoryValue = tempArr
 
+  UtilityService.reloadUserProfile ()->
+    if $rootScope.user and $rootScope.user.Room
+      $scope.categorySelected = $rootScope.user.Room.categoryId
+    getScheduleOfRoom()
+    $scope.manageRoomGetListCategory()
 
-  getScheduleOfRoom()
 
 
   return

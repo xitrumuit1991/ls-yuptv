@@ -11,9 +11,9 @@
 			) Theo dõi
 			.group-icon
 				i.fa.fa-eye
-				span {{item.views}}
+				span {{item.views | thousandSuffix : 1}}
 				i.fa.fa-heart-o
-				span {{item.hearts}}
+				span {{item.hearts | thousandSuffix : 1}}
 		.content
 			table.table.table-bordered
 				tr
@@ -30,4 +30,4 @@
 						span.label-hour {{ite.start | date : 'dd-MM-yyyy'}}
 					td
 						span.hour {{ite.start | date : 'HH:mm' }}
-						button.pull-right.btn-follow.btn-get-noty Nhận thông báo
+						//button.pull-right.btn-follow.btn-get-noty Nhận thông báo

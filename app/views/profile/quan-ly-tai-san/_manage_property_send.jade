@@ -25,6 +25,7 @@
 		table.table.table-striped
 			thead
 				tr
+					th Ngày giờ
 					th Lịch sử giao dịch
 					th Loại giao dịch
 					th Giá đơn vị (Ucoin)
@@ -33,16 +34,19 @@
 					th Tổng Ucoin
 			tbody
 				tr(ng-if='!send.items || send.items.length <= 0')
-					td(colspan='6') Không có dữ liệu
+					td(colspan='7') Không có dữ liệu
 				tr(ng-repeat='item in send.items' ng-if='send.items && send.items.length > 0')
+					td {{item.createdAt | date : 'dd-MM-yyyy HH:mm:ss' }}
 					td {{item.id}}
-					td {{item.Gifts.name}}
-					td {{item.Gifts.price}}
+					td
+						img.img-responsive(src='{{item.Gifts.icons.icon}}' style='width:30px; height:auto;')
+						p {{item.Gifts.name}}
+					td {{item.Gifts.price | currency : "" : 0 }} VNĐ
 					td {{item.discount + item.Gifts.discount}}
 					td {{item.quantity}}
 					td {{item.totalCost}}
 	.col-md-12
-		uib-pagination.table-records-pages(
+		ul.table-records-pages( uib-pagination
 		total-items='send.totalItems',
 		ng-model='send.page',
 		items-per-page='send.limit'

@@ -6,7 +6,7 @@ _directive = ($timeout, ApiService) ->
         $scope.onItemClick(item, $index)
       ,1)
 
-    $scope.$watch('items',()->
+    $scope.$watch 'items',()->
       $timeout(()->
         $(elm).find('.bxslider').bxSlider({
           captions: true
@@ -20,13 +20,13 @@ _directive = ($timeout, ApiService) ->
           moveSlides: 7
           slideMargin: 10
           pager: true
-
           infiniteLoop:false
           hideControlOnEnd:true
         })
-        return
-      )
-    )
+        $timeout(()->
+          $(elm).find('.bx-loading').remove()
+        ,100)
+      ,1)
 #    elm.ready ->
 #      $timeout(()->
 #        $(elm).find('.bxslider').bxSlider({

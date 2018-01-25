@@ -1,89 +1,65 @@
 .wrapper
-	.row.profile-charge-ucoin(ng-if='stepView == "step1"')
+	.row.profile-charge-ucoin(ng-if='stepView == "step1" ')
 		.col-md-12.header
 			h1 Nạp Ucoin
 		.col-md-12.body.step-1
 			.step
 				span.title 1
-				span Chọn gói Ucoin
-			.list
-				ul.list-package.list-inline
-					li.list-inline-item(ng-repeat='item in listPackage'
-					ng-if=' item.status == true && item.code.indexOf("vn.yup.coin") == -1  '
-					ng-click='selectedPackage(item, $index)'
-					ng-class='{"selected" : packageSelected.id == item.id }')
-						span {{item.name}}
-						br
-						span {{item.coin}} Ucoin
-						//p Code: {{item.code}}
-						i.fa.fa-check(ng-if='packageSelected.id == item.id')
-		.col-md-12
-			hr
-		.col-md-12
-			.row
-				.col-md-6
-					input(type='checkbox' ng-model='checkPolicy.value' name='policy' )
-					| &nbsp; Tôi đã đọc và đồng ý với các chính sách
-				.col-md-6.text-right
-					button.btn.btn-primary(ng-disabled=" checkPolicy.value==false || !packageSelected.id "
-					ng-click='goStep2()') NẠP UCOIN
-
-
-	.row.profile-charge-ucoin(ng-if='stepView == "step2" ')
-		.col-md-12.header
-			h1 Nạp Ucoin
-		.col-md-12.body.step-1
-			.step
-				span.title 2
 				span Chọn phương thức thanh toán
 			.list
 				ul.list-package.list-inline
-					li.list-inline-item( ng-click='selectChargeMethod ="sms"'
-					ng-class='{"selected": selectChargeMethod == "sms" }')
+					li.list-inline-item(
+					ng-click=' goStep2("sms") '
+					ng-class='{"selected": step1ChooseMethod == "sms" }'
+					)
 						span Qua SMS
-						i.fa.fa-check(ng-if='selectChargeMethod == "sms"')
-					li.list-inline-item( ng-click='selectChargeMethod ="card"'
-					ng-class='{"selected": selectChargeMethod == "card" }' )
+						i.fa.fa-check(ng-if='step1ChooseMethod == "sms"')
+
+					li.list-inline-item(
+					ng-click=' goStep2("card")'
+					ng-class='{"selected": step1ChooseMethod == "card" }'
+					)
 						span Thẻ cào điện thoại
-						i.fa.fa-check(ng-if='selectChargeMethod == "card"')
-					li.list-inline-item( ng-click='selectChargeMethod ="internetbanking"'
-					ng-class='{"selected": selectChargeMethod == "internetbanking" }' )
-						span Thẻ nội địa và thẻ quốc tế (Visa, Master card)
-						i.fa.fa-check(ng-if='selectChargeMethod == "internetbanking"')
+						i.fa.fa-check(ng-if='step1ChooseMethod == "card"')
 
-		.col-md-12(ng-if='selectChargeMethod == "sms" && packageSelected.id ')
-			hr
-			p.text-center Vui lòng soạn tin nhắn với cú pháp
-			.text-center
-				b MV LIVESTART NAP200
-			p.text-center gửi
-			p.text-center
-				b 9029
-		.col-md-12(ng-if='selectChargeMethod == "card" && packageSelected.id ')
-			hr
-			p.text-left Chọn nhà cung cấp
-			ul.list-telco-card
-				li viettel
-				li mbf
-				li zing
-			.row
-				.col-md-2 Nhập mã thẻ cào
-				.col-md-4
-					input.form-control()
-			.row
-				.col-md-2 Nhập số seri
-				.col-md-4
-					input.form-control()
-			hr
-			.row
-				.col-md-6.text-right
-					button.btn.btn-primary() NẠP UCOIN
+					li.list-inline-item(
+					style='width:auto; padding: 10px 20px;'
+					ng-click='goStep2("internetbanking")'
+					ng-class='{"selected": step1ChooseMethod == "internetbanking" }'
+					)
+						//span Thẻ nội địa và thẻ quốc tế (Visa, Master card)
+						span Thẻ ngân hàng
+						i.fa.fa-check(ng-if='step1ChooseMethod == "internetbanking"')
 
-		.col-md-12(ng-if='selectChargeMethod == "internetbanking" && packageSelected.id ')
-			hr
-			p.text-left Chọn loại thẻ
-			ul.list-telco-card
-				li Thẻ ngân hàng nội địa
-				li Thẻ quốc tế (Visa, Master card)
+					li.list-inline-item(
+					style='width:auto; padding: 10px 20px;'
+					ng-click='goStep2("redeemcode")'
+					ng-class='{"selected": step1ChooseMethod == "redeemcode" }'
+					)
+						span Redeem Code
+						i.fa.fa-check(ng-if='step1ChooseMethod == "redeemcode"')
 
+
+
+	.row.profile-charge-ucoin.step2(ng-if='stepView == "step2" && step1ChooseMethod == "sms" ')
+		button.btn.btn-default.btn-back-to-step1(ng-if='stepView == "step2"' ng-click='backToStep1()')
+			i.fa.fa-angle-left
+		include charge-ucoin/_sms
+
+
+	.row.profile-charge-ucoin.step2(ng-if='stepView == "step2" && step1ChooseMethod == "card" ')
+		button.btn.btn-default.btn-back-to-step1(ng-if='stepView == "step2"' ng-click='backToStep1()')
+			i.fa.fa-angle-left
+		include charge-ucoin/_telco-card
+
+
+	.row.profile-charge-ucoin.step2(ng-if='stepView == "step2" && step1ChooseMethod == "internetbanking" ')
+		button.btn.btn-default.btn-back-to-step1(ng-if='stepView == "step2"' ng-click='backToStep1()')
+			i.fa.fa-angle-left
+		include charge-ucoin/_internet-bank
+
+	.row.profile-charge-ucoin.step2(ng-if='stepView == "step2" && step1ChooseMethod == "redeemcode" ')
+		button.btn.btn-default.btn-back-to-step1(ng-if='stepView == "step2"' ng-click='backToStep1()')
+			i.fa.fa-angle-left
+		include charge-ucoin/_redeem_code
 

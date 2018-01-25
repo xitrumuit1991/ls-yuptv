@@ -1,3 +1,46 @@
+.directive-btn-follow
+{
+  outline: none !important;
+  border: none;
+  border-radius: 50%;
+  height: 22px;
+  width: 22px;
+  line-height: 22px;
+  text-align: center;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  background: #a60eff;
+  color: #fff;
+  margin-top: 10px;
+  &.red{
+    background: #de2618;
+    color: #fff;
+  }
+  &:hover{
+    color: #fff;
+    i.fa{
+      color: #fff;
+    }
+  }
+  &:focus{
+    color: #fff;
+    outline: none;
+    i.fa{
+      color: #fff;
+    }
+  }
+  i.fa{
+
+    font-size: 10px;
+    display: inline-block;
+    vertical-align: top;
+    line-height: 22px;
+    margin: 0;
+    padding: 0;
+  }
+}
+
 
 .wrapper{
   background: #fff;
@@ -5,4 +48,107 @@
   border: 1px solid #e0e0e0;
   border-radius: 10px;
   padding: 40px;
+}
+.bold{
+  font-weight: bold;
+}
+
+.pointer{
+  cursor: pointer;
+}
+.upper{
+  text-transform: uppercase;
+}
+.lower{
+  text-transform: lowercase;
+}
+
+.item-favorite{
+  i.fa-minus-circle{
+    color: #de2618 !important;
+  }
+}
+
+.inline{
+  display: inline-block !important;
+}
+.block{
+  display: block !important;
+}
+.clearleft{
+  clear: left;
+}
+
+.bold{
+  font-weight: bold;
+}
+.white{
+  color: #ffffff;
+}
+.black{
+  color:#000;
+}
+
+.relative{
+  position: relative;
+
+}
+.absolute{
+  position: absolute;
+}
+
+
+
+
+$commonSizes: 5 10 15 20 25 30 35 40 45 50;
+@each $size in $commonSizes {
+  .margin-top-#{$size} {
+    margin-top: #{$size}px;
+  }
+  .margin-bottom-#{$size} {
+    margin-bottom: #{$size}px;
+  }
+  .margin-left-#{$size} {
+    margin-left: #{$size}px;
+  }
+  .margin-right-#{$size} {
+    margin-right: #{$size}px;
+  }
+  .margin-#{$size} {
+    margin: #{$size}px;
+  }
+}
+
+
+$fontSize: 10 12 14 15 16 17 18 19 20 22 24 26 28 30;
+@each $size in $fontSize {
+  .font-#{$size} {
+    font-size: #{$size}px;
+  }
+}
+$paddingSize: 5 10 15 20 25 30 35 40 45 50;
+@each $size in $paddingSize {
+  .padding-bottom-#{$size} {
+    padding-bottom: #{$size}px;
+  }
+  .padding-left-#{$size} {
+    padding-left: #{$size}px;
+  }
+  .padding-right-#{$size} {
+    padding-right: #{$size}px;
+  }
+  .padding-top-#{$size} {
+    padding-top: #{$size}px;
+  }
+  .padding-#{$size} {
+    padding: #{$size}px;
+  }
+}
+
+$sizes: 50 75 100 125 140 150 160 175 200 250 300;
+@each $size in $sizes {
+  .limit-length-#{$size} {
+    width: #{$size}px;
+    display: inline-block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;
+  }
 }

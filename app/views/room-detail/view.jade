@@ -1,0 +1,148 @@
+.room-detail
+	.container
+		.col-md-12.content(style='padding: 0;')
+			.row(style='background: #1b1b1b;')
+				.col-md-8.top-nav
+					ul.list-inline
+						li.list-inline-item
+							span.title-room {{item.title}}
+						li.list-inline-item
+							i.fa.fa-eye
+							span(style='margin: 0 15px 0 5px;') {{item.views | thousandSuffix : 1}}
+							i.fa.fa-heart
+							span#room-heart-number(style='margin: 0 15px 0 5px;') {{item.hearts | thousandSuffix : 1}}
+
+					a.btn-share-facebook(
+					onclick="window.open(this.href,'targetWindow','toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=800,height=500'); return false;"
+					href="http://www.facebook.com/sharer/sharer.php?u=http://yuptv.vn/room-detail/{{item.id}}&t={{item.title}}"
+					target="_blank" )
+						i.fa.fa-facebook
+					button.btn.btn-primary.pull-right.btn-schedule(ng-click='openLichDien()') Lịch phát sóng
+				.col-md-4
+					.text-center.text-top3 Live Chat
+			.row
+				.col-md-8.room-content-left(style='padding:0;')
+
+					//item.mode == 2 Han che
+					.han-che-nguoi-xem(style='z-index: 9;' ng-if='item && item.mode == 2 && !linkPlayLive && loadedRoomDetail==true')
+						p Chương trình hạn chế người xem
+						p.text-center
+							span Giá vé:
+							span.price 2 Ucoin
+						.buy-ticker
+							button.btn.btn-primary(ng-click='buyTicket()')
+								span Mua vé
+								i.fa.fa-play-circle
+					//.han-che-nguoi-xem(style='z-index: 9;' ng-if='(roomNowLivestream == false || !linkPlayLive) && loadedRoomDetail==true ')
+						p: b.price Phòng này chưa diễn. Bạn vui lòng quay lại sau!
+
+					.room-player.relative(ng-show=' !linkPlayLive || roomNowLivestream == false && loadedRoomDetail==true '
+					style='background-image: url("{{item.banner || item.background || item.User.avatar}}");')
+						list-room-hot(ng-item='item')
+
+					.room-player(ng-show='linkPlayLive && roomNowLivestream == true && loadedRoomDetail==true '
+					style='background-image: url("{{item.banner || item.background || item.User.avatar}}");')
+						video#videojs-room-detail-main.video-js.vjs-default-skin(
+						controls
+						autoplay
+						)
+					list-user-room.list-user-room(ng-model='id' ng-item='item')
+
+				.col-md-4.room-content-right(style='padding:0;' ng-show='socketIsConnected == true ')
+					//.top-3-tang-qua
+						.item.first
+							img.image(src='http://via.placeholder.com/20x20')
+							span.name Name user
+							span.ucoin.pull-right 120 Ucoin
+						.item.second
+							img.image(src='http://via.placeholder.com/20x20')
+							span.name Name user
+							span.ucoin.pull-right 120 Ucoin
+						.item.third
+							img.image(src='http://via.placeholder.com/20x20')
+							span.name Name user
+							span.ucoin.pull-right 120 Ucoin
+					#content-chat-list.content-chat
+						//.item
+							img.image(src='{{ite.user.avatar || "http://via.placeholder.com/40x40"}}' style='width:40px; height: 40px;')
+							.group-name
+								.name {{ite.user.name}}
+								.subname {{ite.message}}
+							.time.pull-right 11:11
+					.chat-form
+						div
+							textarea#chat-input-form.chat(
+							data-emojiable="true"
+							data-emoji-input="unicode")
+						.group-btn
+							button.btn-gift( ng-click='clickSendHeart()' )
+								i.fa.fa-heart
+							button.btn-gift( ng-click='openListGift()' )
+								i.fa.fa-gift
+							button.btn-send(ng-click='sendChatMsg()')
+								i.fa.fa-send
+
+.clearfix
+div(style='background: #efefef; padding-top:50px;')
+	.container.list-room-same-category(ng-if='roomNowOnAir && roomNowOnAir.length>0')
+		.col-md-12
+			.row.margin-bottom-30
+				img.inline.icon-onair-room-detail(src='/images/onair_title_2.png' style='width: 20px;height: auto;')
+				span.margin-left-5.margin-bottom-30.font-20.black.bold On Air
+			.row
+				.col-md-2(ng-repeat='room in roomNowOnAir | limitTo:6 ')
+					.item
+						a(ui-sref='base.room-detail({id : room.id})')
+							img.item-image(src='{{room.banner || room.background || room.User.avatar || "http://via.placeholder.com/185x185" }}')
+						.item-group.row
+							.item-title.col-md-8
+								a(ui-sref='base.room-detail({id : room.id})')
+									p.title {{room.title}}
+								i.fa.fa-eye
+								span.value {{room.views | thousandSuffix : 1}} &nbsp;&nbsp;
+								i.fa.fa-heart
+								span.value {{room.hearts | thousandSuffix : 1}}
+							.col-md-3
+								button-follow-plus-minus(ng-item='room' ng-index='$index' ng-action-follow='nowOnAirFollowIdol' ng-action-unfollow='nowOnAirUnfollowIdol')
+								//.item-favorite.col-md-3.pointer( ng-if='room.isFollow == false'
+								//ng-click='nowOnAirFollowIdol(room, $index )')
+								//	i.fa.fa-plus-circle
+							.on-air-icon
+								.icon &nbsp;
+								span LIVE
+
+	.container.list-room-same-category(ng-if='category && category.Rooms && category.Rooms.length>0')
+		.col-md-12
+			.row.margin-bottom-30
+				img.inline.icon-onair-room-detail(src='/images/onair_title_2.png' style='width: 20px;height: auto;')
+				span.margin-left-5.margin-bottom-30.font-20.black.bold Cùng Chuyên Mục
+			.row
+				.col-md-2(ng-repeat='room in category.Rooms | limitTo:6 ')
+					.item
+						a(ui-sref='base.room-detail({id : room.id})')
+							img.item-image(src='{{room.banner || room.background || room.User.avatar || "http://via.placeholder.com/185x185" }}')
+						.item-group.row
+							.item-title.col-md-8
+								a(ui-sref='base.room-detail({id : room.id})')
+									p.title {{room.title}}
+								i.fa.fa-eye
+								span.value {{room.views | thousandSuffix : 1}} &nbsp;&nbsp;
+								i.fa.fa-heart
+								span.value {{room.hearts | thousandSuffix : 1}}
+							.col-md-3
+								button-follow-plus-minus(ng-item='room' ng-index='$index' ng-action-follow='sameRoomFollowIdol' ng-action-unfollow='sameRoomUnfollowIdol')
+
+
+	.clearfix
+	list-video-saved(ng-model='id')
+
+.clearfix
+div.block(style='height: 100px; background: #efefef;')
+.clearfix
+
+list-gift(ng-model='id')
+lich-dien-room-detail(ng-model='id' ng-action='callbackAfterFollowThisRoom')
+heart-animation#heart-animation(ng-model='id' ng-show='showHeartAnimation == true' )
+
+
+

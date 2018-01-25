@@ -1,3 +1,4 @@
+@import "var";
 @import "animation";
 @import "common";
 @import "nav_top_register_login";
@@ -14,11 +15,17 @@
 @import "schedule";
 @import "profile-manage-property";
 @import "profile-charge-ucoin";
+@import "on-air-page";
+@import "room-detail";
+@import "notifycation";
+@import "search";
+@import "search_form_top";
+@import "category";
+@import "directive-room-in-home-category";
 body{
   background: #fafafa;
   font-family: 'Montserrat', sans-serif;
 }
-
 
 .about_us{
   h5{
@@ -37,4 +44,35 @@ body{
 }
 .bold{
   font-weight: bold;
+}
+
+#scrollToTop{
+  text-align:center;
+  text-decoration: none;
+  position:fixed;
+  bottom:100px;
+  right:50px;
+  display:none;
+  img{
+    cursor: pointer;
+  }
+}
+
+.bel-unread-notifycation{
+  position: relative;
+  cursor: pointer;
+  span{
+    position: absolute;
+    color: #fff;
+    font-size: 12px;
+    line-height: 18px;
+    background: red;
+    top: -8px;
+    right: -5px;
+    width: 18px;
+    text-align: center;
+    height: 18px;
+    display: inline-block;
+    border-radius: 50%;
+  }
 }

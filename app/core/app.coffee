@@ -3,29 +3,37 @@ config =
   version : '1.0.0'
   uuid : (new Fingerprint({canvas : true, screen_resolution : false})).get()
   modelName : navigator.userAgent
-  fBappId : '1933860780272829'
-  API_URL : "http://dev.livestar.vn:1010/api/v1/"
+#  fBappId : '1933860780272829' #dev
+  fBappId : '144785392941236' #production
+  API_URL : "http://api.yuptv.vn/api/v1/"
   env : 'production'
+  accKitAppId : '1933860780272829'
+  accKitVersion : 'v1.1'
+  accKitToken: 'ed921b9e2248d0cb68329322c08e97b3'
 
 config.menuMainHome = [
   {
     title : 'Kênh On Air',
-    icon : 'fa-video-camera'
+#    icon : 'fa-video-camera'
     href : 'base.on-air'
     itemClass : 'col-md-4'
+    image : 'images/icon_livestream.png'
+#    backgroundColor : '#BB1275'
   },
   {
     title : 'Lịch Diễn',
     icon : 'fa-calendar-o'
     href : 'base.schedule'
     itemClass : 'col-md-4'
+#    image : 'images/Lich_dien.png'
   },
   {
     title : 'Tin Tức',
-    icon : 'fa-file'
+    icon : 'fa-bell-o'
     href : 'http://tintuc.livestar.vn'
     isLink : true
     itemClass : 'col-md-4'
+#    image : 'images/blog.png'
   },
 ]
 
@@ -41,7 +49,7 @@ config.menuMainProfile = [
     itemClass : 'col-md-2'
   },
   {
-    title : 'Nạp Xu',
+    title : 'Nạp Ucoin',
     href : 'base.profile.charge-ucoin',
     itemClass : 'col-md-2'
   },
@@ -57,17 +65,36 @@ config.menuMainProfile = [
   },
 ]
 
-switch ENV
+switch window.ENV
   when 'production'
     config = _.extend config,
-      fBappId : '1933860780272829'
-      API_URL : "http://dev.livestar.vn:1010/api/v1/"
+      fBappId : '144785392941236'
+      API_URL : "http://api.yuptv.vn/api/v1/"
+      LIVE_DOMAIN : 'http://livestream.yuptv.vn/'
+      SOCKET_DOMAIN : 'https://socket.yuptv.vn/'
+      env : 'production'
+  when 'prod'
+    config = _.extend config,
+      fBappId : '144785392941236'
+      API_URL : "http://api.yuptv.vn/api/v1/"
+      LIVE_DOMAIN : 'http://livestream.yuptv.vn/'
+      SOCKET_DOMAIN : 'https://socket.yuptv.vn/'
       env : 'production'
 
   when 'development'
     config = _.extend config,
       fBappId : '1933860780272829'
       API_URL : "http://dev.livestar.vn:1010/api/v1/"
+      LIVE_DOMAIN : 'http://livestream.yuptv.vn/'
+      SOCKET_DOMAIN : 'http://dev.livestar.vn:8050'
+      env : 'development'
+
+  when 'dev'
+    config = _.extend config,
+      fBappId : '1933860780272829'
+      API_URL : "http://dev.livestar.vn:1010/api/v1/"
+      LIVE_DOMAIN : 'http://livestream.yuptv.vn/'
+      SOCKET_DOMAIN : 'http://dev.livestar.vn:8050'
       env : 'development'
 
 initInjector = angular.injector(["ng"])
@@ -90,7 +117,10 @@ angular
   "angular-loading-bar",
   'ngFileUpload',
   '720kb.datepicker',
-  'ui.bootstrap.datetimepicker'
+  '720kb.socialshare',
+  'ui.bootstrap.datetimepicker',
+  'slick'
+#  'vjs-video'
 ])
 .constant "AppName", "YUP"
 .constant "GlobalConfig", config

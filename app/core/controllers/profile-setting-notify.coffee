@@ -16,6 +16,15 @@ ctrl = ($rootScope,
   GlobalConfig, $interval) ->
   console.log 'ProfileSettingNotifyCtrl coffee '
 
+  if !UtilityService.getSettingNotify('live-notification')
+    UtilityService.setSettingNotify('live-notification','on')
+
+  if !UtilityService.getSettingNotify('schedule-notification')
+    UtilityService.setSettingNotify('schedule-notification','on')
+
+  if !UtilityService.getSettingNotify('birthday-notification')
+    UtilityService.setSettingNotify('birthday-notification','on')
+
   $scope.changeSetting = (type , checked)->
     onOff = if checked then 'on' else 'off'
     UtilityService.setSettingNotify(type,onOff)

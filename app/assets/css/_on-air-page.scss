@@ -1,0 +1,321 @@
+.on-air-page{
+  margin-bottom: 50px;
+  .on-air-slide{
+    margin-bottom: 30px;
+  }
+  .room-title{
+    //width: 98px;
+    //height: 13px;
+    font-family: Montserrat;
+    font-size: 13px;
+    font-weight: 500;
+    //line-height: 1.13;
+    text-align: left;
+    color: #ffffff;
+  }
+
+  .icons{
+    i.fa.fa-eye, i.fa.fa-heart{
+      //width: 32px;
+      //height: 7px;
+      opacity: 0.7;
+      font-size: 10px;
+      text-align: left;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    span{
+      //width: 32px;
+      //height: 7px;
+      opacity: 0.7;
+      font-family: Montserrat;
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+
+  .on-air-block-top{
+    background: url(/images/on_air_background.jpg);
+    padding: 36px 38px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 60px;
+    .block-top-one-item{
+      padding: 0 2.5px;
+      margin-bottom: 4px;
+    }
+    .block-top-main-item{
+      padding: 0 2.5px;
+    }
+  }
+  .text-kenh-on-air{
+    font-family: Montserrat;
+    font-size: 20px;
+    font-weight: 500;
+    color: #000000;
+    margin-left: 10px;
+  }
+
+  .onair-menu-text{
+    height: 17px;
+    font-family: Montserrat;
+    font-size: 14px;
+    //line-height: 2.14;
+    text-align: left;
+    color: #595959;
+    margin-right: 20px;
+    &.active{
+      font-weight: 600;
+      color: #212121;
+    }
+  }
+
+  img.on-air-icon-play
+  {
+    position: absolute;
+    top:50%;
+    left: 50%;
+    width: 46px;
+    height: 46px;
+    transform: translate(-50%, -50%);
+  }
+
+
+
+  .list-category-home{
+    li{
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+  .home-menu-category{
+    background: #f1f1f1;
+    .list-category-home{
+      .home-menu-item{
+        margin: 0 15px;
+        .name{
+          font-family: Montserrat;
+          font-size: 16px;
+          font-weight: 500;
+          //line-height: 1.88;
+          //text-align: left;
+          color: #000000;
+          margin-left: 10px;
+        }
+        &.active{
+          .name{
+            color: #000 !important;
+          }
+        }
+      }
+    }
+  }
+
+  .header{
+    .title-header{
+      display: inline-block;
+      vertical-align: top;
+      margin-left: 5px;
+      line-height: 24px;
+      text-transform: uppercase;
+      font-family: Montserrat;
+      font-size: 15px;
+      font-weight: 500;
+      color: #000000;
+    }
+  }
+  .carousel-item img{
+    width: 100%;
+  }
+  .on-air-icon{
+    position: absolute;
+    left: 10px;
+    top:10px;
+    display: block;
+    .icon{
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: red;
+    }
+    span{
+      display: inline-block;
+      color: #fff;
+      margin-left: 5px;
+      line-height: 10px;
+      vertical-align: top;
+      font-size: 10px;
+    }
+  }
+  .on-air-menu-category{
+    line-height: 17px;
+    margin-bottom: 0;
+  }
+
+  .on-air-block-main{
+    position: relative;
+    cursor: pointer;
+    img.on-air-block-main-image{
+      width: 100%;
+      height: 380px;
+    }
+    &.on-air-block{
+      img.on-air-room-image{
+        width: 100%;
+        height: 188px;
+        opacity: 0.7;
+      }
+      img.on-air-icon-play{
+        display: none;
+      }
+      &:hover{
+        img.on-air-icon-play{
+          display: block;
+        }
+        img.on-air-room-image{
+          opacity: 1;
+        }
+      }
+      .bottom {
+        display: block;
+        width: 100%;
+        bottom: 0;
+        position: absolute;
+        background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, black 100%);
+        background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, black 100%);
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, black 100%);
+        left: 0;
+        padding: 10px;
+      }
+      .add-plus{
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        vertical-align: top;
+        font-size: 12px;
+        padding: 0;
+        outline:none;
+        .fa.fa-plus{
+          color: #fff !important;
+        }
+      }
+    }
+
+    .main-room-text{
+      font-family: Montserrat;
+      font-size: 20px;
+      font-weight: 500;
+      text-align: left;
+      color: #ffffff;
+      letter-spacing: 2px;
+    }
+    .bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      display: block;
+      padding: 30px 20px 20px 20px;
+      background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, black 100%);
+      background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, black 100%);
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, black 100%);
+      span {
+        margin: 0 10px 0 5px;
+        opacity: 0.7;
+        font-family: Montserrat;
+        font-size: 11.2px;
+        color: rgba(255, 255, 255, 0.7);
+      }
+      i.fa-eye, i.fa-heart{
+        opacity: 0.7;
+        font-size: 11.2px;
+        color: rgba(255, 255, 255, 0.7);
+      }
+    }
+    .add-plus{
+      &.unfollow{
+        background: #fe1503;
+      }
+      position: absolute;
+      right: 3%;
+      bottom: 20%;
+      border-radius: 50%;
+      color :#fff;
+      background: #a60efd;
+      width: 30px;
+      height: 30px;
+      line-height:30px;
+      vertical-align: top;
+      font-size: 16px;
+      padding: 0;
+      .fa.fa-plus{
+        color: #fff !important;
+      }
+    }
+  }
+
+
+  .on-air-block-more{
+    position: relative;
+    img.room-more-image{
+      width: 100%;
+    }
+    img.on-air-icon-play
+    {
+      position: absolute;
+      top:50%;
+      left: 50%;
+      width: 46px;
+      height: 46px;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+    }
+    .bottom{
+      position: relative;
+      padding: 5px;
+      background-color: #f6f5f5;
+      .room-title{
+        font-family: Montserrat;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1.13;
+        text-align: left;
+        color: #181818;
+        margin-bottom: 7px;
+      }
+      .icons{
+        i.fa, span.value{
+          font-size: 13px;
+          font-weight: 500;
+          line-height: 1.13;
+          text-align: left;
+          color: #181818;
+        }
+        span.value{
+          font-family: Montserrat;
+        }
+      }
+      .add-plus{
+        position: absolute;
+        right: 3%;
+        bottom: 20%;
+        border-radius: 50%;
+        color :#fff;
+        background: #a60efd;
+        outline: none;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        vertical-align: top;
+        font-size: 12px;
+        padding: 0;
+        &.unfollow{
+          background: #fe1503;
+        }
+        .fa{
+          color:#fff;
+        }
+      }
+    }
+  }
+}

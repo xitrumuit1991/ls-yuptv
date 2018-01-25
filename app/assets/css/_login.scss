@@ -1,53 +1,101 @@
-.login-modal{
-  padding: 20px 40px;
-  position: relative;
-  .fa.fa-close{
-    position: absolute;
-    top: 3%;
-    right: 3%;
-    cursor: pointer;
-    font-size: 20px;
+.window-modal-login {
+  .modal-dialog {
+    margin-top: 150px !important;
   }
+  .modal-content {
+    border-radius: 0px;
+    width: 480px;
+    margin: 0 auto;
+    .text-quen-mat-khau {
+      font-size: 13px;
+      font-family: "Montserrat";
+      color: rgb(24, 24, 24);
+    }
+    .text-chua-co-tai-khoan {
+      font-size: 13px;
+      font-family: "Montserrat";
+      color: rgb(24, 24, 24);
+    }
+    .login-modal {
+      position: relative;
+      padding: 40px;
+      .text-login {
+        font-size: 16px;
+        font-family: "Montserrat";
+        color: rgb(44, 44, 44);
+      }
+      .text-btn-login {
+        font-size: 13px;
+        font-family: "Montserrat";
+        color: rgb(255, 255, 255);
+      }
 
-  .modal-body{
+      .fa-close {
+        position: absolute;
+        cursor: pointer;
+        font-size: 20px;
+        top: 3%;
+        right: 3%;
+      }
+
+      .form-control {
+        border-radius: 0px !important;
+      }
+    }
+  }
+}
+
+.login-modal {
+  //padding: 20px 40px;
+  //position: relative;
+  //.fa.fa-close {
+  //  position: absolute;
+  //  top: 3%;
+  //  right: 3%;
+  //  cursor: pointer;
+  //  font-size: 20px;
+  //}
+  .modal-body {
     margin: 10px 0;
     padding: 0;
-    h3{
+    h3 {
       text-align: left;
-      margin : 10px 0;
+      margin: 10px 0;
     }
-    input.form-control{
+    input.form-control {
       margin: 15px 0;
     }
-    button.login{
+    button.login {
       display: block;
       width: 100%;
       text-align: center;
-      margin: 15px 0;
+      margin: 20px 0;
       background-color: #288cfd;
       color: #fff;
-      border-radius:2px ;
+      border-radius: 2px;
       border: none;
       padding: 10px 0;
       font-size: 14px;
-      &.facebook{
+      &.facebook {
         background: #2567b1;
       }
     }
-    .not-have-acc{
+    .not-have-acc {
       margin-top: 20px;
-      .link-register{
+      .link-register {
         display: inline-block;
         color: #288cfd;
         text-decoration: none;
         cursor: pointer;
+        font-size: 13px;
+        font-family: "Montserrat";
       }
     }
-    .group{
+    .group {
       clear: both;
       margin: 10px 0;
       display: block;
-      .left{
+      .left {
         display: inline-block;
       }
     }

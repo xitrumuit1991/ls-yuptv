@@ -14,7 +14,14 @@
       display: inline-block;
       text-align: right;
       padding-left: 20px;
-      line-height: 20px;
+      line-height: 38px;
+      span{
+        font-size: 13px;
+        font-family: "Montserrat";
+        color: #0f0f0f;
+        margin-left: 10px;
+      }
+      font-size: 13px;
       &:first-child {
         border-right: 1px solid #ccc;
         padding-right: 20px;
@@ -22,6 +29,7 @@
       a {
         text-decoration: none;
         color: #505050;
+        line-height: 38px;
         &:hover {
           color: #000;
         }
@@ -52,10 +60,10 @@
     .group-avatar-logged {
       cursor: pointer;
       .avatar {
-        width: 35px;
-        height: 35px;
         border-radius: 50%;
         margin-right: 5px;
+        width: 42px;
+        height: 42px;
       }
       .name {
         margin-right: 2px;
@@ -142,22 +150,44 @@
     margin-top: 0;
 
     .menu_main_list_item {
-      border-right: 1px solid #ccc;
+      border-right: 1px solid rgba(255, 255, 255, .15);
       text-align: center;
       font-size: 16px;
-      &.active{
-        background: #eb266b;
-        color: #fff;
-        a{
-          color: #fff;
-        }
-      }
-      a {
+      line-height: 20px;
+      margin-top: 20px;
+      .link-item{
         color: #cbcbcb;
         text-decoration: none;
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 20px;
         &.active{
           //color: #fff;
           color: #cbcbcb;
+        }
+        img{
+          width: 14px;
+          height: auto;
+          display: inline-block;
+          margin-top: 0px;
+          line-height: 20px;
+        }
+        span{
+          font-family: Montserrat;
+          font-size: 14px;
+          color: #ffffff;
+          height: 20px;
+          line-height: 20px;
+          display: inline-block;
+          vertical-align: middle;
+          text-align: left;
+        }
+      }
+      &.active{
+        //background: #eb266b;
+        color: #fff;
+        a{
+          color: #fff;
         }
       }
       &:hover {

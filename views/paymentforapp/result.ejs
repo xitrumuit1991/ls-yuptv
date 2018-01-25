@@ -2,59 +2,38 @@
 	<div class="main-container container">
 		<div class="payment-block">
 			<div class="wrapper">
+
+
 				<div class="title-block">
 					<div class="image">
 						<img src="/assets/paymentforapp/images/payment/property.png" alt="Propert" />
 					</div>
 					<h1 class="heading separator">
-						<span class="color-primary text">Bạn đã nạp tiền thành công</span>
+            <% if( typeof(message) != "undefined" && message) { %>
+              <p class="color-primary text"><%= message %> </p>
+            <% } %>
+            <% if( typeof(status) != "undefined" && status) { %>
+              <p class="color-primary text">Code: <%= status %></p>
+            <% } %>
 					</h1>
 				</div>
+
 				<div class="payment-result-block">
 					<div class="description">
-						<% if(typeof (message) == "undefined") { %>
-							<% if(confirm && confirm.responsecode != "03" ){%>
-							<p>Tài khoản: <span class="user-name color-primary"><%= user.username %></span>  đã nạp <span class="user-coin color-primary" data-unit="ucoin"><%= confirm.price %></span> VND vào tài khoản tương đương với <%= confirm.coin %> ucoin. </p>
-							<% } %>
-							<p>Tài khoản hiện có: <%= user.money %> ucoin. </p>
-							<p>Mã giao dịch: <%= confirm.tranid %> </p>
-							<p>Trạng thái: <%= confirm.descriptionvn %> </p>
-						<% } else { %>
-							<p>Trạng thái: <%= message %> </p>
-						<% } %>
-					</div>
+            <% if(typeof (user) != "undefined" && user) { %>
+              <p>
+                Tài khoản <span class="user-name color-primary"><%= user.name %></span> đã nạp tiền thành công.
+              </p>
+              <p>
+                Tài khoản của bạn hiện có : <span class="user-coin color-primary" data-unit="ucoin"><%= user.money %></span> ucoin.
+              </p>
+            <% } %>
+          </div>
 				</div>
+
+
 			</div>
 		</div>
-
 	</div>
-  <%- include ../layouts/footer %>
 </div>
-<%- contentFor('appjs') %>
-<!--<script src='/assets/javascripts/lib/payment.js' type="text/javascript"></script>-->
-<script type="text/javascript">
-	$(function() {
-		var isMobile = (function() {
-			var userAgent = navigator.userAgent.toLowerCase();
-			if (userAgent.match("mobile")) {
-				return true;
-			} else {
-				return false;
-			}
-		})();
-		if (isMobile) {
-			$("header").hide()
-			$(".main").css({
-				"min-width": 'auto',
-				"overflow": 'hidden'
-			});
-			$(".container").css({
-				"width": 'auto'
-			});
-		}
-	})
-</script>
-<%- contentFor('appcss') %>
 
-<link rel="stylesheet" href="/assets/paymentforapp/css/payment.css" type="text/css" />
-<link rel="stylesheet" href="/assets/paymentforapp/css/payment_2.css" type="text/css" />

@@ -2,119 +2,113 @@
 	.schedule.wrapper
 		.row
 			.col-md-6
-				h2.head-title LỊCH DIỄN
-				p Cập nhật ngày 10/10/2017
+				h2.head-title.text-lich-dien LỊCH DIỄN
+
 			.col-md-6.text-right
-				span.label.black Hiển thị
-				//#category
-				select.form-control(
+				span.label.black.text-hien-thi Hiển thị
+				select.form-control.select-search-dropdown(
 				ng-model="categorySelected"
 				ng-change="changeCategorySelect()"
 				ng-options="item.id as item.title for item in selectCategoryValue")
 
-				select.form-control(ng-model="dateSelected"
+				select.form-control.select-search-dropdown(ng-model="dateSelected"
 				ng-change="changeDateSelect()"
 				ng-options="item.id as item.title for item in selectDateValue")
 
-				select.form-control(ng-model="monthSelected"
+				select.form-control.select-search-dropdown(ng-model="monthSelected"
 				ng-change="changeMonthSelect()"
 				ng-options="item.id as item.title for item in selectMonthValue")
 
-				button.btn-search
-					i.fa.fa-search
-		hr
-		.row(ng-if="activeView == 'filter-search' ")
-			.col-md-6.col-md-offset-3
-				h3.text-center Kết quả tìm kiếm
-			.col-md-6.col-md-offset-3(ng-if='listRoomSearch.length <= 0')
-				|Không có lịch diễn nào
-			.col-md-12(ng-if='listRoomSearch && listRoomSearch.length > 0')
-				table.table.table-bordered(style='margin:0 auto; width: 60%;')
-					tr
-						td(width='40%') Idol diễn
-						td(width='20%') Ngày diễn
-						td(width='40%') Giờ diễn
-					tr(ng-repeat='item in listRoomSearch')
-						td(style='border-right: none;')
-							.group-image-name
-								img.img-responsive(src='{{item.Room.User.avatars_path.avatar}}')
-								.name
-									p(ng-click='openScheduleDetail(item)') {{item.Room.title}}
-									i.fa.fa-eye
-									span {{item.Room.views}}
-									i.fa.fa-heart-o
-									span {{item.Room.hearts}}
-						td(style='border-left: none; border-right: none;')
-							p {{item.start | date:'dd-MM-yyyy' }}
-						td(style='border-left: none;')
-							.group-time-follow
-								.time.bold {{item.start | date:'HH:mm' }}
-								.follow
-									button(ng-if='item.Room.isFollow == false'
-									ng-click='actionFollowRoom(item)') Theo dõi
+		.schedule-line-hr &nbsp;
+		include _filter_search
 
 		.row(ng-if="activeView == 'now-tomorrow' ")
-			.col-md-6
-				h4 {{textNowDate}}
+			.col-md-6(style='padding:5px;')
+				h4.text-hom-nay {{textNowDate}}
 				.row
 					.col-md-12
 						table.table.table-bordered
 							tr
-								td(width='50%') Idol diễn
-								td(width='50%') Giờ diễn
+								td.first-colum(style='border: none;')
+									span.table-th-text Idol diễn
+								td(style='border: none;')
+									span.table-th-text Giờ diễn
 							tr(ng-if='!roomAtNowDate || roomAtNowDate.length <= 0')
 								td(colspan='2') Không có lịch diễn nào
 							tr(ng-repeat='item in roomAtNowDate' ng-if='roomAtNowDate.length > 0')
 								td(style='border-right: none;')
 									.group-image-name
-										img.img-responsive(src='{{item.Room.User.avatars_path.avatar}}')
+										img.img-responsive.pointer(
+										ng-click='openScheduleDetail(item)'
+										src='{{item.Room.User.avatars_path.avatar || "http://via.placeholder.com/130x130" }}')
 										.name
-											p(ng-click='openScheduleDetail(item)') {{item.Room.title}}
+											.limit-length-140.block.pointer(ng-click='openScheduleDetail(item)')
+												span.name-room {{item.Room.title || item.Room.User.name }}
+											.title-schedule {{item.title}}
+										.icons
 											i.fa.fa-eye
-											span {{item.Room.views}}
+											span.value {{item.Room.views | thousandSuffix : 1}}
 											i.fa.fa-heart-o
-											span {{item.Room.hearts}}
+											span.value {{item.Room.hearts | thousandSuffix : 1}}
 								td(style='border-left: none;')
 									.group-time-follow
 										.time.bold {{item.start | date:'HH:mm' }}
 										.follow
-											button(ng-if='item.Room.isFollow == false'
-											ng-click='actionFollowRoom(item)') Theo dõi
+											button(ng-if='item.Room.isFollow == false && item.Room.User.id != user.id'
+											ng-click='lichdienFollowRoom(item,"follow")')
+												span.text-follow Theo dõi
+											button(ng-if='item.Room.isFollow == true && item.Room.User.id != user.id'
+											ng-click='lichdienFollowRoom(item,"unfollow")')
+												i.fa.fa-check.margin-right-5
+												span.text-follow Đang theo dõi
 
-
-			.col-md-6
-				h4 {{textTomorrowDate}}
+			.col-md-6(style='padding:5px;')
+				h4.text-hom-nay {{textTomorrowDate}}
 				.row
 					.col-md-12
 						table.table.table-bordered
 							tr
-								td(width='60%') Idol diễn
-								td(width='40%') Giờ diễn
+								td.first-colum(style='border: none;')
+									span.table-th-text Idol diễn
+								td(style='border: none;')
+									span.table-th-text Giờ diễn
 							tr(ng-if='!roomAtTomorrowDate || roomAtTomorrowDate.length <= 0')
 								td(colspan='2') Không có lịch diễn nào
 							tr(ng-repeat='item in roomAtTomorrowDate' ng-if='roomAtTomorrowDate.length > 0')
 								td(style='border-right: none;')
 									.group-image-name
-										img.img-responsive(src='{{item.Room.User.avatars_path.avatar}}')
+										img.img-responsive.pointer(
+										ng-click='openScheduleDetail(item)'
+										src='{{item.Room.User.avatars_path.avatar || "http://via.placeholder.com/130x130" }}')
 										.name
-											p(ng-click='openScheduleDetail(item)') {{item.Room.title}}
+											.limit-length-140.block.pointer(ng-click='openScheduleDetail(item)')
+												span.name-room {{item.Room.title || item.Room.User.name }}
+											.title-schedule {{item.title}}
+										.icons
 											i.fa.fa-eye
-											span {{item.Room.views}}
+											span.value {{item.Room.views | thousandSuffix : 1}}
 											i.fa.fa-heart-o
-											span {{item.Room.hearts}}
+											span.value {{item.Room.hearts | thousandSuffix : 1}}
 								td(style='border-left: none;')
 									.group-time-follow
 										.time.bold {{item.start | date:'HH:mm' }}
 										.follow
-											button(ng-if='item.Room.isFollow==false') Theo dõi
+											button(ng-if='item.Room.isFollow==false && item.Room.User.id != user.id'
+											ng-click='lichdienFollowRoom(item,"follow")')
+												span.text-follow Theo dõi
+											button(ng-if='item.Room.isFollow==true && item.Room.User.id != user.id'
+											ng-click='lichdienFollowRoom(item,"unfollow")')
+												i.fa.fa-check.margin-right-5
+												span.text-follow Đang theo dõi
 
 
+		//Lịch phát sóng Idol của bạn
 		.list-room-schedule-following(ng-if='user && listUserFollowing && listUserFollowing.length > 0')
 			.row
 				.col-md-12
 					hr
 				.col-md-12
-					h3 Lịch phát sóng Idol của bạn ({{listUserFollowing.length}})
+					h3.text-lich-phat-song-idol-cua-ban Lịch phát sóng Idol của bạn ({{listUserFollowing.length}})
 					br
 					br
 				.col-md-12
